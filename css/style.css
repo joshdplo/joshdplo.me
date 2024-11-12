@@ -1,0 +1,47 @@
+:root {
+  --c-dark: #111;
+  --c-light: #f9f9f9;
+
+  --ff-default: 'Nunito', Tahoma, Verdana, Arial, sans-serif;
+  --ff-title: 'Host Grotesk', Tahoma, Verdana, Arial, sans-serif;
+
+  color-scheme: light dark;
+  color: var(--c-light);
+  background-color: var(--c-dark);
+
+  font-family: var(--ff-default);
+  line-height: 1.5;
+  font-weight: normal;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  width: 100%;
+  font-size: 1.25rem;
+}
+
+body.full {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.page {
+  padding: 2.5rem 1rem;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: var(--c-dark);
+    background-color: var(--c-light);
+  }
+}
