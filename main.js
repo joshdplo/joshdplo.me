@@ -7,5 +7,5 @@ import { Nav } from './js/Nav.js';
 
 document.addEventListener('DOMContentLoaded', function onDOMLoad() {
   console.log('-> DOM Loaded');
-  Nav.init();
+  Nav();
 });
