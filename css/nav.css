@@ -24,10 +24,7 @@ nav .line {
   border-radius: 2px;
   background-color: #fff;
   transform: translateX(var(--nav-link-pad-x));
-}
-
-nav .line.active {
-  transition: transform .25s ease;
+  transition: .15s ease;
 }
 
 nav a {

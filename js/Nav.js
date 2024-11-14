@@ -1,3 +1,5 @@
+import '../css/nav.css';
+
 export const Nav = () => {
   const dom = {
     header: document.querySelector('.header-main'),
@@ -7,6 +9,7 @@ export const Nav = () => {
     activeLink: () => dom.nav.querySelector('a.active'),
   };
 
+  let isLineMoving = false;
   const linkPadding = getComputedStyle(dom.header).getPropertyValue('--nav-link-pad-x');
 
   const removeActive = () => {
@@ -20,13 +23,23 @@ export const Nav = () => {
   };
 
   const moveLineToLink = (linkEl) => {
-    if (!dom.line.classList.contains('active')) dom.line.classList.add('active');
+    if (isLineMoving) return;
     let el = linkEl || dom.activeLink();
 
     const width = el.offsetWidth;
     const xPos = el.offsetLeft;
-    dom.line.style.transform = `translateX(calc(${xPos}px + ${linkPadding}))`;
-    dom.line.style.width = `calc(${width}px - (${linkPadding} * 2))`;
+
+    dom.line.addEventListener('transitionrun', () => {
+      isLineMoving = true;
+    }, { once: true });
+
+    dom.line.style.width = '3px';
+
+    dom.line.addEventListener('transitionend', () => {
+      dom.line.style.width = `calc(${width}px - (${linkPadding} * 2))`;
+      dom.line.style.transform = `translateX(calc(${xPos}px + ${linkPadding}))`;
+      isLineMoving = false;
+    }, { once: true });
   };
 
   const onLinkMouseEnter = (e) => {
