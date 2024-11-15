@@ -2,7 +2,7 @@
   --c-dark: #111;
   --c-light: #f9f9f9;
 
-  --grad-blue-dark: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  --grad-blue-dark: radial-gradient(ellipse at bottom, #0a0a0a 0%, #000000 100%);
 
   --background: var(--grad-blue-dark);
 
@@ -11,7 +11,7 @@
 
   color-scheme: light dark;
   color: var(--c-light);
-  background-color: var(--c-bg);
+  background: var(--background);
 
   font-family: var(--ff-default);
   line-height: 1.5;
@@ -23,6 +23,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/**
+ * Globals
+ */
 html {
   font-size: 100%;
 }
@@ -36,6 +39,24 @@ main {
   width: 100%;
 }
 
+/**
+ * Type
+ */
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: var(--ff-title);
+}
+
+p+p {
+  margin-top: 1.25rem;
+}
+
+/**
+ * Light Theme
+ */
 @media (prefers-color-scheme: light) {
   :root {
     --background: var(--c-light);

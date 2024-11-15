@@ -1,14 +1,30 @@
 header {
   --nav-link-gap: 2rem;
-  --nav-link-pad-y: 1.25rem;
+  --nav-link-pad-y: 1rem;
+  --nav-background: rgba(0, 0, 0, .3);
+  --nav-border: rgba(255, 255, 255, .02);
 
   position: sticky;
   display: flex;
   top: 0;
+  left: 0;
   width: 100%;
   justify-content: center;
   align-items: center;
   z-index: 10;
+  overflow: hidden;
+}
+
+header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--nav-background);
+  border-bottom: 1px solid var(--nav-border);
+  backdrop-filter: blur(4px);
 }
 
 nav {
@@ -26,12 +42,15 @@ nav a {
   font-family: var(--ff-title);
   text-decoration: none;
   color: #fff;
-  font-size: 2rem;
   text-shadow: 0px 0px 4px #000;
   transition: .15s ease;
 }
 
-nav a.active {
-  opacity: 1;
-  text-shadow: 0px 0px 10px rgba(255, 255, 255, .6);
+/**
+ * Light Theme
+ */
+@media (prefers-color-scheme: light) {
+  header {
+    --nav-background: var(--c-light);
+  }
 }

@@ -1,7 +1,7 @@
 import '../css/christmas.css';
 
 export const Christmas = () => {
-  const totalSnowflakes = 200;
+  const totalSnowflakes = 120;
   const container = document.getElementById('christmas-snow');
   const stylesheet = document.createElement('style');
 
@@ -14,6 +14,7 @@ export const Christmas = () => {
 
     for (let i = 0; i < totalSnowflakes; i++) {
       const snowflake = document.createElement('i');
+      const randomScaleValue = Math.random();
 
       const randomX = Math.random() * 100;
       const randomOffset = randomRange(-100, 100);
@@ -21,7 +22,7 @@ export const Christmas = () => {
       const randomXEndYoyo = randomX + randomOffset / 2;
       const randomYoyoTime = randomRange(30, 80) * 100;
       const randomYoyoY = randomYoyoTime * 100;
-      const randomScale = Math.random();
+      const randomScale = randomScaleValue > .35 ? .35 : randomScaleValue;
       const fallDuration = randomRange(10, 30);
       const fallDelay = randomRange(0, 30) * -1;
 
