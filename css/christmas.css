@@ -1,3 +1,17 @@
+:root {
+  --c-christmas-green: #799351;
+  --c-christmas-green-light: #A1DD70;
+  --c-christmas-red: #EE4E4E;
+  --c-christmas-beige: #F6EEC9;
+  --grad-christmas-dark: radial-gradient(ellipse at bottom, #0a0a0a 0%, #000000 100%);
+
+  --c-primary: var(--c-christmas-green);
+  --c-primary-var: var(--c-christmas-green-light);
+  --c-secondary: var(--c-christmas-red);
+  --c-accent: var(--c-christmas-beige);
+  --background: var(--grad-christmas-dark);
+}
+
 /* Christmas tree */
 #christmas-tree {
   position: fixed;

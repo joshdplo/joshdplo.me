@@ -3,8 +3,8 @@ import './css/fonts.css';
 import './css/style.css';
 import './css/pages.css';
 
-import { Nav } from './js/Nav.js';
 import { Christmas } from './js/Christmas.js';
+import { Nav } from './js/Nav.js';
 
 document.addEventListener('DOMContentLoaded', function onDOMLoad() {
   console.log('-> DOM Loaded');

@@ -1,16 +1,30 @@
 :root {
+  /* Color vars */
   --c-dark: #111;
+  --c-gray: #777;
   --c-light: #f9f9f9;
 
-  --grad-blue-dark: radial-gradient(ellipse at bottom, #0a0a0a 0%, #000000 100%);
+  --c-theme-black: #000;
+  --c-theme-pink: #E90074;
+  --c-theme-pink-light: #FF4191;
+  --c-theme-yellow: #FFF078;
 
-  --background: var(--grad-blue-dark);
+  /* Type vars */
+  --ff-nunito: 'Nunito', Tahoma, Verdana, Arial, sans-serif;
+  --ff-hostgrotesk: 'Host Grotesk', Tahoma, Verdana, Arial, sans-serif;
 
-  --ff-default: 'Nunito', Tahoma, Verdana, Arial, sans-serif;
-  --ff-title: 'Host Grotesk', Tahoma, Verdana, Arial, sans-serif;
+  /* Definition vars */
+  --c-primary: var(--c-theme-pink);
+  --c-primary-var: var(--c-theme-pink-light);
+  --c-secondary: var(--c-theme-yellow);
+  --c-accent: var(--c-black);
+  --background: var(--c-dark);
+  --font-color: var(--c-light);
+  --ff-default: var(--ff-nunito);
+  --ff-title: var(--ff-hostgrotesk);
 
-  color-scheme: light dark;
-  color: var(--c-light);
+  /* Definitions */
+  color: var(--font-color);
   background: var(--background);
 
   font-family: var(--ff-default);
@@ -21,6 +35,9 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* @FUTURE: themes */
+  /* color-scheme: light dark; */
 }
 
 /**
@@ -39,6 +56,10 @@ main {
   width: 100%;
 }
 
+a {
+  color: inherit;
+}
+
 /**
  * Type
  */
@@ -55,7 +76,7 @@ p+p {
 }
 
 /**
- * Light Theme
+ * @FUTURE: Light Theme
  */
 @media (prefers-color-scheme: light) {
   :root {

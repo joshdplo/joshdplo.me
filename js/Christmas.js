@@ -48,7 +48,7 @@ export const Christmas = () => {
 
   // Init
   const init = () => {
-    console.log('-> Christmas initialized');
+    console.log('-> * Merry Christmas *');
     generateSnowflakes();
   };
 
