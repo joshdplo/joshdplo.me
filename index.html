@@ -12,20 +12,36 @@
   <header class="header-main">
     <nav class="nav-main">
       <a href="#hello" class="active">Hello</a>
-      <a href="#professional">Professional</a>
+      <a href="#professional" data-text="Professional">Professional</a>
       <a href="#code">Code</a>
       <a href="#personal">Personal</a>
       <span class="line"></span>
     </nav>
   </header>
   <main>
-    <div id="hello" class="page">
-      <p>Hi - I'm Josh, a front-end developer.</p>
+    <div class="pages">
+      <div id="hello" class="page active">
+        <h1>Hi - I'm Josh</h1>
+        <p>Welcome to my website.</p>
+      </div>
+
+      <div id="professional" class="page">
+        <h1>Professional page.</h1>
+      </div>
+
+      <div id="code" class="page">
+        <h1>Code page.</h1>
+      </div>
+
+      <div id="personal" class="page">
+        <h1>Personal page</h1>
+      </div>
     </div>
   </main>
 
   <!-- End Elements -->
-  <canvas id="snow-canvas"></canvas>
+  <div id="christmas-tree"></div>
+  <div id="christmas-snow"></div>
 
   <!-- Scripts -->
   <script type="module" src="/main.js"></script>

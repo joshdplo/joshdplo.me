@@ -2,12 +2,16 @@
   --c-dark: #111;
   --c-light: #f9f9f9;
 
+  --grad-blue-dark: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+
+  --background: var(--grad-blue-dark);
+
   --ff-default: 'Nunito', Tahoma, Verdana, Arial, sans-serif;
   --ff-title: 'Host Grotesk', Tahoma, Verdana, Arial, sans-serif;
 
   color-scheme: light dark;
   color: var(--c-light);
-  background-color: var(--c-dark);
+  background-color: var(--c-bg);
 
   font-family: var(--ff-default);
   line-height: 1.5;
@@ -28,20 +32,14 @@ body {
   font-size: 1.25rem;
 }
 
-body.full {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.page {
-  padding: 2.5rem 1rem;
+main {
+  width: 100%;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
+    --background: var(--c-light);
+
     color: var(--c-dark);
-    background-color: var(--c-light);
   }
 }
