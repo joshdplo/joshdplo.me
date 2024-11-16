@@ -11,15 +11,7 @@ export const Nav = () => {
   };
 
   const onLinkClick = (e) => {
-    if (e.target.classList.contains('active')) return;
-    const href = e.target.getAttribute('href');
-    const page = document.querySelector(`${href}.page`);
-
-    dom.activePage().classList.remove('active');
-    dom.activeLink().classList.remove('active');
-    e.target.classList.add('active');
-    page.classList.add('active');
-
+    console.log('link clicked - do this later');
   };
 
   const init = () => {

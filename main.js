@@ -7,7 +7,7 @@ import { Christmas } from './js/Christmas.js';
 import { Nav } from './js/Nav.js';
 
 document.addEventListener('DOMContentLoaded', function onDOMLoad() {
-  console.log('-> DOM Loaded');
+  console.log('Hey there - hope you\'re doing well! 💖\nIf you notice any issues, shoot a mail to: feedback@joshdplo.me\n....................');
   Nav();
   Christmas();
 });

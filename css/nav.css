@@ -1,21 +1,21 @@
-header {
+.header-main {
   --nav-link-gap: 1.5rem;
   --nav-link-pad-y: .75rem;
   --nav-background: rgba(0, 0, 0, .3);
   --nav-border: rgba(255, 255, 255, .02);
 
-  position: sticky;
+  position: fixed;
   display: flex;
   top: 0;
   left: 0;
   width: 100%;
-  justify-content: center;
-  align-items: center;
-  z-index: 10;
+  height: var(--nav-height);
+  font-size: 1.1rem;
   overflow: hidden;
+  z-index: 10;
 }
 
-header::before {
+.header-main::before {
   content: "";
   position: absolute;
   top: 0;
@@ -27,9 +27,18 @@ header::before {
   backdrop-filter: blur(3px);
 }
 
+.header-main_inner {
+  position: relative;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
 nav {
   position: relative;
   display: flex;
+  height: 100%;
   justify-content: center;
   align-items: center;
   gap: var(--nav-link-gap);
@@ -38,9 +47,10 @@ nav {
 nav a {
   position: relative;
   display: flex;
-  padding: var(--nav-link-pad-y) 0;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
   font-family: var(--ff-title);
-  font-size: 1rem;
   text-decoration: none;
   transition: color .3s ease;
 }
@@ -53,9 +63,6 @@ nav a::before {
   width: 100%;
   height: 2px;
   background-color: var(--c-gray);
-  /* border-top-left-radius: 100%;
-  border-bottom-left-radius: 100%;
-  border-bottom-right-radius: 100%; */
   transform: scaleY(0);
   transform-origin: bottom;
   transition: transform .3s ease;
@@ -72,4 +79,26 @@ nav a.active::before {
 
 nav a:hover:not(.active)::before {
   transform: scaleY(1);
+}
+
+nav a.logo svg {
+  width: 2rem;
+  height: auto;
+}
+
+nav a.logo::before {
+  display: none;
+}
+
+.nav-right {
+  position: relative;
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.nav-right svg {
+  width: 1.25rem;
+  fill: #fff;
 }

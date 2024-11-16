@@ -15,11 +15,13 @@
 /* Christmas tree */
 #christmas-tree {
   position: fixed;
-  bottom: -60px;
-  right: -150px;
-  width: 360px;
-  height: 360px;
+  bottom: 0;
+  right: 0;
+  width: 361px;
+  height: 555px;
   background: no-repeat center/cover url('/images/christmas-tree.webp');
+  transform: scale(.75);
+  transform-origin: bottom right;
   z-index: -1;
 }
 
@@ -41,4 +43,14 @@
   background: white;
   border-radius: 50%;
   filter: drop-shadow(0 0 8px rgba(255, 255, 255, .25));
+}
+
+#snowflakes-toggle {
+  position: relative;
+}
+
+#snowflakes-toggle i {}
+
+#snowflakes-toggle.active i {
+  display: none;
 }

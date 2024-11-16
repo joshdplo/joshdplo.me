@@ -1,17 +1,19 @@
 import '../css/christmas.css';
 
 export const Christmas = () => {
-  const totalSnowflakes = 120;
   const container = document.getElementById('christmas-snow');
-  const stylesheet = document.createElement('style');
+  const toggle = document.getElementById('snowflakes-toggle');
 
+  let stylesheet = document.createElement('style');
+  document.head.appendChild(stylesheet);
+
+  let isSnowing = true;
+  const totalSnowflakes = 120;
   const randomRange = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
   // Generate snowflakes
   // JS port of alphardex's SCSS code: https://codepen.io/alphardex/pen/dyPorwJ
   const generateSnowflakes = () => {
-    document.head.appendChild(stylesheet);
-
     for (let i = 0; i < totalSnowflakes; i++) {
       const snowflake = document.createElement('i');
       const randomScaleValue = Math.random();
@@ -44,12 +46,28 @@ export const Christmas = () => {
       stylesheet.sheet.insertRule(keyframes, stylesheet.length);
       snowflake.style.animation = `f${i} ${fallDuration}s ${fallDelay}s linear infinite`;
     }
+  };
+
+  const onToggle = () => {
+    if (isSnowing) {
+      container.innerHTML = '';
+      stylesheet.remove();
+    } else {
+      stylesheet = document.createElement('style');
+      document.head.appendChild(stylesheet);
+      generateSnowflakes();
+    }
+
+    isSnowing = !isSnowing;
+    toggle.classList[isSnowing ? 'add' : 'remove']('active');
   }
 
   // Init
   const init = () => {
-    console.log('-> * Merry Christmas *');
+    console.log('-> Christmas initialized 🎄');
     generateSnowflakes();
+
+    toggle.addEventListener('click', onToggle);
   };
 
   init();

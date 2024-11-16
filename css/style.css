@@ -1,5 +1,5 @@
 :root {
-  /* Color vars */
+  /* Colors */
   --c-dark: #111;
   --c-gray: #777;
   --c-light: #f9f9f9;
@@ -9,11 +9,17 @@
   --c-theme-pink-light: #FF4191;
   --c-theme-yellow: #FFF078;
 
-  /* Type vars */
+  /* Type */
   --ff-nunito: 'Nunito', Tahoma, Verdana, Arial, sans-serif;
   --ff-hostgrotesk: 'Host Grotesk', Tahoma, Verdana, Arial, sans-serif;
 
-  /* Definition vars */
+  /* Spacing */
+  --nav-height: 4rem;
+  --site-padding: 1rem;
+  --content-width: 56.25rem;
+  --container-width: calc(var(--content-width) + (var(--site-padding) * 2));
+
+  /* Definitions */
   --c-primary: var(--c-theme-pink);
   --c-primary-var: var(--c-theme-pink-light);
   --c-secondary: var(--c-theme-yellow);
@@ -23,9 +29,10 @@
   --ff-default: var(--ff-nunito);
   --ff-title: var(--ff-hostgrotesk);
 
-  /* Definitions */
+  /* Rules */
   color: var(--font-color);
   background: var(--background);
+  background-attachment: fixed;
 
   font-family: var(--ff-default);
   line-height: 1.5;
@@ -60,6 +67,12 @@ a {
   color: inherit;
 }
 
+button {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
 /**
  * Type
  */
@@ -76,12 +89,23 @@ p+p {
 }
 
 /**
+ * Utility
+ */
+.contain {
+  max-width: var(--container-width);
+  padding-left: var(--site-padding);
+  padding-right: var(--site-padding);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/**
  * @FUTURE: Light Theme
  */
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
   :root {
     --background: var(--c-light);
 
     color: var(--c-dark);
   }
-}
+} */
