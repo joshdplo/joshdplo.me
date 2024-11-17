@@ -9,7 +9,8 @@
   --c-primary-var: var(--c-christmas-green-light);
   --c-secondary: var(--c-christmas-red);
   --c-accent: var(--c-christmas-beige);
-  --background: var(--grad-christmas-dark);
+
+  background-image: var(--grad-christmas-dark);
 }
 
 /* Christmas tree */
