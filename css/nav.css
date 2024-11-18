@@ -52,11 +52,11 @@ nav a {
   align-items: center;
   font-family: var(--ff-title);
   text-decoration: none;
-  transition: .2s ease;
+  transition: color .3s linear;
 }
 
 nav a.active {
-  color: var(--c-primary-var);
+  color: var(--c-accent);
   text-shadow: 0 0 8px rgba(255, 255, 255, .5);
 }
 
@@ -68,10 +68,11 @@ nav a.logo svg {
   width: 2rem;
   height: auto;
   fill: var(--c-white);
+  transition: fill .3s linear;
 }
 
 nav a.logo.active svg {
-  fill: var(--c-primary-var);
+  fill: var(--c-accent);
 }
 
 .nav-right {

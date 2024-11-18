@@ -8,6 +8,7 @@
   --c-light: #f9f9f9;
 
   --c-theme-black: #000;
+  --c-theme-blue: #247be6;
   --c-theme-pink: #E90074;
   --c-theme-pink-light: #FF4191;
   --c-theme-yellow: #FFF078;
@@ -23,10 +24,11 @@
   --container-width: calc(var(--content-width) + (var(--site-padding) * 2));
 
   /* Definitions */
-  --c-primary: var(--c-theme-pink);
-  --c-primary-var: var(--c-theme-pink-light);
+  --c-primary: var(--c-theme-blue);
+  --c-secondary: var(--c-theme-pink);
+  --c-secondary-var: var(--c-theme-pink-light);
   --c-secondary: var(--c-theme-yellow);
-  --c-accent: var(--c-black);
+  --c-accent: var(--c-theme-yellow);
   --background: var(--c-dark);
   --font-color: var(--c-light);
   --ff-default: var(--ff-nunito);
@@ -95,6 +97,18 @@ p+p {
 /**
  * Utility
  */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 .contain {
   max-width: var(--container-width);
   padding-left: var(--site-padding);

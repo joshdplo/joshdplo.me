@@ -5,11 +5,6 @@
   --c-christmas-beige: #F6EEC9;
   --grad-christmas-dark: radial-gradient(ellipse at bottom, #0a0a0a 0%, #000000 100%);
 
-  --c-primary: var(--c-christmas-green);
-  --c-primary-var: var(--c-christmas-green-light);
-  --c-secondary: var(--c-christmas-red);
-  --c-accent: var(--c-christmas-beige);
-
   background-image: var(--grad-christmas-dark);
 }
 
@@ -48,10 +43,10 @@
 
 #snowflakes-toggle {
   position: relative;
+  opacity: .5;
+  transition: opacity .2s linear;
 }
 
-#snowflakes-toggle i {}
-
-#snowflakes-toggle.active i {
-  display: none;
+#snowflakes-toggle.active {
+  opacity: 1;
 }
