@@ -24,7 +24,7 @@
   height: 100%;
   background: var(--nav-background);
   border-bottom: 1px solid var(--nav-border);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(6px);
 }
 
 .header-main_inner {
@@ -54,27 +54,29 @@ nav a {
   align-items: center;
   font-family: var(--ff-title);
   text-decoration: none;
-  transition: color .3s linear;
+  transition: color .3s linear, transform .18s ease;
 }
 
 nav a.active {
   color: var(--c-accent);
-  text-shadow: 0 0 8px rgba(255, 255, 255, .35);
+  text-shadow: 1px 2px 0px rgba(0, 0, 0, .3);
 }
 
 nav a:hover:not(.active) {
-  text-shadow: 0 0 8px rgba(255, 255, 255, .7);
+  transform: translateY(-2px);
 }
 
 nav a.logo svg {
   width: 2rem;
   height: auto;
   fill: var(--c-white);
-  transition: fill .3s linear;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0));
+  transition: .3s linear;
 }
 
 nav a.logo.active svg {
   fill: var(--c-primary);
+  filter: drop-shadow(1px 2px 1px rgba(0, 0, 0, .7));
 }
 
 .nav-right {

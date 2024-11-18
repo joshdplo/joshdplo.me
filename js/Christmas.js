@@ -1,14 +1,15 @@
 import '../css/christmas.css';
+import { getStorageSeasonal, setStorageSeasonal } from './LocalStorage.js';
 
 export const Christmas = () => {
   const snowContainer = document.getElementById('christmas-snow');
   const treeContainer = document.getElementById('christmas-tree');
-  const toggle = document.getElementById('christmas-toggle');
+  const toggles = document.querySelectorAll('.christmas-toggle');
 
   let stylesheet = document.createElement('style');
   document.head.appendChild(stylesheet);
 
-  let isSnowing = true;
+  let isSeasonalActive = false;
   const totalSnowflakes = 120;
   const randomRange = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
@@ -50,27 +51,26 @@ export const Christmas = () => {
   };
 
   const onToggle = () => {
-    if (isSnowing) {
-      treeContainer.classList.add('hide');
+    if (isSeasonalActive) {
       snowContainer.innerHTML = '';
       stylesheet.remove();
     } else {
-      treeContainer.classList.remove('hide');
       stylesheet = document.createElement('style');
       document.head.appendChild(stylesheet);
       generateSnowflakes();
     }
 
-    isSnowing = !isSnowing;
-    toggle.classList[isSnowing ? 'add' : 'remove']('active');
+    isSeasonalActive = !isSeasonalActive;
+    setStorageSeasonal(isSeasonalActive);
+    document.body.classList[isSeasonalActive ? 'add' : 'remove']('seasonal-active');
   }
 
   // Init
   const init = () => {
     console.log('-> Christmas initialized 🎄');
-    generateSnowflakes();
 
-    toggle.addEventListener('click', onToggle);
+    [...toggles].map(toggle => toggle.addEventListener('click', onToggle));
+    if (getStorageSeasonal() === 'true') onToggle();
   };
 
   init();

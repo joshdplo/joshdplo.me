@@ -5,9 +5,61 @@
   --c-christmas-beige: #F6EEC9;
 }
 
-/* Christmas tree */
+/* Bottom snow piles */
+#christmas-bottom {
+  position: fixed;
+  display: none;
+  bottom: -5rem;
+  left: 50%;
+  width: 100%;
+  max-width: calc(var(--container-width) + 12.1rem);
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: -2;
+}
+
+#christmas-bottom i {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30%;
+  height: 6.3rem;
+  border-radius: 80%;
+  background-color: white;
+}
+
+#christmas-bottom i:nth-child(2) {
+  width: 14%;
+  left: 20%;
+}
+
+#christmas-bottom i:nth-child(3) {
+  width: 25%;
+  left: 25%;
+}
+
+#christmas-bottom i:nth-child(4) {
+  left: 40%;
+}
+
+#christmas-bottom i:nth-child(5) {
+  left: auto;
+  right: 20%;
+}
+
+#christmas-bottom i:nth-child(6) {
+  left: auto;
+  right: 0;
+}
+
+body.seasonal-active #christmas-bottom {
+  display: block;
+}
+
+/* Tree */
 #christmas-tree {
   position: fixed;
+  display: none;
   bottom: -.75rem;
   left: 50%;
   width: 100%;
@@ -17,15 +69,13 @@
   background: no-repeat right/contain url('/images/christmas-tree.webp');
   pointer-events: none;
   z-index: -2;
-  opacity: 1;
-  transition: opacity .3s ease;
 }
 
-#christmas-tree.hide {
-  opacity: 0;
+body.seasonal-active #christmas-tree {
+  display: block;
 }
 
-/* Christmas Snow */
+/* Falling snow */
 #christmas-snow {
   position: fixed;
   top: 0;
@@ -45,12 +95,12 @@
   filter: drop-shadow(0 0 8px rgba(255, 255, 255, .25));
 }
 
-#christmas-toggle {
+header .christmas-toggle {
   position: relative;
   opacity: .5;
   transition: opacity .2s linear;
 }
 
-#christmas-toggle.active {
+body.seasonal-active header .christmas-toggle {
   opacity: 1;
 }

@@ -1,18 +1,16 @@
 import '../css/nav.css';
 
 export const Nav = () => {
-  const dom = {
-    header: document.querySelector('.header-main'),
-    nav: document.querySelector('.nav-main'),
-    links: document.querySelectorAll('.nav-main a'),
-    pages: document.querySelectorAll('.pages .page')
-  };
+  const header = document.querySelector('.header-main');
+  const nav = document.querySelector('.nav-main');
+  const links = document.querySelectorAll('.nav-main a');
+  const pages = document.querySelectorAll('.pages .page');
 
   // Pages intersectionObserver
   const pageObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       const id = entry.target.id;
-      const link = dom.nav.querySelector(`a[href="#${id}"]`);
+      const link = nav.querySelector(`a[href="#${id}"]`);
 
       if (entry.isIntersecting) {
         link.classList.add('active');
@@ -27,7 +25,7 @@ export const Nav = () => {
   const init = () => {
     console.log('-> Nav initialized');
 
-    [...dom.pages].map(page => pageObserver.observe(page));
+    [...pages].map(page => pageObserver.observe(page));
   };
 
   init();

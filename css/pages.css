@@ -10,11 +10,11 @@
   display: flex;
   width: 100%;
   min-height: 100vh;
-  padding-top: calc(var(--nav-height) + 1rem);
+  padding-top: var(--nav-height);
   flex-direction: column;
 }
 
-.page::before {
+/* .page::before {
   content: "";
   position: absolute;
   top: var(--nav-height);
@@ -22,11 +22,8 @@
   width: 100%;
   max-width: var(--container-width);
   height: 100%;
-  border: 1px solid var(--c-theme-blue-alpha);
-  border-top: 0;
-  border-bottom: 0;
   backdrop-filter: blur(3px);
   transform: translateX(-50%);
   pointer-events: none;
   z-index: -1;
-}
+} */
