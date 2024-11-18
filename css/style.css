@@ -4,14 +4,18 @@
   --c-white: #fff;
 
   --c-dark: #0a0a0a;
-  --c-gray: #777;
+  --c-gray-dark: #3e3e3e;
+  --c-gray: #ddd;
   --c-light: #f9f9f9;
 
   --c-theme-black: #000;
-  --c-theme-blue: #247be6;
+  --c-theme-blue: rgb(36, 123, 230);
+  --c-theme-blue-alpha: rgba(156, 187, 225, 0.1);
   --c-theme-pink: #E90074;
   --c-theme-pink-light: #FF4191;
   --c-theme-yellow: #FFF078;
+
+  --grad-background: radial-gradient(ellipse at 50% -200%, var(--c-primary) 0%, #000000 100%);
 
   /* Type */
   --ff-nunito: 'Nunito', Tahoma, Verdana, Arial, sans-serif;
@@ -27,7 +31,6 @@
   --c-primary: var(--c-theme-blue);
   --c-secondary: var(--c-theme-pink);
   --c-secondary-var: var(--c-theme-pink-light);
-  --c-secondary: var(--c-theme-yellow);
   --c-accent: var(--c-theme-yellow);
   --background: var(--c-dark);
   --font-color: var(--c-light);
@@ -37,6 +40,7 @@
   /* Rules */
   color: var(--font-color);
   background: var(--background);
+  background-image: var(--grad-background);
   background-attachment: fixed;
 
   font-family: var(--ff-default);
@@ -110,6 +114,7 @@ p+p {
 }
 
 .contain {
+  width: 100%;
   max-width: var(--container-width);
   padding-left: var(--site-padding);
   padding-right: var(--site-padding);

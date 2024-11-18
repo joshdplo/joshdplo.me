@@ -3,22 +3,26 @@
   --c-christmas-green-light: #A1DD70;
   --c-christmas-red: #EE4E4E;
   --c-christmas-beige: #F6EEC9;
-  --grad-christmas-dark: radial-gradient(ellipse at bottom, #0a0a0a 0%, #000000 100%);
-
-  background-image: var(--grad-christmas-dark);
 }
 
 /* Christmas tree */
 #christmas-tree {
   position: fixed;
-  bottom: 0;
-  right: 0;
-  width: 361px;
-  height: 555px;
-  background: no-repeat center/cover url('/images/christmas-tree.webp');
-  transform: scale(.75);
-  transform-origin: bottom right;
-  z-index: -1;
+  bottom: -.75rem;
+  left: 50%;
+  width: 100%;
+  height: 18.75rem;
+  max-width: calc(var(--container-width) + 12.1rem);
+  transform: translateX(-50%);
+  background: no-repeat right/contain url('/images/christmas-tree.webp');
+  pointer-events: none;
+  z-index: -2;
+  opacity: 1;
+  transition: opacity .3s ease;
+}
+
+#christmas-tree.hide {
+  opacity: 0;
 }
 
 /* Christmas Snow */
@@ -41,12 +45,12 @@
   filter: drop-shadow(0 0 8px rgba(255, 255, 255, .25));
 }
 
-#snowflakes-toggle {
+#christmas-toggle {
   position: relative;
   opacity: .5;
   transition: opacity .2s linear;
 }
 
-#snowflakes-toggle.active {
+#christmas-toggle.active {
   opacity: 1;
 }

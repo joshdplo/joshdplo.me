@@ -1,8 +1,9 @@
 import '../css/christmas.css';
 
 export const Christmas = () => {
-  const container = document.getElementById('christmas-snow');
-  const toggle = document.getElementById('snowflakes-toggle');
+  const snowContainer = document.getElementById('christmas-snow');
+  const treeContainer = document.getElementById('christmas-tree');
+  const toggle = document.getElementById('christmas-toggle');
 
   let stylesheet = document.createElement('style');
   document.head.appendChild(stylesheet);
@@ -31,7 +32,7 @@ export const Christmas = () => {
       snowflake.style.opacity = Math.random().toFixed(2);
       snowflake.style.transform = `translate(${randomX}vw, -10px) scale(${randomScale})`;
 
-      container.appendChild(snowflake);
+      snowContainer.appendChild(snowflake);
 
       const keyframes = `
         @keyframes f${i} {
@@ -50,9 +51,11 @@ export const Christmas = () => {
 
   const onToggle = () => {
     if (isSnowing) {
-      container.innerHTML = '';
+      treeContainer.classList.add('hide');
+      snowContainer.innerHTML = '';
       stylesheet.remove();
     } else {
+      treeContainer.classList.remove('hide');
       stylesheet = document.createElement('style');
       document.head.appendChild(stylesheet);
       generateSnowflakes();
