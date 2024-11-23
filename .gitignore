@@ -132,3 +132,4 @@ dist
 # Project
 *.sqlite
 .env
+_static/db/*.json

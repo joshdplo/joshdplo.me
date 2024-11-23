@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { writeFile, writeFileSync } from 'node:fs'
+import { writeFileSync } from 'node:fs';
 import { join } from '../util.js';
 import sequelize from './db.js';
 import Movie from './Movie.js';
@@ -25,8 +25,8 @@ async function tmdbFetch(path) {
       console.log(response);
       throw new Error('tmdb() response fetch not ok');
     };
-    const data = await response.json();
 
+    const data = await response.json();
     return data;
   } catch (error) {
     console.error('error with tmdb()', error);
@@ -37,30 +37,27 @@ async function tmdbFetch(path) {
  * Get Movies
  * @returns Array
  */
-async function getTmdbData(opt) {
+async function getTmdbData(options) {
   try {
-    const moviesOrTv = opt.movies ? 'movies' : 'tv';
-    const favoriteOrRated = opt.favorite ? 'favorite' : 'rated';
-    const jsonFile = join(`db/${moviesOrTv}_${favoriteOrRated}.json`);
-
     let currentPage = 1;
-    let totalPages = 1;
-
+    const url = () => `/account/${accountId}/${options.favoriteOrRated}/${options.moviesOrTv}?language=en-US&page=${currentPage}&sort_by=created_at.asc`;
+    const jsonFile = join(`db/${options.moviesOrTv}_${options.favoriteOrRated}.json`);
     const tmdbData = [];
-    const url = () => `/account/${accountId}/${favoriteOrRated}/${moviesOrTv}?language=en-US&page=${currentPage}&sort_by=created_at.asc`;
 
+    console.log('--------------');
+    console.log(`Getting ${options.title}`);
     console.log(url());
 
-    const initialFavorites = await tmdbFetch(url());
-    initialFavorites.results.forEach(result => tmdbData.push(result));
+    const initialData = await tmdbFetch(url());
+    initialData.results.forEach(result => tmdbData.push(result));
 
-    totalPages = initialFavorites.total_pages;
+    let totalPages = initialData.total_pages;
 
     if (totalPages >= currentPage) {
       currentPage += 1;
 
       for (let i = currentPage; i <= totalPages; i++) {
-        console.log(`${opt.title ? opt.title : ''} page ${currentPage}/${totalPages} (${tmdbData.length}/${initialFavorites.total_results})`);
+        console.log(`${options.title} page ${currentPage}/${totalPages} (${tmdbData.length}/${initialData.total_results})`);
 
         const pageResults = await tmdbFetch(url());
         pageResults.results.forEach(result => tmdbData.push(result));
@@ -70,39 +67,31 @@ async function getTmdbData(opt) {
     }
 
     // write to json file (for now)
-    writeFileSync(jsonFile, JSON.stringify(tmdbData), (err) => {
-      if (err) {
-        console.error('Error writing to json file');
-        throw err;
-      }
-    });
+    try {
+      writeFileSync(jsonFile, JSON.stringify(tmdbData));
+      console.log(`${options.title} json file written`);
+    } catch (err) {
+      console.error('Error writing to json file');
+      throw err;
+    }
   } catch (error) {
     console.error('Error with getTmdbData()', error);
   }
 }
 
 /**
- * Get Shows
- * @returns Array
+ * Seed DB
  */
-async function getTmdbShows() {
-  try {
-    return ['shows'];
-  } catch (error) {
-    console.error('Error with getTmdbShows()', error);
-  }
-}
-
 async function seed() {
   try {
     // Sync DB
     await sequelize.sync({ force: true });
 
     // Get Data
-    await getTmdbData({ title: 'Favorited Movies' }); // movies/favorited
-    await getTmdbData({ favorite: false, title: 'Rated Movies' }); // movies/rated
-    await getTmdbData({ movies: false, title: 'Favorited Shows' }); // tv/favorited
-    await getTmdbData({ movies: false, favorite: false, title: 'Rated Shows' }); // tv/rated
+    await getTmdbData({ moviesOrTv: 'movies', favoriteOrRated: 'favorite', title: 'Favorited Movies' });
+    await getTmdbData({ moviesOrTv: 'movies', favoriteOrRated: 'rated', title: 'Rated Movies' });
+    await getTmdbData({ moviesOrTv: 'tv', favoriteOrRated: 'favorite', title: 'Favorited Shows' });
+    await getTmdbData({ moviesOrTv: 'tv', favoriteOrRated: 'rated', title: 'Rated Shows' });
 
   } catch (error) {
     console.error('error in seed()', error);
