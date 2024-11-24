@@ -34,8 +34,7 @@ async function tmdbFetch(path) {
 }
 
 /**
- * Get Movies
- * @returns Array
+ * Get TMDB Data
  */
 async function getTmdbData(options) {
   try {
