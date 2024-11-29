@@ -10,10 +10,12 @@
   flex-direction: column;
   justify-content: center;
   margin-left: 4rem;
+  gap: 1.2rem;
 }
 
-#nav_main a:not(.logo) {
+#nav_main ul a {
   position: relative;
+  display: flex;
   padding: .6rem 2rem;
   text-decoration: none;
   text-transform: uppercase;
