@@ -1,6 +1,7 @@
 import './css/reset.css';
 import './css/fonts.css';
 import './css/base.scss';
+import './css/logo.scss';
 import './css/nav.css';
 
 document.addEventListener('DOMContentLoaded', function onDOMLoad() {

@@ -1,8 +1,21 @@
 #nav_main {
-  position: fixed;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#nav_main ul {
+  position: relative;
   display: flex;
   flex-direction: column;
-  width: var(--nav-width);
-  height: 100vh;
-  background-color: var(--nav-background);
+  justify-content: center;
+  margin-left: 4rem;
+}
+
+#nav_main a:not(.logo) {
+  position: relative;
+  padding: .6rem 2rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
 }
