@@ -22,10 +22,9 @@
   --container-width: calc(var(--content-width) + (var(--site-padding) * 2));
 
   /* Definitions */
-  --c-primary: var(--c-theme-blue);
+  --c-primary: var(--c-theme-seagreen);
   --c-secondary: var(--c-theme-pink);
-  --c-secondary-var: var(--c-theme-pink-light);
-  --c-accent: var(--c-theme-yellow);
+  --c-accent: var(--c-theme-orange);
 
   --font-color: var(--c-white);
   --background: var(--c-theme-dark);
@@ -64,13 +63,6 @@ body {
   background-attachment: fixed;
 }
 
-main,
-#footer_main {
-  width: calc(100% - var(--nav-width));
-  padding-left: calc(var(--nav-width) + var(--site-padding));
-  padding-right: var(--site-padding);
-}
-
 a {
   color: inherit;
 }
@@ -95,22 +87,11 @@ p+p {
   @include util.sr-only;
 }
 
-.contain {
-  width: 100%;
-  max-width: var(--container-width);
-  padding-left: var(--site-padding);
-  padding-right: var(--site-padding);
-  margin-left: auto;
-  margin-right: auto;
-}
-
 /**
  * Light Theme
  */
-@media (prefers-color-scheme: light) {
-  :root {
-    --font-color: var(--c-black);
-    --background: var(--c-theme-light);
-    --nav-background: var(--c-white);
-  }
+@include util.themeVars() {
+  --font-color: var(--c-black);
+  --background: var(--c-theme-light);
+  --nav-background: var(--c-white);
 }

@@ -4,5 +4,5 @@
   flex-direction: column;
   width: var(--nav-width);
   height: 100vh;
-  border-right: 2px dashed var(--nav-background);
+  background-color: var(--nav-background);
 }
