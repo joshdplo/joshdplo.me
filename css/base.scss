@@ -1,29 +1,23 @@
+@use 'util';
+
 :root {
   /* Colors */
   --c-black: #000;
   --c-white: #fff;
 
-  --c-dark: #0a0a0a;
-  --c-gray-dark: #3e3e3e;
-  --c-gray: #ddd;
-  --c-light: #f9f9f9;
-
-  --c-theme-black: #000;
-  --c-theme-blue: rgb(36, 123, 230);
-  --c-theme-blue-alpha: rgba(156, 187, 225, 0.1);
-  --c-theme-pink: #E90074;
-  --c-theme-pink-light: #FF4191;
-  --c-theme-yellow: #FFF078;
-
-  --grad-background: radial-gradient(ellipse at 50% -200%, var(--c-primary) 0%, #000000 100%);
+  --c-theme-dark: #040F0F;
+  --c-theme-light: #ECF8F8;
+  --c-theme-seagreen: #00A6A6;
+  --c-theme-orange: #F3A712;
+  --c-theme-pink: #FF4365;
 
   /* Type */
-  --ff-nunito: 'Nunito', Tahoma, Verdana, Arial, sans-serif;
-  --ff-hostgrotesk: 'Host Grotesk', Tahoma, Verdana, Arial, sans-serif;
+  --ff-atkinson: 'Atkinson Hyperlegible', Tahoma, Verdana, Arial, sans-serif;
+  --ff-londrina: 'Londrina Shadow', Tahoma, Verdana, Arial, sans-serif;
 
   /* Spacing */
-  --nav-height: 4rem;
-  --site-padding: 1rem;
+  --site-padding: 1.2rem;
+  --nav-width: 12.5rem;
   --content-width: 56.25rem;
   --container-width: calc(var(--content-width) + (var(--site-padding) * 2));
 
@@ -32,15 +26,17 @@
   --c-secondary: var(--c-theme-pink);
   --c-secondary-var: var(--c-theme-pink-light);
   --c-accent: var(--c-theme-yellow);
-  --background: var(--c-dark);
-  --font-color: var(--c-light);
-  --ff-default: var(--ff-nunito);
-  --ff-title: var(--ff-hostgrotesk);
+
+  --font-color: var(--c-white);
+  --background: var(--c-theme-dark);
+  --nav-background: var(--c-black);
+
+  --ff-default: var(--ff-atkinson);
+  --ff-brand: var(--ff-londrina);
 
   /* Rules */
   color: var(--font-color);
   background: var(--background);
-  background-image: var(--grad-background);
   background-attachment: fixed;
 
   font-family: var(--ff-default);
@@ -52,8 +48,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* @FUTURE: themes */
-  /* color-scheme: light dark; */
+  color-scheme: light dark;
 }
 
 /**
@@ -69,8 +64,11 @@ body {
   background-attachment: fixed;
 }
 
-main {
-  width: 100%;
+main,
+#footer_main {
+  width: calc(100% - var(--nav-width));
+  padding-left: calc(var(--nav-width) + var(--site-padding));
+  padding-right: var(--site-padding);
 }
 
 a {
@@ -86,14 +84,6 @@ button {
 /**
  * Type
  */
-h1,
-h2,
-h3,
-h4,
-h5 {
-  font-family: var(--ff-title);
-}
-
 p+p {
   margin-top: 1.25rem;
 }
@@ -102,15 +92,7 @@ p+p {
  * Utility
  */
 .sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
+  @include util.sr-only;
 }
 
 .contain {
@@ -123,12 +105,12 @@ p+p {
 }
 
 /**
- * @FUTURE: Light Theme
+ * Light Theme
  */
-/* @media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: light) {
   :root {
-    --background: var(--c-light);
-
-    color: var(--c-dark);
+    --font-color: var(--c-black);
+    --background: var(--c-theme-light);
+    --nav-background: var(--c-white);
   }
-} */
+}

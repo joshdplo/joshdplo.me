@@ -1,26 +1,44 @@
 @font-face {
-    font-family: 'Host Grotesk';
-    src: url('/fonts/HostGrotesk-SemiBold.woff2') format('woff2'),
-        url('/fonts/HostGrotesk-SemiBold.woff') format('woff');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
+  font-family: 'Atkinson Hyperlegible';
+  src: url('AtkinsonHyperlegible-Regular.woff2') format('woff2'),
+    url('AtkinsonHyperlegible-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'Nunito';
-    src: url('/fonts/Nunito-Regular.woff2') format('woff2'),
-        url('/fonts/Nunito-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  font-family: 'Atkinson Hyperlegible';
+  src: url('AtkinsonHyperlegible-Bold.woff2') format('woff2'),
+    url('AtkinsonHyperlegible-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'Nunito';
-    src: url('/fonts/Nunito-Bold.woff2') format('woff2'),
-        url('/fonts/Nunito-Bold.woff') format('woff');
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
+  font-family: 'Atkinson Hyperlegible';
+  src: url('AtkinsonHyperlegible-Italic.woff2') format('woff2'),
+    url('AtkinsonHyperlegible-Italic.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Atkinson Hyperlegible';
+  src: url('AtkinsonHyperlegible-BoldItalic.woff2') format('woff2'),
+    url('AtkinsonHyperlegible-BoldItalic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Londrina Shadow';
+  src: url('LondrinaShadow-Regular.woff2') format('woff2'),
+    url('LondrinaShadow-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
