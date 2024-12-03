@@ -24,6 +24,7 @@
 
   /* Spacing */
   --site-padding: 1.2rem;
+  --content-padding: .65rem;
   --nav-width: 12.5rem;
   --content-width: 56.25rem;
   --container-width: calc(var(--content-width) + (var(--site-padding) * 2));
@@ -36,8 +37,9 @@
   --c-accent: var(--c-theme-jasmine);
 
   --font-color: var(--c-white);
+  --font-color-opposite: var(--c-black);
+  --content-background: var(--c-black);
   --background: var(--c-theme-dark);
-  --nav-background: var(--c-black);
 
   --ff-default: var(--ff-atkinson);
   --ff-brand: var(--ff-londrina);
@@ -120,6 +122,8 @@ p+p {
   max-width: calc(var(--content-width) + var(--site-padding) * 2);
   margin-left: auto;
   margin-right: auto;
+  padding-left: var(--site-padding);
+  padding-right: var(--site-padding);
 }
 
 .center-full {
@@ -130,11 +134,54 @@ p+p {
   justify-content: center;
 }
 
+.bg {
+  background-color: var(--content-background);
+  padding: var(--content-padding);
+
+  &-primary {
+    background-color: var(--c-primary);
+    color: var(--c-white);
+  }
+
+  &-primary-dark {
+    background-color: var(--c-primary-dark);
+    color: var(--c-white);
+  }
+
+  &-primary-darker {
+    background-color: var(--c-primary-darker);
+    color: var(--c-white);
+  }
+
+  &-secondary {
+    background-color: var(--c-secondary);
+    color: var(--c-black);
+  }
+
+  &-accent {
+    background-color: var(--c-accent);
+    color: var(--c-black);
+  }
+}
+
+[class*="bg-"] {
+  padding: var(--content-padding);
+}
+
+.border {
+  border: .55em double var(--font-color-opposite);
+}
+
+.no-pad {
+  padding: 0;
+}
+
 /**
  * Light Theme
  */
 @include util.themeVars() {
   --font-color: var(--c-black);
+  --font-color-opposite: var(--c-white);
   --background: var(--c-theme-light);
-  --nav-background: var(--c-white);
+  --content-background: var(--c-white);
 }

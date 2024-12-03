@@ -1,3 +1,5 @@
+@use "sass:map";
+
 /**
  * Helpers
  */
@@ -40,6 +42,26 @@
   }
 
   .theme-#{$variant} {
+    @content;
+  }
+}
+
+/**
+ * Media Queries
+ */
+$breakpoints: (
+  // 500px
+  sm: 31.25rem,
+  // 768px
+  md: 48rem,
+  // 1000px
+  lg: 62.5rem,
+);
+
+@mixin mq($key) {
+  $size: map.get($breakpoints, $key);
+
+  @media only screen and (min-width: $size) {
     @content;
   }
 }

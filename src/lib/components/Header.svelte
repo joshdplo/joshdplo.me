@@ -1,25 +1,31 @@
 <script>
   import Logo from "$lib/components/Logo.svelte";
-  import ThemeSwitcher from "./ThemeSwitcher.svelte";
+  import FloatMenu from "./FloatMenu.svelte";
 </script>
 
-<nav id="nav-main">
+<nav id="nav-main" class="contain">
   <a class="skip-to-content" href="#main">Skip to main content</a>
   <Logo text="JOSH" size={15} link="/" />
-  <div class="end">
+  <div class="pages">
     <a href="/favorites">Favs</a>
     <a href="/movies">Movies</a>
+    <a href="/keeps">Keeps</a>
   </div>
+  <FloatMenu />
 </nav>
-<ThemeSwitcher />
 
-<style>
+<style lang="scss">
+  @use "$lib/css/util";
+
   nav {
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    padding: 1rem 0 0;
+    align-items: flex-start;
+
+    @include util.mq(sm) {
+      align-items: center;
+    }
   }
 </style>

@@ -1,5 +1,5 @@
 <script>
-  const defaultFontSize = "clamp(3.75rem, 20.703vw + 3.75rem, 17rem)";
+  const defaultFontSize = "clamp(4.375rem, 38.55vw - 7.672rem, 17rem)";
 
   let { text = "JOSH", size = 15, link = null } = $props();
   const fontSize = link ? defaultFontSize : `${size}rem`;
@@ -32,18 +32,23 @@
     line-height: 1;
     letter-spacing: -0.05em;
     font-size: var(--font-size);
-    color: var(--c-white);
+    color: var(--font-color);
     padding-right: 0.15em;
-    margin-bottom: 2rem;
+    margin: 1rem 0;
     text-decoration: none;
+    overflow: hidden;
   }
 
   span {
     position: relative;
     display: inline-block;
-    text-shadow: 0.03em 0.03em 0 var(--c-primary);
+    text-shadow: 0.04em 0.04em 0 var(--c-primary);
     transition: padding 0.2s ease;
     backface-visibility: hidden;
+
+    @include util.mq(md) {
+      text-shadow: 0.03em 0.03em 0 var(--c-primary);
+    }
   }
 
   a:hover {
@@ -60,20 +65,11 @@
    * Logo Helpers
    */
   $letters: 4;
+
   // span z-indexes
   @for $i from $letters through 1 {
     .logo span:nth-child(#{$i}) {
       z-index: #{$letters - $i};
-    }
-  }
-
-  /**
-   * Theme
-   */
-  @include util.themeStyles() {
-    a,
-    div {
-      color: var(--c-black);
     }
   }
 </style>
