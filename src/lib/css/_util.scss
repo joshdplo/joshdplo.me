@@ -1,0 +1,45 @@
+/**
+ * Helpers
+ */
+@mixin sr-only {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  -webkit-clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+  white-space: nowrap !important;
+}
+
+/**
+ * Themes
+ * - themeVars: update vars only (:root level)
+ * - styles: update any type of styles (including non-:root vars)
+ * To manually select a theme, we need to include a class alongside
+ * the prefers-color-scheme queries. Class needs to be added to `html` element.
+ */
+@mixin themeVars($variant: light) {
+  @media (prefers-color-scheme: #{$variant}) {
+    :root {
+      @content;
+    }
+  }
+
+  .theme-#{$variant} {
+    @content;
+  }
+}
+
+@mixin themeStyles($variant: light) {
+  @media (prefers-color-scheme: #{$variant}) {
+    @content;
+  }
+
+  .theme-#{$variant} {
+    @content;
+  }
+}

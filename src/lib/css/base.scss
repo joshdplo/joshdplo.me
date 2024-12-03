@@ -1,0 +1,140 @@
+@use 'util';
+
+:root {
+  /* Colors */
+  // https://coolors.co/aa1155-880044-dd1155-ffee88-00cc99
+  --c-black: #000;
+  --c-white: #fff;
+
+  --c-theme-dark: #090909;
+  --c-theme-light: #ECF8F8;
+  --c-theme-raspberry: #DD1155;
+  --c-theme-murrey: #880044;
+  --c-theme-amaranth-purple: #AA1155;
+  --c-theme-jasmine: #FFEE88;
+  --c-theme-mint: #00CC99;
+
+  --c-theme-seagreen: #DD1155;
+  --c-theme-orange: #F3A712;
+  --c-theme-pink: #FF4365;
+
+  /* Type */
+  --ff-atkinson: 'Atkinson Hyperlegible', Tahoma, Verdana, Arial, sans-serif;
+  --ff-londrina: 'Londrina Shadow', Tahoma, Verdana, Arial, sans-serif;
+
+  /* Spacing */
+  --site-padding: 1.2rem;
+  --nav-width: 12.5rem;
+  --content-width: 56.25rem;
+  --container-width: calc(var(--content-width) + (var(--site-padding) * 2));
+
+  /* Definitions */
+  --c-primary: var(--c-theme-raspberry);
+  --c-primary-dark: var(--c-theme-amaranth-purple);
+  --c-primary-darker: var(--c-theme-murrey);
+  --c-secondary: var(--c-theme-mint);
+  --c-accent: var(--c-theme-jasmine);
+
+  --font-color: var(--c-white);
+  --background: var(--c-theme-dark);
+  --nav-background: var(--c-black);
+
+  --ff-default: var(--ff-atkinson);
+  --ff-brand: var(--ff-londrina);
+
+  /* Rules */
+  color: var(--font-color);
+  background: var(--background);
+  background-attachment: fixed;
+
+  font-family: var(--ff-default);
+  line-height: 1.5;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  color-scheme: light dark;
+}
+
+/**
+ * Globals
+ */
+html {
+  font-size: 100%;
+}
+
+body {
+  width: 100%;
+  font-size: 1.25rem;
+  background-attachment: fixed;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+ul,
+ol {
+  list-style-type: none;
+}
+
+/**
+ * Type
+ */
+p+p {
+  margin-top: 1.25rem;
+}
+
+/**
+ * Accessibility
+ */
+.skip-to-content {
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  transform: translateY(-110%);
+  z-index: 12;
+
+  &:focus {
+    transform: translateY(0);
+  }
+}
+
+.sr-only {
+  @include util.sr-only;
+}
+
+/**
+ * Utility
+ */
+.contain {
+  width: 100%;
+  max-width: calc(var(--content-width) + var(--site-padding) * 2);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center-full {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/**
+ * Light Theme
+ */
+@include util.themeVars() {
+  --font-color: var(--c-black);
+  --background: var(--c-theme-light);
+  --nav-background: var(--c-white);
+}
