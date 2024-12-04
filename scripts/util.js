@@ -5,6 +5,7 @@ import { writeFileSync, readFileSync } from 'node:fs';
 /**
  * Path Helpers
  * - these will resolve from the current dir (/scripts)
+ * - i should probably fix this, but it doesn't really matter that much right now ¯\_(ツ)_/¯
  */
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

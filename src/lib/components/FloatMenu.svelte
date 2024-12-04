@@ -130,6 +130,7 @@
     width: auto;
     height: auto;
     padding: 0.4rem 0;
+    border: 0.3em solid var(--c-secondary);
     border-radius: 0.5rem;
     border-top-left-radius: 0;
     color: var(--font-color-opposite);

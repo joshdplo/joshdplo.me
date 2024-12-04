@@ -156,11 +156,12 @@ small {
   padding: .4rem 1rem;
   font-size: .9rem;
   font-weight: bold;
-  font-style: italic;
-  border-radius: .5rem;
+  border-bottom-left-radius: .3rem;
+  border-bottom-right-radius: .3rem;
   opacity: 0;
   transform: translateX(-50%);
   transition: opacity .2s ease;
+  text-decoration: none;
   z-index: 13;
 
   &:focus {
@@ -169,8 +170,8 @@ small {
   }
 
   &:focus-visible {
-    color: var(--c-black);
-    background-color: var(--c-accent);
+    color: var(--font-color);
+    background-color: var(--font-color-opposite);
   }
 }
 

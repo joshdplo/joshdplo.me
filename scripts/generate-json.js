@@ -6,8 +6,8 @@ import { steamGamesInfoFile, fetchSteamData } from './apis/steam.js';
 /**
  * Meta
  */
+const metaHistoryMax = 100;
 const metaFile = join(`../${process.env.STATIC_DATA_LOCATION}/meta.json`);
-const metaHistoryMax = 25;
 const metaDefault = {
   name: process.env.SITE_NAME,
   description: process.env.SITE_DESCRIPTION,
