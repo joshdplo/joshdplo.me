@@ -1,5 +1,5 @@
 <script>
-  const defaultFontSize = "clamp(4.375rem, 38.55vw - 7.672rem, 17rem)";
+  const defaultFontSize = "clamp(6.25rem, 34.4vw - 4.5rem, 17rem)";
 
   let { text = "JOSH", size = 15, link = null } = $props();
   const fontSize = link ? defaultFontSize : `${size}rem`;
@@ -33,7 +33,7 @@
     letter-spacing: -0.05em;
     font-size: var(--font-size);
     color: var(--font-color);
-    padding-right: 0.15em;
+    padding-right: 0.1em;
     margin: 1rem 0;
     text-decoration: none;
     overflow: hidden;

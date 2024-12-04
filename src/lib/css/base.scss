@@ -6,7 +6,7 @@
   --c-black: #000;
   --c-white: #fff;
 
-  --c-theme-dark: #090909;
+  --c-theme-dark: #151515;
   --c-theme-light: #ECF8F8;
   --c-theme-raspberry: #DD1155;
   --c-theme-murrey: #880044;
@@ -70,6 +70,7 @@ html {
 body {
   width: 100%;
   font-size: 1.25rem;
+  line-height: 1.65;
   background-attachment: fixed;
 }
 
@@ -91,22 +92,85 @@ ol {
 /**
  * Type
  */
-p+p {
-  margin-top: 1.25rem;
+p {
+  font-size: clamp(1.125rem, 1.333vw + 0.708rem, 1.375rem);
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+p a {
+  font-weight: bold;
+  text-decoration-thickness: .075em;
+  text-decoration-skip-ink: none;
+  text-underline-offset: .12em;
+}
+
+p+p,
+p+h1,
+p+h2,
+p+h3,
+p+h4 {
+  margin-top: 2rem;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 0 .4em;
+  line-height: 1.15;
+}
+
+h1 {
+  font-size: clamp(2.125rem, 3.59vw + 1.003rem, 3rem);
+}
+
+h2 {
+  font-size: clamp(1.75rem, 3.077vw + 0.788rem, 2.5rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 2.308vw + 0.779rem, 2.063rem);
+}
+
+h4 {
+  font-size: clamp(1.25rem, 2.051vw + 0.609rem, 1.75rem);
+}
+
+small {
+  font-size: 0.833rem;
 }
 
 /**
  * Accessibility
  */
+*:focus-visible {
+  outline: .15rem dotted var(--c-primary);
+  background-color: rgba(100, 0, 255, .1);
+}
+
 .skip-to-content {
   position: absolute;
-  left: 5px;
-  top: 5px;
-  transform: translateY(-110%);
-  z-index: 12;
+  left: 50%;
+  top: -105%;
+  padding: .4rem 1rem;
+  font-size: .9rem;
+  font-weight: bold;
+  font-style: italic;
+  border-radius: .5rem;
+  opacity: 0;
+  transform: translateX(-50%);
+  transition: opacity .2s ease;
+  z-index: 13;
 
   &:focus {
-    transform: translateY(0);
+    top: 0;
+    opacity: 1;
+  }
+
+  &:focus-visible {
+    color: var(--c-black);
+    background-color: var(--c-accent);
   }
 }
 
@@ -134,7 +198,13 @@ p+p {
   justify-content: center;
 }
 
+//@TODO: use scss to loop colors for bg
+[class*="bg-"] {
+  padding: var(--content-padding);
+}
+
 .bg {
+  color: var(--font-color);
   background-color: var(--content-background);
   padding: var(--content-padding);
 
@@ -164,12 +234,37 @@ p+p {
   }
 }
 
-[class*="bg-"] {
-  padding: var(--content-padding);
+//@TODO: use scss to loop colors for border
+[class*="border-"] {
+  border: .55em double transparent;
 }
 
 .border {
-  border: .55em double var(--font-color-opposite);
+  border: .55em double var(--font-color);
+
+  &[class*="bg-"] {
+    border-color: var(--c-theme-dark);
+  }
+
+  &-primary {
+    border-color: var(--c-primary);
+  }
+
+  &-primary-dark {
+    border-color: var(--c-primary-dark);
+  }
+
+  &-primary-darker {
+    border-color: var(--c-primary-darker);
+  }
+
+  &-secondary {
+    border-color: var(--c-secondary);
+  }
+
+  &-accent {
+    border-color: var(--c-accent);
+  }
 }
 
 .no-pad {
@@ -184,4 +279,11 @@ p+p {
   --font-color-opposite: var(--c-white);
   --background: var(--c-theme-light);
   --content-background: var(--c-white);
+}
+
+@include util.themeStyles() {
+  *:focus-visible {
+    outline: .15rem dotted var(--c-primary-darker);
+    background-color: rgba(255, 255, 0, .25);
+  }
 }
