@@ -6,6 +6,10 @@
   --c-black: #000;
   --c-white: #fff;
 
+  --c-gray-light: #e0e0e0;
+  --c-gray: #bbb;
+  --c-gray-dark: #888;
+
   --c-theme-dark: #151515;
   --c-theme-light: #ECF8F8;
   --c-theme-raspberry: #DD1155;
@@ -114,30 +118,40 @@ p+h4 {
 }
 
 h1,
+.h1,
 h2,
+.h2,
 h3,
-h4 {
+.h3,
+h4,
+.h4 {
   margin: 0 0 .4em;
   line-height: 1.15;
+  font-weight: bold;
 }
 
-h1 {
+h1,
+.h1 {
   font-size: clamp(2.125rem, 3.59vw + 1.003rem, 3rem);
 }
 
-h2 {
+h2,
+.h2 {
   font-size: clamp(1.75rem, 3.077vw + 0.788rem, 2.5rem);
 }
 
-h3 {
+h3,
+.h3 {
   font-size: clamp(1.5rem, 2.308vw + 0.779rem, 2.063rem);
 }
 
-h4 {
+h4,
+.h4 {
   font-size: clamp(1.25rem, 2.051vw + 0.609rem, 1.75rem);
 }
 
-small {
+small,
+.small {
   font-size: 0.833rem;
 }
 
@@ -145,7 +159,7 @@ small {
  * Accessibility
  */
 *:focus-visible {
-  outline: .15rem dotted var(--c-primary);
+  outline: .2rem dotted var(--c-primary);
   background-color: rgba(100, 0, 255, .1);
 }
 
@@ -154,14 +168,13 @@ small {
   left: 50%;
   top: -105%;
   padding: .4rem 1rem;
-  font-size: .9rem;
+  font-size: 2rem;
   font-weight: bold;
   border-bottom-left-radius: .3rem;
   border-bottom-right-radius: .3rem;
   opacity: 0;
   transform: translateX(-50%);
   transition: opacity .2s ease;
-  text-decoration: none;
   z-index: 13;
 
   &:focus {
@@ -172,6 +185,7 @@ small {
   &:focus-visible {
     color: var(--font-color);
     background-color: var(--font-color-opposite);
+    outline-width: .1em;
   }
 }
 
@@ -284,7 +298,7 @@ small {
 
 @include util.themeStyles() {
   *:focus-visible {
-    outline: .15rem dotted var(--c-primary-darker);
+    outline-color: var(--c-primary-darker);
     background-color: rgba(255, 255, 0, .25);
   }
 }

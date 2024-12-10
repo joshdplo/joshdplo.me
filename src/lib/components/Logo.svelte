@@ -1,12 +1,18 @@
 <script>
   const defaultFontSize = "clamp(6.25rem, 34.4vw - 4.5rem, 17rem)";
 
-  let { text = "JOSH", size = 15, link = null } = $props();
-  const fontSize = link ? defaultFontSize : `${size}rem`;
+  let {
+    text = "JOSH",
+    size = 15,
+    link = null,
+    header = false,
+    alt = false,
+  } = $props();
+  const fontSize = header ? defaultFontSize : `${size}rem`;
 </script>
 
 {#if link}
-  <a href={link} style="--font-size: {fontSize}">
+  <a href={link} style="--font-size: {fontSize}" class:alt>
     {#each text as t}
       <span>{t}</span>
     {/each}
@@ -42,13 +48,14 @@
   span {
     position: relative;
     display: inline-block;
-    text-shadow: 0.04em 0.04em 0 var(--c-primary);
+    text-shadow: 0.03em 0.03em 0 var(--c-primary);
     transition: padding 0.2s ease;
     backface-visibility: hidden;
+  }
 
-    @include util.mq(md) {
-      text-shadow: 0.03em 0.03em 0 var(--c-primary);
-    }
+  a.alt span,
+  div.alt span {
+    text-shadow: 0.03em 0.03em 0 var(--c-gray-dark);
   }
 
   a:hover {
