@@ -4,7 +4,7 @@
 
 <section class="contain">
   <div class="center-full">
-    <HeroText text="KeeP" />
+    <HeroText text="Keeps" hasDescenders={true} />
   </div>
   <p>This is the place stuff gets keeped</p>
 </section>

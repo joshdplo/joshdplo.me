@@ -125,7 +125,6 @@ h3,
 .h3,
 h4,
 .h4 {
-  margin: 0 0 .4em;
   line-height: 1.15;
   font-weight: bold;
 }
@@ -166,25 +165,22 @@ small,
 .skip-to-content {
   position: absolute;
   left: 50%;
-  top: -105%;
+  top: 0;
   padding: .4rem 1rem;
   font-size: 2rem;
   font-weight: bold;
+  color: var(--c-black);
+  background-color: var(--c-accent);
   border-bottom-left-radius: .3rem;
   border-bottom-right-radius: .3rem;
   opacity: 0;
-  transform: translateX(-50%);
-  transition: opacity .2s ease;
+  transform: translate(-50%, -120%);
+  transition: opacity .2s ease, transform .2s ease;
   z-index: 13;
 
   &:focus {
-    top: 0;
+    transform: translate(-50%, 0);
     opacity: 1;
-  }
-
-  &:focus-visible {
-    color: var(--font-color);
-    background-color: var(--font-color-opposite);
     outline-width: .1em;
   }
 }
@@ -222,6 +218,15 @@ small,
   color: var(--font-color);
   background-color: var(--content-background);
   padding: var(--content-padding);
+
+  &-bw {
+    background-color: var(--content-background);
+  }
+
+  &-opposite {
+    background-color: var(--font-color);
+    color: var(--font-color-opposite);
+  }
 
   &-primary {
     background-color: var(--c-primary);
@@ -280,6 +285,31 @@ small,
   &-accent {
     border-color: var(--c-accent);
   }
+}
+
+// @TODO: scss loop this
+.spacer-1 {
+  display: block;
+  width: 100%;
+  height: var(--site-padding);
+}
+
+.spacer-2 {
+  display: block;
+  width: 100%;
+  height: calc(var(--site-padding) * 2);
+}
+
+.spacer-3 {
+  display: block;
+  width: 100%;
+  height: calc(var(--site-padding) * 3);
+}
+
+.spacer-4 {
+  display: block;
+  width: 100%;
+  height: calc(var(--site-padding) * 4);
 }
 
 .no-pad {

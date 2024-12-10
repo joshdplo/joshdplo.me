@@ -7,18 +7,19 @@
     link = null,
     header = true,
     alt = false,
+    hasDescenders = false,
   } = $props();
   const fontSize = header ? defaultFontSize : `${size}rem`;
 </script>
 
 {#if link}
-  <a href={link} style="--font-size: {fontSize}" class:alt>
+  <a href={link} style="--font-size: {fontSize}" class:alt class:hasDescenders>
     {#each text as t, i}
       <span style="z-index: {text.length - i}">{t}</span>
     {/each}
   </a>
 {:else}
-  <h1 style="--font-size: {fontSize}" class:alt>
+  <h1 style="--font-size: {fontSize}" class:alt class:hasDescenders>
     {#each text as t, i}
       <span style="z-index: {text.length - i}">{t}</span>
     {/each}
@@ -51,6 +52,12 @@
     text-shadow: 0.03em 0.03em 0 var(--c-primary);
     transition: padding 0.2s ease;
     backface-visibility: hidden;
+  }
+
+  a.hasDescenders,
+  h1.hasDescenders {
+    line-height: 1.5;
+    margin-top: -0.1em;
   }
 
   a.alt span,
