@@ -1,4 +1,10 @@
+<script>
+  import HeroText from "$lib/components/HeroText.svelte";
+</script>
+
 <section class="contain">
-  <h1>Favs Page</h1>
-  <p>This is the favs page</p>
+  <div class="center-full">
+    <HeroText text="Favs" />
+  </div>
+  <p>This is the favoreet playse evEr</p>
 </section>

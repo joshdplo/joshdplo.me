@@ -1,4 +1,10 @@
+<script>
+  import HeroText from "$lib/components/HeroText.svelte";
+</script>
+
 <section class="contain">
-  <h1>KEEPSIES</h1>
+  <div class="center-full">
+    <HeroText text="KeeP" />
+  </div>
   <p>This is the place stuff gets keeped</p>
 </section>

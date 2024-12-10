@@ -17,9 +17,9 @@
           />
         </svg>
         <ul id="header-nav" class="menu">
+          <li><a href="/">Overview</a></li>
           <li><a href="/favorites">Favs</a></li>
           <li><a href="/keeps">Keeps</a></li>
-          <li><a href="/tech">Who am I?</a></li>
         </ul>
       </li>
     </ul>
@@ -160,7 +160,7 @@
   // }
 
   // Theme
-  @include util.themeStyles() {
+  @include util.themeStyles(light) {
     svg {
       &.light {
         display: none;

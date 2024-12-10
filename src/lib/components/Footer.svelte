@@ -1,5 +1,5 @@
 <script>
-  import Logo from "$lib/components/Logo.svelte";
+  import HeroText from "$lib/components/HeroText.svelte";
 </script>
 
 <footer id="footer-main" class="contain">
@@ -10,7 +10,7 @@
     <li><a href="/tech">Who am I?</a></li>
   </ul>
   <div class="right">
-    <Logo size={5} link="/" alt={true} />
+    <HeroText size={5} link="/" alt={true} header={false} />
     <a
       href="https://github.com/joshdplo/joshdplo.me"
       title="View Code on Github"

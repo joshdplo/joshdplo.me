@@ -7,6 +7,8 @@
   import Footer from "$lib/components/Footer.svelte";
 
   let { children } = $props();
+
+  export const prerender = "auto";
 </script>
 
 <!-- Header -->

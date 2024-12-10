@@ -19,8 +19,8 @@
 
 /**
  * Themes
- * - themeVars: update vars only (:root level)
- * - styles: update any type of styles (including non-:root vars)
+ * - themeVars(): update :root-level vars only
+ * - themeStyles(): update any type of styles (including non-:root vars)
  * To manually select a theme, we need to include a class alongside
  * the prefers-color-scheme queries. Class needs to be added to `html` element.
  */

@@ -289,14 +289,14 @@ small,
 /**
  * Light Theme
  */
-@include util.themeVars() {
+@include util.themeVars(light) {
   --font-color: var(--c-black);
   --font-color-opposite: var(--c-white);
   --background: var(--c-theme-light);
   --content-background: var(--c-white);
 }
 
-@include util.themeStyles() {
+@include util.themeStyles(light) {
   *:focus-visible {
     outline-color: var(--c-primary-darker);
     background-color: rgba(255, 255, 0, .25);

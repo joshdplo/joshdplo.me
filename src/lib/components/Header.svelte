@@ -1,12 +1,10 @@
 <script>
-  import Logo from "$lib/components/Logo.svelte";
   import FloatMenu from "./FloatMenu.svelte";
 </script>
 
 <nav id="nav-main" class="contain">
   <a class="skip-to-content" href="#main">Skip to main content</a>
   <FloatMenu />
-  <Logo text="JOSH" header={true} link="/" />
 </nav>
 
 <style lang="scss">

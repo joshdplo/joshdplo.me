@@ -5,7 +5,7 @@
     text = "JOSH",
     size = 15,
     link = null,
-    header = false,
+    header = true,
     alt = false,
   } = $props();
   const fontSize = header ? defaultFontSize : `${size}rem`;
@@ -13,23 +13,23 @@
 
 {#if link}
   <a href={link} style="--font-size: {fontSize}" class:alt>
-    {#each text as t}
-      <span>{t}</span>
+    {#each text as t, i}
+      <span style="z-index: {text.length - i}">{t}</span>
     {/each}
   </a>
 {:else}
-  <div style="--font-size: {size}rem">
-    {#each text as t}
-      <span>{t}</span>
+  <h1 style="--font-size: {fontSize}" class:alt>
+    {#each text as t, i}
+      <span style="z-index: {text.length - i}">{t}</span>
     {/each}
-  </div>
+  </h1>
 {/if}
 
 <style lang="scss">
   @use "$lib/css/util";
 
   a,
-  div {
+  h1 {
     --font-size: 15rem;
 
     position: relative;
@@ -54,7 +54,7 @@
   }
 
   a.alt span,
-  div.alt span {
+  h1.alt span {
     text-shadow: 0.03em 0.03em 0 var(--c-gray-dark);
   }
 
@@ -65,18 +65,6 @@
 
     span:nth-child(1) {
       padding-right: 0.03em;
-    }
-  }
-
-  /**
-   * Logo Helpers
-   */
-  $letters: 4;
-
-  // span z-indexes
-  @for $i from $letters through 1 {
-    .logo span:nth-child(#{$i}) {
-      z-index: #{$letters - $i};
     }
   }
 </style>
