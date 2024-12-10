@@ -1,3 +1,7 @@
+<script>
+  let { links } = $props();
+</script>
+
 <div class="float-menu contain">
   <div class="left">
     <ul class="menu-parent">
@@ -17,9 +21,9 @@
           />
         </svg>
         <ul id="header-nav" class="menu">
-          <li><a href="/">Overview</a></li>
-          <li><a href="/favorites">Favs</a></li>
-          <li><a href="/keeps">Keeps</a></li>
+          {#each links as l}
+            <li><a href={l.path}>{l.title}</a></li>
+          {/each}
         </ul>
       </li>
     </ul>

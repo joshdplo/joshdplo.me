@@ -1,16 +1,18 @@
 <script>
   import HeroText from "$lib/components/HeroText.svelte";
+
+  let { links } = $props();
 </script>
 
 <footer id="footer-main" class="contain">
   <i class="top"></i>
   <ul id="footer-nav" class="left">
-    <li><a href="/favorites">Favs</a></li>
-    <li><a href="/keeps">Keeps</a></li>
-    <li><a href="/tech">Who am I?</a></li>
+    {#each links as l}
+      <li><a href={l.path}>{l.title}</a></li>
+    {/each}
   </ul>
   <div class="right">
-    <HeroText size={5} link="/" alt={true} header={false} />
+    <HeroText size={5} link="/" alt={true} />
     <a
       href="https://github.com/joshdplo/joshdplo.me"
       title="View Code on Github"

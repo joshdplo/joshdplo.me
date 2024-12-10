@@ -1,25 +1,38 @@
 <script>
-  const defaultFontSize = "clamp(6.25rem, 34.4vw - 4.5rem, 17rem)";
+  import { getCssClamp } from "$lib/util";
 
   let {
     text = "JOSH",
-    size = 15,
+    size = 12,
+    color = "secondary",
     link = null,
-    header = true,
     alt = false,
     hasDescenders = false,
   } = $props();
-  const fontSize = header ? defaultFontSize : `${size}rem`;
+
+  const fontSize = getCssClamp(
+    (Math.floor((size / (size > 12 ? 2.7 : 2.3)) * 100) / 100) * 16,
+    size * 16,
+  );
 </script>
 
 {#if link}
-  <a href={link} style="--font-size: {fontSize}" class:alt class:hasDescenders>
+  <a
+    href={link}
+    style="--font-size: {fontSize}; --text-shadow-color: var(--c-{color});"
+    class:alt
+    class:hasDescenders
+  >
     {#each text as t, i}
       <span style="z-index: {text.length - i}">{t}</span>
     {/each}
   </a>
 {:else}
-  <h1 style="--font-size: {fontSize}" class:alt class:hasDescenders>
+  <h1
+    style="--font-size: {fontSize}; --text-shadow-color: var(--c-{color});"
+    class:alt
+    class:hasDescenders
+  >
     {#each text as t, i}
       <span style="z-index: {text.length - i}">{t}</span>
     {/each}
@@ -32,6 +45,7 @@
   a,
   h1 {
     --font-size: 15rem;
+    --text-shadow-color: var(--c-primary);
 
     position: relative;
     display: block;
@@ -49,7 +63,7 @@
   span {
     position: relative;
     display: inline-block;
-    text-shadow: 0.03em 0.03em 0 var(--c-primary);
+    text-shadow: 0.03em 0.03em 0 var(--text-shadow-color);
     transition: padding 0.2s ease;
     backface-visibility: hidden;
   }
