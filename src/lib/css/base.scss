@@ -18,10 +18,6 @@
   --c-theme-jasmine: #FFEE88;
   --c-theme-mint: #00CC99;
 
-  --c-theme-seagreen: #DD1155;
-  --c-theme-orange: #F3A712;
-  --c-theme-pink: #FF4365;
-
   /* Type */
   --ff-atkinson: 'Atkinson Hyperlegible', Tahoma, Verdana, Arial, sans-serif;
   --ff-londrina: 'Londrina Shadow', Tahoma, Verdana, Arial, sans-serif;
@@ -209,7 +205,7 @@ small,
   justify-content: center;
 }
 
-//@TODO: use scss to loop colors for bg
+//@TODO: use scss to loop colors for bg??
 [class*="bg-"] {
   padding: var(--content-padding);
 }

@@ -66,8 +66,9 @@
     flex-direction: column;
     align-items: flex-end;
 
-    a {
+    :global a {
       text-decoration: none;
+      margin-bottom: 0;
     }
 
     svg {

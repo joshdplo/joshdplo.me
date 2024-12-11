@@ -10,6 +10,7 @@
     hasDescenders = false,
   } = $props();
 
+  //@TODO: derived size
   const fontSize = getCssClamp(
     (Math.floor((size / (size > 12 ? 2.7 : 2.3)) * 100) / 100) * 16,
     size * 16,
@@ -55,7 +56,7 @@
     font-size: var(--font-size);
     color: var(--font-color);
     padding: 0 0.1em;
-    margin: 1rem 0;
+    margin: 1rem 0 2rem;
     text-decoration: none;
     overflow: hidden;
   }
@@ -70,7 +71,7 @@
 
   a.hasDescenders,
   h1.hasDescenders {
-    line-height: 1.5;
+    line-height: 1.25;
     margin-top: -0.1em;
   }
 
