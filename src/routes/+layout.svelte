@@ -13,22 +13,18 @@
 
 <svelte:head>
   <title
-    >{[
-      data.siteHeadTitle,
-      ...$page.url.pathname
-        .split("/")
-        .slice(1)
-        .map((s) => s.charAt(0).toUpperCase() + s.slice(1)),
-    ]
-      .filter(Boolean)
-      .join(" • ")}</title
+    >{$page?.error
+      ? data.siteHeadTitle + " breaks =["
+      : [data.siteHeadTitle, ...$page.url.pathname.split("/").slice(1)]
+          .filter(Boolean)
+          .join(" ")}</title
   >
 </svelte:head>
 
 <!-- Header -->
 <nav id="nav-main" class="contain">
   <a class="skip-to-content" href="#main">Skip to main content</a>
-  <FloatMenu links={data.landingPageLinks} />
+  <FloatMenu links={data.globalLinks} />
 </nav>
 
 <!-- Main Content -->
@@ -37,7 +33,7 @@
 </main>
 
 <!-- Main Footer -->
-<Footer links={data.landingPageLinks} />
+<Footer links={data.globalLinks} />
 
 <style>
   nav {
@@ -45,7 +41,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 2.2rem;
+    margin-bottom: 3rem;
     z-index: 25;
   }
 </style>

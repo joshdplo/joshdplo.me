@@ -15,7 +15,8 @@ const config = {
         adapter: adapter(),
 
         alias: {
-            'slurpiJson': '../slurpi/json'
+            'slurpiJson': '../slurpi/json',
+            'images': './static/images'
         }
     },
 

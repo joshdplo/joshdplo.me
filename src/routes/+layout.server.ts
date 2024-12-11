@@ -22,10 +22,11 @@ export function load() {
       { title: 'Music', path: '/likes/hearing', amount: total(spotifySongs, spotifyAlbums, spotifyArtists, spotifyShows) },
       { title: 'Games', path: '/likes/playing', amount: steamGames.length }
     ],
-    landingPageLinks: [
-      { title: 'Yo!', path: '/' },
+    globalLinks: [
+      { title: 'Greets', path: '/' },
       { title: 'Likes', path: '/likes' },
       { title: 'Keeps', path: '/keeps' },
+      { title: 'Styles', path: '/styles', footerOnly: true },
     ],
     meta,
     movies,

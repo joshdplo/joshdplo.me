@@ -16,19 +16,20 @@
           stroke-miterlimit="2"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="m13 16.745c0-.414-.336-.75-.75-.75h-9.5c-.414 0-.75.336-.75.75s.336.75.75.75h9.5c.414 0 .75-.336.75-.75zm9-5c0-.414-.336-.75-.75-.75h-18.5c-.414 0-.75.336-.75.75s.336.75.75.75h18.5c.414 0 .75-.336.75-.75zm-4-5c0-.414-.336-.75-.75-.75h-14.5c-.414 0-.75.336-.75.75s.336.75.75.75h14.5c.414 0 .75-.336.75-.75z"
+          ><path
+            d="M13 16.745a.75.75 0 0 0-.75-.75h-9.5a.75.75 0 0 0 0 1.5h9.5a.75.75 0 0 0 .75-.75zm9-5a.75.75 0 0 0-.75-.75H2.75a.75.75 0 0 0 0 1.5h18.5a.75.75 0 0 0 .75-.75zm-4-5a.75.75 0 0 0-.75-.75H2.75a.75.75 0 0 0 0 1.5h14.5a.75.75 0 0 0 .75-.75z"
             fill-rule="nonzero"
-          />
-        </svg>
+          /></svg
+        >
         <ul id="header-nav" class="menu">
           {#each links as l}
-            <li>
-              <a href={l.path} class:active={$page.url.pathname === l.path}
-                >{l.title}</a
-              >
-            </li>
+            {#if !l?.footerOnly}
+              <li>
+                <a href={l.path} class:active={$page.url.pathname === l.path}
+                  >{l.title}</a
+                >
+              </li>
+            {/if}
           {/each}
         </ul>
       </li>
@@ -82,32 +83,28 @@
     justify-content: space-between;
     width: 100%;
     transform: translateX(-50%);
-
-    .right :last-child {
-      padding-right: 0;
-    }
   }
 
   .left,
   .right {
     position: relative;
-  }
-
-  button,
-  a {
-    position: relative;
-    padding: 0.4rem 0.5rem;
+    display: flex;
+    align-items: center;
   }
 
   svg {
-    width: 1.5rem;
+    position: relative;
+    width: 1.7rem;
 
     &.dark {
       display: none;
     }
 
     .left & {
-      width: 3rem;
+      width: 4rem;
+      padding: 0.5rem 0.5rem 0.5rem 0.6rem;
+      background-color: var(--background);
+      border-radius: 0.5rem;
     }
   }
 
@@ -115,18 +112,23 @@
     fill: var(--font-color);
   }
 
+  button {
+    padding: 0.5rem 0.6rem;
+    background-color: var(--background);
+    border-radius: 0.5rem;
+  }
+
   .hamburger {
-    margin-top: 0.3rem;
     cursor: pointer;
   }
 
   .menu {
     position: absolute;
-    left: 5%;
+    left: 0.8rem;
     top: 30%;
     width: 15.625rem;
     height: auto;
-    border: 0.8em double var(--c-secondary);
+    border: 0.8em double var(--c-tertiary);
     border-radius: 0.75rem;
     border-top-left-radius: 0;
     color: var(--font-color);
@@ -145,11 +147,12 @@
       display: flex;
       padding: 0.25rem 1rem;
       text-decoration: none;
-      border: 0.1em solid var(--font-color);
+      border: 0.2em solid var(--font-color);
       background-color: transparent;
       transition:
         background-color 0.2s ease,
-        color 0.2s ease;
+        color 0.2s ease,
+        border 0.2s ease;
 
       &:not(.active):hover,
       &:not(.active):focus-within {
@@ -159,8 +162,9 @@
     }
 
     .active {
-      color: var(--c-black);
-      background-color: var(--c-secondary);
+      border-left-width: 2.5rem;
+      // border-left-color: var(--c-tertiary);
+      cursor: default;
     }
   }
 

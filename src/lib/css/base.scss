@@ -17,6 +17,8 @@
   --c-theme-amaranth-purple: #AA1155;
   --c-theme-jasmine: #FFEE88;
   --c-theme-mint: #00CC99;
+  --c-theme-violet-blue: #3B4A97;
+  --c-theme-coral: #FF875C;
 
   /* Type */
   --ff-atkinson: 'Atkinson Hyperlegible', Tahoma, Verdana, Arial, sans-serif;
@@ -34,6 +36,8 @@
   --c-primary-dark: var(--c-theme-amaranth-purple);
   --c-primary-darker: var(--c-theme-murrey);
   --c-secondary: var(--c-theme-mint);
+  --c-tertiary: var(--c-theme-violet-blue);
+  --c-quaternary: var(--c-theme-coral);
   --c-accent: var(--c-theme-jasmine);
 
   --font-color: var(--c-white);
@@ -105,12 +109,26 @@ p a {
   text-underline-offset: .12em;
 }
 
+p picture {
+  float: left;
+  margin: 0 1rem 0 0;
+}
+
+p.img-right picture {
+  float: right;
+  margin: 0 0 0 1rem;
+}
+
 p+p,
 p+h1,
+p+.h1,
 p+h2,
+p+.h2,
 p+h3,
-p+h4 {
-  margin-top: 2rem;
+p+.h3,
+p+h4,
+p+.h4 {
+  margin-top: 1.5rem;
 }
 
 h1,
@@ -123,6 +141,10 @@ h4,
 .h4 {
   line-height: 1.15;
   font-weight: bold;
+
+  +p {
+    margin-top: .7rem;
+  }
 }
 
 h1,
@@ -148,6 +170,14 @@ h4,
 small,
 .small {
   font-size: 0.833rem;
+}
+
+code {
+  font-size: 1rem;
+  background-color: var(--c-gray-light);
+  color: var(--c-black);
+  padding: .3em .3em .35em;
+  border-radius: 1em;
 }
 
 /**
@@ -205,6 +235,10 @@ small,
   justify-content: center;
 }
 
+.text-center {
+  text-align: center;
+}
+
 //@TODO: use scss to loop colors for bg??
 [class*="bg-"] {
   padding: var(--content-padding);
@@ -215,8 +249,9 @@ small,
   background-color: var(--content-background);
   padding: var(--content-padding);
 
-  &-bw {
-    background-color: var(--content-background);
+  &-gray {
+    background-color: var(--c-gray);
+    color: var(--c-black);
   }
 
   &-opposite {
@@ -244,13 +279,23 @@ small,
     color: var(--c-black);
   }
 
+  &-tertiary {
+    background-color: var(--c-tertiary);
+    color: var(--c-white);
+  }
+
+  &-quaternary {
+    background-color: var(--c-quaternary);
+    color: var(--c-black);
+  }
+
   &-accent {
     background-color: var(--c-accent);
     color: var(--c-black);
   }
 }
 
-//@TODO: use scss to loop colors for border
+//@TODO: use scss to loop colors for borders??
 [class*="border-"] {
   border: .55em double transparent;
 }
@@ -259,7 +304,11 @@ small,
   border: .55em double var(--font-color);
 
   &[class*="bg-"] {
-    border-color: var(--c-theme-dark);
+    border-color: var(--content-background);
+  }
+
+  &-opposite {
+    border-color: var(--font-color);
   }
 
   &-primary {
@@ -278,12 +327,26 @@ small,
     border-color: var(--c-secondary);
   }
 
+  &-tertiary {
+    border-color: var(--c-tertiary);
+  }
+
+  &-quaternary {
+    border-color: var(--c-quaternary);
+  }
+
   &-accent {
     border-color: var(--c-accent);
   }
 }
 
-// @TODO: scss loop this
+.fancy {
+  border-top-left-radius: 5em;
+  border-bottom-right-radius: 5em;
+  padding: .6em 1em .4em 2.6em;
+}
+
+// @TODO: scss loop this??
 .spacer-1 {
   display: block;
   width: 100%;

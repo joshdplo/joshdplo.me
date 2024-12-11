@@ -1,11 +1,16 @@
 <script>
   import { page } from "$app/stores";
 
-  let { links, color = "secondary" } = $props();
+  let { links, color = "secondary", teeny = false, center = true } = $props();
   let hasDarkBg = color === "primary-darker" || color === "primary-dark"; // @TODO $derived? idk what im doing
 </script>
 
-<div class="page-menu" style="--main-color: var(--c-{color})">
+<div
+  class="page-menu"
+  class:teeny
+  class:center
+  style="--main-color: var(--c-{color})"
+>
   <ul>
     {#each links as l}
       <li>
@@ -24,8 +29,19 @@
     --main-color: var(--font-color);
 
     display: flex;
-    justify-content: center;
     margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 0.1em dashed var(--font-color);
+
+    &.teeny {
+      border-bottom: 0;
+      padding-bottom: 0;
+      margin-bottom: 1rem;
+    }
+
+    &.center {
+      justify-content: center;
+    }
   }
 
   .page-menu ul {
@@ -71,5 +87,14 @@
     &.darkBg {
       color: var(--c-white);
     }
+  }
+
+  .teeny a {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .teeny ul {
+    gap: 0.5em;
   }
 </style>

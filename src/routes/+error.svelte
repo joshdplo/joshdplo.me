@@ -9,10 +9,10 @@
   </div>
 
   <div class="h1 bg border">
-    Oh boy... something <code class="bg-opposite no-pad"
-      >{$page?.error?.message}</code
+    WHAT THE HECK? something <span class="bg-opposite no-pad"
+      >{$page?.error?.message}</span
     >
     happened because
-    <span class="bg-accent no-pad">{$page?.status}</span>! WHAT THE HECK?
+    <span class="bg-accent no-pad">{$page?.status}</span>!
   </div>
 </section>
