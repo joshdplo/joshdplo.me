@@ -46,6 +46,6 @@
     flex-direction: column;
     align-items: center;
     margin-bottom: 2.2rem;
-    z-index: 10;
+    z-index: 25;
   }
 </style>

@@ -1,4 +1,6 @@
 <script>
+  import { page } from "$app/stores";
+
   let { links } = $props();
 </script>
 
@@ -22,7 +24,11 @@
         </svg>
         <ul id="header-nav" class="menu">
           {#each links as l}
-            <li><a href={l.path}>{l.title}</a></li>
+            <li>
+              <a href={l.path} class:active={$page.url.pathname === l.path}
+                >{l.title}</a
+              >
+            </li>
           {/each}
         </ul>
       </li>
@@ -76,7 +82,6 @@
     justify-content: space-between;
     width: 100%;
     transform: translateX(-50%);
-    z-index: 11;
 
     .right :last-child {
       padding-right: 0;
@@ -121,11 +126,11 @@
     top: 30%;
     width: 15.625rem;
     height: auto;
-    border: 0.8em inset var(--c-secondary);
+    border: 0.8em double var(--c-secondary);
     border-radius: 0.75rem;
     border-top-left-radius: 0;
-    color: var(--font-color-opposite);
-    background-color: var(--font-color);
+    color: var(--font-color);
+    background-color: var(--font-color-opposite);
     font-size: 1.4rem;
     font-weight: bold;
     transform: scale(0);
@@ -140,7 +145,7 @@
       display: flex;
       padding: 0.25rem 1rem;
       text-decoration: none;
-      border: 0.1em solid var(--font-color-opposite);
+      border: 0.1em solid var(--font-color);
       background-color: transparent;
       transition:
         background-color 0.2s ease,
@@ -149,8 +154,13 @@
       &:not(.active):hover,
       &:not(.active):focus-within {
         color: var(--c-black);
-        background-color: var(--c-secondary);
+        background-color: var(--c-accent);
       }
+    }
+
+    .active {
+      color: var(--c-black);
+      background-color: var(--c-secondary);
     }
   }
 

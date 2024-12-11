@@ -54,7 +54,7 @@
     letter-spacing: -0.05em;
     font-size: var(--font-size);
     color: var(--font-color);
-    padding-right: 0.1em;
+    padding: 0 0.1em;
     margin: 1rem 0;
     text-decoration: none;
     overflow: hidden;

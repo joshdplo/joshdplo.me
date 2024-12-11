@@ -7,13 +7,20 @@ import spotifyAlbums from 'slurpiJson/spotifyAlbums.json';
 import spotifyArtists from 'slurpiJson/spotifyArtists.json';
 import spotifyShows from 'slurpiJson/spotifyShows.json';
 
+function total(...args: Array<any>): number {
+  let total = 0;
+  args.forEach(a => total += a.length);
+
+  return total;
+}
+
 export function load() {
   return {
     siteHeadTitle: 'Josh',
     likesLinks: [
-      { title: 'Movies & TV', path: '/likes/watching' },
-      { title: 'Music', path: '/likes/hearing' },
-      { title: 'Games', path: '/likes/playing' }
+      { title: 'Movies & TV', path: '/likes/watching', amount: total(movies, shows) },
+      { title: 'Music', path: '/likes/hearing', amount: total(spotifySongs, spotifyAlbums, spotifyArtists, spotifyShows) },
+      { title: 'Games', path: '/likes/playing', amount: steamGames.length }
     ],
     landingPageLinks: [
       { title: 'Yo!', path: '/' },
