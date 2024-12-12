@@ -3,19 +3,19 @@
   import "$lib/css/fonts.css";
   import "$lib/css/base.scss";
 
+  import { site } from "$lib/data";
+  import { page } from "$app/stores";
   import FloatMenu from "$lib/components/FloatMenu.svelte";
   import Footer from "$lib/components/Footer.svelte";
 
-  import { page } from "$app/stores";
-
-  let { data, children } = $props();
+  let { children } = $props();
 </script>
 
 <svelte:head>
   <title
     >{$page?.error
-      ? data.siteHeadTitle + " breaks =["
-      : [data.siteHeadTitle, ...$page.url.pathname.split("/").slice(1)]
+      ? site.siteHeadTitle + " breaks =["
+      : [site.siteHeadTitle, ...$page.url.pathname.split("/").slice(1)]
           .filter(Boolean)
           .join(" ")}</title
   >
@@ -24,7 +24,7 @@
 <!-- Header -->
 <nav id="nav-main" class="contain">
   <a class="skip-to-content" href="#main">Skip to main content</a>
-  <FloatMenu links={data.globalLinks} />
+  <FloatMenu links={site.globalLinks} />
 </nav>
 
 <!-- Main Content -->
@@ -33,7 +33,7 @@
 </main>
 
 <!-- Main Footer -->
-<Footer links={data.globalLinks} />
+<Footer links={site.globalLinks} />
 
 <style>
   nav {
@@ -41,7 +41,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 3rem;
-    z-index: 25;
+    margin-bottom: 1rem;
+    z-index: 19;
   }
 </style>

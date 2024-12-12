@@ -213,12 +213,13 @@ code {
   opacity: 0;
   transform: translate(-50%, -120%);
   transition: opacity .2s ease, transform .2s ease;
-  z-index: 13;
+  z-index: 20;
 
   &:focus {
     transform: translate(-50%, 0);
     opacity: 1;
     outline-width: .1em;
+    background-color: var(--c-accent);
   }
 }
 

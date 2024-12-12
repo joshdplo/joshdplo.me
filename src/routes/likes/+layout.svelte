@@ -1,9 +1,10 @@
 <script>
+  import { page } from "$app/stores";
+  import { site } from "$lib/data";
   import HeroText from "$lib/components/HeroText.svelte";
   import PageMenu from "$lib/components/PageMenu.svelte";
-  import { page } from "$app/stores";
 
-  let { data, children } = $props();
+  let { children } = $props();
   let heroText = $derived(
     $page.url.pathname
       .split("/")
@@ -18,7 +19,7 @@
   <div class="center-full">
     <HeroText text={heroText} hasDescenders={true} capitalize={true} />
   </div>
-  <PageMenu links={data.likesLinks} />
+  <PageMenu links={site.likesLinks} />
 </section>
 
 {@render children()}

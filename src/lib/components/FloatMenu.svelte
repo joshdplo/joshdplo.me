@@ -155,7 +155,7 @@
         border 0.2s ease;
 
       &:not(.active):hover,
-      &:not(.active):focus-within {
+      &:focus-within {
         color: var(--c-black);
         background-color: var(--c-accent);
       }

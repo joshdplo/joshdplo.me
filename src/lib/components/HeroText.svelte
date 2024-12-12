@@ -57,7 +57,7 @@
     font-size: var(--font-size);
     color: var(--font-color);
     padding: 0 0.1em;
-    margin: 1rem 0 1rem;
+    margin: 0 0 1rem;
     text-decoration: none;
     overflow: hidden;
   }

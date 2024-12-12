@@ -62,7 +62,6 @@
   }
 
   .right {
-    padding-top: 1rem;
     flex-direction: column;
     align-items: flex-end;
 

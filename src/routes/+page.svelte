@@ -14,14 +14,17 @@
   </div>
 
   <div class="h1 bg-accent border">
-    Hi. My name is... just kidding hahAhaH!
-    <span class="bg no-pad">This is my sweet website.</span> I made it with my
-    <span class="sr-only">(an emoji of a bear)</span>🧸 hands.
+    Hi!
+    <span class="bg no-pad">This is my sweet website.</span> I use it to
+    <span class="bg-secondary no-pad"
+      ><a href="/likes">list things i like</a></span
+    >,
+    <span class="bg-opposite no-pad"
+      ><a href="https://github.com/joshdplo">practice FE development</a></span
+    >, and
     <span class="bg-quaternary no-pad"
-      >Nice to
-      <span class="sr-only">(an emoji of a meat slab)</span>🥩 you.</span
-    >
-    Have a <span class="sr-only">(an emoji of grapes)</span>🍇 day.
+      ><a href="/keeps">keep some public notes</a></span
+    >.
   </div>
 
   <i class="spacer-1"></i>
