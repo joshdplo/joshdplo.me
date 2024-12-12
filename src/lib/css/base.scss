@@ -93,6 +93,14 @@ ol {
   list-style-type: none;
 }
 
+picture {
+  display: block;
+}
+
+p>picture {
+  margin-bottom: .7rem;
+}
+
 /**
  * Type
  */
@@ -109,17 +117,20 @@ p a {
   text-underline-offset: .12em;
 }
 
-p picture {
-  float: left;
-  margin: 0 1rem 0 0;
+// p picture {
+//   float: left;
+//   margin: 0 1rem 0 0;
+// }
+
+// p.img-right picture {
+//   float: right;
+//   margin: 0 0 0 1rem;
+// }
+
+p+p {
+  margin-top: 1.5rem;
 }
 
-p.img-right picture {
-  float: right;
-  margin: 0 0 0 1rem;
-}
-
-p+p,
 p+h1,
 p+.h1,
 p+h2,
@@ -128,7 +139,7 @@ p+h3,
 p+.h3,
 p+h4,
 p+.h4 {
-  margin-top: 1.5rem;
+  margin-top: 3rem;
 }
 
 h1,

@@ -15,8 +15,8 @@
 
   <div class="h1 bg-accent border">
     Hi. My name is... just kidding hahAhaH!
-    <span class="bg no-pad">This is my sweet website.</span> I made it with by
-    <span class="sr-only">(an emoji of a bear)</span>🐻 hands.
+    <span class="bg no-pad">This is my sweet website.</span> I made it with my
+    <span class="sr-only">(an emoji of a bear)</span>🧸 hands.
     <span class="bg-quaternary no-pad"
       >Nice to
       <span class="sr-only">(an emoji of a meat slab)</span>🥩 you.</span

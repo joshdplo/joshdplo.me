@@ -64,7 +64,7 @@
     font-size: 1rem;
     font-weight: bold;
     text-decoration: none;
-    padding: 0.3rem 1rem;
+    padding: 0.2rem 0.75rem;
     color: var(--font-color);
     background-color: var(--font-color-opposite);
     border: 0.35rem double var(--main-color);

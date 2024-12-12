@@ -3,39 +3,40 @@
 
   let {
     text = "JOSH",
-    size = 12,
+    size = 10,
     color = "secondary",
     link = null,
     alt = false,
     hasDescenders = false,
+    capitalize = false,
   } = $props();
 
-  //@TODO: derived size
   const fontSize = getCssClamp(
     (Math.floor((size / (size > 12 ? 2.7 : 2.3)) * 100) / 100) * 16,
     size * 16,
   );
+
+  const styleString = `--font-size: ${fontSize};--text-shadow-color: var(--c-${color});`;
 </script>
 
 {#if link}
-  <a
-    href={link}
-    style="--font-size: {fontSize}; --text-shadow-color: var(--c-{color});"
-    class:alt
-    class:hasDescenders
-  >
+  <a href={link} style={styleString} class:alt class:hasDescenders>
     {#each text as t, i}
-      <span style="z-index: {text.length - i}">{t}</span>
+      <span
+        style="z-index: {text.length - i};{i === 0 && capitalize
+          ? 'text-transform: uppercase'
+          : ''}">{t}</span
+      >
     {/each}
   </a>
 {:else}
-  <h1
-    style="--font-size: {fontSize}; --text-shadow-color: var(--c-{color});"
-    class:alt
-    class:hasDescenders
-  >
+  <h1 style={styleString} class:alt class:hasDescenders>
     {#each text as t, i}
-      <span style="z-index: {text.length - i}">{t}</span>
+      <span
+        style="z-index: {text.length - i};{i === 0 && capitalize
+          ? 'text-transform: uppercase'
+          : ''}">{t}</span
+      >
     {/each}
   </h1>
 {/if}
@@ -56,7 +57,7 @@
     font-size: var(--font-size);
     color: var(--font-color);
     padding: 0 0.1em;
-    margin: 1rem 0 2rem;
+    margin: 1rem 0 1rem;
     text-decoration: none;
     overflow: hidden;
   }

@@ -1,41 +1,44 @@
-import meta from 'slurpiJson/meta.json';
-import movies from 'slurpiJson/movies.json';
-import shows from 'slurpiJson/shows.json';
-import steamGames from 'slurpiJson/steamGames.json';
-import spotifySongs from 'slurpiJson/spotifySongs.json';
-import spotifyAlbums from 'slurpiJson/spotifyAlbums.json';
-import spotifyArtists from 'slurpiJson/spotifyArtists.json';
-import spotifyShows from 'slurpiJson/spotifyShows.json';
+import Meta from 'slurpiDB/Meta';
+import Movie from 'slurpiDB/Movie';
+import Show from 'slurpiDB/Show';
+import SpotifySong from 'slurpiDB/SpotifySong';
+import SpotifyAlbum from 'slurpiDB/SpotifyAlbum';
+import SpotifyArtist from 'slurpiDB/SpotifyArtist';
+import SpotifyShow from 'slurpiDB/SpotifyShow';
+import SteamGame from 'slurpiDB/SteamGame';
 
-function total(...args: Array<any>): number {
-  let total = 0;
-  args.forEach(a => total += a.length);
+export async function load() {
+  const meta = await Meta.findAll({ raw: true });
+  const movies = await Movie.findAll({ raw: true });
+  const shows = await Show.findAll({ raw: true });
+  const spotifySongs = await SpotifySong.findAll({ raw: true });
+  const spotifyAlbums = await SpotifyAlbum.findAll({ raw: true });
+  const spotifyArtists = await SpotifyArtist.findAll({ raw: true });
+  const spotifyShows = await SpotifyShow.findAll({ raw: true });
+  const steamGames = await SteamGame.findAll({ raw: true });
 
-  return total;
-}
-
-export function load() {
   return {
     siteHeadTitle: 'Josh',
     likesLinks: [
-      { title: 'Movies & TV', path: '/likes/watching', amount: total(movies, shows) },
-      { title: 'Music', path: '/likes/hearing', amount: total(spotifySongs, spotifyAlbums, spotifyArtists, spotifyShows) },
-      { title: 'Games', path: '/likes/playing', amount: steamGames.length }
+      { title: 'Things', path: '/likes' },
+      { title: 'Watching', path: '/likes/watching' },
+      { title: 'Hearing', path: '/likes/hearing' },
+      { title: 'Playing', path: '/likes/playing' }
     ],
     globalLinks: [
       { title: 'Greets', path: '/' },
-      { title: 'Likes', path: '/likes' },
-      { title: 'Keeps', path: '/keeps' },
+      { title: 'Likes', path: '/likes', append: 'things' },
+      { title: 'Keeps', path: '/keeps', append: 'things' },
       { title: 'Styles', path: '/styles', footerOnly: true },
     ],
     meta,
     movies,
     shows,
-    steamGames,
     spotifySongs,
     spotifyAlbums,
     spotifyArtists,
-    spotifyShows
+    spotifyShows,
+    steamGames,
   }
 }
 
