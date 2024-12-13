@@ -14,8 +14,8 @@
 <svelte:head>
   <title
     >{$page?.error
-      ? site.siteHeadTitle + " breaks =["
-      : [site.siteHeadTitle, ...$page.url.pathname.split("/").slice(1)]
+      ? site.title + " breaks =["
+      : [site.title, ...$page.url.pathname.split("/").slice(1)]
           .filter(Boolean)
           .join(" ")}</title
   >

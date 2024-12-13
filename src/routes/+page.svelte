@@ -1,11 +1,10 @@
 <script>
+  import { site } from "$lib/data";
   import HeroText from "$lib/components/HeroText.svelte";
-
-  let { data } = $props();
 </script>
 
 <svelte:head>
-  <meta name="description" content="The personal website of Josh" />
+  <meta name="description" content={site.description} />
 </svelte:head>
 
 <section class="contain">

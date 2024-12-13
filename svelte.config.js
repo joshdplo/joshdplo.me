@@ -1,10 +1,22 @@
-import { mdsvex } from "mdsvex";
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+import { mdsvex } from "mdsvex";
+import rehypeUnwrapImages from 'rehype-unwrap-images';
+import rehypeSlug from 'rehype-slug';
+
+// mdsvex
+const mdsvexOptions = {
+    extensions: ['.svx', '.md'],
+    rehypePlugins: [rehypeUnwrapImages, rehypeSlug]
+};
 
 /** @type {import('@sveltejs/kit').Config} */
-const config = {
-    preprocess: [vitePreprocess(), mdsvex()],
+export default {
+    extensions: ['.svelte', '.svx', '.md'],
+    preprocess: [
+        vitePreprocess(),
+        mdsvex(mdsvexOptions)
+    ],
     kit: {
         adapter: adapter({
             // default options
@@ -18,9 +30,5 @@ const config = {
             'slurpiDB': '../slurpi/db',
             'slurpiImages': '../slurpi/public/images'
         }
-    },
-
-    extensions: [".svelte", ".svx"]
+    }
 };
-
-export default config;

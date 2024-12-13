@@ -1,5 +1,5 @@
 <script>
-  import { movies, shows } from "$lib/data";
+  import { MOVIES, SHOWS } from "$lib/data";
 
   // Glob import images for svelte enhanced images
   // https://svelte.dev/docs/kit/images#sveltejs-enhanced-img-Dynamically-choosing-an-image
@@ -27,10 +27,14 @@
   let showGames = $state(true);
 </script>
 
+<svelte:head>
+  <meta name="description" content="A summary of the things Josh likes" />
+</svelte:head>
+
 <section class="mega-likes">
   {#if showMovies}
     <div class="category movies">
-      {#each movies as movie}
+      {#each MOVIES as movie}
         {#if movie.mega}
           <div class="box">
             <enhanced:img
@@ -50,7 +54,7 @@
 
   {#if showTv}
     <div class="category shows">
-      {#each shows as show}
+      {#each SHOWS as show}
         {#if show.rating}
           <div class="box">
             <enhanced:img

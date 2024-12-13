@@ -14,13 +14,13 @@ export default defineConfig({
 		}
 	},
 	define: {
-		META: slurpiData.meta,
-		MOVIES: slurpiData.movies,
-		SHOWS: slurpiData.shows,
-		SPOTIFY_SONGS: slurpiData.spotifySongs,
-		SPOTIFY_ALBUMS: slurpiData.spotifyAlbums,
-		SPOTIFY_ARTISTS: slurpiData.spotifyArtists,
-		SPOTIFY_SHOWS: slurpiData.spotifyShows,
-		STEAM_GAMES: slurpiData.steamGames
+		DB_META: slurpiData.meta,
+		DB_MOVIES: slurpiData.movies,
+		DB_SHOWS: slurpiData.shows,
+		DB_SPOTIFY_SONGS: slurpiData.spotifySongs,
+		DB_SPOTIFY_ALBUMS: slurpiData.spotifyAlbums,
+		DB_SPOTIFY_ARTISTS: slurpiData.spotifyArtists,
+		DB_SPOTIFY_SHOWS: slurpiData.spotifyShows,
+		DB_STEAM_GAMES: slurpiData.steamGames
 	}
 });

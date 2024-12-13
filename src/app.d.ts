@@ -10,4 +10,14 @@ declare global {
 	}
 }
 
-export {};
+interface Keep {
+	title: string,
+	slug: string,
+	summary: string,
+	image?: string,
+	date: string,
+	updated: string,
+	tags: string[],
+}
+
+export { };

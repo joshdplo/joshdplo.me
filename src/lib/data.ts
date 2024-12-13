@@ -1,5 +1,6 @@
 export const site = {
-  siteHeadTitle: 'Josh',
+  title: 'Josh',
+  description: 'The dot me of Josh D',
   likesLinks: [
     { title: 'Things', path: '/likes' },
     { title: 'Watching', path: '/likes/watching' },
@@ -14,13 +15,12 @@ export const site = {
   ],
 }
 
-// data from vite "define" block
-// - this is grabbed from db on build
-export const meta = META;
-export const movies = MOVIES;
-export const shows = SHOWS;
-export const spotifySongs = SPOTIFY_SONGS;
-export const spotifyAlbums = SPOTIFY_ALBUMS;
-export const spotifyArtists = SPOTIFY_ARTISTS;
-export const spotifyShows = SPOTIFY_SHOWS;
-export const steamGames = STEAM_GAMES;
+// data from vite "define" block (grabbed from db on build)
+export const META = DB_META;
+export const MOVIES = DB_MOVIES;
+export const SHOWS = DB_SHOWS;
+export const SPOTIFY_SONGS = DB_SPOTIFY_SONGS;
+export const SPOTIFY_ALBUMS = DB_SPOTIFY_ALBUMS;
+export const SPOTIFY_ARTISTS = DB_SPOTIFY_ARTISTS;
+export const SPOTIFY_SHOWS = DB_SPOTIFY_SHOWS;
+export const STEAM_GAMES = DB_STEAM_GAMES;

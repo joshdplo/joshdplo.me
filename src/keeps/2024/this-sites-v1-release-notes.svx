@@ -5,7 +5,7 @@ updated: "2023-12-20"
 tags:
   - "meta"
   - "release"
-summary: Joshdplo.me v1 released
+summary: Joshdplo.me v1 release notes
 ---
 
 Joshdplo.me version one is live!@@!!@@!#!#!@!!  
@@ -28,7 +28,7 @@ Since there are 2 projects for this site (the website, and then the data), I'm i
   - [Sveltekit tutorial](https://svelte.dev/tutorial/kit/introducing-sveltekit)
     - is great to learn the basics and then i was referencing it during the build a ton
   - [Josh Collinsworth's sveltekit blog starter](https://github.com/josh-collinsworth/sveltekit-blog-starter/tree/main)
-    - extremely helpful to see the source,and really liked the hyperlegible font (decided to use it here!)
+    - thanks to josh's sweet starter! code was taken and/or modified from here to set up this site's blog (called "keeps"). extremely helpful to see the source, and really liked the hyperlegible font so decided to use it here as well.
   - [This stackoverflow post by brunnerh](https://stackoverflow.com/a/76147868)
     - so simple and easy - haven't used vite tons, so didn't realize this was an option
 
