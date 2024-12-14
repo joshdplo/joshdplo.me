@@ -158,17 +158,12 @@
       &:after {
         content: "\21AA";
         position: absolute;
-        right: 0;
+        left: -2.25rem;
         top: -0.15rem;
         font-size: 1.5em;
         color: var(--font-color-opposite);
         opacity: 0;
-        transform: scaleX(0);
-        transform-origin: right;
-        transition:
-          transform 0.35s ease,
-          opacity 0.1s ease;
-        transition-delay: 0.1s;
+        transition: opacity 0.2s ease;
       }
 
       &:not(.active):hover,
@@ -183,10 +178,8 @@
       cursor: default;
 
       &:after {
-        right: auto;
-        left: -2.25rem;
         opacity: 1;
-        transform: scaleY(1);
+        transition-delay: 0.2s;
       }
     }
   }

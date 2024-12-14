@@ -28,9 +28,9 @@ declare global {
 	}
 
 	interface KeepTag {
-		name: string,
-		url: string,
-		keeps: number
+		title: string,
+		path: string,
+		keeps: Keep[]
 	}
 }
 
