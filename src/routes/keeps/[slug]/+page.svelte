@@ -1,4 +1,9 @@
+<script>
+  let { data } = $props();
+  console.log(data);
+</script>
+
 <section class="contain">
-  <h1>Single Keeper Slug Page</h1>
-  <p>Keep it secret keep it safe</p>
+  <h1></h1>
+  {data.content}
 </section>

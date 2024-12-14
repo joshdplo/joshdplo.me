@@ -1,5 +1,5 @@
 <script>
-  import { site } from "$lib/data";
+  import { site } from "$lib/config";
   import HeroText from "$lib/components/HeroText.svelte";
 </script>
 

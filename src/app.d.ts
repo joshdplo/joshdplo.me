@@ -8,16 +8,32 @@ declare global {
 		// interface PageState {}
 		// interface Platform {}
 	}
+
+	interface URLWords {
+		base: string,
+		first?: string,
+		second?: string,
+		third?: string,
+		fourth?: string
+	}
+
+	interface Keep {
+		title: string,
+		slug: string,
+		summary: string,
+		image?: string,
+		date: string,
+		updated: string,
+		tags: string[],
+	}
+
+	interface KeepTag {
+		name: string,
+		url: string,
+		keeps: number
+	}
 }
 
-interface Keep {
-	title: string,
-	slug: string,
-	summary: string,
-	image?: string,
-	date: string,
-	updated: string,
-	tags: string[],
-}
+
 
 export { };

@@ -32,3 +32,10 @@ Totez - but it's pretty messy right now. You would have a better time cloning [J
 - [TMDB API](https://developer.themoviedb.org/reference/intro/getting-started)
 - [Steam Web API](https://steamcommunity.com/dev)
 - [Spotify Web API](https://developer.spotify.com/documentation/web-api)
+
+## @TODO
+- Readme Redo
+  - credits update (include jimmymcbride post)
+- SEO (+research)
+- Typescript (full conversion)
+- Clean up styles 

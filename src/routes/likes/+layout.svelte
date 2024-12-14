@@ -1,6 +1,6 @@
 <script>
   import { page } from "$app/stores";
-  import { site } from "$lib/data";
+  import { likesLinks } from "$lib/config";
   import HeroText from "$lib/components/HeroText.svelte";
   import PageMenu from "$lib/components/PageMenu.svelte";
 
@@ -19,7 +19,7 @@
   <div class="center-full">
     <HeroText text={heroText} hasDescenders={true} capitalize={true} />
   </div>
-  <PageMenu links={site.likesLinks} />
+  <PageMenu links={likesLinks} />
 </section>
 
 {@render children()}

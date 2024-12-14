@@ -10,11 +10,7 @@
     <HeroText text="Keeps" hasDescenders={true} color="quaternary" />
   </div>
   <PageMenu
-    links={[
-      { title: "Fake Place", path: "/keeps/123" },
-      { title: "Not Real", path: "/keeps/404" },
-      { title: "Even Not Realer", path: "/keeps/440044" },
-    ]}
+    links={[{ title: "Things", path: "/keeps" }, ...data.tags]}
     color="quaternary"
   />
 </section>
