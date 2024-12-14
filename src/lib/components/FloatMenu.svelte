@@ -144,6 +144,7 @@
     }
 
     a {
+      position: relative;
       display: flex;
       padding: 0.25rem 1rem;
       text-decoration: none;
@@ -154,6 +155,22 @@
         color 0.2s ease,
         border 0.2s ease;
 
+      &:after {
+        content: "\21AA";
+        position: absolute;
+        right: 0;
+        top: -0.15rem;
+        font-size: 1.5em;
+        color: var(--font-color-opposite);
+        opacity: 0;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition:
+          transform 0.35s ease,
+          opacity 0.1s ease;
+        transition-delay: 0.1s;
+      }
+
       &:not(.active):hover,
       &:focus-within {
         color: var(--c-black);
@@ -163,8 +180,14 @@
 
     .active {
       border-left-width: 2.5rem;
-      // border-left-color: var(--c-tertiary);
       cursor: default;
+
+      &:after {
+        right: auto;
+        left: -2.25rem;
+        opacity: 1;
+        transform: scaleY(1);
+      }
     }
   }
 

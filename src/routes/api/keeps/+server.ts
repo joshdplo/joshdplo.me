@@ -5,7 +5,7 @@ import { json } from "@sveltejs/kit";
 export async function _getKeeps() {
   let keeps: Keep[] = [];
 
-  const paths = import.meta.glob('/src/keeps/**/*.{md,svx}', { eager: true });
+  const paths = import.meta.glob('/src/keeps/**/*.md', { eager: true });
 
   for (const path in paths) {
     const file = paths[path];

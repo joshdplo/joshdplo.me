@@ -3,9 +3,28 @@
   import KeepCard from "$lib/components/KeepCard.svelte";
 </script>
 
-<section>
-  <h1>All Keeps</h1>
+<div class="contain keeps-list">
   {#each data.keeps as keep}
     <KeepCard {keep} />
   {/each}
-</section>
+</div>
+
+<style>
+  .keeps-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+  }
+
+  @media (max-width: 800px) {
+    .keeps-list {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 525px) {
+    .keeps-list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

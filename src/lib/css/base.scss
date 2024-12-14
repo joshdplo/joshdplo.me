@@ -82,6 +82,14 @@ a {
   color: inherit;
 }
 
+a[href*="http"]:after {
+  content: '\21F2';
+  position: relative;
+  display: inline-block;
+  margin-left: .2em;
+  transform: rotate(-90deg) translateY(-.07em);
+}
+
 button {
   border: 0;
   background: transparent;
