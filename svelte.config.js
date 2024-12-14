@@ -7,7 +7,7 @@ import rehypeSlug from 'rehype-slug';
 // mdsvex
 const mdsvexOptions = {
     extensions: ['.svx', '.md'],
-    rehypePlugins: [rehypeUnwrapImages, rehypeSlug]
+    rehypePlugins: [rehypeSlug, rehypeUnwrapImages]
 };
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -15,7 +15,7 @@ export default {
     extensions: ['.svelte', '.svx', '.md'],
     preprocess: [
         vitePreprocess(),
-        mdsvex(mdsvexOptions)
+        mdsvex(mdsvexOptions),
     ],
     kit: {
         adapter: adapter({

@@ -6,7 +6,7 @@ import slurpiData from './slurpi-data';
 export default defineConfig({
 	plugins: [
 		enhancedImages(),
-		sveltekit()
+		sveltekit(),
 	],
 	css: {
 		preprocessorOptions: {
