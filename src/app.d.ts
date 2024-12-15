@@ -22,6 +22,7 @@ declare global {
 		slug: string,
 		summary: string,
 		image?: string,
+		slug?: string,
 		date: string,
 		updated: string,
 		tags: string[],

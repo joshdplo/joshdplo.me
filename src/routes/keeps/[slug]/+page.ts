@@ -20,7 +20,7 @@ export const load = async ({ params }: ServerLoadEvent) => {
 
     return {
       content: keep.default,
-      meta: keep.metadata
+      meta: keep.metadata,
     }
   } catch (err) {
     console.error(err);

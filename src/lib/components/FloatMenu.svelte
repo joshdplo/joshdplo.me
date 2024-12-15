@@ -2,14 +2,32 @@
   import { page } from "$app/stores";
 
   let { links } = $props();
+  let hamburgerEl;
+  let isOpen = $state(false);
 </script>
 
-<div class="float-menu contain">
+<svelte:document
+  onkeydown={(e) => {
+    if (e.key === "Escape" && isOpen) {
+      isOpen = false;
+      hamburgerEl.focus();
+    }
+  }}
+  onclick={(e) => {
+    if (isOpen && e.target !== hamburgerEl) {
+      isOpen = false;
+      hamburgerEl.focus();
+    }
+  }}
+/>
+
+<div class="wrapper contain">
   <div class="left">
-    <ul class="menu-parent">
-      <li>
+    <noscript>
+      <a class="hamburger" href="#footer-nav" title="Jump to footer navigation">
+        <span class="sr-only">Go to navigation</span>
         <svg
-          class="hamburger"
+          aria-hidden="true"
           clip-rule="evenodd"
           fill-rule="evenodd"
           stroke-linejoin="round"
@@ -21,20 +39,51 @@
             fill-rule="nonzero"
           /></svg
         >
-        <ul id="header-nav" class="menu">
-          {#each links as l}
-            {#if !l?.footerOnly}
-              <li>
-                <a href={l.path} class:active={$page.url.pathname === l.path}
-                  >{l.title}</a
-                >
-              </li>
-            {/if}
-          {/each}
-        </ul>
-      </li>
+      </a>
+    </noscript>
+    <button
+      id="hamburger"
+      aria-label="toggle visual navigation or continue tabbing"
+      aria-controls="float-menu"
+      aria-expanded={isOpen}
+      bind:this={hamburgerEl}
+      onclick={() => (isOpen = !isOpen)}
+      onfocus={() => (isOpen ? (isOpen = false) : null)}
+    >
+      <svg
+        aria-hidden="true"
+        clip-rule="evenodd"
+        fill-rule="evenodd"
+        stroke-linejoin="round"
+        stroke-miterlimit="2"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        ><path
+          d="M13 16.745a.75.75 0 0 0-.75-.75h-9.5a.75.75 0 0 0 0 1.5h9.5a.75.75 0 0 0 .75-.75zm9-5a.75.75 0 0 0-.75-.75H2.75a.75.75 0 0 0 0 1.5h18.5a.75.75 0 0 0 .75-.75zm-4-5a.75.75 0 0 0-.75-.75H2.75a.75.75 0 0 0 0 1.5h14.5a.75.75 0 0 0 .75-.75z"
+          fill-rule="nonzero"
+        /></svg
+      >
+    </button>
+    <noscript></noscript>
+    <ul id="float-menu">
+      {#each links as l, i}
+        {@const active = $page.url.pathname === l.path}
+        <li>
+          <a
+            href={l.path}
+            class:active
+            onclick={() => (isOpen = false)}
+            onfocus={() => (isOpen = true)}
+            onblur={() => {
+              i + 1 === links.length ? (isOpen = false) : null;
+            }}
+            >{l.title}
+          </a>
+        </li>
+      {/each}
     </ul>
   </div>
+  <noscript>&nbsp;</noscript>
   <div class="right">
     <button class="theme" aria-label="Switch Theme" title="Switch Theme">
       <svg
@@ -76,7 +125,12 @@
 <style lang="scss">
   @use "$lib/css/util";
 
-  .float-menu {
+  // use css to hide anything that's a direct sibling of a <noscript> tag
+  noscript + * {
+    display: none !important;
+  }
+
+  .wrapper {
     position: fixed;
     display: flex;
     left: 50%;
@@ -89,22 +143,15 @@
   .right {
     position: relative;
     display: flex;
-    align-items: center;
   }
 
   svg {
     position: relative;
     width: 1.7rem;
+    pointer-events: none;
 
     &.dark {
       display: none;
-    }
-
-    .left & {
-      width: 4rem;
-      padding: 0.5rem 0.5rem 0.5rem 0.6rem;
-      background-color: var(--background);
-      border-radius: 0.5rem;
     }
   }
 
@@ -112,20 +159,37 @@
     fill: var(--font-color);
   }
 
-  button {
+  button,
+  a.hamburger {
     padding: 0.5rem 0.6rem;
     background-color: var(--background);
-    border-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+
+    &:focus-visible {
+      background-color: var(--c-accent);
+
+      svg path {
+        fill: var(--c-black);
+      }
+    }
   }
 
-  .hamburger {
+  #hamburger,
+  a.hamburger {
+    padding: 0.25rem 0.4rem;
     cursor: pointer;
+
+    svg {
+      width: 2.7rem;
+      border-radius: 0.5rem;
+    }
   }
 
-  .menu {
+  #float-menu {
     position: absolute;
     left: 0.8rem;
-    top: 30%;
+    top: 88%;
     width: 15.625rem;
     height: auto;
     border: 0.8em double var(--c-tertiary);
@@ -184,8 +248,7 @@
     }
   }
 
-  .menu-parent:hover .menu,
-  .menu-parent:focus-within .menu {
+  #hamburger[aria-expanded="true"] + #float-menu {
     transform: scale(1);
   }
 

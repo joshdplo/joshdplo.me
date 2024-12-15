@@ -6,11 +6,13 @@
 
 <footer id="footer-main" class="contain">
   <i class="top"></i>
-  <ul id="footer-nav" class="left">
-    {#each links as l}
-      <li><a href={l.path}>{l.title}</a></li>
-    {/each}
-  </ul>
+  <nav id="footer-nav">
+    <ul class="left">
+      {#each links as l}
+        <li><a href={l.path}>{l.title}</a></li>
+      {/each}
+    </ul>
+  </nav>
   <div class="right">
     <HeroText size={5} link="/" alt={true} />
     <a

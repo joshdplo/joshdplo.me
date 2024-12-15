@@ -10,7 +10,6 @@ export const globalLinks = [
   { title: 'Greets', path: '/' },
   { title: 'Likes', path: '/likes', append: 'things' },
   { title: 'Keeps', path: '/keeps', append: 'things' },
-  { title: 'Styles', path: '/styles', footerOnly: true },
 ];
 
 export const likesLinks = [
@@ -19,3 +18,8 @@ export const likesLinks = [
   { title: 'Hearing', path: '/likes/hearing' },
   { title: 'Playing', path: '/likes/playing' }
 ];
+
+export const footerLinks = [
+  ...globalLinks,
+  { title: 'Styles', path: '/styles' }
+]

@@ -3,7 +3,7 @@
   import "$lib/css/fonts.css";
   import "$lib/css/base.scss";
 
-  import { site, globalLinks } from "$lib/config";
+  import { site, globalLinks, footerLinks } from "$lib/config";
   import { page } from "$app/stores";
   import FloatMenu from "$lib/components/FloatMenu.svelte";
   import Footer from "$lib/components/Footer.svelte";
@@ -33,7 +33,7 @@
 </main>
 
 <!-- Main Footer -->
-<Footer links={globalLinks} />
+<Footer links={footerLinks} />
 
 <style>
   nav {
