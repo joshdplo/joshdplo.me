@@ -14,33 +14,38 @@
     }
   }}
   onclick={(e) => {
-    if (isOpen && e.target !== hamburgerEl) {
+    if (
+      isOpen &&
+      e.target !== hamburgerEl &&
+      !e.target.classList.contains("active")
+    ) {
       isOpen = false;
       hamburgerEl.focus();
     }
   }}
 />
 
+<!-- @TODO: implement noscript !!! -->
+<!-- <noscript>
+  <a href="#footer-nav" title="Jump to footer navigation">
+    <span class="sr-only">Go to navigation</span>
+    <svg
+      aria-hidden="true"
+      clip-rule="evenodd"
+      fill-rule="evenodd"
+      stroke-linejoin="round"
+      stroke-miterlimit="2"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      ><path
+        d="M13 16.745a.75.75 0 0 0-.75-.75h-9.5a.75.75 0 0 0 0 1.5h9.5a.75.75 0 0 0 .75-.75zm9-5a.75.75 0 0 0-.75-.75H2.75a.75.75 0 0 0 0 1.5h18.5a.75.75 0 0 0 .75-.75zm-4-5a.75.75 0 0 0-.75-.75H2.75a.75.75 0 0 0 0 1.5h14.5a.75.75 0 0 0 .75-.75z"
+        fill-rule="nonzero"
+      /></svg
+    >
+  </a>
+</noscript> -->
 <div class="wrapper contain">
   <div class="left">
-    <noscript>
-      <a class="hamburger" href="#footer-nav" title="Jump to footer navigation">
-        <span class="sr-only">Go to navigation</span>
-        <svg
-          aria-hidden="true"
-          clip-rule="evenodd"
-          fill-rule="evenodd"
-          stroke-linejoin="round"
-          stroke-miterlimit="2"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-          ><path
-            d="M13 16.745a.75.75 0 0 0-.75-.75h-9.5a.75.75 0 0 0 0 1.5h9.5a.75.75 0 0 0 .75-.75zm9-5a.75.75 0 0 0-.75-.75H2.75a.75.75 0 0 0 0 1.5h18.5a.75.75 0 0 0 .75-.75zm-4-5a.75.75 0 0 0-.75-.75H2.75a.75.75 0 0 0 0 1.5h14.5a.75.75 0 0 0 .75-.75z"
-            fill-rule="nonzero"
-          /></svg
-        >
-      </a>
-    </noscript>
     <button
       id="hamburger"
       aria-label="toggle visual navigation or continue tabbing"
@@ -64,7 +69,6 @@
         /></svg
       >
     </button>
-    <noscript></noscript>
     <ul id="float-menu">
       {#each links as l, i}
         {@const active = $page.url.pathname === l.path}
@@ -72,7 +76,9 @@
           <a
             href={l.path}
             class:active
-            onclick={() => (isOpen = false)}
+            onclick={() => {
+              if (!active) isOpen = false;
+            }}
             onfocus={() => (isOpen = true)}
             onblur={() => {
               i + 1 === links.length ? (isOpen = false) : null;
@@ -83,7 +89,6 @@
       {/each}
     </ul>
   </div>
-  <noscript>&nbsp;</noscript>
   <div class="right">
     <button class="theme" aria-label="Switch Theme" title="Switch Theme">
       <svg
@@ -125,11 +130,6 @@
 <style lang="scss">
   @use "$lib/css/util";
 
-  // use css to hide anything that's a direct sibling of a <noscript> tag
-  noscript + * {
-    display: none !important;
-  }
-
   .wrapper {
     position: fixed;
     display: flex;
@@ -137,6 +137,10 @@
     justify-content: space-between;
     width: 100%;
     transform: translateX(-50%);
+  }
+
+  noscript + * {
+    display: none !important;
   }
 
   .left,
@@ -159,8 +163,7 @@
     fill: var(--font-color);
   }
 
-  button,
-  a.hamburger {
+  button {
     padding: 0.5rem 0.6rem;
     background-color: var(--background);
     border-bottom-left-radius: 0.5rem;
@@ -175,8 +178,7 @@
     }
   }
 
-  #hamburger,
-  a.hamburger {
+  #hamburger {
     padding: 0.25rem 0.4rem;
     cursor: pointer;
 
@@ -222,7 +224,7 @@
       &:after {
         content: "\21AA";
         position: absolute;
-        left: -2.25rem;
+        right: -2.1rem;
         top: -0.15rem;
         font-size: 1.5em;
         color: var(--font-color-opposite);
@@ -231,14 +233,14 @@
       }
 
       &:not(.active):hover,
-      &:focus-within {
+      &:not(.active):focus-within {
         color: var(--c-black);
         background-color: var(--c-accent);
       }
     }
 
     .active {
-      border-left-width: 2.5rem;
+      border-right-width: 2.5rem;
       cursor: default;
 
       &:after {
@@ -248,8 +250,14 @@
     }
   }
 
-  #hamburger[aria-expanded="true"] + #float-menu {
-    transform: scale(1);
+  #hamburger[aria-expanded="true"] {
+    svg path {
+      fill: var(--c-tertiary);
+    }
+
+    + #float-menu {
+      transform: scale(1);
+    }
   }
 
   // Media Queries
