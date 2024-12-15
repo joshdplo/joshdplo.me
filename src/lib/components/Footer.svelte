@@ -14,7 +14,7 @@
     </ul>
   </nav>
   <div class="right">
-    <HeroText size={5} link="/" alt={true} />
+    <HeroText text="JOSH" size={5} link="/" alt={true} />
     <a
       href="https://github.com/joshdplo/joshdplo.me"
       title="View Code on Github"

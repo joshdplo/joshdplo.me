@@ -5,6 +5,7 @@
   import PageMenu from "$lib/components/PageMenu.svelte";
 
   let { children } = $props();
+  let isLanding = $derived($page.url.pathname === "/likes");
   let heroText = $derived(
     $page.url.pathname
       .split("/")
@@ -17,7 +18,12 @@
 
 <section class="contain">
   <div class="center-full">
-    <HeroText text={heroText} hasDescenders={true} capitalize={true} />
+    <HeroText
+      text="Likes"
+      subtext={!isLanding ? heroText : null}
+      hasDescenders={true}
+      capitalize={true}
+    />
   </div>
   <PageMenu links={likesLinks} />
 </section>

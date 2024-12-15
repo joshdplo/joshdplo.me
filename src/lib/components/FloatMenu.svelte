@@ -1,7 +1,7 @@
 <script>
   import { page } from "$app/stores";
 
-  let { links } = $props();
+  let { links, color = "primary" } = $props();
   let hamburgerEl;
   let isOpen = $state(false);
 </script>
@@ -44,7 +44,7 @@
     >
   </a>
 </noscript> -->
-<div class="wrapper contain">
+<div class="wrapper contain" style="--menu-color: var(--c-{color})">
   <div class="left">
     <button
       id="hamburger"
@@ -131,16 +131,14 @@
   @use "$lib/css/util";
 
   .wrapper {
+    --menu-color: var(--c-primary);
+
     position: fixed;
     display: flex;
     left: 50%;
     justify-content: space-between;
     width: 100%;
     transform: translateX(-50%);
-  }
-
-  noscript + * {
-    display: none !important;
   }
 
   .left,
@@ -194,7 +192,7 @@
     top: 88%;
     width: 15.625rem;
     height: auto;
-    border: 0.8em double var(--c-tertiary);
+    border: 0.8em double var(--menu-color);
     border-radius: 0.75rem;
     border-top-left-radius: 0;
     color: var(--font-color);
@@ -224,8 +222,8 @@
       &:after {
         content: "\21AA";
         position: absolute;
-        right: -2.1rem;
-        top: -0.15rem;
+        right: -2.25rem;
+        top: -0.01rem;
         font-size: 1.5em;
         color: var(--font-color-opposite);
         opacity: 0;
@@ -252,7 +250,7 @@
 
   #hamburger[aria-expanded="true"] {
     svg path {
-      fill: var(--c-tertiary);
+      fill: var(--menu-color);
     }
 
     + #float-menu {
