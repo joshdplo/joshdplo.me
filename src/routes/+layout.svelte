@@ -4,6 +4,7 @@
   import "$lib/css/base.scss";
 
   import { site, globalLinks, footerLinks } from "$lib/config";
+  import { globalState } from "$lib/state.svelte";
   import { page } from "$app/stores";
   import FloatMenu from "$lib/components/FloatMenu.svelte";
   import Footer from "$lib/components/Footer.svelte";
@@ -24,7 +25,7 @@
 <!-- Header -->
 <nav id="nav-main" class="contain">
   <a class="skip-to-content" href="#main">Skip to main content</a>
-  <FloatMenu links={globalLinks} />
+  <FloatMenu links={globalLinks} color={globalState.pageColor} />
 </nav>
 
 <!-- Main Content -->

@@ -1,6 +1,9 @@
 <script>
   let { data } = $props();
+  import { globalState } from "$lib/state.svelte";
   import KeepCard from "$lib/components/KeepCard.svelte";
+
+  globalState.pageColor = "quaternary";
 </script>
 
 <div class="contain keeps-list">

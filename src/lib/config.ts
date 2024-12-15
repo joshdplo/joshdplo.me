@@ -7,9 +7,9 @@ export const site = {
 }
 
 export const globalLinks = [
-  { title: 'Greets', path: '/' },
-  { title: 'Likes', path: '/likes', append: 'things' },
-  { title: 'Keeps', path: '/keeps', append: 'things' },
+  { title: 'Greets', path: '/', color: 'primary' },
+  { title: 'Likes', path: '/likes', color: 'secondary' },
+  { title: 'Keeps', path: '/keeps', color: 'quaternary' },
 ];
 
 export const likesLinks = [

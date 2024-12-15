@@ -6,7 +6,7 @@
 
   let { children } = $props();
   let isLanding = $derived($page.url.pathname === "/likes");
-  let heroText = $derived(
+  let subtext = $derived(
     $page.url.pathname
       .split("/")
       .slice(
@@ -20,7 +20,7 @@
   <div class="center-full">
     <HeroText
       text="Likes"
-      subtext={!isLanding ? heroText : null}
+      subtext={!isLanding ? subtext : null}
       hasDescenders={true}
       capitalize={true}
     />

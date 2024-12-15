@@ -12,6 +12,20 @@
 	<div style="display: contents">%sveltekit.body%</div>
 </body>
 <script>
+	// Set up theme
+	const LSTheme = localStorage.getItem('theme');
+	if (LSTheme) {
+		document.documentElement.classList.add(`theme-${LSTheme}`)
+	} else {
+		document.documentElement.classList.add(
+			window.matchMedia &&
+				window.matchMedia("(prefers-color-scheme: dark)").matches
+				? "theme-dark"
+				: "them-light",
+		);
+	}
+
+	// Say hi to consolers
 	console.log('..........................\n         (｡◕‿‿◕｡)       \n    ✉️ yo@joshdplo.me   \n.......................... ');
 </script>
 

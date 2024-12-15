@@ -1,9 +1,20 @@
-<script>
+<script lang="ts">
   import { page } from "$app/stores";
 
-  let { links, color = "primary" } = $props();
-  let hamburgerEl;
+  let { links, color } = $props();
+  let hamburgerEl: HTMLElement;
   let isOpen = $state(false);
+
+  // theme is handled through a small script in app.html
+  // we just update the class + localStorage value here
+  function themeClick() {
+    const htmlEl = document.documentElement;
+    const newTheme = htmlEl.classList.contains("theme-dark") ? "light" : "dark";
+    localStorage.setItem("theme", newTheme);
+
+    htmlEl.classList.remove("theme-dark", "theme-light");
+    htmlEl.classList.add(`theme-${newTheme}`);
+  }
 </script>
 
 <svelte:document
@@ -17,7 +28,7 @@
     if (
       isOpen &&
       e.target !== hamburgerEl &&
-      !e.target.classList.contains("active")
+      !e?.target?.classList.contains("active")
     ) {
       isOpen = false;
       hamburgerEl.focus();
@@ -90,9 +101,14 @@
     </ul>
   </div>
   <div class="right">
-    <button class="theme" aria-label="Switch Theme" title="Switch Theme">
+    <button
+      class="theme"
+      aria-label="Switch Theme"
+      title="Switch Theme"
+      onclick={themeClick}
+    >
       <svg
-        class="light"
+        class="show-dark"
         viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -111,7 +127,7 @@
         />
       </svg>
       <svg
-        class="dark"
+        class="show-light"
         viewBox="0 0 24 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -261,16 +277,4 @@
   // Media Queries
   // @include util.mq(sm) {
   // }
-
-  // Theme
-  @include util.themeStyles(light) {
-    svg {
-      &.light {
-        display: none;
-      }
-      &.dark {
-        display: block;
-      }
-    }
-  }
 </style>

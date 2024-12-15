@@ -1,4 +1,5 @@
 <script>
+  import { globalState } from "$lib/state.svelte";
   import { MOVIES, SHOWS } from "$lib/data";
 
   // Glob import images for svelte enhanced images
@@ -25,6 +26,8 @@
   let showSpotifySongs = $state(true);
   let showSpotifyArtists = $state(true);
   let showGames = $state(true);
+
+  globalState.pageColor = "secondary";
 </script>
 
 <svelte:head>

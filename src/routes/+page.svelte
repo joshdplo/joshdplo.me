@@ -1,6 +1,9 @@
 <script>
   import { site } from "$lib/config";
+  import { globalState } from "$lib/state.svelte";
   import HeroText from "$lib/components/HeroText.svelte";
+
+  globalState.pageColor = "primary";
 </script>
 
 <svelte:head>
