@@ -1,13 +1,16 @@
 <script>
+  import { scale } from "svelte/transition";
   let { item, image } = $props();
 
   let title = $derived(item.title || item.name);
-  let released = $derived(item.release_date || item.first_air_date);
+  let released = $derived(
+    (item.release_date || item.first_air_date).split("-")[0],
+  );
   let favorite = $derived(item.rating !== null);
-  let mega = $derived(item.mega === true);
+  let mega = $derived(item.mega);
 </script>
 
-<div class="card" class:mega class:favorite={favorite && !mega}>
+<div class="card" class:mega class:favorite transition:scale>
   <enhanced:img src={image} alt="poster for {title}" loading="lazy" />
   <div class="info">
     <span class="title">{title}{` (${released})`}</span>
@@ -19,6 +22,8 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    width: 100px;
+    height: 150px;
   }
 
   .info {

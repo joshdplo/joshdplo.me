@@ -1,4 +1,5 @@
-<script>
+<script lang="ts">
+  import { slide, fly } from "svelte/transition";
   import { MOVIES, SHOWS } from "$lib/data";
   import placeholderImg from "$lib/images/TMDBplaceholder.jpg?enhanced";
   import TmdbCard from "$lib/components/TMDBCard.svelte";
@@ -29,24 +30,26 @@
   let showTv = $state(true);
   let movies = $state(MOVIES);
   let shows = $state(SHOWS);
+  let movieFilter: string = $state("all");
+  let filteredMovies = $derived(filterMovies());
 
-  // Rated (favorites)
-  function filterRatedMovies() {
-    movies = movies.filter((m) => m.rating !== null);
+  // Movie Filtering
+  function setMovieFilter(newFilter: string) {
+    movieFilter = newFilter;
   }
 
-  function filterRatedShows() {
-    shows = shows.filter((s) => s.rating !== null);
+  function filterMovies() {
+    switch (movieFilter) {
+      case "all":
+        return movies;
+      case "favorite":
+        return movies.filter((m) => m.rating !== null && !m.mega);
+      case "mega":
+        return movies.filter((m) => m.mega);
+    }
   }
 
-  // Mega
-  function filterMegaMovies() {
-    movies = movies.filter((m) => m.mega !== null);
-  }
-
-  function filterMegaShows() {
-    shows = shows.filter((s) => s.mega !== null);
-  }
+  function filterShows() {}
 </script>
 
 <svelte:head>
@@ -56,7 +59,7 @@
   />
 </svelte:head>
 
-<section class="filters">
+<section class="filters center contain">
   <button
     class="filter"
     aria-label="Toggle Images"
@@ -76,46 +79,109 @@
     <span>Movies</span>
     <i></i>
   </button>
+
+  <button
+    class="filter"
+    aria-label="Toggle Shows"
+    data-active={showTv}
+    onclick={() => (showTv = !showTv)}
+  >
+    <span>Shows</span>
+    <i></i>
+  </button>
 </section>
 
-<section class="contain">
+<section class="list-wrapper contain">
   {#if showMovies}
-    <h2>Movies</h2>
-    <div class="list movies">
-      {#each movies as movie}
-        <TmdbCard
-          item={movie}
-          image={showImages ? tmdbImages[movie.id] : placeholderImg}
-        />
-      {/each}
+    <div transition:slide>
+      <h2>Movies ({filteredMovies.length})</h2>
+      <div class="filters push">
+        <button
+          class="filter"
+          aria-label="Toggle Favorite Movies"
+          data-active={movieFilter === "favorite"}
+          onclick={() =>
+            setMovieFilter(movieFilter === "favorite" ? "all" : "favorite")}
+        >
+          <span>Favorite</span>
+          <i></i>
+        </button>
+        <button
+          class="filter"
+          aria-label="Toggle Mega Movies"
+          data-active={movieFilter === "mega"}
+          onclick={() =>
+            setMovieFilter(movieFilter === "mega" ? "all" : "mega")}
+        >
+          <span>Mega</span>
+          <i></i>
+        </button>
+      </div>
+      <div class="list movies">
+        {#each filteredMovies as movie}
+          <TmdbCard
+            item={movie}
+            image={showImages ? tmdbImages[movie.id] : placeholderImg}
+          />
+        {/each}
+      </div>
     </div>
   {/if}
 
+  {#if showMovies && showTv}
+    <div class="spacer-2"></div>
+  {/if}
+
   {#if showTv}
-    <h2>Shows</h2>
-    <div class="list shows">
-      {#each shows as show}
-        <TmdbCard
-          item={show}
-          image={showImages ? tmdbImages[show.id] : placeholderImg}
-        />
-      {/each}
+    <div transition:slide>
+      <h2>Shows ({shows.length})</h2>
+      <div class="list shows">
+        {#each shows as show}
+          <TmdbCard
+            item={show}
+            image={showImages ? tmdbImages[show.id] : placeholderImg}
+          />
+        {/each}
+      </div>
     </div>
+  {/if}
+
+  {#if !showMovies && !showTv}
+    <div class="spacer-3"></div>
+    <h2 class="center-full">You turned it all off!</h2>
   {/if}
 </section>
 
 <style lang="scss">
   @use "$lib/css/util";
 
+  .list-wrapper {
+    position: relative;
+    transition: 0.2s ease;
+  }
+
+  h2 {
+    margin-bottom: 0.25rem;
+  }
+
   .filters {
-    position: sticky;
+    position: relative;
     display: flex;
-    justify-content: center;
-    top: 0;
     width: 100%;
     line-height: 1;
-    gap: 0.5rem;
-    @include util.zindex(pageSticky);
+    gap: 1rem;
+
+    &.center {
+      justify-content: center;
+    }
+
+    &.push {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .filters-title {
+    font-size: 1.1rem;
   }
 
   .filter {
@@ -125,19 +191,18 @@
     align-items: center;
     justify-content: center;
     background-color: var(--background);
-    padding: 0.5rem;
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
 
     span {
-      margin-bottom: 2px;
+      margin-bottom: 0.25rem;
     }
 
     i {
       position: relative;
-      width: 2.5rem;
-      height: calc(1rem + 4px);
+      width: 100%;
+      height: calc(0.5rem + 4px);
       border-radius: 1rem;
       border: 1px solid var(--font-color);
 
@@ -147,7 +212,7 @@
         top: 1px;
         left: 1px;
         width: 1rem;
-        height: 1rem;
+        height: calc(100% - 2px);
         border: 1px solid transparent;
         border-radius: 0.5rem;
         background-color: var(--c-gray-dark);
@@ -166,7 +231,7 @@
   .list {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(auto-fit, 150px);
+    grid-template-columns: repeat(auto-fit, 100px);
     justify-content: center;
   }
 </style>
