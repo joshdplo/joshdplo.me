@@ -65,3 +65,26 @@ $breakpoints: (
     @content;
   }
 }
+
+/**
+ * Z-Indexes
+ */
+$zindexes: (
+  // reserve 1-21 for heroText characters
+  heroText: 20,
+  heroTextSub: 21,
+  // ensure pageMenu is over the heroText
+  pageMenu: 25,
+  // nav starts at 30
+  nav: 30,
+  // anything on the page that's sticky
+  pageSticky: 35,
+  // skip to content link
+  skipToContent: 100
+);
+
+@mixin zindex($key) {
+  $z: map.get($zindexes, $key);
+
+  z-index: $z;
+}

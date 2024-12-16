@@ -26,10 +26,10 @@
     --main-color: var(--font-color);
 
     display: flex;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     padding-bottom: 1.5rem;
     border-bottom: 0.1em dashed var(--c-gray);
-    z-index: 12;
+    @include util.zindex(pageMenu);
 
     &.center {
       justify-content: center;

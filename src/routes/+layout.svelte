@@ -36,13 +36,15 @@
 <!-- Main Footer -->
 <Footer links={footerLinks} />
 
-<style>
+<style lang="scss">
+  @use "$lib/css/util";
+
   nav {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 1rem;
-    z-index: 19;
+    @include util.zindex(nav);
   }
 </style>

@@ -9,15 +9,9 @@ summary: Joshdplo.me v1 release notes
 ---
 
 Joshdplo.me version one is live!@@!!@@!#!#!@!!  
-The goals were: make something I will **actually use**, and learn while doing it. Goals accomplished 😎. 
-The code needs *tons* of improvements, but it's mine and I'm proud of it all the same. Now 
-it's time to feel groovy about the work that's been done, start using the site, and go from there.
+The goals were: make something I will **actually use**, and learn while doing it. Goals accomplished 😎. The code needs *tons* of improvements, but it's mine and I'm proud of it all the same. Now it's time to feel groovy about the work that's been done, start using the site, and go from there. Here are the credits for version 1 - thanks to all of the very sharp people who make these cool tools. Since there are 2 projects for this site (the website, and then the data), I'm including them both.
 
-## Version 1
-Here are the credits for version 1 - thanks to all of the very sharp people who make these cool tools. 
-Since there are 2 projects for this site (the website, and then the data), I'm including them both.
-
-**[Website](https://github.com/joshdplo/joshdplo.me)**
+## [Website](https://github.com/joshdplo/joshdplo.me)
 - Tech
   - built with [nodejs](https://nodejs.org/en)
   - using [vite](https://vite.dev/)
@@ -28,13 +22,15 @@ Since there are 2 projects for this site (the website, and then the data), I'm i
   - [Sveltekit tutorial](https://svelte.dev/tutorial/kit/introducing-sveltekit)
     - is great to learn the basics and then i was referencing it during the build a ton
   - [Josh Collinsworth's sveltekit blog starter](https://github.com/josh-collinsworth/sveltekit-blog-starter/tree/main)
-    - thanks to josh's sweet starter! code was taken and/or modified from here to set up this site's blog (called "keeps"). extremely helpful to see the source, and really liked the hyperlegible font so decided to use it here as well.
+    - extremely helpful to see the source, and really liked the hyperlegible font so decided to use it here as well.
+  - [Jimmy McBride's sveltekit blog tutorial](https://jimmymcbride.dev/blog/sveltekit-blog)
+    - the example that ultimately ended up making things click for me! thanks to this great walkthrough and his codebase as well to provide insight on how this whole sveltekit blog setup works
   - [This stackoverflow post by brunnerh](https://stackoverflow.com/a/76147868)
-    - so simple and easy - haven't used vite tons, so didn't realize this was an option
+    - how to include static data via `define` in vite - haven't used vite tons, so didn't realize this was an option
 
-**[Slurpi (Data)](https://github.com/joshdplo/slurpi)**
+## [Slurpi (Data)](https://github.com/joshdplo/slurpi)
 Slurpi is a tool I made to save media information into a database so I could then 
-add to it, sort it, and use it. Eventually it will be added into the website repo, but 
+add to it, sort it, and use it. Eventually it will be merged into the website repo, but 
 monorepos are confusing and that's a project for another day.
 
 - Tech

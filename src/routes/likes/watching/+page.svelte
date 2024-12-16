@@ -56,6 +56,28 @@
   />
 </svelte:head>
 
+<section class="filters">
+  <button
+    class="filter"
+    aria-label="Toggle Images"
+    data-active={showImages}
+    onclick={() => (showImages = !showImages)}
+  >
+    <span>Images</span>
+    <i></i>
+  </button>
+
+  <button
+    class="filter"
+    aria-label="Toggle Movies"
+    data-active={showMovies}
+    onclick={() => (showMovies = !showMovies)}
+  >
+    <span>Movies</span>
+    <i></i>
+  </button>
+</section>
+
 <section class="contain">
   {#if showMovies}
     <h2>Movies</h2>
@@ -82,10 +104,69 @@
   {/if}
 </section>
 
-<style>
+<style lang="scss">
+  @use "$lib/css/util";
+
+  .filters {
+    position: sticky;
+    display: flex;
+    justify-content: center;
+    top: 0;
+    width: 100%;
+    line-height: 1;
+    gap: 0.5rem;
+    @include util.zindex(pageSticky);
+  }
+
+  .filter {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background);
+    padding: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    font-size: 0.85rem;
+
+    span {
+      margin-bottom: 2px;
+    }
+
+    i {
+      position: relative;
+      width: 2.5rem;
+      height: calc(1rem + 4px);
+      border-radius: 1rem;
+      border: 1px solid var(--font-color);
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 1px;
+        left: 1px;
+        width: 1rem;
+        height: 1rem;
+        border: 1px solid transparent;
+        border-radius: 0.5rem;
+        background-color: var(--c-gray-dark);
+        transition: 0.2s ease;
+      }
+    }
+
+    &[data-active="true"] {
+      i::before {
+        background-color: var(--c-status-success);
+        left: calc(100% - (1rem + 1px));
+      }
+    }
+  }
+
   .list {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 150px);
+    grid-template-columns: repeat(auto-fit, 150px);
+    justify-content: center;
   }
 </style>

@@ -133,7 +133,7 @@
     text-shadow: 0.03em 0.03em 0 var(--font-color-opposite);
     backdrop-filter: blur(0.2em);
     border: 0.07em dashed var(--font-color);
-    z-index: 14;
+    @include util.zindex(heroTextSub);
 
     &::before {
       content: "";

@@ -20,6 +20,8 @@
   --c-theme-violet-blue: #3B4A97;
   --c-theme-coral: #FF875C;
 
+  --c-status-success: #89ce00;
+
   /* Type */
   --ff-atkinson: 'Atkinson Hyperlegible', Tahoma, Verdana, Arial, sans-serif;
   --ff-londrina: 'Londrina Shadow', Tahoma, Verdana, Arial, sans-serif;
@@ -221,7 +223,7 @@ code {
   opacity: 0;
   transform: translate(-50%, -120%);
   transition: opacity .2s ease, transform .2s ease;
-  z-index: 20;
+  @include util.zindex(skipToContent);
 
   &:focus {
     transform: translate(-50%, 0);

@@ -3,8 +3,8 @@
 
   let title = $derived(item.title || item.name);
   let released = $derived(item.release_date || item.first_air_date);
-  let favorite = $derived(item.rated !== null);
-  let mega = $derived(item.mega !== null);
+  let favorite = $derived(item.rating !== null);
+  let mega = $derived(item.mega === true);
 </script>
 
 <div class="card" class:mega class:favorite={favorite && !mega}>
@@ -51,13 +51,13 @@
 
   .favorite::before,
   .mega::before {
-    content: "\2605";
+    content: "\2606";
     position: absolute;
-    top: 0.1rem;
-    right: 0.1rem;
+    top: 0.15rem;
+    right: 0.3rem;
     font-size: 1rem;
   }
   .mega::before {
-    content: "\2606";
+    content: "\2605";
   }
 </style>
