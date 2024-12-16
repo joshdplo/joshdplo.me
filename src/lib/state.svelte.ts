@@ -1,3 +1,4 @@
 export let globalState = $state({
-  pageColor: 'primary'
+  pageColor: 'primary',
+  showLikesImages: false
 });

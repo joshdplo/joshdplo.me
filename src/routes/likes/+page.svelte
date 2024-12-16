@@ -2,7 +2,10 @@
   import { globalState } from "$lib/state.svelte";
   import { META } from "$lib/data";
 
+  // Global State
   globalState.pageColor = "secondary";
+
+  // Page State
   let meta = $state(META[0]);
 </script>
 

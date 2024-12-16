@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { slide, fly } from "svelte/transition";
+  import debounce from "lodash-es/debounce";
+  import { slide } from "svelte/transition";
   import { MOVIES, SHOWS } from "$lib/data";
   import placeholderImg from "$lib/images/TMDBplaceholder.jpg?enhanced";
   import TmdbCard from "$lib/components/TMDBCard.svelte";
@@ -30,8 +31,29 @@
   let showTv = $state(true);
   let movies = $state(MOVIES);
   let shows = $state(SHOWS);
+  let rawSearchTerm = $state("");
+  let searchTerm = $state("");
   let movieFilter: string = $state("all");
+  let showFilter: string = $state("all");
   let filteredMovies = $derived(filterMovies());
+  let filteredShows = $derived(filterShows());
+
+  // Searching
+  const debouncedSearch = debounce((v) => {
+    searchTerm = v;
+  }, 450);
+  $effect(() => {
+    debouncedSearch(rawSearchTerm);
+  });
+  $effect(() => {
+    if (searchTerm.trim() !== "" && searchTerm.trim().length >= 2) {
+      movieFilter = "search";
+      showFilter = "search";
+    } else {
+      movieFilter = "all";
+      showFilter = "all";
+    }
+  });
 
   // Movie Filtering
   function setMovieFilter(newFilter: string) {
@@ -46,10 +68,32 @@
         return movies.filter((m) => m.rating !== null && !m.mega);
       case "mega":
         return movies.filter((m) => m.mega);
+      case "search":
+        return movies.filter(
+          (m) => m.title.toLowerCase().indexOf(searchTerm) > -1,
+        );
     }
   }
 
-  function filterShows() {}
+  // Show Filtering
+  function setShowFilter(newFilter: string) {
+    showFilter = newFilter;
+  }
+
+  function filterShows() {
+    switch (showFilter) {
+      case "all":
+        return shows;
+      case "favorite":
+        return shows.filter((m) => m.rating !== null && !m.mega);
+      case "mega":
+        return shows.filter((m) => m.mega);
+      case "search":
+        return shows.filter(
+          (m) => m.name.toLowerCase().indexOf(searchTerm) > -1,
+        );
+    }
+  }
 </script>
 
 <svelte:head>
@@ -60,6 +104,13 @@
 </svelte:head>
 
 <section class="filters center contain">
+  <input
+    type="text"
+    name="search-watching"
+    id="search-watching"
+    placeholder="Find a movie or show"
+    bind:value={rawSearchTerm}
+  />
   <button
     class="filter"
     aria-label="Toggle Images"
@@ -134,9 +185,30 @@
 
   {#if showTv}
     <div transition:slide>
-      <h2>Shows ({shows.length})</h2>
+      <h2>Shows ({filteredShows.length})</h2>
+      <div class="filters push">
+        <button
+          class="filter"
+          aria-label="Toggle Favorite Shows"
+          data-active={showFilter === "favorite"}
+          onclick={() =>
+            setShowFilter(showFilter === "favorite" ? "all" : "favorite")}
+        >
+          <span>Favorite</span>
+          <i></i>
+        </button>
+        <button
+          class="filter"
+          aria-label="Toggle Mega Shows"
+          data-active={showFilter === "mega"}
+          onclick={() => setShowFilter(showFilter === "mega" ? "all" : "mega")}
+        >
+          <span>Mega</span>
+          <i></i>
+        </button>
+      </div>
       <div class="list shows">
-        {#each shows as show}
+        {#each filteredShows as show}
           <TmdbCard
             item={show}
             image={showImages ? tmdbImages[show.id] : placeholderImg}
@@ -232,6 +304,5 @@
     position: relative;
     display: grid;
     grid-template-columns: repeat(auto-fit, 100px);
-    justify-content: center;
   }
 </style>
