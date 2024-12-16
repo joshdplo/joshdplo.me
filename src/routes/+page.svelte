@@ -21,7 +21,7 @@
     />
   </div>
 
-  <div class="h1 bg-accent border">
+  <div class="h1 bg-accent border landing-text">
     Hi!
     <span class="bg no-pad">This is my sweet website.</span> I use it to
     <span class="bg-secondary no-pad"
@@ -37,3 +37,11 @@
 
   <i class="spacer-1"></i>
 </section>
+
+<style>
+  @media (max-width: 600px) {
+    .landing-text {
+      font-size: 1.6rem;
+    }
+  }
+</style>

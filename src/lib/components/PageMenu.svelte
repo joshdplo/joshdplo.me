@@ -5,12 +5,7 @@
   let hasDarkBg = color === "primary-darker" || color === "primary-dark"; // @TODO $derived? idk what im doing
 </script>
 
-<div
-  class="page-menu"
-  class:teeny
-  class:center
-  style="--main-color: var(--c-{color})"
->
+<div class="page-menu" class:center style="--main-color: var(--c-{color})">
   <ul>
     {#each links as l}
       <li>
@@ -25,6 +20,8 @@
 </div>
 
 <style lang="scss">
+  @use "$lib/css/util";
+
   .page-menu {
     --main-color: var(--font-color);
 
@@ -33,12 +30,6 @@
     padding-bottom: 1.5rem;
     border-bottom: 0.1em dashed var(--c-gray);
     z-index: 12;
-
-    &.teeny {
-      border-bottom: 0;
-      padding-bottom: 0;
-      margin-bottom: 1rem;
-    }
 
     &.center {
       justify-content: center;
@@ -53,7 +44,6 @@
     flex-wrap: wrap;
     background-color: var(--font-color-opposite);
     border: 0.3em double var(--main-color);
-    border-radius: 1.5em;
   }
 
   li,
@@ -78,16 +68,6 @@
       background-color: var(--c-accent);
       color: var(--c-black);
     }
-
-    ul li:first-child & {
-      border-top-left-radius: 1.5em;
-      border-bottom-left-radius: 1.5em;
-    }
-
-    ul li:last-child & {
-      border-top-right-radius: 1.5em;
-      border-bottom-right-radius: 1.5em;
-    }
   }
 
   .active {
@@ -96,6 +76,22 @@
 
     &.darkBg {
       color: var(--c-white);
+    }
+  }
+
+  @include util.mq(sm) {
+    .page-menu ul {
+      border-radius: 1.5em;
+
+      li:first-child a {
+        border-top-left-radius: 1.5em;
+        border-bottom-left-radius: 1.5em;
+      }
+
+      li:last-child a {
+        border-top-right-radius: 1.5em;
+        border-bottom-right-radius: 1.5em;
+      }
     }
   }
 </style>

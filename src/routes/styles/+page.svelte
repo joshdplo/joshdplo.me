@@ -43,7 +43,6 @@
   </p>
   <i class="spacer-1"></i>
   <PageMenu
-    teeny={true}
     center={false}
     color="quaternary"
     links={[

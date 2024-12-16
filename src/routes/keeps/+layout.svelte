@@ -5,11 +5,12 @@
 
   let { data, children } = $props();
   let isLanding = $derived($page.url.pathname === "/keeps");
+  let isPost = $derived($page.url.pathname.split("/")[2] !== "tag");
   let subtext = $derived(
     $page.url.pathname
       .split("/")
       .slice(
-        [...$page.url.pathname].filter((x) => x === "/").length >= 3 ? 3 : 1,
+        [...$page.url.pathname].filter((x) => x === "/").length >= 2 ? 3 : 1,
       )
       .join(""),
   );
@@ -21,7 +22,7 @@
       text="Keeps"
       hasDescenders={true}
       color="quaternary"
-      subtext={!isLanding ? `#${subtext}` : null}
+      subtext={!isLanding && !isPost ? `#${subtext}` : null}
     />
   </div>
   <PageMenu

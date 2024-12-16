@@ -6,6 +6,7 @@
 
 <a href="/keeps/{keep.slug}">
   <h3>{keep.title}</h3>
+  <p>{keep.summary}</p>
   <div class="bottom">
     <small class="date">{formatDate(keep.updated || keep.date)}</small>
     {#each keep.tags as tag}<i>#{tag}</i>{/each}
@@ -33,6 +34,12 @@
 
   h3 {
     font-size: 1.25rem;
+    margin-bottom: 0.2rem;
+  }
+
+  p {
+    font-size: 1rem;
+    margin-top: 0;
     margin-bottom: 1rem;
   }
 

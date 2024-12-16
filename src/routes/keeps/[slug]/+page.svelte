@@ -42,5 +42,6 @@
 
 <section class="contain">
   <h1>{data.meta.title}</h1>
+  <div class="date">Created {data.meta.date}</div>
   <Content />
 </section>
