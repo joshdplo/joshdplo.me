@@ -8,15 +8,15 @@ export const site = {
 
 export const globalLinks = [
   { title: 'Greets', path: '/', color: 'primary' },
-  { title: 'Likes', path: '/likes', color: 'secondary' },
-  { title: 'Keeps', path: '/keeps', color: 'quaternary' },
+  { title: 'Likes', path: '/likes', color: 'secondary', titleSuffix: 'everything' },
+  { title: 'Keeps', path: '/keeps', color: 'quaternary', titleSuffix: 'everything' },
 ];
 
 export const likesLinks = [
-  { title: 'Everything', path: '/likes' },
-  { title: 'Watching', path: '/likes/watching' },
-  { title: 'Hearing', path: '/likes/hearing' },
-  { title: 'Playing', path: '/likes/playing' }
+  { title: 'Everything', path: '/likes', titleSuffix: 'everything' },
+  { title: 'Watching', path: '/likes/watching', titleSuffix: '...' },
+  { title: 'Hearing', path: '/likes/hearing', titleSuffix: '...' },
+  { title: 'Playing', path: '/likes/playing', titleSuffix: '...' }
 ];
 
 export const footerLinks = [

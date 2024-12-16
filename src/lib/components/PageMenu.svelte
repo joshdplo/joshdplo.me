@@ -1,7 +1,7 @@
 <script>
   import { page } from "$app/stores";
 
-  let { links, color = "secondary", teeny = false, center = true } = $props();
+  let { links, color = "secondary", center = true } = $props();
   let hasDarkBg = color === "primary-darker" || color === "primary-dark"; // @TODO $derived? idk what im doing
 </script>
 
@@ -30,8 +30,9 @@
 
     display: flex;
     margin-bottom: 2rem;
-    padding-bottom: 2rem;
-    border-bottom: 0.1em dashed var(--font-color);
+    padding-bottom: 1.5rem;
+    border-bottom: 0.1em dashed var(--c-gray);
+    z-index: 12;
 
     &.teeny {
       border-bottom: 0;
@@ -50,7 +51,9 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 1em;
+    background-color: var(--font-color-opposite);
+    border: 0.3em double var(--main-color);
+    border-radius: 1.5em;
   }
 
   li,
@@ -66,9 +69,6 @@
     text-decoration: none;
     padding: 0.2rem 0.75rem;
     color: var(--font-color);
-    background-color: var(--font-color-opposite);
-    border: 0.35rem double var(--main-color);
-    border-radius: 1.5rem;
     transition:
       color 0.2s ease,
       background-color 0.2s ease;
@@ -77,6 +77,16 @@
     &:not(.active):focus-within {
       background-color: var(--c-accent);
       color: var(--c-black);
+    }
+
+    ul li:first-child & {
+      border-top-left-radius: 1.5em;
+      border-bottom-left-radius: 1.5em;
+    }
+
+    ul li:last-child & {
+      border-top-right-radius: 1.5em;
+      border-bottom-right-radius: 1.5em;
     }
   }
 
@@ -87,14 +97,5 @@
     &.darkBg {
       color: var(--c-white);
     }
-  }
-
-  .teeny a {
-    font-size: 0.8rem;
-    padding: 0.2rem 0.5rem;
-  }
-
-  .teeny ul {
-    gap: 0.5em;
   }
 </style>

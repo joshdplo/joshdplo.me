@@ -128,7 +128,7 @@
     font-weight: bold;
     font-size: var(--subtext-size);
     line-height: 1;
-    transform: rotate(-3deg);
+    transform: rotate(-6deg);
     padding: 0.1em 0.2em;
     text-shadow: 0.03em 0.03em 0 var(--font-color-opposite);
     backdrop-filter: blur(0.2em);

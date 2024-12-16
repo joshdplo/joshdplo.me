@@ -12,7 +12,13 @@
 
 <section class="contain">
   <div class="center-full">
-    <HeroText text="JOSH" size={17} color="primary" link="/" />
+    <HeroText
+      text="JOSH"
+      size={17}
+      color="primary"
+      link="/"
+      hasDescenders={true}
+    />
   </div>
 
   <div class="h1 bg-accent border">

@@ -82,7 +82,9 @@
     </button>
     <ul id="float-menu">
       {#each links as l, i}
-        {@const active = $page.url.pathname === l.path}
+        {@const active =
+          $page.url.pathname === l.path ||
+          $page.url.pathname.split("/")[1] === l.path.split("/")[1]}
         <li>
           <a
             href={l.path}

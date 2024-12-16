@@ -21,7 +21,6 @@
     <HeroText
       text="Likes"
       subtext={!isLanding ? subtext : null}
-      hasDescenders={true}
       capitalize={true}
     />
   </div>
