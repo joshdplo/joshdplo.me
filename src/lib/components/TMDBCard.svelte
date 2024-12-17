@@ -2,7 +2,6 @@
   import { scale } from "svelte/transition";
   let { item, image } = $props();
 
-  let active = $state(false);
   let title = $derived(item.title || item.name);
   let released = $derived(
     (item.release_date || item.first_air_date).split("-")[0],

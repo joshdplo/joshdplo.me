@@ -28,7 +28,9 @@
       ><a href="/likes">list things i like</a></span
     >,
     <span class="bg-opposite no-pad"
-      ><a href="https://github.com/joshdplo">practice FE development</a></span
+      ><a href="https://github.com/joshdplo?tab=repositories"
+        >practice FE development</a
+      ></span
     >, and
     <span class="bg-quaternary no-pad"
       ><a href="/keeps">keep some public notes</a></span
