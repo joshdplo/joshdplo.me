@@ -12,6 +12,9 @@
   --c-gray-darker: #555;
   --c-gray-darkest: #333;
 
+  --c-transparent-dark: rgba(0, 0, 0, .65);
+  --c-transparent-light: rgba(255, 255, 255, .65);
+
   --c-theme-dark: #151515;
   --c-theme-light: #ECF8F8;
   --c-theme-raspberry: #DD1155;
@@ -48,6 +51,7 @@
   --font-color-opposite: var(--c-black);
   --content-background: var(--c-black);
   --content-subtle: var(--c-gray-darkest);
+  --content-transparent: var(--c-transparent-dark);
   --background: var(--c-theme-dark);
 
   --ff-default: var(--ff-atkinson);
@@ -417,6 +421,7 @@ code {
   --font-color-opposite: var(--c-white);
   --background: var(--c-theme-light);
   --content-subtle: var(--c-gray);
+  --content-transparent: var(--c-transparent-light);
   --content-background: var(--c-white);
 }
 

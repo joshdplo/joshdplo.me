@@ -135,6 +135,11 @@
     border: 0.07em dashed var(--font-color);
     @include util.zindex(heroTextSub);
 
+    a.hasDescenders + &,
+    h1.hasDescenders + & {
+      bottom: 1.6em;
+    }
+
     &::before {
       content: "";
       position: absolute;
@@ -148,7 +153,12 @@
     }
 
     @include util.mq(sm) {
-      bottom: 1.3em;
+      bottom: 0.7em;
+
+      a.hasDescenders + &,
+      h1.hasDescenders + & {
+        bottom: 1.3em;
+      }
     }
   }
 </style>
