@@ -22,19 +22,16 @@
   <enhanced:img src={image} alt="poster for {title}" loading="lazy" />
   <div class="info">
     <span class="title"
-      >{title}{` (${released}, ${item.original_language})`}</span
+      >{title}<br />{` (${released}, ${item.original_language})`}</span
+    >
+    <a href="https://www.themoviedb.org/{isMovie ? 'movie' : 'tv'}/{item.id}"
+      >Go To TMDB</a
     >
     <span class="genres">
-      {#each genresMap as m}
-        {item.genre_ids.indexOf(m.id) && m.name}
+      {#each JSON.parse(item.genre_ids) as i}
+        <span>{genresMap[`${i}`]}</span>
       {/each}
     </span>
-    <div class="overview"></div>
-    <div class="bottom">
-      <a href="https://www.themoviedb.org/{isMovie ? 'movie' : 'tv'}/{item.id}"
-        >Go To TMDB</a
-      >
-    </div>
   </div>
 </div>
 
@@ -43,12 +40,13 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 100px;
-    height: 150px;
+    width: 150px;
+    height: 225px;
+    overflow: hidden;
 
     &:hover,
     &:focus-within {
-      transform: scale(1.7);
+      transform: scale(1.5);
       box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 1);
       z-index: 2;
 
@@ -61,6 +59,11 @@
         filter: blur(3px);
       }
     }
+
+    &.placeholder {
+      width: 140px;
+      height: 210px;
+    }
   }
 
   .info {
@@ -72,7 +75,7 @@
     height: 100%;
     flex-direction: column;
     padding: 0.5rem 1rem 0.5rem 0.5rem;
-    font-size: 0.7rem;
+    font-size: 1rem;
     line-height: 1;
     z-index: -1;
     background-color: var(--content-transparent);
@@ -81,18 +84,27 @@
     .placeholder & {
       z-index: 1;
       background-color: var(--font-color-opposite);
-      border: 1px dotted var(--font-color);
       border-bottom: 0;
       border-left: 0;
-    }
-
-    .bottom {
-      margin-top: auto;
     }
   }
 
   .title {
     margin-bottom: 1em;
+  }
+
+  .genres {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: auto;
+    font-size: 0.8rem;
+    gap: 0.2rem;
+
+    span {
+      padding: 0.15rem 0.2rem;
+      background-color: var(--content-subtle);
+    }
   }
 
   .favorite::before,

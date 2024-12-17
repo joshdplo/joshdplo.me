@@ -118,7 +118,7 @@
   />
 </svelte:head>
 
-<section class="filters main center main contain">
+<section class="filters main center contain">
   <div class="filter-group">
     <input
       type="text"
@@ -340,10 +340,11 @@
   .list {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 100px);
+    grid-template-columns: repeat(auto-fill, 150px);
 
     .placeholders & {
-      border-left: 1px dotted var(--font-color);
+      gap: 12px;
+      grid-template-columns: repeat(auto-fill, 140px);
     }
   }
 </style>
