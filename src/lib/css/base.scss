@@ -9,6 +9,8 @@
   --c-gray-light: #e0e0e0;
   --c-gray: #bbb;
   --c-gray-dark: #888;
+  --c-gray-darker: #555;
+  --c-gray-darkest: #333;
 
   --c-theme-dark: #151515;
   --c-theme-light: #ECF8F8;
@@ -45,6 +47,7 @@
   --font-color: var(--c-white);
   --font-color-opposite: var(--c-black);
   --content-background: var(--c-black);
+  --content-subtle: var(--c-gray-darkest);
   --background: var(--c-theme-dark);
 
   --ff-default: var(--ff-atkinson);
@@ -101,6 +104,15 @@ button {
 ul,
 ol {
   list-style-type: none;
+}
+
+input[type="text"] {
+  padding: .3em .55em;
+  font-size: 1rem;
+  background: var(--content-subtle);
+  color: var(--font-color);
+  border: 2px solid var(--font-color);
+  border-radius: 1em;
 }
 
 picture {
@@ -404,6 +416,7 @@ code {
   --font-color: var(--c-black);
   --font-color-opposite: var(--c-white);
   --background: var(--c-theme-light);
+  --content-subtle: var(--c-gray);
   --content-background: var(--c-white);
 }
 

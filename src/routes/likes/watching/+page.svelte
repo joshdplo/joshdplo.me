@@ -4,6 +4,7 @@
   import { MOVIES, SHOWS } from "$lib/data";
   import placeholderImg from "$lib/images/TMDBplaceholder.jpg?enhanced";
   import TmdbCard from "$lib/components/TMDBCard.svelte";
+  import Layout from "../+layout.svelte";
 
   // Glob import images for svelte enhanced images
   // https://svelte.dev/docs/kit/images#sveltejs-enhanced-img-Dynamically-choosing-an-image
@@ -37,6 +38,17 @@
   let showFilter: string = $state("all");
   let filteredMovies = $derived(filterMovies());
   let filteredShows = $derived(filterShows());
+
+  // Show Images
+  $effect(() => {
+    const showImagesLS = localStorage.getItem("likesImages");
+    if (showImagesLS && (showImagesLS === "true" || showImagesLS === "false"))
+      showImages = JSON.parse(showImagesLS);
+  });
+  const updateShowImages = () => {
+    showImages = !showImages;
+    localStorage.setItem("likesImages", JSON.stringify(showImages));
+  };
 
   // Searching
   const debouncedSearch = debounce((v) => {
@@ -72,6 +84,8 @@
         return movies.filter(
           (m) => m.title.toLowerCase().indexOf(searchTerm) > -1,
         );
+      default:
+        return movies;
     }
   }
 
@@ -92,6 +106,8 @@
         return shows.filter(
           (m) => m.name.toLowerCase().indexOf(searchTerm) > -1,
         );
+      default:
+        return shows;
     }
   }
 </script>
@@ -103,43 +119,47 @@
   />
 </svelte:head>
 
-<section class="filters center contain">
-  <input
-    type="text"
-    name="search-watching"
-    id="search-watching"
-    placeholder="Find a movie or show"
-    bind:value={rawSearchTerm}
-  />
-  <button
-    class="filter"
-    aria-label="Toggle Images"
-    data-active={showImages}
-    onclick={() => (showImages = !showImages)}
-  >
-    <span>Images</span>
-    <i></i>
-  </button>
+<section class="filters main center main contain">
+  <div class="filter-group">
+    <input
+      type="text"
+      name="search-watching"
+      id="search-watching"
+      placeholder="Search..."
+      bind:value={rawSearchTerm}
+    />
+  </div>
+  <div class="filter-group">
+    <button
+      class="filter"
+      aria-label="Toggle Images"
+      data-active={showImages}
+      onclick={() => updateShowImages()}
+    >
+      <span>Images</span>
+      <i></i>
+    </button>
 
-  <button
-    class="filter"
-    aria-label="Toggle Movies"
-    data-active={showMovies}
-    onclick={() => (showMovies = !showMovies)}
-  >
-    <span>Movies</span>
-    <i></i>
-  </button>
+    <button
+      class="filter"
+      aria-label="Toggle Movies"
+      data-active={showMovies}
+      onclick={() => (showMovies = !showMovies)}
+    >
+      <span>Movies</span>
+      <i></i>
+    </button>
 
-  <button
-    class="filter"
-    aria-label="Toggle Shows"
-    data-active={showTv}
-    onclick={() => (showTv = !showTv)}
-  >
-    <span>Shows</span>
-    <i></i>
-  </button>
+    <button
+      class="filter"
+      aria-label="Toggle Shows"
+      data-active={showTv}
+      onclick={() => (showTv = !showTv)}
+    >
+      <span>Shows</span>
+      <i></i>
+    </button>
+  </div>
 </section>
 
 <section class="list-wrapper contain">
@@ -236,26 +256,41 @@
     margin-bottom: 0.25rem;
   }
 
+  // Filter Containers
   .filters {
     position: relative;
     display: flex;
+    flex-direction: column;
     width: 100%;
     line-height: 1;
     gap: 1rem;
 
+    &.main {
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+    }
+
     &.center {
       justify-content: center;
+      align-items: center;
     }
 
     &.push {
       margin-bottom: 1rem;
     }
+
+    @include util.mq(md) {
+      flex-direction: row;
+    }
   }
 
-  .filters-title {
-    font-size: 1.1rem;
+  .filter-group {
+    position: relative;
+    display: flex;
+    gap: 1rem;
   }
 
+  // Toggle Filter
   .filter {
     position: relative;
     display: flex;
@@ -265,6 +300,7 @@
     background-color: var(--background);
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
+    color: var(--font-color);
     font-size: 0.8rem;
 
     span {
@@ -274,9 +310,9 @@
     i {
       position: relative;
       width: 100%;
-      height: calc(0.5rem + 4px);
+      height: calc(0.7rem + 4px);
       border-radius: 1rem;
-      border: 1px solid var(--font-color);
+      border: 2px solid var(--font-color);
 
       &::before {
         content: "";
@@ -285,8 +321,7 @@
         left: 1px;
         width: 1rem;
         height: calc(100% - 2px);
-        border: 1px solid transparent;
-        border-radius: 0.5rem;
+        border-radius: 0.7rem;
         background-color: var(--c-gray-dark);
         transition: 0.2s ease;
       }
@@ -300,9 +335,10 @@
     }
   }
 
+  // List Container
   .list {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(auto-fit, 100px);
+    grid-template-columns: repeat(auto-fill, 100px);
   }
 </style>

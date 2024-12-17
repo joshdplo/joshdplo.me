@@ -48,7 +48,7 @@
     left: var(--site-padding);
     width: calc(100% - var(--site-padding) * 2);
     height: 0.1em;
-    border-top: 0.1em dashed var(--c-gray);
+    border-top: 0.1em dashed var(--content-subtle);
   }
 
   .left,

@@ -28,7 +28,7 @@
     display: flex;
     margin-bottom: 1rem;
     padding-bottom: 1.5rem;
-    border-bottom: 0.1em dashed var(--c-gray);
+    border-bottom: 0.1em dashed var(--content-subtle);
     @include util.zindex(pageMenu);
 
     &.center {
