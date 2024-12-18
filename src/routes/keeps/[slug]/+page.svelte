@@ -1,5 +1,5 @@
 <script>
-  import { globalState } from "$lib/state.svelte.js";
+  import { globalState } from "$lib/state.svelte";
   import { site } from "$lib/config";
   import { page } from "$app/stores";
 

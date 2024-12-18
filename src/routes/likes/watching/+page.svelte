@@ -266,7 +266,8 @@
   .filters {
     position: relative;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     width: 100%;
     line-height: 1;
     gap: 1rem;
@@ -283,10 +284,6 @@
 
     &.push {
       margin-bottom: 1rem;
-    }
-
-    @include util.mq(md) {
-      flex-direction: row;
     }
   }
 
@@ -315,7 +312,7 @@
 
     i {
       position: relative;
-      width: 100%;
+      width: 3rem;
       height: calc(0.7rem + 4px);
       border-radius: 1rem;
       border: 2px solid var(--font-color);
@@ -331,6 +328,10 @@
         background-color: var(--c-gray-dark);
         transition: 0.2s ease;
       }
+
+      @include util.mq(md) {
+        flex-direction: 100%;
+      }
     }
 
     &[data-active="true"] {
@@ -345,11 +346,19 @@
   .list {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 150px);
+    grid-template-columns: repeat(auto-fill, 130px);
 
     .placeholders & {
+      grid-template-columns: repeat(auto-fill, 120px);
       gap: 12px;
-      grid-template-columns: repeat(auto-fill, 140px);
+    }
+
+    @include util.mq(sm) {
+      grid-template-columns: repeat(auto-fill, 150px);
+
+      .placeholders & {
+        grid-template-columns: repeat(auto-fill, 140px);
+      }
     }
   }
 </style>
