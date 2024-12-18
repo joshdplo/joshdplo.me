@@ -24,6 +24,7 @@
   --c-theme-mint: #00CC99;
   --c-theme-violet-blue: #3B4A97;
   --c-theme-coral: #FF875C;
+  --c-theme-gold: #FFD700;
 
   --c-status-success: #89ce00;
 
@@ -114,7 +115,7 @@ ol {
 input[type="text"] {
   padding: .3em .55em;
   font-size: 1rem;
-  background: var(--content-subtle);
+  background: var(--font-color-opposite);
   color: var(--font-color);
   border: 2px solid var(--font-color);
   border-radius: 1em;

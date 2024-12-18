@@ -21,6 +21,6 @@ export default defineConfig({
 		DB_SPOTIFY_ALBUMS: slurpiData.spotifyAlbums,
 		DB_SPOTIFY_ARTISTS: slurpiData.spotifyArtists,
 		DB_SPOTIFY_SHOWS: slurpiData.spotifyShows,
-		DB_STEAM_GAMES: slurpiData.steamGames
+		DB_STEAM_GAMES: slurpiData.steamGames,
 	}
 });

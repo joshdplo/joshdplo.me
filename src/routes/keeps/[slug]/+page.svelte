@@ -45,7 +45,12 @@
 </svelte:head>
 
 <section class="contain">
-  <h1>{data.meta.title}</h1>
-  <div class="date">Created {data.meta.date}</div>
+  <div class="header">
+    {#if data.meta.image}
+      <img src="/src/keeps/images/{data.meta.image}?enhanced" alt="" />
+    {/if}
+    <h1>{data.meta.title}</h1>
+    <div class="date">Created {data.meta.date}</div>
+  </div>
   <Content />
 </section>

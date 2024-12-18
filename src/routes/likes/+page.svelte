@@ -20,7 +20,7 @@
   <meta name="description" content="A summary of the things Josh likes" />
 </svelte:head>
 
-<section class="contain">
+<section class="wrapper contain">
   <div class="counters">
     <div class="counter movies">
       <span class="title">Movies: </span>
@@ -57,36 +57,41 @@
       <CountUp value={NUM_SPOTIFY_SHOWS} />
     </div>
   </div>
+  <div class="content"></div>
 </section>
 
 <style lang="scss">
   @use "$lib/css/util";
 
+  .wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
   .counters {
     position: relative;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 150px);
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    gap: 0.5rem;
+    font-weight: bold;
   }
 
   .counter {
     position: relative;
-    padding: 1rem;
-    // text-align: center;
-    font-size: 2rem;
+    font-size: 0.8rem;
   }
 
   // Responsive
-  @include util.mq(sm) {
-    .counters {
-      grid-template-columns: 1fr 1fr 1fr;
-    }
-  }
-
   @include util.mq(md) {
+    .wrapper {
+      justify-content: flex-start;
+    }
     .counters {
-      grid-template-columns: 1fr 1fr 1fr 1fr;
+      flex-direction: column;
+      font-size: 1rem;
+      margin-top: 3rem;
     }
   }
 </style>

@@ -48,9 +48,14 @@
     height: 195px;
     overflow: hidden;
 
+    picture,
+    img {
+      height: 100%;
+    }
+
     &:not(.placeholder):hover,
     &:not(.placeholder):focus-within {
-      transform: scale(1.2);
+      transform: scale(1.1);
       box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 1);
       z-index: 2;
 
@@ -74,7 +79,7 @@
 
       &:not(.placeholder):hover,
       &:not(.placeholder):focus-within {
-        scale: 1.4;
+        transform: scale(1.15);
       }
 
       &.placeholder {
@@ -142,18 +147,24 @@
     span {
       padding: 0.15rem 0.25rem 0.1rem;
       background-color: var(--font-color-opposite);
+      border: 1px solid var(--font-color);
       border-radius: 1rem;
       font-weight: normal;
     }
   }
 
   .favorite::before,
-  .mega::before {
+  .favorite .info::before,
+  .mega::before,
+  .mega .info::before {
     content: "\2606";
     position: absolute;
-    top: 0.15rem;
-    right: 0.3rem;
-    font-size: 1rem;
+    top: 0.1rem;
+    right: 0.2rem;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--c-theme-gold);
+    text-shadow: 0.03em 0.05em 0 var(--font-color);
   }
   .mega::before {
     content: "\2605";
