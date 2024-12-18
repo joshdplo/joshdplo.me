@@ -166,7 +166,8 @@
     color: var(--c-theme-gold);
     text-shadow: 0.03em 0.05em 0 var(--font-color);
   }
-  .mega::before {
+  .mega::before,
+  .mega .info::before {
     content: "\2605";
   }
 </style>

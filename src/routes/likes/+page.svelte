@@ -80,7 +80,7 @@
 
   .counter {
     position: relative;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 
   // Responsive
