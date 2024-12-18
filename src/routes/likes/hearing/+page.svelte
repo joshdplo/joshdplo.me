@@ -1,10 +1,14 @@
 <script>
+  import { globalState } from "$lib/state.svelte";
   import {
     SPOTIFY_SONGS,
     SPOTIFY_ALBUMS,
     SPOTIFY_ARTISTS,
     SPOTIFY_SHOWS,
   } from "$lib/data";
+
+  // Global State
+  globalState.pageColor = "secondary";
 </script>
 
 <svelte:head>

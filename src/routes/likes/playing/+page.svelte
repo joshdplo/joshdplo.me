@@ -1,5 +1,9 @@
 <script>
+  import { globalState } from "$lib/state.svelte";
   import { STEAM_GAMES } from "$lib/data";
+
+  // Global State
+  globalState.pageColor = "secondary";
 </script>
 
 <svelte:head>

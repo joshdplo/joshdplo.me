@@ -1,12 +1,14 @@
 <script lang="ts">
   import debounce from "lodash-es/debounce";
   import { slide } from "svelte/transition";
+  import { globalState } from "$lib/state.svelte";
   import { MOVIES, SHOWS } from "$lib/data";
   import placeholderImg from "$lib/images/TMDBplaceholder.jpg?enhanced";
   import TmdbCard from "$lib/components/TMDBCard.svelte";
 
   // Glob import images for svelte enhanced images
   // https://svelte.dev/docs/kit/images#sveltejs-enhanced-img-Dynamically-choosing-an-image
+  // @TODO: Use svelte-inview package to lazy load these better!!!
   const tmdbImages = {};
   const tmdbRawImages = import.meta.glob(
     "slurpiImages/tmdb/*.{avif,gif,heif,jpeg,jpg,png,tiff,webp,svg}",
@@ -109,6 +111,9 @@
         return shows;
     }
   }
+
+  // Global State
+  globalState.pageColor = "secondary";
 </script>
 
 <svelte:head>

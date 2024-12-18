@@ -1,10 +1,14 @@
 <script>
+  import { globalState } from "$lib/state.svelte.js";
   import { site } from "$lib/config";
   import { page } from "$app/stores";
 
   let { data } = $props();
 
   const Content = $derived(data.content);
+
+  // Global State
+  globalState.pageColor = "quaternary";
 </script>
 
 <svelte:head>

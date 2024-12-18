@@ -9,14 +9,6 @@ declare global {
 		// interface Platform {}
 	}
 
-	interface URLWords {
-		base: string,
-		first?: string,
-		second?: string,
-		third?: string,
-		fourth?: string
-	}
-
 	interface Keep {
 		title: string,
 		slug: string,
@@ -63,8 +55,101 @@ declare global {
 		updatedAt: string,
 		mega: boolean,
 	}
+
+	interface SpotifySong {
+		id: string,
+		isTopTrack: boolean,
+		name: string,
+		artists: [
+			{ name: string, url: string }
+		],
+		duration_ms: number,
+		url: string,
+		image: string,
+		release_date: string,
+		createdAt: string,
+		updatedAt: string,
+		super: boolean,
+		mega: boolean,
+	}
+
+	interface SpotifyAlbum {
+		id: string,
+		isTopTrack: boolean,
+		name: string,
+		artists: [
+			{ name: string, url: string }
+		],
+		total_tracks: number,
+		url: string,
+		image: string,
+		release_date: string,
+		createdAt: string,
+		updatedAt: string,
+		super: boolean,
+		mega: boolean,
+	}
+
+	interface SpotifyArtist {
+		id: string,
+		name: string,
+		genres: string[],
+		url: string,
+		image: string,
+		createdAt: string,
+		updatedAt: string,
+		super: boolean,
+		mega: boolean,
+	}
+
+	interface SpotifyShow {
+		id: string,
+		name: string,
+		description: string,
+		url: string,
+		image: string,
+		total_episodes: number,
+		createdAt: string,
+		updatedAt: string,
+		super: boolean,
+		mega: boolean,
+	}
+
+	type SteamPlatform = 'windows' | 'mac' | 'linux';
+	interface SteamGame {
+		id: number,
+		appid: number,
+		recent: boolean,
+		playtime_forever: number,
+		name: string,
+		is_free: boolean,
+		short_description: string,
+		website: string,
+		header_image: string,
+		capsule_image: string,
+		developers: string[],
+		publishers: string[],
+		platforms: {
+			[key: SteamPlatform]: boolean
+		},
+		categories: {
+			[key: 'id']: number,
+			[key: 'description']: string
+		},
+		genres: {
+			[key: 'id']: number,
+			[key: 'description']: string
+		},
+		release_date: {
+			[key: 'coming_soon']: boolean,
+			[key: 'date']: string
+		},
+		createdAt: string,
+		updatedAt: string,
+		invalid: boolean,
+		super: boolean,
+		mega: boolean,
+	}
 }
-
-
 
 export { };

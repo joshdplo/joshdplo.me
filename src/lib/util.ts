@@ -11,17 +11,6 @@ export function formatDate(date: string, dateStyle: DateStyle = 'long', locales 
 }
 
 /**
- * Get URL Parts
- */
-//@TODO FINISH
-export function getWordsFromURLPath(urlPath: string): URLWords {
-
-  return {
-    base: ''
-  };
-}
-
-/**
  * Get CSS Clamp
  * https://clamp-generator.netlify.app/
  */
