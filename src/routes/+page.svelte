@@ -13,7 +13,7 @@
 <section class="contain">
   <div class="center-full">
     <HeroText
-      text="JOSH"
+      text={site.title.toUpperCase()}
       size={17}
       color="primary"
       link="/"

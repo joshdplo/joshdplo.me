@@ -301,6 +301,7 @@
     svg {
       width: 1.5rem;
       margin-right: -0.8rem;
+      fill: var(--font-color);
     }
   }
 
