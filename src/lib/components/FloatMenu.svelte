@@ -169,10 +169,6 @@
     position: relative;
     width: 1.7rem;
     pointer-events: none;
-
-    &.dark {
-      display: none;
-    }
   }
 
   svg path {

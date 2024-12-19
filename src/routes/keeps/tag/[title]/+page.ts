@@ -2,7 +2,7 @@ import type { PageLoad } from './$types';
 import { error } from "@sveltejs/kit";
 
 export const load: PageLoad = async ({ params, fetch }) => {
-  const tagsResponse = await fetch('/api/tags');
+  const tagsResponse = await fetch('/api/keeps/tags');
   const tags: KeepTag[] = await tagsResponse.json();
 
   let tagData = null;

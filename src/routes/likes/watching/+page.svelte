@@ -35,8 +35,8 @@
   let shows = $state(SHOWS);
   let rawSearchTerm = $state("");
   let searchTerm = $state("");
-  let movieFilter: string = $state("all");
-  let showFilter: string = $state("all");
+  let movieFilter: string = $state("mega");
+  let showFilter: string = $state("mega");
   let filteredMovies = $derived(filterMovies());
   let filteredShows = $derived(filterShows());
 
@@ -62,14 +62,12 @@
     if (searchTerm.trim() !== "" && searchTerm.trim().length >= 2) {
       movieFilter = "search";
       showFilter = "search";
-    } else {
-      movieFilter = "all";
-      showFilter = "all";
     }
   });
 
   // Movie Filtering
   function setMovieFilter(newFilter: string) {
+    if (newFilter !== "search") rawSearchTerm = "";
     movieFilter = newFilter;
   }
 
@@ -92,6 +90,7 @@
 
   // Show Filtering
   function setShowFilter(newFilter: string) {
+    if (newFilter !== "search") rawSearchTerm = "";
     showFilter = newFilter;
   }
 
