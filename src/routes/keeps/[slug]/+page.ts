@@ -4,10 +4,9 @@ import { error } from "@sveltejs/kit";
 
 export const load = async ({ params }: ServerLoadEvent) => {
   try {
-
     let keepFile = null;
     let keep = null;
-    const comps = await import.meta.glob('../../../keeps/**/*.md');
+    const comps = import.meta.glob('../../../keeps/**/*.md');
     for (const path in comps) {
       if (path.indexOf(params.slug) > -1) keepFile = comps[path];
     };
