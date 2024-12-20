@@ -2,6 +2,7 @@
   let { data } = $props();
   import { globalState } from "$lib/state.svelte";
   import KeepCard from "$lib/components/KeepCard.svelte";
+  import Pagination from "$lib/components/Pagination.svelte";
 
   globalState.pageColor = "quaternary";
 </script>
@@ -10,6 +11,10 @@
   {#each data.keeps as keep}
     <KeepCard {keep} />
   {/each}
+</div>
+
+<div class="contain">
+  <Pagination currentPage={1} totalKeeps={data.total} path="/keeps/page" />
 </div>
 
 <style>

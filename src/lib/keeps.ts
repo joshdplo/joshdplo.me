@@ -1,10 +1,8 @@
 // Keeps Config
-export const keepsConfig = {
-	showPerPage: 10
-};
+export const showPerPage = 1;
 
 // Fetch Keeps
-export const fetchKeeps = async ({ offset = 0, limit = keepsConfig.showPerPage, tag = '' } = {}) => {
+export const fetchKeeps = async ({ offset = 0, limit = showPerPage, tag = '' } = {}) => {
 	const keeps = await Promise.all(
 		Object.entries(import.meta.glob('/src/keeps/**/*.md')).map(async ([path, resolver]) => {
 			const { metadata } = await resolver();

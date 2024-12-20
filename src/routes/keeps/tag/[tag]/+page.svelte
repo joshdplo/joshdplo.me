@@ -1,17 +1,30 @@
 <script lang="ts">
   import { globalState } from "$lib/state.svelte";
+  import { showPerPage } from "$lib/keeps";
   let { data } = $props();
 
   import KeepCard from "$lib/components/KeepCard.svelte";
+  import Pagination from "$lib/components/Pagination.svelte";
 
   // Global State
   globalState.pageColor = "quaternary";
+
+  // Page
+  const { keeps, tag, page, total } = data;
+  let lowerBound = $state(page * showPerPage - (showPerPage - 1) || 1);
+  let upperBound = $state(Math.min(page * showPerPage, total));
 </script>
 
 <div class="contain keeps-list">
-  {#each data.tag.keeps as keep}
+  {#each keeps as keep}
     <KeepCard {keep} />
   {/each}
+
+  <Pagination
+    currentPage={page}
+    totalKeeps={total}
+    path="/keeps/tag/{tag}/page"
+  />
 </div>
 
 <style>
