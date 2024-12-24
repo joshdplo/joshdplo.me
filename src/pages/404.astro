@@ -1,0 +1,27 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import HeroText from "@components/HeroText.svelte";
+---
+
+<BaseLayout pageTitle="breaks =[">
+  <section class="contain">
+    <div class="center-full">
+      <HeroText text="ERROR" />
+    </div>
+    <div class="h1 bg-accent border landing-text">
+      Hi!
+      <span class="bg no-pad">This is my sweet website.</span> I use it to
+      <span class="bg-secondary no-pad"
+        ><a href="/likes">list things i like</a></span
+      >,
+      <span class="bg-opposite no-pad"
+        ><a href="https://github.com/joshdplo?tab=repositories"
+          >practice FE development</a
+        ></span
+      >, and
+      <span class="bg-quaternary no-pad"
+        ><a href="/keeps">keep some public notes</a></span
+      >.
+    </div>
+  </section>
+</BaseLayout>
