@@ -1,0 +1,42 @@
+---
+import { SITE } from "@constants";
+import { getPageMenuLinksFromPath } from "@util";
+import { getCollection } from "astro:content";
+import CollectionLayout from "@layouts/CollectionLayout.astro";
+import Pagination from "@components/Pagination.astro";
+
+const pageMenuLinks = getPageMenuLinksFromPath("/keeps");
+
+export async function getStaticPaths({ paginate }) {
+  const keeps = await getCollection("keeps");
+
+  return paginate(keeps, { pageSize: SITE.KEEPS_PER_PAGE });
+}
+
+const { page } = Astro.props;
+const { total, currentPage, lastPage } = page;
+---
+
+<CollectionLayout
+  pageTitle="keeps a few notes 📋"
+  heroText="Keeps"
+  heroDescenders={true}
+  {pageMenuLinks}
+>
+  <section class="contain">
+    {
+      page.data.map((keep) => (
+        <a href={`/keeps/${keep.id}`}>{keep.data.title}</a>
+      ))
+    }
+
+    <Pagination
+      {total}
+      {currentPage}
+      {lastPage}
+      label="keeps"
+      nextUrl={page.url.next}
+      prevUrl={page.url.prev}
+    />
+  </section>
+</CollectionLayout>

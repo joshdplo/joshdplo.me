@@ -1,0 +1,19 @@
+---
+import { getCollection, render } from "astro:content";
+import KeepLayout from "@layouts/KeepLayout.astro";
+
+export async function getStaticPaths() {
+  const keeps = await getCollection("keeps");
+  return keeps.map((keep) => ({
+    params: { slug: keep.id },
+    props: { keep },
+  }));
+}
+
+const { keep } = Astro.props;
+const { Content } = await render(keep);
+---
+
+<KeepLayout frontmatter={keep.data}>
+  <Content />
+</KeepLayout>

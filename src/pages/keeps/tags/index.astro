@@ -1,0 +1,14 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const keeps = await getCollection("keeps");
+const tags = [...new Set(keeps.map((keep: any) => keep.data.tags).flat())];
+---
+
+<BaseLayout>
+  <div class="contain">
+    <br /><br /><br />
+    {tags.map((tag) => <a href={`/keeps/tags/${tag}`}>{tag}</a>)}
+  </div>
+</BaseLayout>

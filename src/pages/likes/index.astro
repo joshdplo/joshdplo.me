@@ -1,0 +1,14 @@
+---
+import { getPageMenuLinksFromPath } from "@util";
+import CollectionLayout from "@layouts/CollectionLayout.astro";
+
+const pageMenuLinks = getPageMenuLinksFromPath("/likes");
+---
+
+<CollectionLayout
+  pageTitle="likes lots of stuff 📋"
+  heroText="Likes"
+  {pageMenuLinks}
+>
+  <section class="contain">THIS IS THE LIKES PAGE</section>
+</CollectionLayout>
