@@ -8,9 +8,9 @@ import Pagination from "@components/Pagination.astro";
 
 const pageMenuLinks = getPageMenuLinksFromPath("/likes");
 export async function getStaticPaths({ paginate }) {
-  const movies = await getCollection("movies");
+  const shows = await getCollection("shows");
 
-  return paginate(movies, { pageSize: SITE.MOVIES_PER_PAGE });
+  return paginate(shows, { pageSize: SITE.MOVIES_PER_PAGE });
 }
 
 const { page } = Astro.props;
@@ -18,21 +18,21 @@ const { total, currentPage, lastPage } = page;
 ---
 
 <CollectionLayout
-  pageTitle="likes movies 🎞️"
+  pageTitle="likes shows 🎞️"
   heroText="Likes"
-  heroSubtext="movies"
+  heroSubtext="shows"
   {pageMenuLinks}
 >
   <section class="contain">
     <div class="list">
-      {page.data.map((movie) => <TMDBCard data={movie} />)}
+      {page.data.map((show) => <TMDBCard data={show} />)}
     </div>
 
     <Pagination
       {total}
       {currentPage}
       {lastPage}
-      label="movies"
+      label="shows"
       nextUrl={page.url.next}
       prevUrl={page.url.prev}
     />

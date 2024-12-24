@@ -34,7 +34,7 @@
   {/each}
 {/snippet}
 
-<div class="wrapper">
+<div class="wrapper" class:link>
   {#if link}
     <a href={link} style={styleString} class:alt class:hasDescenders>
       {@render spanLetters(text, capitalize)}
@@ -54,6 +54,10 @@
 
   .wrapper {
     position: relative;
+
+    &:not(.link) {
+      pointer-events: none;
+    }
   }
 
   a,

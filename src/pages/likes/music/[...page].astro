@@ -3,14 +3,13 @@ import { SITE } from "@constants";
 import { getPageMenuLinksFromPath } from "@util";
 import { getCollection } from "astro:content";
 import CollectionLayout from "@layouts/CollectionLayout.astro";
-import TMDBCard from "@components/TMDBCard.astro";
 import Pagination from "@components/Pagination.astro";
 
 const pageMenuLinks = getPageMenuLinksFromPath("/likes");
 export async function getStaticPaths({ paginate }) {
-  const movies = await getCollection("movies");
+  const songs = await getCollection("songs");
 
-  return paginate(movies, { pageSize: SITE.MOVIES_PER_PAGE });
+  return paginate(songs, { pageSize: SITE.SONGS_PER_PAGE });
 }
 
 const { page } = Astro.props;
@@ -18,21 +17,21 @@ const { total, currentPage, lastPage } = page;
 ---
 
 <CollectionLayout
-  pageTitle="likes movies 🎞️"
+  pageTitle="likes music 🎧"
   heroText="Likes"
-  heroSubtext="movies"
+  heroSubtext="music"
   {pageMenuLinks}
 >
   <section class="contain">
     <div class="list">
-      {page.data.map((movie) => <TMDBCard data={movie} />)}
+      {page.data.map((song) => song.data.name)}
     </div>
 
     <Pagination
       {total}
       {currentPage}
       {lastPage}
-      label="movies"
+      label="songs"
       nextUrl={page.url.next}
       prevUrl={page.url.prev}
     />

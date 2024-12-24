@@ -13,10 +13,10 @@ const { error } = Astro.props;
 
     <div class="h1 bg border">
       WHAT THE HECK? something <span class="bg-opposite no-pad"
-        >{error instanceof Error ? error.message : "Page Not Found"}</span
+        >{error instanceof Error ? error.message : "Unknown error"}</span
       >
       happened because
-      <span class="bg-accent no-pad">404</span>!
+      <span class="bg-accent no-pad">500</span>!
     </div>
   </section>
 </BaseLayout>
