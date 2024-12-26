@@ -22,13 +22,11 @@
   onkeydown={(e) => {
     if (e.key === "Escape" && isOpen) {
       isOpen = false;
-      hamburgerEl.focus();
     }
   }}
   onclick={(e) => {
     if (isOpen && e.target !== hamburgerEl) {
       isOpen = false;
-      hamburgerEl.focus();
     }
   }}
 />

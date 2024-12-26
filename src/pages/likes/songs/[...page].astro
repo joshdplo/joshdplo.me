@@ -18,9 +18,9 @@ const { total, currentPage, lastPage } = page;
 ---
 
 <CollectionLayout
-  pageTitle="likes music 🎧"
+  pageTitle="likes songs 🎧"
   heroText="Likes"
-  heroSubtext="music"
+  heroSubtext="songs"
   {pageMenuLinks}
 >
   <section class="contain">
@@ -52,6 +52,7 @@ const { total, currentPage, lastPage } = page;
   @use "@css/util";
 
   .list {
+    position: relative;
     display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;

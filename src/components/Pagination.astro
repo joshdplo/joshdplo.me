@@ -11,14 +11,14 @@ const {
 ---
 
 <nav>
-  {!prevUrl && <i>Previous</i>}
-  {prevUrl && <a href={prevUrl}>Previous</a>}
+  {!prevUrl && <i>&lsaquo; Previous</i>}
+  {prevUrl && <a href={prevUrl}>&lsaquo; Previous</a>}
   <div>
     <span>Page {currentPage}/{lastPage}</span>
     <span class="total">{total} total {label}</span>
   </div>
-  {nextUrl && <a href={nextUrl}>Next</a>}
-  {!nextUrl && <i>Next</i>}
+  {nextUrl && <a href={nextUrl}>Next &rsaquo;</a>}
+  {!nextUrl && <i>Next &rsaquo;</i>}
 </nav>
 
 <style>

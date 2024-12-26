@@ -1,14 +1,31 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
+import CollectionLayout from "@layouts/CollectionLayout.astro";
 import { getCollection } from "astro:content";
 
 const keeps = await getCollection("keeps");
-const tags = [...new Set(keeps.map((keep: any) => keep.data.tags).flat())];
+const tags = [...new Set(keeps.map((k) => k.data.tags).flat())];
+
+const tagsCount = {};
+tags.forEach((t) => {
+  tagsCount[t] = 1;
+  keeps.forEach((k) => {
+    if (k.data.tags.includes(t)) tagsCount[t] += 1;
+  });
+});
 ---
 
-<BaseLayout>
-  <div class="contain">
-    <br /><br /><br />
-    {tags.map((tag) => <a href={`/keeps/tags/${tag}`}>{tag}</a>)}
-  </div>
-</BaseLayout>
+<CollectionLayout
+  pageTitle="keeps tags on things 🏷️"
+  heroText="Keeps"
+  heroDescenders={true}
+>
+  <section class="contain">
+    {
+      tags.map((t) => (
+        <a href={`/keeps/tags/${t}`}>
+          {t} ({tagsCount[t]})
+        </a>
+      ))
+    }
+  </section>
+</CollectionLayout>
