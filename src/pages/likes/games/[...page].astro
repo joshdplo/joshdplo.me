@@ -17,10 +17,11 @@ const { total, currentPage, lastPage } = page;
 ---
 
 <CollectionLayout
-  pageTitle="likes games 🎮"
+  pageTitle={`likes games 🎮${currentPage > 1 ? " (" + currentPage + "/" + lastPage + ")" : ""}`}
   heroText="Likes"
   heroSubtext="games"
   {pageMenuLinks}
+  {currentPage}
 >
   <section class="contain">
     <Pagination

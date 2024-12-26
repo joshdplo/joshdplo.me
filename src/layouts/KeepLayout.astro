@@ -1,10 +1,127 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
-
+import { Image } from "astro:assets";
+import { getCssClamp, formatDate } from "@util";
 const { frontmatter } = Astro.props;
+
+const h1Size = 5;
+const clampStr = getCssClamp(
+  (Math.floor((h1Size / 2) * 100) / 100) * 16,
+  h1Size * 16,
+);
+
+const imagesGlob = import.meta.glob("@images/*.{webp,jpg,png}");
+const img = frontmatter.image
+  ? imagesGlob[`/src/images/${frontmatter.image.pathname}`]()
+  : null;
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>
-  <h1>{frontmatter.title}</h1>
-  <slot />
+  <section class="contain">
+    <div
+      class="head"
+      style={`--h1-size: ${clampStr}`}
+      class:list={[{ "no-img": !img }]}
+    >
+      {
+        img && (
+          <Image
+            src={img}
+            alt={frontmatter.image.alt}
+            width="900"
+            height="514"
+          />
+        )
+      }
+
+      <h1>
+        <span class="bg-transparent no-pad">{frontmatter.title}</span>
+      </h1>
+    </div>
+    <div class="subhead">
+      <div class="date">
+        {`${formatDate("" + (frontmatter.updated || frontmatter.date))}`}{
+          frontmatter.updated && " - Updated"
+        }
+      </div>
+      {frontmatter.tags.map((t) => <a href={`/keeps/tags/${t}`}>#{t}</a>)}
+    </div>
+
+    <div class="content">
+      <div class="inner">
+        <slot />
+      </div>
+    </div>
+  </section>
 </BaseLayout>
+
+<style lang="scss">
+  @use "@css/util";
+
+  .head {
+    --h1-size: 5rem;
+
+    position: relative;
+    overflow: hidden;
+    margin-top: 3.45rem;
+
+    &.no-img {
+      background-color: var(--font-color-opposite);
+    }
+
+    @include util.mq(sm) {
+      margin-top: 3.7rem;
+    }
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+
+  h1 {
+    padding: 0.8em 0.5em;
+    font-size: var(--h1-size);
+    text-shadow: 0.05em 0.05em 0 var(--font-color-opposite);
+    text-align: center;
+
+    span {
+      padding: 0 0.15em;
+    }
+  }
+
+  .subhead {
+    position: relative;
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.1rem 0 0;
+    font-size: 1rem;
+  }
+
+  .content {
+    background-color: var(--c-quaternary);
+  }
+
+  .inner {
+    background-color: var(--background);
+    padding-top: 1.7rem;
+    max-width: 720px;
+
+    @include util.mq(md) {
+      padding-right: 1.4rem;
+    }
+
+    :global(ul) {
+      list-style-type: square;
+      list-style-position: inside;
+    }
+
+    :global(ul ul) {
+      padding-left: 0.7em;
+    }
+  }
+</style>

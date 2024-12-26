@@ -1,9 +1,11 @@
 ---
-import CollectionLayout from "@layouts/CollectionLayout.astro";
+import { getPageMenuLinksFromPath } from "@util";
 import { getCollection } from "astro:content";
+import CollectionLayout from "@layouts/CollectionLayout.astro";
 
 const keeps = await getCollection("keeps");
 const tags = [...new Set(keeps.map((k) => k.data.tags).flat())];
+const pageMenuLinks = getPageMenuLinksFromPath("/keeps");
 
 const tagsCount = {};
 tags.forEach((t) => {
@@ -18,14 +20,58 @@ tags.forEach((t) => {
   pageTitle="keeps tags on things 🏷️"
   heroText="Keeps"
   heroDescenders={true}
+  {pageMenuLinks}
 >
   <section class="contain">
-    {
-      tags.map((t) => (
-        <a href={`/keeps/tags/${t}`}>
-          {t} ({tagsCount[t]})
-        </a>
-      ))
-    }
+    <div class="list">
+      {
+        tags.map((t) => (
+          <a class="card" href={`/keeps/tags/${t}`}>
+            <i>#</i>
+            {t} <span>{tagsCount[t]}</span>
+          </a>
+        ))
+      }
+    </div>
   </section>
 </CollectionLayout>
+
+<style lang="scss">
+  .list {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  i {
+    position: relative;
+    display: inline-block;
+    transform: scale(1.5);
+    color: var(--page-color);
+  }
+
+  span {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--page-color);
+    color: var(--c-black);
+    font-size: 0.9rem;
+    font-weight: bold;
+    line-height: 1;
+    padding: 0.1rem 0.4rem;
+    border: 2px solid var(--font-color);
+    border-right: 0;
+    border-top: 0;
+    border-top-right-radius: 0.4rem;
+  }
+
+  .card {
+    position: relative;
+    padding: 1.4rem 1rem 1rem;
+    border: 2px solid var(--font-color);
+    text-decoration: none;
+    border-top-right-radius: 0.5rem;
+  }
+</style>

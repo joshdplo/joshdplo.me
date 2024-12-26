@@ -18,10 +18,11 @@ const { total, currentPage, lastPage } = page;
 ---
 
 <CollectionLayout
-  pageTitle="keeps a few notes 📋"
+  pageTitle={`keeps a few notes 📋${currentPage > 1 ? " (" + currentPage + "/" + lastPage + ")" : ""}`}
   heroText="Keeps"
   heroDescenders={true}
   {pageMenuLinks}
+  {currentPage}
 >
   <section class="contain">
     {

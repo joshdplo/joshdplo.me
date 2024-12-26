@@ -3,9 +3,6 @@ title: 'Sweet Potatoes'
 date: 2021-03-15
 description: 'Sometimes the wisdom is long-lost...but this time it got found.'
 author: 'Josh'
-image:
-    url: 'https://docs.astro.build/assets/rose.webp'
-    alt: 'The Astro logo on a dark background with a pink glow.'
 tags: ["legacy"]
 ---
 # My First Blog Post

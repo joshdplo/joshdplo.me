@@ -4,6 +4,7 @@ const { data } = Astro.props;
 
 const itemData = data.data;
 const itemId = data.id;
+const isSong = itemData.duration_ms;
 const imagesGlob = import.meta.glob("@slurpi/public/images/spotify/*.jpg");
 const img =
   imagesGlob[
@@ -17,12 +18,7 @@ const durationFormatted = `${Math.trunc(itemData.duration_ms / 1000 / 60)}min${(
 ---
 
 <a class="card" href={itemData.url}>
-  <Image
-    src={img}
-    alt={`album art for ${itemData.name}`}
-    width="300"
-    height="300"
-  />
+  <Image src={img} alt={`art for ${itemData.name}`} width="300" height="300" />
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill-rule="evenodd"
@@ -33,10 +29,17 @@ const durationFormatted = `${Math.trunc(itemData.duration_ms / 1000 / 60)}min${(
   >
   <div class="over">
     <div class="title">{itemData.name}</div>
-    <div class="duration">{durationFormatted}</div>
-    <div class="artists">
-      by {JSON.parse(itemData.artists).map((a) => <span>{a.name}</span>)}
-    </div>
+    {isSong && <div class="duration">{durationFormatted}</div>}
+    {
+      isSong && (
+        <div class="artists">
+          by{" "}
+          {JSON.parse(itemData.artists).map((a) => (
+            <span>{a.name}</span>
+          ))}
+        </div>
+      )
+    }
   </div>
 </a>
 

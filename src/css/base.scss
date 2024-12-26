@@ -7,7 +7,7 @@
   --c-white: #fff;
 
   --c-gray-light: #e0e0e0;
-  --c-gray: #bbb;
+  --c-gray: #ddd;
   --c-gray-dark: #888;
   --c-gray-darker: #555;
   --c-gray-darkest: #333;
@@ -132,8 +132,13 @@ p>picture {
 /**
  * Type
  */
-p {
+p,
+ul,
+ol {
   font-size: clamp(1.125rem, 1.333vw + 0.708rem, 1.375rem);
+}
+
+p {
   backface-visibility: hidden;
   transform: translate3d(0, 0, 0);
 }
@@ -146,18 +151,29 @@ p a {
 }
 
 p+p {
-  margin-top: 1.5rem;
+  margin-top: 1em;
+}
+
+p+ul,
+h1+ul,
+h2+ul,
+h3+ul,
+h4+ul {
+  margin-top: .5em;
 }
 
 p+h1,
 p+.h1,
 p+h2,
+ul+h2,
 p+.h2,
 p+h3,
+ul+h3,
 p+.h3,
 p+h4,
+ul+h4,
 p+.h4 {
-  margin-top: 3rem;
+  margin-top: 1em;
 }
 
 h1,
@@ -172,7 +188,7 @@ h4,
   font-weight: bold;
 
   +p {
-    margin-top: .7rem;
+    margin-top: 1em;
   }
 }
 
@@ -202,11 +218,14 @@ small,
 }
 
 code {
-  font-size: 1rem;
-  background-color: var(--c-gray-light);
-  color: var(--c-black);
-  padding: .3em .3em .35em;
-  border-radius: 1em;
+  font-size: .8em;
+  background-color: var(--content-subtle);
+  padding: .1em .25em;
+}
+
+ul ul,
+ol ol {
+  font-size: .9em;
 }
 
 /**
@@ -282,6 +301,11 @@ code {
   &-gray {
     background-color: var(--c-gray);
     color: var(--c-black);
+  }
+
+  &-transparent {
+    background: var(--content-transparent);
+    color: var(--font-color);
   }
 
   &-opposite {

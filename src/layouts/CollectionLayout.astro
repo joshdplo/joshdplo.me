@@ -9,6 +9,7 @@ const {
   heroDescenders = false,
   heroSubtext = null,
   pageMenuLinks = [],
+  currentPage = null,
 } = Astro.props;
 ---
 
@@ -21,7 +22,11 @@ const {
         hasDescenders={heroDescenders}
       />
     </div>
-    {pageMenuLinks.length > 0 && <PageMenu links={pageMenuLinks} />}
+    {
+      pageMenuLinks.length > 0 && (
+        <PageMenu links={pageMenuLinks} {currentPage} />
+      )
+    }
   </section>
   <slot />
 </BaseLayout>

@@ -19,13 +19,14 @@ export const FOOTER_LINKS = [
     path: '/likes', title: 'Likes', children: [
       { path: '/likes/movies', title: 'Movies' },
       { path: '/likes/shows', title: 'Shows' },
+      { path: '/likes/bands', title: 'Bands' },
       { path: '/likes/songs', title: 'Songs' },
       { path: '/likes/games', title: 'Games' },
     ]
   },
   {
     path: '/keeps', title: 'Keeps', children: [
-
+      { path: '/keeps/tags', title: 'Tags' }
     ]
   },
 ];

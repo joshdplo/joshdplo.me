@@ -4,13 +4,16 @@ date: 2024-12-21
 description: 'A tale of triumph in the face of terror and despair.'
 author: 'Josh'
 image:
-    url: 'https://docs.astro.build/assets/rose.webp'
-    alt: 'The Astro logo on a dark background with a pink glow.'
+    pathname: 'keeps-light-clouds.webp'
+    alt: 'fantastic clouds'
 tags: ["release", "webdev"]
 ---
 
-Joshdplo.me version one is live!@@!!@@!#!#!@!!  
-The goals were: make something I will **actually use**, and learn while doing it. Goals accomplished 😎. The code needs *quite a bit* of improvement, but it's mine and I'm proud of it all the same. Now it's time to feel groovy about the work that's been done, start using the site, and go from there. Here are the credits for version 1 - thanks to all of the very sharp people who make these cool tools. Since there are 2 projects for this site (the website, and then the data), I'm including them both.
+## Joshdplo.me version one is live!@@!!@@!#!#!@!!
+
+The goal was to make something I will **actually use** and learn while doing it. Goal accomplished 😎. The code needs a lot of improvement, but it's mine and I'm proud of it all the same. Now it's time to feel groovy about the work that's been done, start using the site, and go from there.
+
+Below are the credits for version 1 - thanks to all of the very sharp people who make these cool tools. Since there are 2 projects for this site (the website, and then the data), I'm including them both.
 
 ## [Website](https://github.com/joshdplo/joshdplo.me)
 - **Tech**
