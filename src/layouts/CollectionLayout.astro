@@ -1,10 +1,8 @@
 ---
-import { getPageColorFromPath } from "@util";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import HeroText from "@components/HeroText.svelte";
-import PageMenu from "@components/PageMenu.svelte";
+import PageMenu from "@components/PageMenu.astro";
 
-const pageColor = getPageColorFromPath(Astro.url.pathname);
 const {
   pageTitle = "EMPTY",
   heroText = "NULL",
@@ -23,15 +21,7 @@ const {
         hasDescenders={heroDescenders}
       />
     </div>
-    {
-      pageMenuLinks.length > 0 && (
-        <PageMenu
-          color={pageColor}
-          links={pageMenuLinks}
-          currentPath={Astro.url.pathname}
-        />
-      )
-    }
+    {pageMenuLinks.length > 0 && <PageMenu links={pageMenuLinks} />}
   </section>
   <slot />
 </BaseLayout>

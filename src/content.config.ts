@@ -134,7 +134,7 @@ const artists = defineCollection({
   }),
 });
 
-// Artists Collection @ slurpi
+// Games Collection @ slurpi
 const games = defineCollection({
   loader: async () => {
     const data = await SteamGame.findAll({ order: [['name', 'ASC']], raw: true });

@@ -17,12 +17,21 @@ const { total, currentPage, lastPage } = page;
 ---
 
 <CollectionLayout
-  pageTitle="likes music 🎧"
+  pageTitle="likes games 🎮"
   heroText="Likes"
-  heroSubtext="music"
+  heroSubtext="games"
   {pageMenuLinks}
 >
   <section class="contain">
+    <Pagination
+      {total}
+      {currentPage}
+      {lastPage}
+      label="games"
+      nextUrl={page.url.next}
+      prevUrl={page.url.prev}
+    />
+
     <div class="list">
       {page.data.map((game) => game.data.name)}
     </div>

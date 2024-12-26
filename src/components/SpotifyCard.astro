@@ -1,0 +1,118 @@
+---
+import { Image } from "astro:assets";
+import spotifySVG from "../svgs/spotify.svg";
+const { data } = Astro.props;
+
+const itemData = data.data;
+const itemId = data.id;
+const imagesGlob = import.meta.glob("@slurpi/public/images/spotify/*.jpg");
+const img =
+  imagesGlob[
+    Object.keys(imagesGlob).filter(
+      (k) =>
+        k.split("/")[k.split("/").length - 1].replace(".jpg", "") === itemId,
+    )[0]
+  ]();
+---
+
+<div class="card">
+  <div class="top">
+    <Image
+      class="main"
+      src={img}
+      alt={`album art for ${itemData.name}`}
+      width="300"
+      height="300"
+    />
+    <Image
+      class="svg"
+      src={spotifySVG}
+      alt="spotify logo"
+      width="24"
+      height="24"
+    />
+    <div class="over">
+      <div class="title">{itemData.name}</div>
+      <div class="artists">
+        by {JSON.parse(itemData.artists).map((a) => <span>{a.name}</span>)}
+      </div>
+    </div>
+  </div>
+  <div class="info"></div>
+</div>
+
+<style lang="scss">
+  @use "@css/util";
+
+  .card {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    border-radius: 0.7rem;
+  }
+
+  img.main {
+    box-shadow: 1px 1px 6px 0px rgba(0, 0, 0, 0.5);
+    border-radius: 0.7rem;
+  }
+
+  img.svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .top {
+    position: relative;
+  }
+
+  .over {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    gap: 0.2rem;
+    padding: 0.5rem 0.4rem;
+    background-color: var(--content-transparent);
+    backdrop-filter: blur(6px);
+    border-bottom-left-radius: 0.7rem;
+    border-bottom-right-radius: 0.7rem;
+  }
+
+  .title {
+    font-size: 1rem;
+    font-weight: bold;
+    line-height: 1.1;
+  }
+
+  .artists {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem;
+    font-size: 0.8rem;
+    line-height: 1.1;
+
+    span {
+      display: inline-block;
+
+      &::after {
+        content: ", ";
+      }
+    }
+
+    span:last-child::after {
+      content: none;
+    }
+  }
+
+  // @include util.mq(sm) {
+  //   grid-template-columns: 1fr 1fr;
+  // }
+
+  // @include util.mq(md) {
+  //   grid-template-columns: 1fr 1fr 1fr;
+  // }
+</style>

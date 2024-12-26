@@ -4,6 +4,7 @@ import { getPageMenuLinksFromPath } from "@util";
 import { getCollection } from "astro:content";
 import CollectionLayout from "@layouts/CollectionLayout.astro";
 import Pagination from "@components/Pagination.astro";
+import SpotifyCard from "@components/SpotifyCard.astro";
 
 const pageMenuLinks = getPageMenuLinksFromPath("/likes");
 export async function getStaticPaths({ paginate }) {
@@ -23,8 +24,17 @@ const { total, currentPage, lastPage } = page;
   {pageMenuLinks}
 >
   <section class="contain">
+    <Pagination
+      {total}
+      {currentPage}
+      {lastPage}
+      label="songs"
+      nextUrl={page.url.next}
+      prevUrl={page.url.prev}
+    />
+
     <div class="list">
-      {page.data.map((song) => song.data.name)}
+      {page.data.map((song) => <SpotifyCard data={song} />)}
     </div>
 
     <Pagination
@@ -48,8 +58,12 @@ const { total, currentPage, lastPage } = page;
     margin: 2rem 0;
     justify-content: center;
 
-    @include util.mq(md) {
+    @include util.mq(sm) {
       grid-template-columns: 1fr 1fr;
+    }
+
+    @include util.mq(md) {
+      grid-template-columns: 1fr 1fr 1fr;
     }
   }
 </style>

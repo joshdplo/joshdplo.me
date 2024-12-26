@@ -18,12 +18,21 @@ const { total, currentPage, lastPage } = page;
 ---
 
 <CollectionLayout
-  pageTitle="likes movies 🎞️"
+  pageTitle="likes movies 🍿"
   heroText="Likes"
   heroSubtext="movies"
   {pageMenuLinks}
 >
   <section class="contain">
+    <Pagination
+      {total}
+      {currentPage}
+      {lastPage}
+      label="movies"
+      nextUrl={page.url.next}
+      prevUrl={page.url.prev}
+    />
+
     <div class="list">
       {page.data.map((movie) => <TMDBCard data={movie} />)}
     </div>
@@ -48,9 +57,5 @@ const { total, currentPage, lastPage } = page;
     gap: 1rem;
     margin: 2rem 0;
     justify-content: center;
-
-    @include util.mq(md) {
-      grid-template-columns: 1fr 1fr;
-    }
   }
 </style>

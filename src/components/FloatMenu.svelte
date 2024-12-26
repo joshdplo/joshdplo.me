@@ -164,14 +164,14 @@
       background-color: transparent;
       transition:
         background-color 0.2s ease,
-        color 0.2s ease,
-        border 0.2s ease;
+        color 0.2s ease;
 
       &:after {
-        content: "\21AA";
+        content: "\21D1";
         position: absolute;
-        right: -2.25rem;
-        top: -0.01rem;
+        right: 0.5rem;
+        top: 50%;
+        transform: translateY(-50%) rotate(90deg);
         font-size: 1.5em;
         color: var(--font-color-opposite);
         opacity: 0;
@@ -186,7 +186,8 @@
     }
 
     .active {
-      border-right-width: 2.5rem;
+      color: var(--font-color-opposite);
+      background-color: var(--font-color);
       cursor: default;
 
       &:after {

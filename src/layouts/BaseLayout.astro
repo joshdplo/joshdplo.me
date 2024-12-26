@@ -94,7 +94,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 2.35rem;
     @include util.zindex(nav);
+
+    @include util.mq(sm) {
+      margin-bottom: 0.7rem;
+    }
   }
 </style>

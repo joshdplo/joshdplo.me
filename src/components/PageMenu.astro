@@ -1,24 +1,40 @@
-<script>
-  let {
-    links,
-    color = "secondary",
-    center = true,
-    currentPath = "/",
-  } = $props();
-  let hasDarkBg = color === "primary-darker" || color === "primary-dark";
-</script>
+---
+import { getPageColorFromPath } from "@util";
+const { links, center = true } = Astro.props;
+const pageColor = getPageColorFromPath(Astro.url.pathname);
 
-<div class="page-menu" class:center style="--main-color: var(--c-{color})">
+const currentPath = Astro.url.pathname;
+const hasDarkBg =
+  pageColor === "primary-darker" || pageColor === "primary-dark";
+const isActive = (path) => {
+  const current = currentPath.split("/").splice(1);
+  const link = path.split("/").splice(1);
+
+  if (path === currentPath) return true;
+  if (current.length >= 2 && current[0] === link[0] && current[1] === link[1])
+    return true;
+  return false;
+};
+---
+
+<div
+  class="page-menu"
+  class:list={[{ center }]}
+  style={`--main-color: var(--c-${pageColor})`}
+>
   <ul>
-    {#each links as l}
-      <li>
-        <a
-          href={l.path}
-          class:active={currentPath === l.path}
-          class:darkBg={hasDarkBg}>{l.title}</a
-        >
-      </li>
-    {/each}
+    {
+      links.map((l) => (
+        <li>
+          <a
+            href={l.path}
+            class:list={[{ active: isActive(l.path) }, { darkBg: hasDarkBg }]}
+          >
+            {l.title}
+          </a>
+        </li>
+      ))
+    }
   </ul>
 </div>
 
@@ -45,8 +61,7 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    background-color: var(--font-color-opposite);
-    border: 0.3em double var(--main-color);
+    gap: 0.2rem;
   }
 
   li,
@@ -60,7 +75,8 @@
     font-size: 1rem;
     font-weight: bold;
     text-decoration: none;
-    padding: 0.2rem 0.75rem;
+    padding: 0 0.4rem;
+    border: 2px solid var(--font-color);
     color: var(--font-color);
     transition:
       color 0.2s ease,
@@ -82,9 +98,17 @@
     }
   }
 
-  @include util.mq(sm) {
+  @include util.mq(md) {
     .page-menu ul {
       border-radius: 1.5em;
+      background-color: var(--font-color-opposite);
+      border: 0.3em double var(--main-color);
+      gap: 0;
+
+      a {
+        border: 0;
+        padding: 0.2rem 0.75rem;
+      }
 
       li:first-child a {
         border-top-left-radius: 1.5em;
