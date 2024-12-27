@@ -10,13 +10,23 @@ const isActive = (path) => {
   const current = currentPath.split("/").splice(1);
   const link = path.split("/").splice(1);
 
+  // @TODO: theres definitely a better way to do this, this is very hard to read
   if (path === currentPath) return true; // standard links
   if (
     currentPage &&
     current[current.length - 1] === `${currentPage}` &&
     link[link.length - 1] === current[current.length - 2]
   )
-    return true; // paginated links
+    return true; // single-level paginated links
+  if (
+    (currentPage &&
+      link[link.length - 1] === "tags" &&
+      current[current.length - 2] === "tags") ||
+    (link[link.length - 1] === "tags" &&
+      current[current.length - 3] === "tags" &&
+      current[current.length - 1] === `${currentPage}`)
+  )
+    return true; // keeps tags paginated links
   return false;
 };
 ---

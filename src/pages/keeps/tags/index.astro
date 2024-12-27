@@ -9,9 +9,9 @@ const pageMenuLinks = getPageMenuLinksFromPath("/keeps");
 
 const tagsCount = {};
 tags.forEach((t) => {
-  tagsCount[t] = 1;
+  tagsCount[t] = 0;
   keeps.forEach((k) => {
-    if (k.data.tags.includes(t)) tagsCount[t] += 1;
+    if (k.data.tags.includes(t)) tagsCount[t]++;
   });
 });
 ---
