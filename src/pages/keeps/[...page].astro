@@ -26,6 +26,17 @@ const { total, currentPage, lastPage } = page;
   {currentPage}
 >
   <section class="contain">
+    {
+      currentPage === 1 && (
+        <div class="center-full">
+          <h2 class="h3 bg">
+            These are all of the notes.
+            <span class="bg-quaternary no-pad">More to come 💪.</span>
+          </h2>
+        </div>
+      )
+    }
+
     {page.data.map((keep) => <KeepCard data={keep} />)}
 
     <Pagination
