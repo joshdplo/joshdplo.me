@@ -1,7 +1,7 @@
 export const SITE = {
   TITLE: 'Josh',
   DESCRIPTION: 'The dot me of Josh D',
-  KEEPS_PER_PAGE: 1, //@TODO: Change to proper value after testing
+  KEEPS_PER_PAGE: 3, //@TODO: Change to proper value after testing
   MOVIES_PER_PAGE: 10,
   SONGS_PER_PAGE: 12,
   GAMES_PER_PAGE: 10,

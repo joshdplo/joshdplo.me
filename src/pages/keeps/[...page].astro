@@ -29,15 +29,19 @@ const { total, currentPage, lastPage } = page;
     {
       currentPage === 1 && (
         <div class="center-full">
-          <h2 class="h3 bg">
-            These are all of the notes.
-            <span class="bg-quaternary no-pad">More to come 💪.</span>
+          <h2 class="h3 border-quaternary bg">
+            These are all of the notes for now.
+            <span class="bg-opposite no-pad">
+              More to come once I write them 🤪
+            </span>
           </h2>
         </div>
       )
     }
 
-    {page.data.map((keep) => <KeepCard data={keep} />)}
+    <div class="list">
+      {page.data.map((keep) => <KeepCard data={keep} />)}
+    </div>
 
     <Pagination
       {total}
@@ -49,3 +53,23 @@ const { total, currentPage, lastPage } = page;
     />
   </section>
 </CollectionLayout>
+
+<style lang="scss">
+  @use "@css/util";
+
+  .list {
+    --width: 289px;
+
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 0 2.5rem;
+
+    @include util.mq(md) {
+      grid-template-columns: repeat(auto-fill, var(--width));
+      gap: 1rem;
+    }
+  }
+</style>

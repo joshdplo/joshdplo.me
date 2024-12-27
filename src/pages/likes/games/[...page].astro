@@ -3,11 +3,15 @@ import { SITE } from "@constants";
 import { getPageMenuLinksFromPath } from "@util";
 import { getCollection } from "astro:content";
 import CollectionLayout from "@layouts/CollectionLayout.astro";
+import SteamCard from "@components/SteamCard.astro";
 import Pagination from "@components/Pagination.astro";
 
 const pageMenuLinks = getPageMenuLinksFromPath("/likes");
 export async function getStaticPaths({ paginate }) {
-  const games = await getCollection("games");
+  const excluded = [723090];
+  const games = await getCollection("games", ({ data }) => {
+    return excluded.indexOf(data.appid) === -1 && data.name;
+  });
 
   return paginate(games, { pageSize: SITE.GAMES_PER_PAGE });
 }
@@ -34,7 +38,7 @@ const { total, currentPage, lastPage } = page;
     />
 
     <div class="list">
-      {page.data.map((game) => game.data.name)}
+      {page.data.map((game) => <SteamCard data={game} />)}
     </div>
 
     <Pagination
@@ -57,9 +61,5 @@ const { total, currentPage, lastPage } = page;
     gap: 1rem;
     margin: 2rem 0;
     justify-content: center;
-
-    @include util.mq(md) {
-      grid-template-columns: 1fr 1fr;
-    }
   }
 </style>

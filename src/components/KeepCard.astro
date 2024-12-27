@@ -1,18 +1,103 @@
 ---
+import { Image } from "astro:assets";
+import { getCssClamp, formatDate } from "@util";
 const { data } = Astro.props;
 const keepId = data.id;
 const keepData = data.data;
+
+const imagesGlob = import.meta.glob("@images/*.{webp,jpg,png}");
+const img = keepData.image
+  ? imagesGlob[`/src/images/${keepData.image.pathname}`]()
+  : null;
+
+const titleSize = 2;
+const clampStr = getCssClamp(
+  (Math.floor((titleSize / 1.2) * 100) / 100) * 16,
+  titleSize * 16,
+);
+const date = formatDate(
+  keepData.updated ? "" + keepData.updated : "" + keepData.date,
+);
 ---
 
 <a class="card" href={`/keeps/${keepId}`}>
-  {keepData.title}
+  <div
+    class:list={["wrapper", { "no-img": !img }]}
+    style={`--title-size: ${clampStr}`}
+  >
+    {
+      img && (
+        <Image
+          src={img}
+          alt="random post background"
+          width="268"
+          height="153"
+        />
+      )
+    }
+    <div class="title"><span>{keepData.title}</span></div>
+    <div class="date">{date}</div>
+  </div>
 </a>
 
 <style>
   .card {
+    --width: 300px;
+    --title-size: 2rem;
+
     position: relative;
-    display: inline-block;
-    padding: 0.3em;
-    border: 2px solid var(--font-color);
+    display: block;
+    text-decoration: none;
+  }
+
+  .wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+    border: 4px solid var(--font-color);
+    margin-bottom: 0.5rem;
+
+    &.no-img {
+      background-color: var(--font-color-opposite);
+    }
+
+    img {
+      position: absolute;
+      height: auto;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      object-fit: cover;
+    }
+
+    .title {
+      font-size: var(--title-size);
+      font-weight: bold;
+      padding: 1.5em 0.2em;
+      line-height: 1.1;
+      text-align: center;
+
+      span {
+        background-color: var(--content-transparent);
+      }
+    }
+
+    .date {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      line-height: 1;
+      font-size: 0.9rem;
+      font-weight: bold;
+      padding: 0.3em 0.3em 0.1em;
+      color: var(--font-color-opposite);
+      background-color: var(--content-transparent-opposite);
+    }
+  }
+
+  .summary {
+    font-size: 1rem;
   }
 </style>

@@ -1,4 +1,5 @@
 ---
+import { getCollection } from "astro:content";
 import { getPageMenuLinksFromPath } from "@util";
 import CollectionLayout from "@layouts/CollectionLayout.astro";
 
@@ -10,5 +11,29 @@ const pageMenuLinks = getPageMenuLinksFromPath("/likes");
   heroText="Likes"
   {pageMenuLinks}
 >
-  <section class="contain">THIS IS THE LIKES PAGE</section>
+  <section class="contain">
+    <div class="center-full intro">
+      <h1 class="h2 border-secondary bg">
+        This is some of the stuff I like! <span class="no-pad bg-opposite"
+          >Maybe we have some likes in common 😜</span
+        >
+      </h1>
+    </div>
+
+    <div class="featured movies"></div>
+
+    <div class="featured shows"></div>
+
+    <div class="featured bands"></div>
+
+    <div class="featured songs"></div>
+
+    <div class="featured games"></div>
+  </section>
 </CollectionLayout>
+
+<style>
+  .intro {
+    margin-bottom: 2rem;
+  }
+</style>

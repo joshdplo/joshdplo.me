@@ -23,6 +23,13 @@ tags.forEach((t) => {
   {pageMenuLinks}
 >
   <section class="contain">
+    <div class="center-full">
+      <h2 class="h3 border-quaternary bg">
+        Browse all the notes by tag 😱?
+        <span class="bg-opposite no-pad">You can totally do that!</span>
+      </h2>
+    </div>
+
     <div class="list">
       {
         tags.map((t) => (
@@ -37,11 +44,30 @@ tags.forEach((t) => {
 </CollectionLayout>
 
 <style lang="scss">
+  @use "@css/util";
+
   .list {
     position: relative;
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+    margin-top: 2rem;
+
+    span {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: var(--page-color);
+      color: var(--c-black);
+      font-size: 0.9rem;
+      font-weight: bold;
+      line-height: 1;
+      padding: 0.1rem 0.4rem;
+      border: 3px solid var(--font-color);
+      border-right: 0;
+      border-top: 0;
+      border-top-right-radius: 0.1rem;
+    }
   }
 
   i {
@@ -51,31 +77,23 @@ tags.forEach((t) => {
     color: var(--page-color);
   }
 
-  span {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: var(--page-color);
-    color: var(--c-black);
-    font-size: 0.9rem;
-    font-weight: bold;
-    line-height: 1;
-    padding: 0.1rem 0.4rem;
-    border: 2px solid var(--font-color);
-    border-right: 0;
-    border-top: 0;
-    border-top-right-radius: 0.4rem;
-  }
-
   .card {
     position: relative;
+    width: 100%;
     padding: 1.4rem 1rem 1rem;
-    border: 2px solid var(--font-color);
+    border: 3px solid var(--font-color);
     text-decoration: none;
     border-top-right-radius: 0.5rem;
+    text-align: center;
 
     &:hover {
       text-decoration: underline;
+    }
+
+    @include util.mq(sm) {
+      width: auto;
+      font-size: 2rem;
+      border-width: 6px;
     }
   }
 </style>

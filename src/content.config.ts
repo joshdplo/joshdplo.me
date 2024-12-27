@@ -145,8 +145,8 @@ const games = defineCollection({
       };
     });
   },
-  //@TODO: the games schema can contain "invalid" games
-  // we won't ever use these, so they should just be removed on the slurpi side
+  //@TODO: the games schema can contain "invalid" games (all they have is an appid)
+  // we won't ever use these, so they should just be removed on the slurpi side eventually
   schema: z.object({
     appid: z.number(),
     recent: z.number(),

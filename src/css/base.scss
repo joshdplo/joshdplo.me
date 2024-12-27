@@ -53,6 +53,7 @@
   --content-background: var(--c-black);
   --content-subtle: var(--c-gray-darkest);
   --content-transparent: var(--c-transparent-dark);
+  --content-transparent-opposite: var(--c-transparent-light);
   --background: var(--c-theme-dark);
 
   --ff-default: var(--ff-atkinson);
@@ -438,6 +439,7 @@ ol ol {
   --background: var(--c-theme-light);
   --content-subtle: var(--c-gray);
   --content-transparent: var(--c-transparent-light);
+  --content-transparent-opposite: var(--c-transparent-dark);
   --content-background: var(--c-white);
 }
 
