@@ -1,6 +1,7 @@
 ---
 import { SITE } from "@constants";
 import { getPageColorFromPath } from "@util";
+import { ClientRouter } from "astro:transitions";
 import FloatMenu from "@components/FloatMenu.svelte";
 import Footer from "@components/Footer.svelte";
 
@@ -47,6 +48,31 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       name="twitter:image"
       content="https://html.sammy-codes.com/images/large-profile.jpg"
     /> -->
+
+    <!-- Theme Support -->
+    <script is:inline>
+      function theme() {
+        const LSTheme = window?.localStorage?.getItem("theme");
+        if (LSTheme) {
+          document.documentElement.classList.add(`theme-${LSTheme}`);
+        } else {
+          document.documentElement.classList.add(
+            window.matchMedia &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "theme-dark"
+              : "them-light",
+          );
+        }
+      }
+
+      theme();
+      document.addEventListener("astro:page-load", () => {
+        theme();
+      });
+    </script>
+
+    <!-- Astro Page Transitions -->
+    <ClientRouter />
   </head>
 
   <body style={`--page-color: var(--c-${pageColor});`}>
@@ -64,21 +90,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <!-- Footer -->
     <Footer />
 
-    <!-- Theme Support -->
+    <!-- Say hi to consolers -->
     <script is:inline>
-      const LSTheme = localStorage.getItem("theme");
-      if (LSTheme) {
-        document.documentElement.classList.add(`theme-${LSTheme}`);
-      } else {
-        document.documentElement.classList.add(
-          window.matchMedia &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "theme-dark"
-            : "them-light",
-        );
-      }
-
-      // Say hi to consolers
       console.log(
         "..........................\n         (｡◕‿‿◕｡)       \n    ✉️ yo@joshdplo.me   \n.......................... ",
       );
