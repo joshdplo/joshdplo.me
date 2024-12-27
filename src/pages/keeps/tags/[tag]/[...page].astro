@@ -6,21 +6,30 @@ import CollectionLayout from "@layouts/CollectionLayout.astro";
 import KeepCard from "@components/KeepCard.astro";
 import Pagination from "@components/Pagination.astro";
 
-const pageMenuLinks = getPageMenuLinksFromPath("/keeps");
-
 export async function getStaticPaths({ paginate }) {
   const keeps = await getCollection("keeps");
+  const tags = [...new Set(keeps.map((k) => k.data.tags).flat())];
 
-  return paginate(keeps, { pageSize: SITE.KEEPS_PER_PAGE });
+  return tags.flatMap((t) => {
+    const tagKeeps = keeps.filter((k) => k.data.tags.includes(t));
+
+    return paginate(tagKeeps, {
+      params: { tag: t },
+      pageSize: SITE.KEEPS_PER_PAGE,
+    });
+  });
 }
 
+const { tag } = Astro.params;
 const { page } = Astro.props;
 const { total, currentPage, lastPage } = page;
+const pageMenuLinks = getPageMenuLinksFromPath("/keeps");
 ---
 
 <CollectionLayout
-  pageTitle={`keeps a few notes 📋${currentPage > 1 ? " (" + currentPage + "/" + lastPage + ")" : ""}`}
+  pageTitle={`keeps ${tag} notes 📋${currentPage > 1 ? " (" + currentPage + "/" + lastPage + ")" : ""}`}
   heroText="Keeps"
+  heroSubtext={`#${tag}`}
   heroDescenders={true}
   {pageMenuLinks}
   {currentPage}
@@ -32,7 +41,7 @@ const { total, currentPage, lastPage } = page;
       {total}
       {currentPage}
       {lastPage}
-      label="keeps"
+      label="notes"
       nextUrl={page.url.next}
       prevUrl={page.url.prev}
     />

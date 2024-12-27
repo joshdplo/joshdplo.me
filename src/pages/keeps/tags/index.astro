@@ -17,7 +17,7 @@ tags.forEach((t) => {
 ---
 
 <CollectionLayout
-  pageTitle="keeps tags on things 🏷️"
+  pageTitle="keeps tags on notes 🏷️"
   heroText="Keeps"
   heroDescenders={true}
   {pageMenuLinks}
@@ -73,5 +73,9 @@ tags.forEach((t) => {
     border: 2px solid var(--font-color);
     text-decoration: none;
     border-top-right-radius: 0.5rem;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 </style>
