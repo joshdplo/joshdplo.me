@@ -124,7 +124,7 @@
     @include util.zindex(heroTextSub);
 
     .hasDescenders + & {
-      bottom: 1.6em;
+      bottom: 2em;
     }
 
     &::before {

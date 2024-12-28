@@ -57,13 +57,13 @@ const pageMenuLinks = getPageMenuLinksFromPath("/keeps");
     position: relative;
     display: grid;
     grid-template-columns: 1fr;
+    gap: 1rem;
     align-items: center;
     justify-content: center;
     margin: 2rem 0 2.5rem;
 
     @include util.mq(md) {
       grid-template-columns: 1fr 1fr;
-      gap: 1rem;
     }
   }
 </style>
