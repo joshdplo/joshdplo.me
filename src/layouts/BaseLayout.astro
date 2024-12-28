@@ -2,6 +2,7 @@
 import { SITE } from "@constants";
 import { getPageColorFromPath } from "@util";
 import { ClientRouter } from "astro:transitions";
+import HeadMeta from "@components/HeadMeta.astro";
 import FloatMenu from "@components/FloatMenu.svelte";
 import Footer from "@components/Footer.svelte";
 
@@ -10,8 +11,7 @@ import "@css/fonts.css";
 import "@css/base.scss";
 
 const pageColor = getPageColorFromPath(Astro.url.pathname);
-const { pageTitle, pageDescription, pageImage } = Astro.props;
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const { pageTitle, pageDescription } = Astro.props;
 ---
 
 <html lang="en">
@@ -19,35 +19,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/favicon.png" />
 
-    <!-- Regular Meta  -->
+    <!-- Title  -->
     <title>{SITE.TITLE}{pageTitle && ` ${pageTitle}`}</title>
-    <link rel="canonical" href={canonicalURL} />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={pageDescription || SITE.DESCRIPTION} />
 
-    <!-- OG Meta -->
-    <meta property="og:url" content={canonicalURL} />
-    <!-- @TODO: meta images <meta property="og:image" content="{{imageUrl}}" /> -->
-    <meta
-      property="og:description"
-      content={pageDescription || SITE.DESCRIPTION}
-    />
-    <meta property="og:title" content={pageTitle || SITE.TITLE} />
-    <meta property="og:site_name" content={SITE.TITLE} />
-    <meta property="og:see_also" content={Astro.site} />
-
-    <!-- Twitter Meta -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={pageTitle || SITE.TITLE} />
-    <meta
-      name="twitter:description"
-      content={pageDescription || SITE.DESCRIPTION}
-    />
-    <!-- @TODO: meta images <meta
-      name="twitter:image"
-      content="https://html.sammy-codes.com/images/large-profile.jpg"
-    /> -->
+    <!-- Meta  -->
+    <HeadMeta {pageTitle} {pageDescription} />
 
     <!-- Theme Support -->
     <script is:inline>

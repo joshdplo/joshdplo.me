@@ -21,18 +21,32 @@ const categories = JSON.parse(itemData.categories);
 
 <div class="card">
   <div>
-    <Image src={img} alt={`art for ${itemData.name}`} width="231" height="87" />
+    <Image
+      src={img}
+      alt={`art for ${itemData.name}`}
+      width="231"
+      height="87"
+      loading="lazy"
+    />
   </div>
   <div class="info">
     <div class="title">{itemData.name}</div>
     <div class="os">
       {
         platforms.windows && (
-          <img src="/images/windows.png" alt="windows logo" />
+          <img src="/images/windows.png" alt="windows logo" loading="lazy" />
         )
       }
-      {platforms.mac && <img src="/images/mac.png" alt="apple logo" />}
-      {platforms.linux && <img src="/images/linux.png" alt="linux logo" />}
+      {
+        platforms.mac && (
+          <img src="/images/mac.png" alt="apple logo" loading="lazy" />
+        )
+      }
+      {
+        platforms.linux && (
+          <img src="/images/linux.png" alt="linux logo" loading="lazy" />
+        )
+      }
     </div>
     <div class="released">
       Released {JSON.parse(itemData.release_date).date}
@@ -41,14 +55,27 @@ const categories = JSON.parse(itemData.categories);
       >Steam Page</a
     >
     <div class="description">
-      {itemData.short_description}
+      {
+        itemData.short_description
+          .replaceAll("&amp;", "&")
+          .replaceAll("&quot;", '"')
+      }
     </div>
     <div class="developers">
       {developers && developers.map((d) => <span>{d}</span>)}
     </div>
     <div class="genres">
       {genres && genres.map((g) => <span>{g.description}</span>)}
-      {categories && categories.map((g) => <span>{g.description}</span>)}
+      {
+        categories &&
+          categories
+            .filter(
+              (c) =>
+                c.description.toLowerCase().includes("player") ||
+                c.description.toLowerCase().includes("co-op"),
+            )
+            .map((c) => <span>{c.description}</span>)
+      }
     </div>
   </div>
 </div>

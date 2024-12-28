@@ -30,9 +30,9 @@ const { total, currentPage, lastPage } = page;
       currentPage === 1 && (
         <div class="center-full">
           <h2 class="h3 border-quaternary bg">
-            These are all of the notes for now.
+            These are all of the notes - yep just a big giant list of them.
             <span class="bg-opposite no-pad">
-              More to come once I write them 🤪
+              Once I write more notes they'll show up here, too 🤪
             </span>
           </h2>
         </div>
@@ -58,8 +58,6 @@ const { total, currentPage, lastPage } = page;
   @use "@css/util";
 
   .list {
-    --width: 289px;
-
     position: relative;
     display: grid;
     grid-template-columns: 1fr;
@@ -68,7 +66,7 @@ const { total, currentPage, lastPage } = page;
     margin: 2rem 0 2.5rem;
 
     @include util.mq(md) {
-      grid-template-columns: repeat(auto-fill, var(--width));
+      grid-template-columns: 1fr 1fr;
       gap: 1rem;
     }
   }

@@ -35,7 +35,9 @@ const pageMenuLinks = getPageMenuLinksFromPath("/keeps");
   {currentPage}
 >
   <section class="contain">
-    {page.data.map((keep) => <KeepCard data={keep} />)}
+    <div class="list">
+      {page.data.map((keep) => <KeepCard data={keep} />)}
+    </div>
 
     <Pagination
       {total}
@@ -47,3 +49,21 @@ const pageMenuLinks = getPageMenuLinksFromPath("/keeps");
     />
   </section>
 </CollectionLayout>
+
+<style lang="scss">
+  @use "@css/util";
+
+  .list {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 0 2.5rem;
+
+    @include util.mq(md) {
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+  }
+</style>
