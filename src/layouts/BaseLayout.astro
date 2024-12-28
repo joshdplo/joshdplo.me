@@ -23,7 +23,10 @@ const { pageTitle, pageDescription } = Astro.props;
     <title>{SITE.TITLE}{pageTitle && ` ${pageTitle}`}</title>
 
     <!-- Meta  -->
-    <HeadMeta {pageTitle} {pageDescription} />
+    <HeadMeta
+      pageTitle={`${SITE.TITLE}${pageTitle ? " " + pageTitle : ""}`}
+      {pageDescription}
+    />
 
     <!-- Theme Support -->
     <script is:inline>

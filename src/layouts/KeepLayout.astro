@@ -16,7 +16,10 @@ const img = frontmatter.image
   : null;
 ---
 
-<BaseLayout pageTitle={frontmatter.title}>
+<BaseLayout
+  pageTitle={frontmatter.title}
+  pageDescription={frontmatter?.description}
+>
   <section class="contain">
     <div
       class="head"
