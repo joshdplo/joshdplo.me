@@ -5,7 +5,7 @@ description: 'When running default nginx and trying to read files in a user dire
 author: 'Josh'
 image:
     pathname: 'keeps-light-clouds.webp'
-    alt: 'fantastic clouds'
+    alt: 'dark background'
 tags: ["webdev"]
 ---
 
