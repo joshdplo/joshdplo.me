@@ -11,7 +11,7 @@ import "@css/fonts.css";
 import "@css/base.scss";
 
 const pageColor = getPageColorFromPath(Astro.url.pathname);
-const { pageTitle, pageDescription } = Astro.props;
+const { pageTitle, pageDescription, noSearch = false } = Astro.props;
 ---
 
 <html lang="en">
@@ -62,7 +62,11 @@ const { pageTitle, pageDescription } = Astro.props;
     </nav>
 
     <!-- Main Content  -->
-    <main id="main">
+    <main
+      id="main"
+      data-pagefind-body={noSearch ? undefined : ""}
+      data-pagefind-ignore={!noSearch ? undefined : "all"}
+    >
       <slot />
     </main>
 
@@ -72,7 +76,7 @@ const { pageTitle, pageDescription } = Astro.props;
     <!-- Say hi to consolers -->
     <script is:inline>
       console.log(
-        "..........................\n    yee haw! (｡◕‿‿◕｡)\n ✉️ feedback@joshdplo.me   \n.......................... ",
+        "..........................\n     hiiiiii (｡◕‿‿◕｡)\n ✉️ feedback@joshdplo.me   \n.......................... ",
       );
     </script>
   </body>

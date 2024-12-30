@@ -1,0 +1,80 @@
+---
+import { getCssClamp } from "@util";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import HeroText from "@components/HeroText.svelte";
+
+const size = 1.5;
+const clamp = getCssClamp(
+  (Math.floor((size / 1.2) * 100) / 100) * 16,
+  size * 16,
+);
+---
+
+<script is:inline>
+  // Pagefind init
+  let pagefind;
+  document.addEventListener("DOMContentLoaded", async (e) => {
+    if (!pagefind) {
+      pagefind = await import("/pagefind/pagefind.js");
+      await pagefind.options({
+        highlightParam: "highlight",
+      });
+      pagefind.init();
+    }
+  });
+
+  // Pagefind search
+  document
+    .querySelector("input#search")
+    .addEventListener("keyup", async (e) => {
+      const val = e.target.value.trim();
+      if (val.length < 3) return;
+
+      const results = await (
+        await pagefind.debouncedSearch(val, {}, 500)
+      )?.results;
+      if (results) {
+        for (const result of results) {
+          const data = await result.data();
+          console.log(val, data.meta.title);
+          // console.log(data, data.meta.title, data.excerpt);
+          // populate DOM
+        }
+      }
+    });
+</script>
+
+<BaseLayout noSearch={true}>
+  <section class="contain">
+    <div class="center-full">
+      <HeroText text="Search" color="tertiary" />
+    </div>
+    <i class="spacer-1"></i>
+    <div class="search-box" style={`--search-size: ${clamp}`}>
+      <input type="text" placeholder="Enter search term..." id="search" />
+    </div>
+  </section>
+  <section id="results"></section>
+</BaseLayout>
+
+<style lang="scss">
+  @use "@css/util";
+
+  .search-box {
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    input {
+      border-width: 0.2em;
+      font-size: var(--search-size);
+      border-radius: 2rem;
+      padding: 0.4em 0.6em;
+      width: 75%;
+
+      @include util.mq(sm) {
+        width: 55%;
+      }
+    }
+  }
+</style>

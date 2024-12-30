@@ -28,7 +28,7 @@ const durationFormatted = `${Math.trunc(itemData.duration_ms / 1000 / 60)}min${(
     ></path></svg
   >
   <div class="over">
-    <div class="title">{itemData.name}</div>
+    <div data-pagefind-meta="title" class="title">{itemData.name}</div>
     {isSong && <div class="duration">{durationFormatted}</div>}
     {
       isSong && (
