@@ -20,7 +20,7 @@ const img = frontmatter.image
   pageTitle={`• ${frontmatter.title}`}
   pageDescription={frontmatter?.description}
 >
-  <section class="contain">
+  <section class="contain" data-keep={frontmatter.title}>
     <div
       class="head"
       style={`--h1-size: ${clampStr}`}

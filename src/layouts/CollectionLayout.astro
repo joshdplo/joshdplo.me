@@ -10,11 +10,10 @@ const {
   heroSubtext = null,
   pageMenuLinks = [],
   currentPage = null,
-  noSearch = false,
 } = Astro.props;
 ---
 
-<BaseLayout {pageTitle} {noSearch}>
+<BaseLayout {pageTitle}>
   <section class="contain">
     <div class="center-full">
       <HeroText

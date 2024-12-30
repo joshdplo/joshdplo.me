@@ -17,7 +17,12 @@ const img =
 const durationFormatted = `${Math.trunc(itemData.duration_ms / 1000 / 60)}min${(itemData.duration_ms / 1000) % 60 > 0 ? " " + Math.floor((itemData.duration_ms / 1000) % 60) + "sec" : ""}`;
 ---
 
-<a class="card" href={itemData.url}>
+<a
+  class="card"
+  href={itemData.url}
+  data-song={isSong ? itemData.name : undefined}
+  data-band={!isSong ? itemData.name : undefined}
+>
   <Image src={img} alt={`art for ${itemData.name}`} width="300" height="300" />
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +33,7 @@ const durationFormatted = `${Math.trunc(itemData.duration_ms / 1000 / 60)}min${(
     ></path></svg
   >
   <div class="over">
-    <div data-pagefind-meta="title" class="title">{itemData.name}</div>
+    <div class="title">{itemData.name}</div>
     {isSong && <div class="duration">{durationFormatted}</div>}
     {
       isSong && (

@@ -10,7 +10,7 @@ const clamp = getCssClamp(
 );
 ---
 
-<BaseLayout noSearch={true}>
+<BaseLayout>
   <section class="contain">
     <div class="center-full">
       <HeroText text="Search" color="tertiary" />
@@ -24,43 +24,12 @@ const clamp = getCssClamp(
 </BaseLayout>
 
 <script is:inline>
-  // @TODO FIX THIS!!! =[
-  async function pf() {
-    // Pagefind init
-    let pagefind = null;
-    if (!pagefind) {
-      pagefind = await import("/pagefind/pagefind.js");
-      await pagefind.options({
-        highlightParam: "highlight",
-      });
-      pagefind.init();
-    }
-
-    // Pagefind search
-    const searchInput = document.querySelector("input#search");
-    if (!searchInput) return;
-
-    searchInput.addEventListener("keyup", async (e) => {
-      if (!pagefind) return;
-      const val = e.target.value.trim();
-      if (val.length < 3) return;
-
-      const results = await (
-        await pagefind.debouncedSearch(val, {}, 500)
-      )?.results;
-      if (results) {
-        for (const result of results) {
-          const data = await result.data();
-          console.log(val, data.meta.title, data.sub_results);
-          // console.log(data, data.meta.title, data.excerpt);
-          // populate DOM
-        }
-      }
-    });
+  async function searchInit() {
+    console.log("search init");
   }
 
   document.addEventListener("astro:page-load", () => {
-    pf();
+    searchInit();
   });
 </script>
 

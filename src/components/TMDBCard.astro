@@ -26,7 +26,12 @@ const genreIds = JSON.parse(movieData.genre_ids);
 const genresMap = META[isMovie ? "tmdbMovieGenres" : "tmdbTvGenres"];
 ---
 
-<div class="card" class:list={[{ mega }, { favorite }]}>
+<div
+  class="card"
+  class:list={[{ mega }, { favorite }]}
+  data-movie={isMovie ? title : undefined}
+  data-show={!isMovie ? title : undefined}
+>
   <Image
     src={img}
     alt={`poster for ${title}`}
@@ -36,7 +41,7 @@ const genresMap = META[isMovie ? "tmdbMovieGenres" : "tmdbTvGenres"];
   />
   <div class="info">
     <div class="title">
-      <span data-pagefind-meta="title">{title}</span>
+      <span>{title}</span>
       <i>{`${released}, ${movieData.original_language}`}</i>
     </div>
     <div class="overview">
