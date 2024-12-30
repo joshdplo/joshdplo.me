@@ -25,6 +25,11 @@ const clamp = getCssClamp(
 
 <script is:inline>
   async function searchInit() {
+    if (window.location.pathname !== "/search") return;
+
+    const searchInput = document.getElementById("search");
+    searchInput.focus();
+
     console.log("search init");
   }
 

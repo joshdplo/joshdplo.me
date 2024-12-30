@@ -31,26 +31,8 @@
   }}
 />
 
-<div class="wrapper contain">
-  <div class="inner">
-    <button
-      class="theme"
-      aria-label="Switch Theme"
-      title="Switch Theme"
-      onclick={themeClick}
-    >
-      <SVG name="sun" />
-      <SVG name="moon" />
-    </button>
-    <a
-      href="/search"
-      title="Search"
-      class="button"
-      class:active={currentPage === "/search"}
-    >
-      <span class="sr-only">Search</span>
-      <SVG name="search" />
-    </a>
+<div class="contain">
+  <nav>
     <button
       id="hamburger"
       title="Menu"
@@ -84,24 +66,46 @@
         </li>
       {/each}
     </ul>
-  </div>
+    <a
+      href="/search"
+      title="Search"
+      class="button"
+      class:active={currentPage === "/search"}
+    >
+      <span class="sr-only">Search</span>
+      <SVG name="search" />
+    </a>
+    <button
+      class="theme"
+      aria-label="Switch Theme"
+      title="Switch Theme"
+      onclick={themeClick}
+    >
+      <SVG name="sun" />
+      <SVG name="moon" />
+    </button>
+  </nav>
 </div>
 
 <style lang="scss">
   @use "@css/util";
 
-  .wrapper {
+  .contain {
     position: fixed;
     display: flex;
+    top: 0;
     left: 50%;
-    justify-content: flex-end;
     transform: translateX(-50%);
+    background-color: var(--background);
+    transition: background-color 0.2s ease-in;
+    @include util.zindex(nav);
   }
 
-  .inner {
+  nav {
     position: relative;
     display: flex;
-    width: auto;
+    flex-wrap: nowrap;
+    width: 100%;
 
     :global(svg) {
       position: relative;
@@ -111,6 +115,18 @@
 
     :global(svg path) {
       fill: var(--font-color);
+    }
+
+    .theme {
+      margin-left: auto;
+    }
+
+    *:last-child {
+      padding-right: 0;
+    }
+
+    *:first-child {
+      padding-left: 0;
     }
   }
 
@@ -136,7 +152,7 @@
   }
 
   #hamburger {
-    padding: 0.25rem 0.4rem;
+    padding: 0.25rem 0.4rem 0.25rem 0;
     cursor: pointer;
 
     :global(svg) {
@@ -147,19 +163,19 @@
 
   #float-menu {
     position: absolute;
-    right: 0.8rem;
+    left: 0.8rem;
     top: 88%;
     width: 15.625rem;
     height: auto;
     border: 0.8em double var(--page-color);
     border-radius: 0.75rem;
-    border-top-right-radius: 0;
+    border-top-left-radius: 0;
     color: var(--font-color);
     background-color: var(--font-color-opposite);
     font-size: 1.4rem;
     font-weight: bold;
     transform: scale(0);
-    transform-origin: top right;
+    transform-origin: top left;
     transition: transform 0.22s ease;
 
     li + li a {
@@ -180,9 +196,9 @@
       &:after {
         content: "\21D1";
         position: absolute;
-        left: 0.75rem;
+        right: 0.75rem;
         top: 50%;
-        transform: translateY(-50%) rotate(-90deg);
+        transform: translateY(-50%) rotate(90deg);
         font-size: 1.5em;
         color: var(--font-color-opposite);
         opacity: 0;
@@ -197,7 +213,7 @@
     }
 
     .active {
-      padding-left: 2.25em;
+      padding-right: 2.25em;
       color: var(--font-color-opposite);
       background-color: var(--font-color);
       cursor: default;

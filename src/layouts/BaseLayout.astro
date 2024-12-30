@@ -55,11 +55,9 @@ const { pageTitle, pageDescription } = Astro.props;
   </head>
 
   <body style={`--page-color: var(--c-${pageColor});`}>
-    <!-- Header -->
-    <nav id="nav-main" class="contain">
-      <a class="skip-to-content" href="#main">Skip to main content</a>
-      <FloatMenu client:load currentPage={Astro.url.pathname} />
-    </nav>
+    <!-- Nav -->
+    <a class="skip-to-content" href="#main">Skip to main content</a>
+    <FloatMenu client:load currentPage={Astro.url.pathname} />
 
     <!-- Main Content  -->
     <main id="main">
@@ -82,18 +80,10 @@ const { pageTitle, pageDescription } = Astro.props;
   @use "@css/util";
 
   main {
-    padding-top: 2.35rem;
+    padding-top: 3.5rem;
 
     @include util.mq(sm) {
-      padding-top: 0.7rem;
+      padding-top: 3rem;
     }
-  }
-
-  nav {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    @include util.zindex(nav);
   }
 </style>
