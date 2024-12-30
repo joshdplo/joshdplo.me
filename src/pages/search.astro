@@ -25,18 +25,16 @@ const clamp = getCssClamp(
 
 <script is:inline>
   // @TODO FIX THIS!!! =[
-  function pf() {
+  async function pf() {
     // Pagefind init
     let pagefind = null;
-    document.addEventListener("DOMContentLoaded", async () => {
-      if (!pagefind) {
-        pagefind = await import("/pagefind/pagefind.js");
-        await pagefind.options({
-          highlightParam: "highlight",
-        });
-        pagefind.init();
-      }
-    });
+    if (!pagefind) {
+      pagefind = await import("/pagefind/pagefind.js");
+      await pagefind.options({
+        highlightParam: "highlight",
+      });
+      pagefind.init();
+    }
 
     // Pagefind search
     const searchInput = document.querySelector("input#search");
@@ -53,15 +51,13 @@ const clamp = getCssClamp(
       if (results) {
         for (const result of results) {
           const data = await result.data();
-          console.log(val, data.meta.title);
+          console.log(val, data.meta.title, data.sub_results);
           // console.log(data, data.meta.title, data.excerpt);
           // populate DOM
         }
       }
     });
   }
-
-  pf();
 
   document.addEventListener("astro:page-load", () => {
     pf();
