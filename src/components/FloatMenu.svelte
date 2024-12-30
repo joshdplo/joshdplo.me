@@ -32,9 +32,28 @@
 />
 
 <div class="wrapper contain">
-  <div class="left">
+  <div class="inner">
+    <button
+      class="theme"
+      aria-label="Switch Theme"
+      title="Switch Theme"
+      onclick={themeClick}
+    >
+      <SVG name="sun" />
+      <SVG name="moon" />
+    </button>
+    <a
+      href="/search"
+      title="Search"
+      class="button"
+      class:active={currentPage === "/search"}
+    >
+      <span class="sr-only">Search</span>
+      <SVG name="search" />
+    </a>
     <button
       id="hamburger"
+      title="Menu"
       aria-label="toggle visual navigation or continue tabbing"
       aria-controls="float-menu"
       aria-expanded={isOpen}
@@ -66,17 +85,6 @@
       {/each}
     </ul>
   </div>
-  <div class="right">
-    <button
-      class="theme"
-      aria-label="Switch Theme"
-      title="Switch Theme"
-      onclick={themeClick}
-    >
-      <SVG name="sun" />
-      <SVG name="moon" />
-    </button>
-  </div>
 </div>
 
 <style lang="scss">
@@ -86,30 +94,29 @@
     position: fixed;
     display: flex;
     left: 50%;
-    justify-content: space-between;
-    width: 100%;
+    justify-content: flex-end;
     transform: translateX(-50%);
   }
 
-  .left,
-  .right {
+  .inner {
     position: relative;
     display: flex;
+    width: auto;
+
+    :global(svg) {
+      position: relative;
+      width: 1.7rem;
+      pointer-events: none;
+    }
+
+    :global(svg path) {
+      fill: var(--font-color);
+    }
   }
 
-  :global(svg) {
-    position: relative;
-    width: 1.7rem;
-    pointer-events: none;
-  }
-
-  :global(svg path) {
-    fill: var(--font-color);
-  }
-
+  .button,
   button {
     padding: 0.5rem 0.6rem;
-    background-color: var(--background);
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
 
@@ -119,6 +126,12 @@
       :global(svg path) {
         fill: var(--c-black);
       }
+    }
+  }
+
+  .button.active {
+    :global(svg path) {
+      fill: var(--page-color);
     }
   }
 
@@ -134,19 +147,19 @@
 
   #float-menu {
     position: absolute;
-    left: 0.8rem;
+    right: 0.8rem;
     top: 88%;
     width: 15.625rem;
     height: auto;
     border: 0.8em double var(--page-color);
     border-radius: 0.75rem;
-    border-top-left-radius: 0;
+    border-top-right-radius: 0;
     color: var(--font-color);
     background-color: var(--font-color-opposite);
     font-size: 1.4rem;
     font-weight: bold;
     transform: scale(0);
-    transform-origin: top left;
+    transform-origin: top right;
     transition: transform 0.22s ease;
 
     li + li a {
@@ -167,9 +180,9 @@
       &:after {
         content: "\21D1";
         position: absolute;
-        right: 0.5rem;
+        left: 0.75rem;
         top: 50%;
-        transform: translateY(-50%) rotate(90deg);
+        transform: translateY(-50%) rotate(-90deg);
         font-size: 1.5em;
         color: var(--font-color-opposite);
         opacity: 0;
@@ -184,6 +197,7 @@
     }
 
     .active {
+      padding-left: 2.25em;
       color: var(--font-color-opposite);
       background-color: var(--font-color);
       cursor: default;

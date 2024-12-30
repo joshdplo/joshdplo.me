@@ -1,4 +1,4 @@
-import { NAV_LINKS, FOOTER_LINKS } from "@constants";
+import { PAGE_COLORS, FOOTER_LINKS } from "@constants";
 
 /**
  * Format Date
@@ -58,7 +58,7 @@ export function getCssClamp(
  */
 export function getPageColorFromPath(path: string) {
   const pathToMatch = `/${path.split("/").splice(1)[0]}`;
-  const color = Object.values(NAV_LINKS).find(link => link.path === pathToMatch)?.color;
+  const color = Object.values(PAGE_COLORS).find(link => link.path === pathToMatch)?.color;
   return color || 'primary';
 }
 

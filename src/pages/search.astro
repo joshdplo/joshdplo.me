@@ -10,23 +10,40 @@ const clamp = getCssClamp(
 );
 ---
 
-<script is:inline>
-  // Pagefind init
-  let pagefind;
-  document.addEventListener("DOMContentLoaded", async (e) => {
-    if (!pagefind) {
-      pagefind = await import("/pagefind/pagefind.js");
-      await pagefind.options({
-        highlightParam: "highlight",
-      });
-      pagefind.init();
-    }
-  });
+<BaseLayout noSearch={true}>
+  <section class="contain">
+    <div class="center-full">
+      <HeroText text="Search" color="tertiary" />
+    </div>
+    <i class="spacer-1"></i>
+    <div class="search-box" style={`--search-size: ${clamp}`}>
+      <input type="text" placeholder="Enter search term..." id="search" />
+    </div>
+  </section>
+  <section id="results"></section>
+</BaseLayout>
 
-  // Pagefind search
-  document
-    .querySelector("input#search")
-    .addEventListener("keyup", async (e) => {
+<script is:inline>
+  // @TODO FIX THIS!!! =[
+  function pf() {
+    // Pagefind init
+    let pagefind = null;
+    document.addEventListener("DOMContentLoaded", async () => {
+      if (!pagefind) {
+        pagefind = await import("/pagefind/pagefind.js");
+        await pagefind.options({
+          highlightParam: "highlight",
+        });
+        pagefind.init();
+      }
+    });
+
+    // Pagefind search
+    const searchInput = document.querySelector("input#search");
+    if (!searchInput) return;
+
+    searchInput.addEventListener("keyup", async (e) => {
+      if (!pagefind) return;
       const val = e.target.value.trim();
       if (val.length < 3) return;
 
@@ -42,20 +59,14 @@ const clamp = getCssClamp(
         }
       }
     });
-</script>
+  }
 
-<BaseLayout noSearch={true}>
-  <section class="contain">
-    <div class="center-full">
-      <HeroText text="Search" color="tertiary" />
-    </div>
-    <i class="spacer-1"></i>
-    <div class="search-box" style={`--search-size: ${clamp}`}>
-      <input type="text" placeholder="Enter search term..." id="search" />
-    </div>
-  </section>
-  <section id="results"></section>
-</BaseLayout>
+  pf();
+
+  document.addEventListener("astro:page-load", () => {
+    pf();
+  });
+</script>
 
 <style lang="scss">
   @use "@css/util";

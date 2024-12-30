@@ -7,10 +7,17 @@ export const SITE = {
   GAMES_PER_PAGE: 10,
 };
 
+export const PAGE_COLORS = [
+  { path: '/', },
+  { path: '/likes', color: "secondary" },
+  { path: '/keeps', color: "quaternary" },
+  { path: '/search', color: "tertiary" },
+]
+
 export const NAV_LINKS = [
   { path: '/', title: 'Greets' },
-  { path: '/likes', title: 'Likes', color: "secondary" },
-  { path: '/keeps', title: 'Keeps', color: "quaternary" },
+  { path: '/likes', title: 'Likes' },
+  { path: '/keeps', title: 'Keeps' },
 ];
 
 export const FOOTER_LINKS = [
