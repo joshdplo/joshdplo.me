@@ -29,8 +29,8 @@ const genresMap = META[isMovie ? "tmdbMovieGenres" : "tmdbTvGenres"];
 <div
   class="card"
   class:list={[{ mega }, { favorite }]}
-  data-movie={isMovie ? title : undefined}
-  data-show={!isMovie ? title : undefined}
+  data-movie-id={isMovie ? movieId : undefined}
+  data-show-id={!isMovie ? movieId : undefined}
 >
   <Image
     src={img}

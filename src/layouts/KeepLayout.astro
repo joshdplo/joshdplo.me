@@ -2,7 +2,7 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
 import { getCssClamp, formatDate } from "@util";
-const { frontmatter } = Astro.props;
+const { frontmatter, slug } = Astro.props;
 
 const h1Size = 5;
 const clampStr = getCssClamp(
@@ -20,7 +20,7 @@ const img = frontmatter.image
   pageTitle={`• ${frontmatter.title}`}
   pageDescription={frontmatter?.description}
 >
-  <section class="contain" data-keep={frontmatter.title}>
+  <section class="contain" data-keep-id={slug}>
     <div
       class="head"
       style={`--h1-size: ${clampStr}`}
@@ -38,7 +38,7 @@ const img = frontmatter.image
       }
 
       <h1>
-        <span class="bg-transparent no-pad">{frontmatter.title}</span>
+        <span class="bg-transparent no-pad title">{frontmatter.title}</span>
       </h1>
     </div>
     <div class="subhead">

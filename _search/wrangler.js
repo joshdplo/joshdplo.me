@@ -7,6 +7,7 @@ import * as cheerio from 'cheerio';
  */
 console.log('@@@ WRANGLING ASTRO HTML INTO SEARCHABLE JSON @@@@');//REMOVE
 
+// Get ALL files from directory
 function readdirRecursiveSync(directory) {
   const files = [];
 
@@ -25,6 +26,7 @@ function readdirRecursiveSync(directory) {
   return files;
 }
 
+// Filter HTML files for searching
 const files = readdirRecursiveSync('../dist');
 const htmlFiles = files
   .filter(f => {
@@ -39,20 +41,37 @@ const htmlFiles = files
       parentDir !== 'tags' &&
       grandparentDir !== 'tags' &&
       parentDir !== 'dist' &&
-      (parentDir !== 'keeps' && name === 'index.html') &&
-      (parentDir !== 'likes' && name === 'index.html')
+      f !== '../dist/keeps/index.html' &&
+      f !== '../dist/likes/index.html'
   });
 
+// Create Search Object
+const terms = {};
+const categoryTerms = [
+  { category: 'movie', termSelector: '.title span' },
+  { category: 'show', termSelector: '.title span' },
+  { category: 'song', termSelector: '.title' },
+  { category: 'band', termSelector: '.title' },
+  { category: 'game', termSelector: '.title' },
+  { category: 'keep', termSelector: 'h1 .title' }
+];
 htmlFiles.forEach(f => {
   const html = readFileSync(new URL(f, import.meta.url), 'utf8');
-  const $ = cheerio.load(html);
-  const movies = $.extract({
-    movie: '[data-movie] .title span'
+  const $ = cheerio.load(html, { onParseError: (err) => console.error('Cheerio parse error:', err) }, false);
+
+  categoryTerms.forEach(c => {
+    const el = $(`[data-${c.category}-id]`);
+    if (el) {
+      console.log(`[data-${c.category}-id] ${c.termSelector}`);
+      const term = $(`[data-${c.category}-id] ${c.termSelector}`).text();
+      console.log(`${c.category}-id`, term);
+    }
   });
-  console.log(movies);
 });
 
-// writeFileSync(new URL('./data/htmlfiles.json', import.meta.url), JSON.stringify(htmlFiles));
+// console.log(terms);
+
+// writeFileSync(new URL('./data/htmlfiles.json', import.meta.url), JSON.stringify(extracted));
 
 
 
