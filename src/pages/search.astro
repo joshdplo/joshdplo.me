@@ -1,23 +1,12 @@
 ---
-import { getCssClamp } from "@util";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import HeroText from "@components/HeroText.svelte";
+import Search from "@components/Search.svelte";
 
-const size = 1.5;
-const clamp = getCssClamp(
-  (Math.floor((size / 1.2) * 100) / 100) * 16,
-  size * 16,
-);
-
-const searchUrl =
+const url =
   import.meta.env.MODE === "development"
     ? "http://localhost:3034/search"
     : `${Astro.site?.origin}/search`;
-
-let searchStatus = await (await fetch(searchUrl)).json();
-const searchDisabled = !searchStatus.online;
-
-let results = [];
 ---
 
 <BaseLayout>
@@ -26,38 +15,28 @@ let results = [];
       <HeroText text="Search" color="tertiary" />
     </div>
     <i class="spacer-1"></i>
-    <div class="search-box" style={`--search-size: ${clamp}`}>
-      <input
-        type="text"
-        placeholder="Enter search term..."
-        id="search"
-        disabled={searchDisabled ? true : undefined}
-      />
-    </div>
+    <Search {url} client:load />
   </section>
-  <section id="results">
-    {results.map((r) => <div>RESULT HERE</div>)}
-  </section>
-</BaseLayout>
 
-<style lang="scss">
-  @use "@css/util";
+  <style lang="scss">
+    @use "@css/util";
 
-  .search-box {
-    position: relative;
-    display: flex;
-    justify-content: center;
+    .search-box {
+      position: relative;
+      display: flex;
+      justify-content: center;
 
-    input {
-      border-width: 0.2em;
-      font-size: var(--search-size);
-      border-radius: 2rem;
-      padding: 0.4em 0.6em;
-      width: 75%;
+      input {
+        border-width: 0.2em;
+        font-size: var(--search-size);
+        border-radius: 2rem;
+        padding: 0.4em 0.6em;
+        width: 75%;
 
-      @include util.mq(sm) {
-        width: 55%;
+        @include util.mq(sm) {
+          width: 55%;
+        }
       }
     }
-  }
-</style>
+  </style>
+</BaseLayout>

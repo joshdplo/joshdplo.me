@@ -6,7 +6,7 @@ const app = express();
 const PORT = 3034;
 
 // Middlewares
-app.use(helmet());
+// app.use(helmet());
 app.use(express.json());
 
 // Routing
