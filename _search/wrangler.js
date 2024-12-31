@@ -2,10 +2,7 @@ import path from "node:path";
 import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 import * as cheerio from 'cheerio';
 
-/**
- * Generates Search JSON from Astro dist HTML files
- */
-console.log('@@@ WRANGLING ASTRO HTML INTO SEARCHABLE JSON @@@@');//REMOVE
+console.log('Wrangling search terms from Astro HTML files...');
 
 // Get ALL files from directory
 function readdirRecursiveSync(directory) {
@@ -55,24 +52,25 @@ const categoryTerms = [
   { category: 'game', termSelector: '.title' },
   { category: 'keep', termSelector: 'h1 .title' }
 ];
+
 htmlFiles.forEach(f => {
   const html = readFileSync(new URL(f, import.meta.url), 'utf8');
   const $ = cheerio.load(html, { onParseError: (err) => console.error('Cheerio parse error:', err) }, false);
 
   categoryTerms.forEach(c => {
-    const el = $(`[data-${c.category}-id]`);
-    if (el) {
-      console.log(`[data-${c.category}-id] ${c.termSelector}`);
-      const term = $(`[data-${c.category}-id] ${c.termSelector}`).text();
-      console.log(`${c.category}-id`, term);
-    }
+    $(`[data-${c.category}-id]`).each((i, el) => {
+      const id = $(el).data(`${c.category}-id`);
+      const term = $(el).find(`${c.termSelector}`).text();
+      if (id && term) terms[term] = {
+        category: c.category,
+        id,
+        selector: `[data-${c.category}-id="${id}"]`,
+        path: f.replace('../dist', '').replace('/index.html', '')
+      }
+    });
   });
 });
 
-// console.log(terms);
-
-// writeFileSync(new URL('./data/htmlfiles.json', import.meta.url), JSON.stringify(extracted));
-
-
-
-console.log('@@@ WRANGLING COMPLETE! @@@@');//REMOVE
+const amount = Object.keys(terms).length;
+writeFileSync(new URL('./search.json', import.meta.url), JSON.stringify(terms));
+console.log(`Wrangling Complete! ${amount} terms created`);
