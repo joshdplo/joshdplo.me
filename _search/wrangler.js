@@ -64,7 +64,6 @@ htmlFiles.forEach(f => {
       if (id && term) terms[term] = {
         category: c.category,
         id,
-        selector: `[data-${c.category}-id="${id}"]`,
         path: f.replace('../dist', '').replace('/index.html', '')
       }
     });

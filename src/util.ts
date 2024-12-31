@@ -63,6 +63,50 @@ export function getPageColorFromPath(path: string) {
 }
 
 /**
+ * Get Page Color from Category Name
+ */
+export function getPageColorFromCategory(c: string) {
+  switch (c) {
+    case 'movie':
+      return 'secondary'
+    case 'show':
+      return 'secondary'
+    case 'band':
+      return 'secondary'
+    case 'song':
+      return 'secondary'
+    case 'game':
+      return 'secondary'
+    case 'keep':
+      return 'quaternary'
+    default:
+      return 'primary'
+  }
+}
+
+/**
+ * Get Emoji from Category Name
+ */
+export function getEmojiFromCategory(c: string) {
+  switch (c) {
+    case 'movie':
+      return '🍿'
+    case 'show':
+      return '🖥️'
+    case 'band':
+      return '🎸'
+    case 'song':
+      return '🎧'
+    case 'game':
+      return '🎮'
+    case 'keep':
+      return '📋'
+    default:
+      return ''
+  }
+}
+
+/**
  * Get Page Menu Links from Path
  */
 export function getPageMenuLinksFromPath(path: string) {

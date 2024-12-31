@@ -13,6 +13,38 @@ const {
 } = Astro.props;
 ---
 
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    if (urlSearchParams.size === 0) return;
+
+    const params = Object.fromEntries(urlSearchParams.entries());
+    if (!params.search || params.search === "") return;
+    if (!params.cat || params.cat === "") return;
+
+    console.log(params.cat, params.search);
+    const el = document.querySelector(
+      `[data-${params.cat}-id="${params.search}"]`,
+    );
+
+    if (!el) return;
+
+    el.classList.add("searched");
+    document.body.classList.add("searched");
+    function removeSearched() {
+      document.body.classList.remove("searched");
+    }
+    window.addEventListener("click", () => removeSearched(), { once: true });
+    window.addEventListener("keydown", () => removeSearched(), { once: true });
+    el.addEventListener("mouseleave", () => removeSearched(), { once: true });
+
+    el.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
+  });
+</script>
+
 <BaseLayout {pageTitle}>
   <section class="contain">
     <div class="center-full">
@@ -30,3 +62,19 @@ const {
   </section>
   <slot />
 </BaseLayout>
+
+<style lang="scss">
+  :global(.card) {
+    transition: opacity 0.75s ease-in-out;
+  }
+
+  body.searched {
+    :global(.card) {
+      opacity: 0.15;
+
+      &.searched {
+        opacity: 1;
+      }
+    }
+  }
+</style>

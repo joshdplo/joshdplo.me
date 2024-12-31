@@ -1,6 +1,7 @@
 <script lang="ts">
   import { NAV_LINKS } from "@constants";
   import SVG from "@components/SVG.svelte";
+  import Breadcrumbs from "@components/Breadcrumbs.svelte";
 
   let { currentPage } = $props();
   let hamburgerEl: HTMLElement;
@@ -75,6 +76,9 @@
       <span class="sr-only">Search</span>
       <SVG name="search" />
     </a>
+    <div style="margin-left: auto;">
+      <Breadcrumbs {currentPage} />
+    </div>
     <button
       class="theme"
       aria-label="Switch Theme"
