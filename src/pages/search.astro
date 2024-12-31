@@ -8,6 +8,16 @@ const clamp = getCssClamp(
   (Math.floor((size / 1.2) * 100) / 100) * 16,
   size * 16,
 );
+
+const searchUrl =
+  import.meta.env.MODE === "development"
+    ? "http://localhost:3034/search"
+    : `${Astro.site?.origin}/search`;
+
+let searchStatus = await (await fetch(searchUrl)).json();
+const searchDisabled = !searchStatus.online;
+
+let results = [];
 ---
 
 <BaseLayout>
@@ -17,26 +27,18 @@ const clamp = getCssClamp(
     </div>
     <i class="spacer-1"></i>
     <div class="search-box" style={`--search-size: ${clamp}`}>
-      <input type="text" placeholder="Enter search term..." id="search" />
+      <input
+        type="text"
+        placeholder="Enter search term..."
+        id="search"
+        disabled={searchDisabled ? true : undefined}
+      />
     </div>
   </section>
-  <section id="results"></section>
+  <section id="results">
+    {results.map((r) => <div>RESULT HERE</div>)}
+  </section>
 </BaseLayout>
-
-<script is:inline>
-  async function searchInit() {
-    if (window.location.pathname !== "/search") return;
-
-    const searchInput = document.getElementById("search");
-    searchInput.focus();
-
-    console.log("search init");
-  }
-
-  document.addEventListener("astro:page-load", () => {
-    searchInit();
-  });
-</script>
 
 <style lang="scss">
   @use "@css/util";

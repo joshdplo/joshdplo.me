@@ -10,8 +10,8 @@ app.use(helmet());
 app.use(express.json());
 
 // Routing
-app.get('/', (req, res) => res.json({ status: ok }));
-app.post('/', async (req, res) => {
+app.get('/search', (req, res) => res.json({ online: true }));
+app.post('/search', async (req, res) => {
   try {
     res.json({
       results: [],
