@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from "svelte";
   import debounce from "lodash-es/debounce";
   import {
     getCssClamp,
@@ -18,22 +19,38 @@
   let noResults = $state(false);
   let lastQuery = $state("");
 
+  let hasPreviousResults = $state(false);
+  let lowestPageLoaded = $state(null);
+  let highestPageLoaded = $state(null);
+  let queryParamPage = $state(null);
+
   const size = 1.5;
   const clamp = getCssClamp(
     (Math.floor((size / 1.2) * 100) / 100) * 16,
     size * 16,
   );
 
+  // Clear Search
   function clearSearch() {
     totalResults = 0;
     results = [];
     query = "";
     lastQuery = "";
     currentPage = 1;
+    lowestPageLoaded = null;
+    highestPageLoaded = null;
+    queryParamPage = null;
+    hasPreviousResults = false;
     input.focus();
+    window.history.replaceState(
+      {},
+      "",
+      `${window.location.origin}${window.location.pathname}`,
+    );
   }
 
-  async function search(isLoadMore = false) {
+  // Do Search
+  async function search(isLoadMore = false, isLoadPrevious = false) {
     if (query !== "" && query.length > 2) {
       // do search fetch
       loading = true;
@@ -53,9 +70,16 @@
       totalResults = data.total;
       noResults = totalResults === 0;
       lastQuery = noResults ? query : "";
-      isLoadMore === true
-        ? (results = [...results, ...data.results])
-        : (results = data.results);
+      if (!highestPageLoaded) highestPageLoaded = currentPage;
+
+      if (isLoadMore === true) {
+        results = [...results, ...data.results];
+      } else if (isLoadPrevious === true) {
+        results = [...data.results, ...results];
+      } else {
+        results = data.results;
+      }
+
       loading = false;
       window.history.replaceState(
         {},
@@ -66,6 +90,24 @@
       loading = false;
     }
   }
+
+  // On Load
+  onMount(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.size > 0) {
+      const queryVal = urlParams.get("search");
+      const page = urlParams.get("page");
+      if (queryVal && page && queryVal !== "") {
+        query = queryVal;
+        queryParamPage = parseInt(page, 10);
+        hasPreviousResults = queryParamPage > 1;
+        currentPage = queryParamPage;
+        lowestPageLoaded = queryParamPage;
+
+        search();
+      }
+    }
+  });
 </script>
 
 <section class="contain">
@@ -74,7 +116,6 @@
       type="text"
       placeholder="Enter search term..."
       id="search"
-      autofocus
       bind:this={input}
       bind:value={query}
       disabled={searchDisabled ? true : undefined}
@@ -91,6 +132,18 @@
     </div>
     <i class="spacer-1"></i>
   {/if}
+  {#if resultsShowing < totalResults && hasPreviousResults && lowestPageLoaded > 1}
+    <button
+      class="load-prev"
+      onclick={() => {
+        currentPage = lowestPageLoaded
+          ? lowestPageLoaded - 1
+          : queryParamPage - 1;
+        lowestPageLoaded = currentPage;
+        search(false, true);
+      }}>Load Previous Page</button
+    >
+  {/if}
   {#each results as r}
     <a href={`${r.path}?search=${r.id}&cat=${r.category}`}>
       <span class={`border-${getPageColorFromCategory(r.category)}`}
@@ -103,9 +156,16 @@
     <button
       class="load-more"
       onclick={() => {
-        currentPage++;
-        search(true);
-      }}>Load More</button
+        if (queryParamPage) {
+          currentPage = highestPageLoaded
+            ? highestPageLoaded + 1
+            : queryParamPage + 1;
+          highestPageLoaded = currentPage;
+        } else {
+          currentPage++;
+        }
+        search(true, false);
+      }}>Load Next Page</button
     >
   {/if}
   {#if noResults && query !== ""}
@@ -185,12 +245,17 @@
       border-bottom: 0;
     }
 
-    .load-more {
+    .load-more,
+    .load-prev {
       margin: 1.8rem auto 0;
       padding: 0.35em 0.8em;
       border: 0.15em solid var(--font-color);
       border-radius: 2rem;
       line-height: 1;
+    }
+
+    .load-prev {
+      margin: 0 auto 1.8rem;
     }
   }
 

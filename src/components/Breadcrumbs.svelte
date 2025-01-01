@@ -17,7 +17,7 @@
   }
 
   const currentTitle =
-    s[s.length - 1].length === 1 ? `Page ${s[s.length - 1]}` : s[s.length - 1];
+    s[s.length - 1].length < 4 ? `Page ${s[s.length - 1]}` : s[s.length - 1];
   const breadcrumbs = getBreadcrumbs().reverse();
   const currentPageTitle = s[s.length - 1];
 </script>
