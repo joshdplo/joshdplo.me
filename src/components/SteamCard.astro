@@ -20,40 +20,46 @@ const categories = JSON.parse(itemData.categories);
 ---
 
 <div class="card" data-game-id={appid}>
-  <div>
-    <Image
-      src={img}
-      alt={`art for ${itemData.name}`}
-      width="231"
-      height="87"
-      loading="lazy"
-    />
-  </div>
   <div class="info">
-    <div class="title">{itemData.name}</div>
-    <div class="os">
-      {
-        platforms.windows && (
-          <img src="/images/windows.png" alt="windows logo" loading="lazy" />
-        )
-      }
-      {
-        platforms.mac && (
-          <img src="/images/mac.png" alt="apple logo" loading="lazy" />
-        )
-      }
-      {
-        platforms.linux && (
-          <img src="/images/linux.png" alt="linux logo" loading="lazy" />
-        )
-      }
+    <div class="top">
+      <Image
+        src={img}
+        alt={`art for ${itemData.name}`}
+        width="231"
+        height="87"
+        loading="lazy"
+      />
+      <div class="title-area">
+        <div class="title">{itemData.name}</div>
+        <div class="os">
+          {
+            platforms.windows && (
+              <img
+                src="/images/windows.png"
+                alt="windows logo"
+                loading="lazy"
+              />
+            )
+          }
+          {
+            platforms.mac && (
+              <img src="/images/mac.png" alt="apple logo" loading="lazy" />
+            )
+          }
+          {
+            platforms.linux && (
+              <img src="/images/linux.png" alt="linux logo" loading="lazy" />
+            )
+          }
+        </div>
+        <div class="released">
+          Released {JSON.parse(itemData.release_date).date}
+        </div>
+        <a href={`https://store.steampowered.com/app/${appid}`} class="link"
+          >Steam Page</a
+        >
+      </div>
     </div>
-    <div class="released">
-      Released {JSON.parse(itemData.release_date).date}
-    </div>
-    <a href={`https://store.steampowered.com/app/${appid}`} class="link"
-      >Steam Page</a
-    >
     <div class="description">
       {
         itemData.short_description
@@ -81,23 +87,30 @@ const categories = JSON.parse(itemData.categories);
 </div>
 
 <style lang="scss">
+  @use "@css/util";
+
   .card {
     --img-width: 231px;
 
     position: relative;
     display: grid;
-    grid-template-columns: var(--img-width) 1fr;
+    grid-template-columns: 1fr;
     gap: 0.6rem;
     justify-content: center;
     text-decoration: none;
+    margin-bottom: 1rem;
 
     &::after {
       display: none;
     }
+
+    @include util.mq(md) {
+      // grid-template-columns: var(--img-width) 1fr;
+    }
   }
 
   img {
-    margin: 0 0.2rem 0.2rem 0;
+    display: block;
   }
 
   .info {
@@ -108,17 +121,33 @@ const categories = JSON.parse(itemData.categories);
     line-height: 1.2;
   }
 
+  .top {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    margin-bottom: 0.7rem;
+
+    @include util.mq(sm) {
+      flex-direction: row;
+    }
+  }
+
   .title {
     font-size: 1rem;
     font-weight: bold;
-    line-height: 1.1;
   }
 
   .os {
+    display: inline-flex;
     background-color: var(--c-theme-light);
-    margin-right: auto;
-    padding-left: 3px;
+    margin: 0.1em auto 0.2em 0;
+    gap: 4px;
+    height: 18px;
+    padding: 3px;
+
     img {
+      display: inline-block;
       width: 12px;
       height: 12px;
     }

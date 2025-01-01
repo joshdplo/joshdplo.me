@@ -22,7 +22,6 @@ const {
     if (!params.search || params.search === "") return;
     if (!params.cat || params.cat === "") return;
 
-    console.log(params.cat, params.search);
     const el = document.querySelector(
       `[data-${params.cat}-id="${params.search}"]`,
     );

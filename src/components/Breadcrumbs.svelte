@@ -1,7 +1,7 @@
 <script>
   // breadcrumbs by gideon maina
   // https://medium.com/@gmainapro/creating-breadcrumbs-in-astro-4c7280d599fa
-  let { currentPage } = $props();
+  let { currentPage, noBreadcrumbs } = $props();
   const s = currentPage.split("/");
 
   function getBreadcrumbs() {
@@ -22,7 +22,7 @@
   const currentPageTitle = s[s.length - 1];
 </script>
 
-{#if breadcrumbs.length}
+{#if breadcrumbs.length && !noBreadcrumbs}
   <ul>
     {#each breadcrumbs as b, i}
       <li>

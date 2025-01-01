@@ -3,7 +3,7 @@
   import SVG from "@components/SVG.svelte";
   import Breadcrumbs from "@components/Breadcrumbs.svelte";
 
-  let { currentPage } = $props();
+  let { currentPage, noBreadcrumbs } = $props();
   let hamburgerEl: HTMLElement;
   let isOpen = $state(false);
 
@@ -76,8 +76,10 @@
       <span class="sr-only">Search</span>
       <SVG name="search" />
     </a>
-    <div style="margin-left: auto;">
-      <Breadcrumbs {currentPage} />
+    <div
+      style="margin-left: auto; background-color: var(--background); padding: 0 .5em;"
+    >
+      <Breadcrumbs {currentPage} {noBreadcrumbs} />
     </div>
     <button
       class="theme"
@@ -100,7 +102,7 @@
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    background-color: var(--background);
+    // background-color: var(--background);
     transition: background-color 0.2s ease-in;
     @include util.zindex(nav);
   }
@@ -137,8 +139,7 @@
   .button,
   button {
     padding: 0.5rem 0.6rem;
-    border-bottom-left-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
+    background-color: var(--background);
 
     &:focus-visible {
       background-color: var(--c-accent);

@@ -11,7 +11,7 @@ import "@css/fonts.css";
 import "@css/base.scss";
 
 const pageColor = getPageColorFromPath(Astro.url.pathname);
-const { pageTitle, pageDescription } = Astro.props;
+const { pageTitle, pageDescription, noBreadcrumbs } = Astro.props;
 ---
 
 <html lang="en">
@@ -57,7 +57,7 @@ const { pageTitle, pageDescription } = Astro.props;
   <body style={`--page-color: var(--c-${pageColor});`}>
     <!-- Nav -->
     <a class="skip-to-content" href="#main">Skip to main content</a>
-    <FloatMenu client:load currentPage={Astro.url.pathname} />
+    <FloatMenu client:load currentPage={Astro.url.pathname} {noBreadcrumbs} />
 
     <!-- Main Content  -->
     <main id="main">
