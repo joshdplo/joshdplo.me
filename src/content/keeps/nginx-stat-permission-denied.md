@@ -6,7 +6,7 @@ author: 'Josh'
 image:
     pathname: 'keeps-dark-code.jpg'
     alt: 'dark cute techy background'
-tags: ["webdev"]
+tags: ["webdev", "linux"]
 ---
 
 ## [Here's the stackoverflow solve by Maciej Sz](https://stackoverflow.com/a/25776092)
