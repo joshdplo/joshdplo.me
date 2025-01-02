@@ -45,8 +45,8 @@ const img = frontmatter.image
     <div class="subhead">
       <div class="date">
         {`${formatDate("" + (frontmatter.updated || frontmatter.date))}`}{
-          frontmatter.updated && " - Updated"
-        }
+          frontmatter.updated && " (Updated)"
+        } -
       </div>
       {frontmatter.tags.map((t) => <a href={`/keeps/tags/${t}`}>#{t}</a>)}
     </div>
@@ -64,17 +64,12 @@ const img = frontmatter.image
 
   .head {
     --h1-size: 5rem;
-
     position: relative;
     overflow: hidden;
-    margin-top: 3.45rem;
+    margin-top: 1rem;
 
     &.no-img {
       background-color: var(--font-color-opposite);
-    }
-
-    @include util.mq(sm) {
-      margin-top: 3.7rem;
     }
   }
 
@@ -104,6 +99,10 @@ const img = frontmatter.image
     gap: 0.5rem;
     padding: 0.1rem 0 0;
     font-size: 1rem;
+
+    a {
+      font-size: 1rem;
+    }
   }
 
   .content {

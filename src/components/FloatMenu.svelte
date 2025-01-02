@@ -76,11 +76,7 @@
       <span class="sr-only">Search</span>
       <SVG name="search" />
     </a>
-    <div
-      style="margin-left: auto; background-color: var(--background); padding: 0 .5em;"
-    >
-      <Breadcrumbs {currentPage} {noBreadcrumbs} />
-    </div>
+    {#if noBreadcrumbs !== true}<Breadcrumbs {currentPage} />{/if}
     <button
       class="theme"
       aria-label="Switch Theme"

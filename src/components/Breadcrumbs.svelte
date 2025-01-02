@@ -1,7 +1,7 @@
 <script>
   // breadcrumbs by gideon maina
   // https://medium.com/@gmainapro/creating-breadcrumbs-in-astro-4c7280d599fa
-  let { currentPage, noBreadcrumbs } = $props();
+  let { currentPage } = $props();
   const s = currentPage.split("/");
 
   function getBreadcrumbs() {
@@ -22,19 +22,29 @@
   const currentPageTitle = s[s.length - 1];
 </script>
 
-{#if breadcrumbs.length && !noBreadcrumbs}
-  <ul>
-    {#each breadcrumbs as b, i}
-      <li>
-        <a href={b}>{b.split("/").pop()}</a> ˒
-        {#if i === breadcrumbs.length - 1}<span>{currentTitle}</span>{/if}
-      </li>
-    {/each}
-  </ul>
+{#if breadcrumbs.length}
+  <div class="breadcrumbs">
+    <ul>
+      {#each breadcrumbs as b, i}
+        <li>
+          <a href={b}>{b.split("/").pop()}</a> ˒
+        </li>
+        {#if i === breadcrumbs.length - 1}<li>
+            <span>{currentTitle}</span>
+          </li>{/if}
+      {/each}
+    </ul>
+  </div>
 {/if}
 
 <style lang="scss">
   @use "@css/util";
+
+  .breadcrumbs {
+    margin-left: auto;
+    background-color: var(--background);
+    padding: 0 0.5em;
+  }
 
   ul {
     font-size: 0.75rem;
@@ -44,6 +54,7 @@
     margin: auto;
     height: 100%;
     align-items: center;
+    gap: 0.4rem;
 
     @include util.mq(sm) {
       display: flex;
@@ -67,6 +78,7 @@
   }
 
   span {
+    padding-left: 0.3em;
     pointer-events: none;
     opacity: 0.5;
   }

@@ -98,14 +98,11 @@ const categories = JSON.parse(itemData.categories);
     gap: 0.6rem;
     justify-content: center;
     text-decoration: none;
-    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px dotted var(--content-subtle);
 
     &::after {
       display: none;
-    }
-
-    @include util.mq(md) {
-      // grid-template-columns: var(--img-width) 1fr;
     }
   }
 

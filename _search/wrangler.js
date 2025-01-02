@@ -64,7 +64,7 @@ htmlFiles.forEach(f => {
       if (id && term) terms[term] = {
         category: c.category,
         id,
-        path: f.replace('../dist', '').replace('/index.html', '')
+        path: f.replace('../dist', '').replace('..\\dist', '').replace('/index.html', '').replace('\\index.html', '') // unix + windows
       }
     });
   });

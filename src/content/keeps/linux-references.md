@@ -5,8 +5,8 @@ updated: 2025-01-01
 description: 'A list of references for setting up and maintaining linux servers'
 author: 'Josh'
 image:
-    pathname: 'keeps-dark-code.jpg'
-    alt: 'dark cute techy background'
+    pathname: 'tech-linux.png'
+    alt: 'glitchy dark background with matrix letters'
 tags: ["webdev", "linux"]
 ---
 

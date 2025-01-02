@@ -4,8 +4,8 @@ date: 2024-12-29
 description: 'When running default nginx and trying to read files in a user directory, there is a stat permission denied error'
 author: 'Josh'
 image:
-    pathname: 'keeps-dark-code.jpg'
-    alt: 'dark cute techy background'
+    pathname: 'tech-linux.png'
+    alt: 'glitchy dark background with matrix letters'
 tags: ["webdev", "linux"]
 ---
 
