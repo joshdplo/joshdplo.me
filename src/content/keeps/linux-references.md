@@ -12,7 +12,8 @@ tags: ["webdev", "linux"]
 
 ## Ubuntu Server Setup
 - [Initial Server Setup (DO)](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu)
-- [SSH Config Change Port (Ubuntu v22+)](https://askubuntu.com/questions/1439461/ssh-default-port-not-changing-ubuntu-22-10-and-later/1439482#1439482)
+- **SSH Check `/etc/ssh/sshd_config.d/` for host configs and remove as necessary**
+- ~~[SSH Config Change Port (Ubuntu v22+)](https://askubuntu.com/questions/1439461/ssh-default-port-not-changing-ubuntu-22-10-and-later/1439482#1439482)~~ (confirm if this is necessary or due to vps-set sshd_config.d/* files)
 - [NGINX Setup (DO)](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-22-04)
 - [NGINX LetsEncrypt Certs (DO)](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-22-04)
 - [NGINX/general grant access to user's directory](https://stackoverflow.com/a/25776092)
