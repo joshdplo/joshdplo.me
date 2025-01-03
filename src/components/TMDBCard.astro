@@ -1,7 +1,7 @@
 ---
 import { META } from "@constants";
 import { Image } from "astro:assets";
-const { data } = Astro.props;
+const { data, mini } = Astro.props;
 const movieData = data.data;
 const movieId = data.id;
 
@@ -26,38 +26,57 @@ const genreIds = JSON.parse(movieData.genre_ids);
 const genresMap = META[isMovie ? "tmdbMovieGenres" : "tmdbTvGenres"];
 ---
 
-<div
-  class="card"
-  class:list={[{ mega }, { favorite }]}
-  data-movie-id={isMovie ? movieId : undefined}
-  data-show-id={!isMovie ? movieId : undefined}
->
-  <Image
-    src={img}
-    alt={`poster for ${title}`}
-    width="200"
-    height="300"
-    loading="lazy"
-  />
-  <div class="info">
-    <div class="title">
-      <span>{title}</span>
-      <i>{`${released}, ${movieData.original_language}`}</i>
+{
+  !mini && (
+    <div
+      class="card"
+      class:list={[{ mega }, { favorite }]}
+      data-movie-id={isMovie ? movieId : undefined}
+      data-show-id={!isMovie ? movieId : undefined}
+    >
+      <Image
+        src={img}
+        alt={`poster for ${title}`}
+        width="200"
+        height="300"
+        loading="lazy"
+      />
+      <div class="info">
+        <div class="title">
+          <span>{title}</span>
+          <i>{`${released}, ${movieData.original_language}`}</i>
+        </div>
+        <div class="overview">{movieData.overview}</div>
+        <div class="bottom">
+          <span class="genres">
+            {genreIds.map((id) => (
+              <span>{genresMap[`${id}`]}</span>
+            ))}
+          </span>
+          <a
+            href={`https://www.themoviedb.org/${isMovie ? "movie" : "tv"}/${movieId}`}
+          >
+            TMDB Page
+          </a>
+        </div>
+      </div>
     </div>
-    <div class="overview">
-      {movieData.overview}
+  )
+}
+
+{
+  mini && (
+    <div class="card-mini">
+      <Image
+        src={img}
+        alt={`poster for ${title}`}
+        width="200"
+        height="300"
+        loading="lazy"
+      />
     </div>
-    <div class="bottom">
-      <span class="genres">
-        {genreIds.map((id) => <span>{genresMap[`${id}`]}</span>)}
-      </span>
-      <a
-        href={`https://www.themoviedb.org/${isMovie ? "movie" : "tv"}/${movieId}`}
-        >TMDB Page</a
-      >
-    </div>
-  </div>
-</div>
+  )
+}
 
 <style lang="scss">
   @use "@css/util";
@@ -79,99 +98,111 @@ const genresMap = META[isMovie ? "tmdbMovieGenres" : "tmdbTvGenres"];
       grid-template-rows: 1fr;
       grid-template-columns: var(--img-width) 1fr;
     }
-  }
 
-  img {
-    width: var(--img-width);
-    height: var(--img-height);
-    box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.2);
-    z-index: 2;
-    margin: auto;
-  }
+    img {
+      width: var(--img-width);
+      height: var(--img-height);
+      box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.2);
+      z-index: 2;
+      margin: auto;
+    }
 
-  .info {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    border-left: 0;
-  }
+    .info {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      border-left: 0;
+    }
 
-  .title {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-    line-height: 1;
-    padding-right: 0.5rem;
-    text-align: center;
-
-    span {
-      font-size: 1.4rem;
+    .title {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
       line-height: 1;
-      font-weight: bold;
+      padding-right: 0.5rem;
+      text-align: center;
+
+      span {
+        font-size: 1.4rem;
+        line-height: 1;
+        font-weight: bold;
+      }
+
+      i {
+        font-size: 1rem;
+        font-style: normal;
+      }
+
+      @include util.mq(sm) {
+        text-align: left;
+      }
     }
 
-    i {
+    .overview {
+      position: relative;
+      font-size: 0.9rem;
+      padding: 0.3rem 0;
+      line-height: 1.3;
+      overflow-y: auto;
+    }
+
+    .bottom {
+      margin-top: auto;
+      padding: 0.7rem 0 0.25rem;
+      border-bottom: 1px dotted var(--content-subtle);
+      border-left: 0;
+      border-right: 0;
+    }
+
+    .genres {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      line-height: 1;
+      font-size: 0.8rem;
+
+      span::after {
+        content: ",";
+        margin-right: 0.25rem;
+      }
+
+      span:last-child:after {
+        content: none;
+      }
+    }
+
+    a {
+      display: inline-flex;
+      justify-content: center;
       font-size: 1rem;
-      font-style: normal;
     }
 
-    @include util.mq(sm) {
-      text-align: left;
+    .favorite::before,
+    .mega::before {
+      content: "\2606";
+      position: absolute;
+      top: 0.3rem;
+      right: 0.3rem;
+      font-size: 1.5rem;
+      line-height: 1;
+      color: var(--c-theme-gold);
+      text-shadow: 0.03em 0.05em 0 var(--font-color);
+    }
+    .mega::before {
+      content: "\2605";
     }
   }
 
-  .overview {
+  .card-mini {
+    --img-width: 150px;
+    --img-height: 225px;
     position: relative;
-    font-size: 0.9rem;
-    padding: 0.3rem 0;
-    line-height: 1.3;
-    overflow-y: auto;
-  }
+    display: block;
 
-  .bottom {
-    margin-top: auto;
-    padding: 0.7rem 0 0.25rem;
-    border-bottom: 1px dotted var(--content-subtle);
-    border-left: 0;
-    border-right: 0;
-  }
-
-  .genres {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    line-height: 1;
-    font-size: 0.8rem;
-
-    span::after {
-      content: ",";
-      margin-right: 0.25rem;
+    img {
+      width: var(--img-width);
+      height: var(--img-height);
     }
-
-    span:last-child:after {
-      content: none;
-    }
-  }
-
-  a {
-    display: inline-flex;
-    justify-content: center;
-    font-size: 1rem;
-  }
-
-  .favorite::before,
-  .mega::before {
-    content: "\2606";
-    position: absolute;
-    top: 0.3rem;
-    right: 0.3rem;
-    font-size: 1.5rem;
-    line-height: 1;
-    color: var(--c-theme-gold);
-    text-shadow: 0.03em 0.05em 0 var(--font-color);
-  }
-  .mega::before {
-    content: "\2605";
   }
 </style>

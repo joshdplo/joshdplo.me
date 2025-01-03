@@ -54,6 +54,14 @@ export function getCssClamp(
 };
 
 /**
+ * Get Collection Page
+ */
+export function getCollectionPage(index: number, total: number, maxPerPage: number) {
+  //@TODO FINISH THIS
+  return 123;
+}
+
+/**
  * Get Page Color from Path
  */
 export function getPageColorFromPath(path: string) {

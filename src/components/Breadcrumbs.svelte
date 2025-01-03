@@ -54,7 +54,7 @@
     margin: auto;
     height: 100%;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.2rem;
 
     @include util.mq(sm) {
       display: flex;
@@ -70,7 +70,7 @@
   }
 
   a {
-    padding-left: 0.3em;
+    padding-left: 0.1rem;
 
     &:hover {
       text-decoration: underline;
@@ -78,7 +78,7 @@
   }
 
   span {
-    padding-left: 0.3em;
+    padding-left: 0.1rem;
     pointer-events: none;
     opacity: 0.5;
   }

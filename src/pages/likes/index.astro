@@ -1,9 +1,23 @@
 ---
 import { getCollection } from "astro:content";
-import { getPageMenuLinksFromPath } from "@util";
+import { getPageMenuLinksFromPath, getCollectionPage } from "@util";
 import CollectionLayout from "@layouts/CollectionLayout.astro";
+import TMDBCard from "@components/TMDBCard.astro";
+import SpotifyCard from "@components/SpotifyCard.astro";
+import SteamCard from "@components/SteamCard.astro";
 
 const pageMenuLinks = getPageMenuLinksFromPath("/likes");
+
+const movies = await getCollection("movies");
+const shows = await getCollection("shows");
+const songs = await getCollection("songs");
+const games = await getCollection("games");
+
+const featuredMovies = [];
+const featuredShows = [];
+const featuredSongs = [];
+
+//@TODO put featured movies in to filter by and then display as mini={true}
 ---
 
 <CollectionLayout
@@ -12,28 +26,45 @@ const pageMenuLinks = getPageMenuLinksFromPath("/likes");
   {pageMenuLinks}
 >
   <section class="contain">
-    <div class="center-full intro">
-      <h1 class="h2 border-secondary bg">
-        This is some of the stuff I like! <span class="no-pad bg-opposite"
-          >Maybe we have some likes in common 😜</span
-        >
-      </h1>
-    </div>
+    <h2 class="h4">
+      <span class="bg no-pad">All-Time Movies</span>
+    </h2>
+    <div class="list list-tmdb"></div>
 
-    <div class="featured movies"></div>
+    <h2 class="h4">
+      <span class="bg no-pad">All-Time Shows</span>
+    </h2>
+    <div class="list list-tmdb"></div>
 
-    <div class="featured shows"></div>
+    <h2 class="h4">
+      <span class="bg no-pad">All-Time Songs</span>
+    </h2>
+    <div class="list list-spotify"></div>
 
-    <div class="featured bands"></div>
-
-    <div class="featured songs"></div>
-
-    <div class="featured games"></div>
+    <h2 class="h4">
+      <span class="bg no-pad">Recently-Played Games</span>
+    </h2>
+    <div class="list list-steam"></div>
   </section>
 </CollectionLayout>
 
-<style>
-  .intro {
-    margin-bottom: 2rem;
+<style lang="scss">
+  h2 {
+    margin-bottom: 0.8rem;
+  }
+
+  .list {
+    margin-bottom: 1.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .list-tmdb {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 150px);
+    justify-content: center;
   }
 </style>
