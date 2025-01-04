@@ -68,7 +68,7 @@ const categories = JSON.parse(itemData.categories);
       }
     </div>
     <div class="developers">
-      {developers && developers.map((d) => <span>{d}</span>)}
+      Developed by {developers && developers.map((d) => <span>{d}</span>)}
     </div>
     <div class="genres">
       {genres && genres.map((g) => <span>{g.description}</span>)}
@@ -108,6 +108,10 @@ const categories = JSON.parse(itemData.categories);
 
   img {
     display: block;
+  }
+
+  a {
+    font-size: 1rem;
   }
 
   .info {
@@ -155,8 +159,9 @@ const categories = JSON.parse(itemData.categories);
     display: flex;
     flex-wrap: wrap;
     gap: 0.3em;
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.25rem;
     font-size: 0.9rem;
+    opacity: 0.5;
 
     span::after {
       content: ", ";
@@ -170,12 +175,12 @@ const categories = JSON.parse(itemData.categories);
   .genres {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.2rem;
+    gap: 0.35rem;
     font-size: 0.7rem;
     opacity: 0.5;
 
     span {
-      padding: 0.1em 0.3em;
+      padding: 0.1em 0.5em;
       border: 1px solid var(--font-color);
       border-radius: 1em;
     }
