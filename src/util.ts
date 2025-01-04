@@ -54,9 +54,9 @@ export function getCssClamp(
 };
 
 /**
- * Get Collection Page
+ * Get Single Item Collection Page
  */
-export function getCollectionPage(index: number, total: number, maxPerPage: number) {
+export function getSingleItemCollectionPage(index: number, total: number, maxPerPage: number) {
   //@TODO FINISH THIS
   return 123;
 }

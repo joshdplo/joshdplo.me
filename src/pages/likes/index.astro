@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import { getPageMenuLinksFromPath, getCollectionPage } from "@util";
+import { getPageMenuLinksFromPath, getSingleItemCollectionPage } from "@util";
 import CollectionLayout from "@layouts/CollectionLayout.astro";
 import TMDBCard from "@components/TMDBCard.astro";
 import SpotifyCard from "@components/SpotifyCard.astro";
@@ -8,14 +8,29 @@ import SteamCard from "@components/SteamCard.astro";
 
 const pageMenuLinks = getPageMenuLinksFromPath("/likes");
 
-const movies = await getCollection("movies");
+const allTimeMoviesIds = [
+  "10406", //encino man
+  "348", //alien
+  "563", //starship troopers
+  "926", //galaxy quest
+  "579974", //RRR
+  "800937", //senior year
+  "19995", //avatar
+  "1648", //bill & ted 1
+  "332270", //battle for sevastapol
+];
+const allTimeShows = [];
+const allTimeSongs = [];
+
+const allTimeMovies = await getCollection("movies", ({ id }) =>
+  allTimeMoviesIds.includes(id),
+);
 const shows = await getCollection("shows");
 const songs = await getCollection("songs");
-const games = await getCollection("games");
-
-const featuredMovies = [];
-const featuredShows = [];
-const featuredSongs = [];
+const recentGames = await getCollection(
+  "games",
+  ({ data }) => data.recent === 1,
+);
 
 //@TODO put featured movies in to filter by and then display as mini={true}
 ---
@@ -29,7 +44,9 @@ const featuredSongs = [];
     <h2 class="h4">
       <span class="bg no-pad">All-Time Movies</span>
     </h2>
-    <div class="list list-tmdb"></div>
+    <div class="list list-tmdb">
+      {allTimeMovies.map((m) => <TMDBCard data={m} mini={true} />)}
+    </div>
 
     <h2 class="h4">
       <span class="bg no-pad">All-Time Shows</span>
@@ -64,7 +81,7 @@ const featuredSongs = [];
   .list-tmdb {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 150px);
+    grid-template-columns: repeat(auto-fill, 100px);
     justify-content: center;
   }
 </style>
