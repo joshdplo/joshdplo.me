@@ -19,20 +19,42 @@ const allTimeMoviesIds = [
   "1648", //bill & ted 1
   "332270", //battle for sevastapol
 ];
-const allTimeShows = [];
-const allTimeSongs = [];
+const allTimeShowsIds = [
+  "64432", //the magicians
+  "1855", //star trek voyager
+  "4629", //stargate sg-1
+  "63333", //the last kingdom
+  "56296", //orphan black
+  "4586", //gilmore girls
+  "61664", //sense8
+  "10545", //true blood
+  "39793", //call the midwife
+];
+const allTimeSongsIds = [
+  "5SG2BVsZr0W7cFAkjh60TT", //the bottom
+  "1dxQcXEZciFqzSCHLmly6n", //talking in code
+  "7Ak2cwmIfDRuXkvg4T1OWL", //ambrosia
+  "4niDU35YEMnJIQjKb506hb", //alchemy
+  "6vzrbjMSJqo3OURh3KEPu0", //cora may
+  "2LkPVbDZkWjBeZn5gEkmOt", //maurine
+  "1K2vCXEItfiz7Yp5PQXFkx", //city girl
+  "5NfAqXJmhvm3Oup4VoWHx9", //empty streets
+  "2c6m3dyH0dn9bDf3RJxedu", //little death
+];
 
 const allTimeMovies = await getCollection("movies", ({ id }) =>
   allTimeMoviesIds.includes(id),
 );
-const shows = await getCollection("shows");
-const songs = await getCollection("songs");
+const allTimeShows = await getCollection("shows", ({ id }) =>
+  allTimeShowsIds.includes(id),
+);
+const allTimeSongs = await getCollection("songs", ({ id }) =>
+  allTimeSongsIds.includes(id),
+);
 const recentGames = await getCollection(
   "games",
   ({ data }) => data.recent === 1,
 );
-
-//@TODO put featured movies in to filter by and then display as mini={true}
 ---
 
 <CollectionLayout
@@ -42,26 +64,32 @@ const recentGames = await getCollection(
 >
   <section class="contain">
     <h2 class="h4">
-      <span class="bg no-pad">All-Time Movies</span>
+      <span class="bg no-pad">Top Movies</span>
     </h2>
     <div class="list list-tmdb">
       {allTimeMovies.map((m) => <TMDBCard data={m} mini={true} />)}
     </div>
 
     <h2 class="h4">
-      <span class="bg no-pad">All-Time Shows</span>
+      <span class="bg no-pad">Top Shows</span>
     </h2>
-    <div class="list list-tmdb"></div>
+    <div class="list list-tmdb">
+      {allTimeShows.map((m) => <TMDBCard data={m} mini={true} />)}
+    </div>
 
     <h2 class="h4">
-      <span class="bg no-pad">All-Time Songs</span>
+      <span class="bg no-pad">Top Songs</span>
     </h2>
-    <div class="list list-spotify"></div>
+    <div class="list list-spotify">
+      {allTimeSongs.map((m) => <SpotifyCard data={m} mini={true} />)}
+    </div>
 
     <h2 class="h4">
-      <span class="bg no-pad">Recently-Played Games</span>
+      <span class="bg no-pad">Recent Games</span>
     </h2>
-    <div class="list list-steam"></div>
+    <div class="list list-steam">
+      {recentGames.map((g) => <SteamCard data={g} mini={true} />)}
+    </div>
   </section>
 </CollectionLayout>
 

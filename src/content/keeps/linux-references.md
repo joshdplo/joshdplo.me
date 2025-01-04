@@ -1,7 +1,7 @@
 ---
 title: 'Linux Beginner References'
 date: 2024-12-31
-updated: 2025-01-01
+updated: 2025-01-04
 description: 'A list of references for setting up and maintaining linux servers'
 author: 'Josh'
 image:
