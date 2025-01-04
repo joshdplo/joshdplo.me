@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-const { data } = Astro.props;
+const { data, mini } = Astro.props;
 const itemData = data.data;
 const appid = data.data.appid;
 
@@ -19,9 +19,73 @@ const genres = JSON.parse(itemData.genres);
 const categories = JSON.parse(itemData.categories);
 ---
 
-<div class="card" data-game-id={appid}>
-  <div class="info">
-    <div class="top">
+{
+  !mini && (
+    <div class="card" data-game-id={appid}>
+      <div class="info">
+        <div class="top">
+          <Image
+            src={img}
+            alt={`art for ${itemData.name}`}
+            width="231"
+            height="87"
+            loading="lazy"
+          />
+          <div class="title-area">
+            <div class="title">{itemData.name}</div>
+            <div class="os">
+              {platforms.windows && (
+                <img
+                  src="/images/windows.png"
+                  alt="windows logo"
+                  loading="lazy"
+                />
+              )}
+              {platforms.mac && (
+                <img src="/images/mac.png" alt="apple logo" loading="lazy" />
+              )}
+              {platforms.linux && (
+                <img src="/images/linux.png" alt="linux logo" loading="lazy" />
+              )}
+            </div>
+            <div class="released">
+              Released {JSON.parse(itemData.release_date).date}
+            </div>
+            <a
+              href={`https://store.steampowered.com/app/${appid}`}
+              class="link"
+            >
+              Steam Page
+            </a>
+          </div>
+        </div>
+        <div class="description">
+          {itemData.short_description
+            .replaceAll("&amp;", "&")
+            .replaceAll("&quot;", '"')}
+        </div>
+        <div class="developers">
+          Developed by {developers && developers.map((d) => <span>{d}</span>)}
+        </div>
+        <div class="genres">
+          {genres && genres.map((g) => <span>{g.description}</span>)}
+          {categories &&
+            categories
+              .filter(
+                (c) =>
+                  c.description.toLowerCase().includes("player") ||
+                  c.description.toLowerCase().includes("co-op"),
+              )
+              .map((c) => <span>{c.description}</span>)}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+{
+  mini && (
+    <div class="card-mini">
       <Image
         src={img}
         alt={`art for ${itemData.name}`}
@@ -29,62 +93,9 @@ const categories = JSON.parse(itemData.categories);
         height="87"
         loading="lazy"
       />
-      <div class="title-area">
-        <div class="title">{itemData.name}</div>
-        <div class="os">
-          {
-            platforms.windows && (
-              <img
-                src="/images/windows.png"
-                alt="windows logo"
-                loading="lazy"
-              />
-            )
-          }
-          {
-            platforms.mac && (
-              <img src="/images/mac.png" alt="apple logo" loading="lazy" />
-            )
-          }
-          {
-            platforms.linux && (
-              <img src="/images/linux.png" alt="linux logo" loading="lazy" />
-            )
-          }
-        </div>
-        <div class="released">
-          Released {JSON.parse(itemData.release_date).date}
-        </div>
-        <a href={`https://store.steampowered.com/app/${appid}`} class="link"
-          >Steam Page</a
-        >
-      </div>
     </div>
-    <div class="description">
-      {
-        itemData.short_description
-          .replaceAll("&amp;", "&")
-          .replaceAll("&quot;", '"')
-      }
-    </div>
-    <div class="developers">
-      Developed by {developers && developers.map((d) => <span>{d}</span>)}
-    </div>
-    <div class="genres">
-      {genres && genres.map((g) => <span>{g.description}</span>)}
-      {
-        categories &&
-          categories
-            .filter(
-              (c) =>
-                c.description.toLowerCase().includes("player") ||
-                c.description.toLowerCase().includes("co-op"),
-            )
-            .map((c) => <span>{c.description}</span>)
-      }
-    </div>
-  </div>
-</div>
+  )
+}
 
 <style lang="scss">
   @use "@css/util";
@@ -189,5 +200,12 @@ const categories = JSON.parse(itemData.categories);
   .link,
   .description {
     margin-bottom: 0.7rem;
+  }
+
+  .card-mini {
+    img {
+      width: 225px;
+      height: 85px;
+    }
   }
 </style>
