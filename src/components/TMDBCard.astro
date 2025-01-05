@@ -86,13 +86,7 @@ console.log(movieId, itemLink);
 {
   mini && (
     <a class="card-mini" href={itemLink}>
-      <Image
-        src={img}
-        alt={`poster for ${title}`}
-        width="200"
-        height="300"
-        loading="lazy"
-      />
+      <Image src={img} alt={title} width="200" height="300" loading="lazy" />
     </a>
   )
 }
@@ -218,6 +212,12 @@ console.log(movieId, itemLink);
     --img-height: 150px;
     position: relative;
     display: block;
+    transition: transform 0.1s ease-out;
+
+    &:hover {
+      transform: scale(1.1);
+      z-index: 2;
+    }
 
     img {
       width: var(--img-width);
