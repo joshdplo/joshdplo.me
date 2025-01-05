@@ -1,6 +1,8 @@
 ---
-import { META } from "@constants";
+import { META, SITE } from "@constants";
+import { getCollectionItemLink } from "@util";
 import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
 const { data, mini } = Astro.props;
 const movieData = data.data;
 const movieId = data.id;
@@ -24,6 +26,23 @@ const favorite = movieData.rating !== null;
 const mega = movieData.mega;
 const genreIds = JSON.parse(movieData.genre_ids);
 const genresMap = META[isMovie ? "tmdbMovieGenres" : "tmdbTvGenres"];
+
+const allItems = await getCollection(isMovie ? "movies" : "shows");
+let itemIndex;
+allItems.forEach((item, idx) => {
+  if (item.id === movieId) itemIndex = idx;
+});
+const itemLink = !mini
+  ? null
+  : getCollectionItemLink(
+      movieId,
+      itemIndex,
+      allItems.length,
+      SITE.MOVIES_PER_PAGE,
+      isMovie ? "movies" : "shows",
+    );
+
+console.log(movieId, itemLink);
 ---
 
 {
@@ -66,7 +85,7 @@ const genresMap = META[isMovie ? "tmdbMovieGenres" : "tmdbTvGenres"];
 
 {
   mini && (
-    <div class="card-mini">
+    <a class="card-mini" href="/">
       <Image
         src={img}
         alt={`poster for ${title}`}
@@ -74,7 +93,7 @@ const genresMap = META[isMovie ? "tmdbMovieGenres" : "tmdbTvGenres"];
         height="300"
         loading="lazy"
       />
-    </div>
+    </a>
   )
 }
 

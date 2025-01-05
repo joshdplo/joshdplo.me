@@ -56,9 +56,9 @@ export function getCssClamp(
 /**
  * Get Single Item Collection Page
  */
-export function getSingleItemCollectionPage(index: number, total: number, maxPerPage: number) {
-  //@TODO FINISH THIS
-  return 123;
+export function getCollectionItemLink(itemId: string, itemIndex: number, totalItems: number, numPerPage: number, collectionName: string) {
+  //console.log(Math.ceil(itemIndex % (totalItems / numPerPage)));
+  return Math.ceil((totalItems / numPerPage) / itemIndex);
 }
 
 /**

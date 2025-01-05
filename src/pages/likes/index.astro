@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import { getPageMenuLinksFromPath, getSingleItemCollectionPage } from "@util";
+import { getPageMenuLinksFromPath } from "@util";
 import CollectionLayout from "@layouts/CollectionLayout.astro";
 import TMDBCard from "@components/TMDBCard.astro";
 import SpotifyCard from "@components/SpotifyCard.astro";
@@ -67,7 +67,13 @@ const recentGames = await getCollection(
       <span class="bg no-pad">Top Movies</span>
     </h2>
     <div class="list list-tmdb">
-      {allTimeMovies.map((m) => <TMDBCard data={m} mini={true} />)}
+      {
+        allTimeMovies.map((m) => {
+          const link = "";
+
+          return <TMDBCard data={m} mini={true} />;
+        })
+      }
     </div>
 
     <h2 class="h4">
