@@ -122,14 +122,6 @@
     .theme {
       margin-left: auto;
     }
-
-    *:last-child {
-      padding-right: 0;
-    }
-
-    *:first-child {
-      padding-left: 0;
-    }
   }
 
   .button,
@@ -153,7 +145,7 @@
   }
 
   #hamburger {
-    padding: 0.25rem 0.4rem 0.25rem 0;
+    padding: 0.25rem 0.4rem 0.25rem 0.2rem;
     cursor: pointer;
 
     :global(svg) {

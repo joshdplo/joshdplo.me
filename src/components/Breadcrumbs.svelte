@@ -27,7 +27,7 @@
     <ul>
       {#each breadcrumbs as b, i}
         <li>
-          <a href={b}>{b.split("/").pop()}</a> ˒
+          <a href={b}>{b.split("/").pop()}</a>
         </li>
         {#if i === breadcrumbs.length - 1}<li>
             <span>{currentTitle}</span>
@@ -41,9 +41,10 @@
   @use "@css/util";
 
   .breadcrumbs {
+    position: relative;
     margin-left: auto;
     background-color: var(--background);
-    padding: 0 0.5em;
+    padding: 0 0.5rem;
   }
 
   ul {
@@ -54,7 +55,7 @@
     margin: auto;
     height: 100%;
     align-items: center;
-    gap: 0.2rem;
+    gap: 1rem;
 
     @include util.mq(sm) {
       display: flex;
@@ -63,6 +64,8 @@
 
   a,
   span {
+    position: relative;
+    display: block;
     font-size: 0.75rem;
     line-height: 1;
     text-transform: uppercase;
@@ -70,7 +73,14 @@
   }
 
   a {
-    padding-left: 0.1rem;
+    &::after {
+      position: absolute;
+      display: block;
+      top: 0;
+      right: -0.7rem;
+      content: "\002F";
+      line-height: 1;
+    }
 
     &:hover {
       text-decoration: underline;
