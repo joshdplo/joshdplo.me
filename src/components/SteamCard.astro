@@ -1,5 +1,8 @@
 ---
 import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import { SITE } from "@constants";
+import { getCollectionItemLink } from "@util";
 const { data, mini } = Astro.props;
 const itemData = data.data;
 const appid = data.data.appid;
@@ -17,6 +20,23 @@ const platforms = JSON.parse(itemData.platforms);
 const developers = JSON.parse(itemData.developers);
 const genres = JSON.parse(itemData.genres);
 const categories = JSON.parse(itemData.categories);
+
+const allItems = await getCollection("games");
+let itemIndex;
+let invalidItems = 0;
+allItems.forEach((item, idx) => {
+  if (item.data.invalid) invalidItems++;
+  if (item.data.appid === appid) itemIndex = idx;
+});
+const itemLink = !mini
+  ? null
+  : getCollectionItemLink(
+      appid,
+      itemIndex - invalidItems,
+      allItems.length,
+      SITE.GAMES_PER_PAGE,
+      "games",
+    );
 ---
 
 {
@@ -85,7 +105,7 @@ const categories = JSON.parse(itemData.categories);
 
 {
   mini && (
-    <div class="card-mini">
+    <a class="card-mini" href={itemLink}>
       <Image
         src={img}
         alt={`art for ${itemData.name}`}
@@ -93,7 +113,7 @@ const categories = JSON.parse(itemData.categories);
         height="87"
         loading="lazy"
       />
-    </div>
+    </a>
   )
 }
 
@@ -203,6 +223,14 @@ const categories = JSON.parse(itemData.categories);
   }
 
   .card-mini {
+    transition: transform 0.1s ease-out;
+
+    &:hover {
+      transform: scale(1.1);
+      z-index: 2;
+      box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.45);
+    }
+
     img {
       width: 225px;
       height: 85px;
