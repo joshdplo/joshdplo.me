@@ -190,9 +190,8 @@ const itemLink = !mini
     display: flex;
     flex-wrap: wrap;
     gap: 0.3em;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.1rem;
     font-size: 0.9rem;
-    opacity: 0.5;
 
     span::after {
       content: ", ";
@@ -206,14 +205,18 @@ const itemLink = !mini
   .genres {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.35rem;
-    font-size: 0.7rem;
-    opacity: 0.5;
+    gap: 0.15rem;
+    font-size: 0.75rem;
 
     span {
-      padding: 0.1em 0.5em;
-      border: 1px solid var(--font-color);
-      border-radius: 1em;
+      &::after {
+        position: relative;
+        content: ",";
+        // margin-left: 0.15rem;
+      }
+      &:last-child::after {
+        content: none;
+      }
     }
   }
 
