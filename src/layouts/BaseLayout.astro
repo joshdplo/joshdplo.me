@@ -11,7 +11,8 @@ import "@css/fonts.css";
 import "@css/base.scss";
 
 const pageColor = getPageColorFromPath(Astro.url.pathname);
-const { pageTitle, pageDescription, noBreadcrumbs } = Astro.props;
+const { pageTitle, pageDescription, noBreadcrumbs, removeSiteTitle } =
+  Astro.props;
 ---
 
 <html lang="en">
@@ -20,7 +21,9 @@ const { pageTitle, pageDescription, noBreadcrumbs } = Astro.props;
     <link rel="icon" type="image/png" href="/favicon.png" />
 
     <!-- Title  -->
-    <title>{SITE.TITLE}{pageTitle && ` ${pageTitle}`}</title>
+    <title>
+      {!removeSiteTitle ? SITE.TITLE : ""}{pageTitle && ` ${pageTitle}`}
+    </title>
 
     <!-- Meta  -->
     <HeadMeta
