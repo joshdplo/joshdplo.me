@@ -5,7 +5,7 @@ description: 'A tale of triumph in the face of terror and despair.'
 author: 'Josh'
 image:
     pathname: 'keep_v1release.png'
-    alt: 'glitchy dark background with matrix letters'
+    alt: 'fantasical multi-colored pastel clouds in space'
 tags: ["release", "webdev"]
 ---
 

@@ -6,7 +6,7 @@ description: 'A list of references for setting up and maintaining linux servers'
 author: 'Josh'
 image:
     pathname: 'keep_linux-beginner-refs.png'
-    alt: 'glitchy dark background with matrix letters'
+    alt: 'abstract tech background with a linux logo on a screen'
 tags: ["webdev", "linux"]
 ---
 
