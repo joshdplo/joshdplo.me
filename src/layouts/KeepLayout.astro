@@ -1,14 +1,8 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
-import { getCssClamp, formatDate } from "@util";
+import { formatDate } from "@util";
 const { frontmatter, slug } = Astro.props;
-
-const h1Size = 5;
-const clampStr = getCssClamp(
-  (Math.floor((h1Size / 2) * 100) / 100) * 16,
-  h1Size * 16,
-);
 
 const imagesGlob = import.meta.glob("@images/*.{webp,jpg,png}");
 const img = frontmatter.image
@@ -17,38 +11,29 @@ const img = frontmatter.image
 ---
 
 <BaseLayout
-  pageTitle={`• ${frontmatter.title}`}
+  pageTitle={frontmatter.title}
+  removeSiteTitle={true}
   pageDescription={frontmatter?.description}
   noBreadcrumbs={true}
 >
   <section class="contain" data-keep-id={slug}>
-    <div
-      class="head"
-      style={`--h1-size: ${clampStr}`}
-      class:list={[{ "no-img": !img }]}
-    >
-      {
-        img && (
-          <Image
-            src={img}
-            alt={frontmatter.image.alt}
-            width="900"
-            height="514"
-          />
-        )
-      }
-
-      <h1>
-        <span class="bg-transparent no-pad title">{frontmatter.title}</span>
+    {
+      img && (
+        <Image src={img} alt={frontmatter.image.alt} width="900" height="514" />
+      )
+    }
+    <div class="head">
+      <h1 class="h4">
+        {frontmatter.title}
       </h1>
-    </div>
-    <div class="subhead">
-      <div class="date">
-        {`${formatDate("" + (frontmatter.updated || frontmatter.date))}`}{
-          frontmatter.updated && " (Updated)"
-        } -
+      <div class="subhead">
+        <div class="date">
+          {`${formatDate("" + (frontmatter.updated || frontmatter.date))}`}{
+            frontmatter.updated && " (Updated)"
+          } -
+        </div>
+        {frontmatter.tags.map((t) => <a href={`/keeps/tags/${t}`}>#{t}</a>)}
       </div>
-      {frontmatter.tags.map((t) => <a href={`/keeps/tags/${t}`}>#{t}</a>)}
     </div>
 
     <div class="content">
@@ -62,42 +47,27 @@ const img = frontmatter.image
 <style lang="scss">
   @use "@css/util";
 
-  .head {
-    --h1-size: 5rem;
-    position: relative;
-    overflow: hidden;
+  img {
     margin-top: 1rem;
-
-    &.no-img {
-      background-color: var(--font-color-opposite);
-    }
   }
 
-  img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
+  .head {
+    position: relative;
+    border-bottom: 0.1em dashed var(--content-subtle);
+    background-color: var(--background);
+    max-width: 700px;
   }
 
   h1 {
-    padding: 0.8em 0.5em;
-    font-size: var(--h1-size);
-    text-shadow: 0.05em 0.05em 0 var(--font-color-opposite);
-    text-align: center;
-
-    span {
-      padding: 0 0.15em;
-    }
+    padding: 0.2em 0 0;
+    line-height: 1;
   }
 
   .subhead {
     position: relative;
     display: flex;
     gap: 0.5rem;
-    padding: 0.1rem 0 0;
+    padding: 0.05rem 0 0.3rem;
     font-size: 1rem;
 
     a {
@@ -111,7 +81,7 @@ const img = frontmatter.image
 
   .inner {
     background-color: var(--background);
-    padding-top: 1.7rem;
+    padding-top: 0.7em;
     max-width: 720px;
 
     @include util.mq(md) {
