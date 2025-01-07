@@ -180,17 +180,19 @@
     position: relative;
     display: flex;
     justify-content: center;
+    margin: auto;
+    width: 100%;
+
+    @include util.mq(sm) {
+      width: 70%;
+    }
 
     input {
       border-width: 0.2em;
       font-size: var(--search-size);
       border-radius: 2rem;
       padding: 0.4em 0.6em;
-      width: 75%;
-
-      @include util.mq(sm) {
-        width: 55%;
-      }
+      width: 100%;
     }
   }
 
@@ -222,11 +224,12 @@
       position: relative;
       display: flex;
       align-items: center;
-      gap: 0.8em;
-      padding: 0.2em 0;
+      gap: 0.2em;
+      padding: 0.35em 0;
       text-decoration: none;
       text-transform: capitalize;
       border-bottom: 1px solid var(--c-gray-dark);
+      line-height: 1.2;
 
       &:nth-child(odd) {
         background-color: var(--content-subtler);
@@ -234,7 +237,7 @@
     }
 
     span {
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       font-weight: bold;
       text-transform: uppercase;
       padding: 0.3em 0.8em;

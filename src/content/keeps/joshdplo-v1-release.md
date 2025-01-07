@@ -4,7 +4,7 @@ date: 2024-12-21
 description: 'A tale of triumph in the face of terror and despair.'
 author: 'Josh'
 image:
-    pathname: 'tech-web.png'
+    pathname: 'keep_v1release.png'
     alt: 'glitchy dark background with matrix letters'
 tags: ["release", "webdev"]
 ---

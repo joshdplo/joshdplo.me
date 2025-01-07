@@ -10,33 +10,9 @@ const url =
 ---
 
 <BaseLayout>
-  <section class="contain">
-    <div class="center-full">
-      <HeroText text="Search" color="tertiary" />
-    </div>
-    <i class="spacer-1"></i>
-    <Search {url} client:load />
-  </section>
+  <div class="center-full">
+    <HeroText text="Search" color="tertiary" />
+  </div>
 
-  <style lang="scss">
-    @use "@css/util";
-
-    .search-box {
-      position: relative;
-      display: flex;
-      justify-content: center;
-
-      input {
-        border-width: 0.2em;
-        font-size: var(--search-size);
-        border-radius: 2rem;
-        padding: 0.4em 0.6em;
-        width: 75%;
-
-        @include util.mq(sm) {
-          width: 55%;
-        }
-      }
-    }
-  </style>
+  <Search {url} client:load />
 </BaseLayout>
