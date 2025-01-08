@@ -50,7 +50,7 @@ const categoryTerms = [
   { category: 'song', termSelector: '.title' },
   { category: 'band', termSelector: '.title' },
   { category: 'game', termSelector: '.title' },
-  { category: 'keep', termSelector: 'h1 .title' }
+  { category: 'keep', termSelector: 'h1' }
 ];
 
 htmlFiles.forEach(f => {

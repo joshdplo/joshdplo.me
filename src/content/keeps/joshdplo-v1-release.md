@@ -13,21 +13,30 @@ This is the write-up for the first version of my website. If you want to skip th
 ## Background
 When I was looking for my very first front-end job, almost 10 years ago now, it seemed like a no-brainer that I wouldn't get very far without first creating a portfolio site to showcase all of my previous work. So, naturally, I created a portfolio with great care, made it look nice, and was ready to show it off. After going to my first interview, I noticed that the recruiter had removed my portfolio site from the resume that was being sent to companies. I called her up and told her that she forgot to include my website on the resume. She told me it was on purpose - she said nobody cared about portfolio sites, and it probably would do more harm than good, so she removed it. I was so mad! I had put a lot of energy into creating a site!
 
-I always have a laugh when I think about that experience today. She was the recruiter, and even though it baffled me, I just let her do her job. She was able to place me at a great company, so everything worked out in the end. I spent the next 3 years at that company, and then got my second front-end job through a co-worker's husband, so I didn't have to go through the actual job hunt process again. After five years at my second job, I decided to take an extended break. Ok - now we're all cought up temporally, so who cares about portfolio sites and what am I even talking about?!
+I always have a laugh when I think about that experience today. She was the recruiter, and even though it baffled me, I just let her do her job. She was able to place me at a great company, so everything worked out in the end. I spent the next 3 years at that company, and then got my second front-end job through a co-worker, so I didn't have to go through the actual job hunt process again. After five years at my second job, I decided to take an extended break.
 
-Well...remember that extended break? It's over now, and I'm ready to get a new job. So I start taking a look at jobs and then I start applying to jobs. And yah yah - this is basically the worst time ever to be a front-end developer so there's that, but also something way more important hit me when I started applying for jobs. The thing that hit me was "holy crap I don't actually care at all about these jobs that I'm applying to". So I began looking for companies that I might fit into and be excited about. I found one that I really liked - and on their "how to get a job" page, in bold letters, it says "we want you to show us something". That paragraph gave me the kick in the pants i needed to get going.
+That break is over now, and I'm ready to get a new job. So I start taking a look at jobs and then I start applying to jobs. And yah yah - this is basically the worst time ever to be a front-end developer, so there's that, but also something way more important hit me when I started applying for jobs: "holy crap I don't actually care at all about these jobs that I'm applying to". So I began looking for companies that I might fit into and be excited about.
 
-However, as these things tend to go, I was a ding dong, and I didn't take screenshots or keep any detailed notes from my last agency job of five years. So I don't really have anything to show except for a boring ol' resume with my name and a bunch of talky tech words and business lingo like "provided value to clients".
+I found one company that I really liked. On their "how to get a job" page, in bold letters, it says "we want you to show us something". I really liked this company a lot, and what they were saying made total sense. However, as these things tend to go, I was a ding dong, and I didn't take screenshots or keep any detailed notes from my last agency job of five years. So I don't really have anything to show except for a boring ol' resume with my name and a bunch of talky tech words and business lingo like "provided value to clients".
 
 Now for the last 3 months, I've been making stuff to show. I started with a giant project to create a full e-commerce site that sells fake cubes. That was cool. And then once I was 90% finished with that I realized I didn't have anything that was my own - I didn't have anything that was actually authentic or important to me - I just had a bunch of (cool) stuff that I thought I needed to have because it might help me get a job.
 
-After my last experience with building a portfolio site, I thought there would never be any way I'd make another one. And then I finally understood...I don't need a portfolio site - I need a me site! Something that I am invested in; will actually use; and can be proud of; even if it's just for myself, and even if it's imperfect, beacuse then I'll really have something to show.
+After my last experience with building a portfolio site, I thought there would never be any way I'd make another one. And then I had a really nice thought...I don't need a portfolio site - I need a me site! Something that I am invested in; will actually use; and can be proud of; even if it's just for myself, and even if it's imperfect, beacuse then I'll really have something to show.
 
-So here that thing is: it's called joshdplo.me, and it's my sweet website!!!
+So after much trial and error and a little inspiration, here that thing is: it's called joshdplo.me!
+
+## Data Wrangling
+From the beginning, I knew that I wanted a way to list my favorite movies, shows, games, and music. In order to accomplish this, I needed to decide where the data would be coming from. I had just discovered [themoviedb.org](https://www.themoviedb.org/), fallen in love with it, and saw that they had an API. Movies and shows were decided. For games, most of what I play is on Steam, and they have an API, so that was an easy choice.
+
+Music was the last part. I've been using spotify for a while as my main music source and they have an API, so I decided to use that. There were two problems with spotify, though. The first problem was that I had a boat load of liked songs stored on youtube that I'd need to go through and add to spotify. The second problem was that the Spotify API requires user authentication in order to get the user data. I added all of my songs from youtube to Spotify in an afternoon, and then I got to building a service. I called it Slurpi, because it slurps down the data (duh!)
+
+Slurpi became a project on its own. It's nothing wildly advanced, but it was fun to make. It is required for the joshdplo.me source code to build, so that's why it's relevant here. [You can view the slurpi source here](https://github.com/joshdplo/slurpi).
 
 ## From Vanilla to Sveltekit to Astro and beyond
+how we went from vanilla to sveltekit to astro
 
-
+## Search Not Included
+how i wrote the search stuff
 
 ### V1 Release Notes
 ## [Website](https://github.com/joshdplo/joshdplo.me)
