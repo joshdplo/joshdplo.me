@@ -1,12 +1,12 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import HeroText from "@components/HeroText.svelte";
-import Search from "@components/Search.svelte";
+import SearchPage from "@components/SearchPage.svelte";
 
 const url =
   import.meta.env.MODE === "development"
     ? "http://localhost:3034/search"
-    : `${Astro.site?.origin}/search`;
+    : `${Astro.site?.origin}:3034/search`;
 ---
 
 <BaseLayout>
@@ -14,5 +14,5 @@ const url =
     <HeroText text="Search" color="tertiary" />
   </div>
 
-  <Search {url} client:load />
+  <SearchPage {url} client:load />
 </BaseLayout>

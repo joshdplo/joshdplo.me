@@ -22,6 +22,7 @@ tags: ["webdev", "linux"]
 - [NGINX Block Direct IP Access](https://erikpoehler.com/2022/08/02/how-to-block-direct-ip-access-to-your-nginx-web-server/)
 - [NGINX Basic Password Authentication (DO)](https://www.digitalocean.com/community/tutorials/how-to-set-up-password-authentication-with-nginx-on-ubuntu-22-04)
 - [NGINX Reverse Proxy (DO)](https://www.digitalocean.com/community/tutorials/nginx-reverse-proxy-node-angular)
+- [Node PM2 Setup (DO)](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-22-04)
 
 ## Git
 - [Git Hooks](https://www.digitalocean.com/community/tutorials/how-to-use-git-hooks-to-automate-development-and-deployment-tasks)
