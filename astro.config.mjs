@@ -11,7 +11,6 @@ export default defineConfig({
   integrations: [svelte(), sitemap()],
   site: 'https://joshdplo.me',
   base: '/',
-  trailingSlash: 'never',
   vite: {
     define: {
       _META: meta[0]
