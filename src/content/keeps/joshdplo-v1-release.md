@@ -11,11 +11,11 @@ tags: ["release", "webdev"]
 This is the write-up for the first version of my website. If you want to skip the heart-wrenching background story, you can [jump to the release notes](#v1-release-notes) or [visit the github repo](https://github.com/joshdplo/joshdplo.me).
 
 ## Background
-When I was looking for my very first front-end job, almost 10 years ago now, it seemed like a no-brainer that I wouldn't get very far without first creating a portfolio site. Naturally, set out to I create a portfolio with great care, made it look nice, and was ready to show it off. After going to my first interview, I noticed that the recruiter had removed my portfolio site from the resume that was being sent to companies. I called her up and told her that she forgot to include my website on the resume. She told me it was on purpose - she said nobody cared about portfolio sites, and it might do more harm than good, so she removed it. I was so mad! I had put a lot of energy into my site!
+When I was looking for my very first front-end job, almost 10 years ago now, it seemed like a no-brainer that I wouldn't get very far without first creating a portfolio site. After going to my first interview, I noticed that the recruiter had removed the link to my portfolio site from the resume that was being sent to companies. I called her up and told her that she forgot to include my website on the resume. She told me it was on purpose - she said nobody cared about portfolio sites, and it might do more harm than good, so she removed it. I was so mad! I had put a lot of energy into my site!
 
 I always have a laugh when I think about that experience today. She was the recruiter, and even though it baffled me, I figured she knew what she was doing. She was able to place me at a great company, so everything worked out in the end. I spent the next 3 years at that company, and then got my second front-end job through a co-worker, skipping the job hunt process. After five years at my second job, I decided to take an extended break.
 
-Now that the break has come to an end, it's time to get a new job. It never really occured to me during the day-to-day at my agency job to take screenshots and write detailed notes for client websites and features. I suppose keeping records could have helped in the job search, but ---LEFT OFF HERE---
+Now that the break has come to an end, it's time to get a new job!
 
 ## Data Wrangling
 From the beginning, I knew that I wanted a way to list my favorite movies, shows, games, and music. In order to accomplish this, I needed to decide where the data would be coming from. I had just discovered [themoviedb.org](https://www.themoviedb.org/), fallen in love with it, and saw that they had an API. Movies and shows were decided. For games, most of what I play is on Steam, and they have an API, so that was an easy choice.
@@ -28,7 +28,7 @@ Slurpi became a project on its own. It's nothing wildly advanced, but it was fun
 how we went from vanilla to sveltekit to astro
 
 ## Search Not Included
-how i wrote the search stuff
+The last feature I wanted to build before launching was search. After reading a few posts about implementing [pagefind](https://pagefind.app/) in Astro, I gave it a whirl. It worked nicely for the blog-style content, but my custom collections and the way they are layed out didn't really jive well with pagefind. After pagefind, I briefly tried out [orama](https://docs.orama.com/), which didn't really fit my use case either. So I built my own search! It goes through all collections and creates a JSON file with the title of items as the keys and includes a small amount of metadata about the items. Though it's very straightforward, it was one of the most satisfying parts of the site to build because it turned out quite smooth. It is also the only dynamic part of the site.
 
 ### V1 Release Notes
 ## [Website](https://github.com/joshdplo/joshdplo.me)
