@@ -8,7 +8,7 @@ image:
     alt: 'fantasical multi-colored pastel clouds in space'
 tags: ["release", "webdev"]
 ---
-This is the write-up for the first version of my website. If you want to skip the heart-wrenching background story, you can [jump to the release notes](#v1-release-notes) or [visit the github repo](https://github.com/joshdplo/joshdplo.me).
+This is the write-up for the first version of my website. [Jump to the release notes](#v1-release-notes) / [Visit the Github Repo](https://github.com/joshdplo/joshdplo.me).
 
 ## Background
 When I was looking for my very first front-end job, almost 10 years ago, --REWRITE THIS COMPLETELY--
