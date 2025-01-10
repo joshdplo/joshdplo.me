@@ -34,11 +34,17 @@ const {
       document.body.classList.remove("searched");
     }
     window.addEventListener("click", () => removeSearched(), { once: true });
+    window.addEventListener("touchmove", () => removeSearched(), {
+      once: true,
+    });
     window.addEventListener("keydown", () => removeSearched(), { once: true });
+    window.addEventListener("touchdown", () => removeSearched(), {
+      once: true,
+    });
     el.addEventListener("mouseleave", () => removeSearched(), { once: true });
 
     el.scrollIntoView({
-      behavior: "smooth",
+      behavior: "instant",
       block: "center",
     });
   });
