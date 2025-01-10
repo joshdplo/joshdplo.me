@@ -11,23 +11,17 @@ tags: ["release", "webdev"]
 This is the write-up for the first version of my website. If you want to skip the heart-wrenching background story, you can [jump to the release notes](#v1-release-notes) or [visit the github repo](https://github.com/joshdplo/joshdplo.me).
 
 ## Background
-When I was looking for my very first front-end job, almost 10 years ago now, it seemed like a no-brainer that I wouldn't get very far without first creating a portfolio site. After going to my first interview, I noticed that the recruiter had removed the link to my portfolio site from the resume that was being sent to companies. I called her up and told her that she forgot to include my website on the resume. She told me it was on purpose - she said nobody cared about portfolio sites, and it might do more harm than good, so she removed it. I was so mad! I had put a lot of energy into my site!
-
-I always have a laugh when I think about that experience today. She was the recruiter, and even though it baffled me, I figured she knew what she was doing. She was able to place me at a great company, so everything worked out in the end. I spent the next 3 years at that company, and then got my second front-end job through a co-worker, skipping the job hunt process. After five years at my second job, I decided to take an extended break.
-
-Now that the break has come to an end, it's time to get a new job!
+When I was looking for my very first front-end job, almost 10 years ago, --REWRITE THIS COMPLETELY--
 
 ## Data Wrangling
-From the beginning, I knew that I wanted a way to list my favorite movies, shows, games, and music. In order to accomplish this, I needed to decide where the data would be coming from. I had just discovered [themoviedb.org](https://www.themoviedb.org/), fallen in love with it, and saw that they had an API. Movies and shows were decided. For games, most of what I play is on Steam, and they have an API, so that was an easy choice.
+The main thing I wanted to do with my site was to capture all of my favorite media in one place: movies, shows, music, and games! I'm using [TMDB (themoviedb.org)](https://www.themoviedb.org/) for movies and tv, [Spotify](https://open.spotify.com) for music, and [Steam](https://steampowered.com) for games.
 
-Music was the last part. I've been using spotify for a while as my main music source and they have an API, so I decided to use that. There were two problems with spotify, though. The first problem was that I had a boat load of liked songs stored on youtube that I'd need to go through and add to spotify. The second problem was that the Spotify API requires user authentication in order to get the user data. I added all of my songs from youtube to Spotify in an afternoon, and then I got to building a service. I called it Slurpi, because it slurps down the data (duh!)
-
-Slurpi became a project on its own. It's nothing wildly advanced, but it was fun to make. It is required for the joshdplo.me source code to build, so that's why it's relevant here. [You can view the slurpi source here](https://github.com/joshdplo/slurpi).
+I wrote Slurpi as a tool to get all of the data from the APIs and store it in a sqlite databasae. Because Spotify requires user auth to get liked songs, followed artists, etc, I decided to build out Slurpi's UI to handle Spotify auth and give some visual feedback. Slurpi is required for the Astro site to build. [You can view the slurpi source here](https://github.com/joshdplo/slurpi).
 
 ## From Vanilla to Sveltekit to Astro and beyond
 how we went from vanilla to sveltekit to astro
 
-## Search Not Included
+## The Search for Search
 The last feature I wanted to build before launching was search. After reading a few posts about implementing [pagefind](https://pagefind.app/) in Astro, I gave it a whirl. It worked nicely for the blog-style content, but my custom collections and the way they are layed out didn't really jive well with pagefind. After pagefind, I briefly tried out [orama](https://docs.orama.com/), which didn't really fit my use case either. So I built my own search! It goes through all collections and creates a JSON file with the title of items as the keys and includes a small amount of metadata about the items. Though it's very straightforward, it was one of the most satisfying parts of the site to build because it turned out quite smooth. It is also the only dynamic part of the site.
 
 ### V1 Release Notes
