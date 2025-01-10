@@ -14,7 +14,7 @@ const {
 ---
 
 <script>
-  document.addEventListener("astro:page-load", () => {
+  function scrollToSearch() {
     const urlSearchParams = new URLSearchParams(window.location.search);
     if (urlSearchParams.size === 0) return;
 
@@ -44,9 +44,14 @@ const {
     el.addEventListener("mouseleave", () => removeSearched(), { once: true });
 
     el.scrollIntoView({
-      behavior: "instant",
+      behavior: "smooth",
       block: "center",
     });
+  }
+
+  scrollToSearch();
+  document.addEventListener("astro:page-load", () => {
+    scrollToSearch();
   });
 </script>
 
