@@ -12,6 +12,7 @@
   let searchDisabled = $state(false);
   let loading = $state(false);
   let results = $state([]);
+  let hasError = $state(false);
   let currentPage = $state(1);
   let resultsShowing = $derived(results.length);
   let totalResults = $state(0);
@@ -63,6 +64,9 @@
           query,
           page: currentPage,
         }),
+      }).catch((err) => {
+        hasError = true;
+        loading = false;
       });
       const data = await searchReq.json();
 
@@ -80,6 +84,7 @@
         results = data.results;
       }
 
+      hasError = false;
       loading = false;
       window.history.replaceState(
         {},
@@ -125,6 +130,9 @@
 </section>
 <section id="results" class="contain">
   <div class="loader" class:active={loading}></div>
+  {#if hasError}
+    <div class="center-full">Error searching - please try again later.</div>
+  {/if}
   {#if totalResults > 0}
     <div class="head">
       {totalResults} Results

@@ -145,8 +145,9 @@ const games = defineCollection({
       };
     });
   },
-  //@TODO: the games schema can contain "invalid" games (all they have is an appid)
+  //@TODO: the games schema can contain "invalid" games (all they have is an appid but no associated data)
   // we won't ever use these, so they should just be removed on the slurpi side eventually
+  // that's the reason for all these optional types
   schema: z.object({
     appid: z.number(),
     recent: z.number(),
