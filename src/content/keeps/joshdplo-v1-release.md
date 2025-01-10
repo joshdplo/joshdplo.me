@@ -1,6 +1,7 @@
 ---
 title: 'Joshdplo.me V1 Release'
 date: 2024-12-21
+updated: 2025-01-10
 description: 'A brief write-up on the release of joshdplo.me - the motivation, the process, and the release notes.'
 author: 'Josh'
 image:
