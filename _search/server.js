@@ -23,7 +23,7 @@ const searchIndex = preprocessSearchIndex(searchData);
 app.use(helmet());
 app.use(express.json());
 app.use(cors({
-  origin: ['http://localhost:4321', astroConfig.site],
+  origin: ['http://localhost:4321', astroConfig.site, astroConfig.site.replace('https://', 'https://search.')],
   methods: ['GET', 'POST']
 }));
 
