@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(cors({
   origin: ['http://localhost:4321', astroConfig.site],
   methods: ['GET', 'POST']
-}))
+}));
 
 // Routing
 app.get('/search', (req, res) => res.json({ online: true }));
