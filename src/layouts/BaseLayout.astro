@@ -27,7 +27,7 @@ const { pageTitle, pageDescription, noBreadcrumbs, removeSiteTitle } =
 
     <!-- Meta  -->
     <HeadMeta
-      pageTitle={`${SITE.TITLE}${pageTitle ? " " + pageTitle : ""}`}
+      pageTitle={`${!removeSiteTitle ? SITE.TITLE : ""}${pageTitle ? " " + pageTitle : ""}`}
       {pageDescription}
     />
 
