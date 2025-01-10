@@ -42,24 +42,25 @@
 
   .breadcrumbs {
     position: relative;
+    display: none;
     margin-left: auto;
     background-color: var(--background);
     padding: 0 0.5rem;
+
+    @include util.mq(sm) {
+      display: block;
+    }
   }
 
   ul {
     font-size: 0.75rem;
     line-height: 1;
     position: relative;
-    display: none;
+    display: flex;
     margin: auto;
     height: 100%;
     align-items: center;
     gap: 1rem;
-
-    @include util.mq(sm) {
-      display: flex;
-    }
   }
 
   a,
