@@ -6,7 +6,7 @@ import SearchPage from "@components/SearchPage.svelte";
 const url =
   import.meta.env.MODE === "development"
     ? "http://localhost:3034/search"
-    : `${Astro.site?.origin}/api/search`;
+    : `${Astro.site?.origin?.replace("https://", "https://search.")}`;
 ---
 
 <BaseLayout>
