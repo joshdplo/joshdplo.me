@@ -12,8 +12,13 @@ export async function getStaticPaths({ paginate }) {
 
   return tags.flatMap((t) => {
     const tagKeeps = keeps.filter((k) => k.data.tags.includes(t));
+    const sortedKeeps = keeps.sort(
+      (a, b) =>
+        new Date(b.data.updated || b.data.date) -
+        new Date(a.data.updated || a.data.date),
+    );
 
-    return paginate(tagKeeps, {
+    return paginate(sortedKeeps, {
       params: { tag: t },
       pageSize: SITE.KEEPS_PER_PAGE,
     });

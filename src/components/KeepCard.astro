@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import { getCssClamp, formatDate } from "@util";
-const { data } = Astro.props;
+const { data, featured = false } = Astro.props;
 const keepId = data.id;
 const keepData = data.data;
 
@@ -20,19 +20,9 @@ const date = formatDate(
 );
 ---
 
-<a class="card" href={`/keeps/${keepId}`}>
+<a class:list={["card", featured]} href={`/keeps/${keepId}`}>
   <div class="wrapper" style={`--title-size: ${clampStr}`}>
-    {
-      img && (
-        <Image
-          src={img}
-          alt="random post background"
-          width="500"
-          height="286"
-        />
-      )
-    }
-    {!img && <div class="placeholder" />}
+    {img && <Image src={img} alt="" width="500" height="286" />}
     <div class="title">{keepData.title}</div>
     <div class="date">{date}</div>
     {keepData.description && <p class="description">{keepData.description}</p>}
@@ -58,12 +48,6 @@ const date = formatDate(
 
     img {
       width: 100%;
-    }
-
-    .placeholder {
-      width: 100%;
-      height: var(--img-height);
-      background-color: var(--font-color-opposite);
     }
 
     .title {
