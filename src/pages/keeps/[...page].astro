@@ -10,7 +10,12 @@ const pageMenuLinks = getPageMenuLinksFromPath("/keeps");
 
 export async function getStaticPaths({ paginate }) {
   const keeps = await getCollection("keeps");
-  return paginate(keeps, { pageSize: SITE.KEEPS_PER_PAGE });
+  const sortedKeeps = keeps.sort(
+    (a, b) =>
+      new Date(b.data.updated || b.data.date) -
+      new Date(a.data.updated || a.data.date),
+  );
+  return paginate(sortedKeeps, { pageSize: SITE.KEEPS_PER_PAGE });
 }
 
 const { page } = Astro.props;
