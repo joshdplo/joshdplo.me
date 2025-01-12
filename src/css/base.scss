@@ -48,14 +48,7 @@
   --c-quaternary: var(--c-theme-coral);
   --c-accent: var(--c-theme-jasmine);
 
-  --font-color: var(--c-white);
-  --font-color-opposite: var(--c-black);
-  --content-background: var(--c-black);
-  --content-subtle: var(--c-gray-darker);
-  --content-subtler: var(--c-gray-darkest);
-  --content-transparent: var(--c-transparent-dark);
-  --content-transparent-opposite: var(--c-transparent-light);
-  --background: var(--c-theme-dark);
+  /* Theme Defaults are written at the bottom of file!! */
 
   --ff-default: var(--ff-atkinson);
   --ff-brand: var(--ff-londrina);
@@ -239,9 +232,18 @@ ol ol {
 /**
  * Accessibility
  */
-*:focus-visible {
-  outline: .2rem dotted var(--c-primary);
-  background-color: rgba(100, 0, 255, .1);
+@include util.themeStyles(dark) {
+  *:focus-visible {
+    outline: .2rem dotted var(--c-primary);
+    background-color: rgba(100, 0, 255, .1);
+  }
+}
+
+@include util.themeStyles(light) {
+  *:focus-visible {
+    outline-color: var(--c-primary-darker);
+    background-color: rgba(255, 255, 0, .25);
+  }
 }
 
 .skip-to-content {
@@ -438,7 +440,9 @@ ol ol {
 }
 
 /**
- * Light Theme
+ * Theme
+ * - need to include explicitly declare variations here for class-based theming to work
+ * - see _util.scss for the themeVars and themeStyles mixins
  */
 @include util.themeVars(light) {
   --font-color: var(--c-black);
@@ -451,6 +455,17 @@ ol ol {
   --content-background: var(--c-white);
 }
 
+@include util.themeVars(dark) {
+  --font-color: var(--c-white);
+  --font-color-opposite: var(--c-black);
+  --background: var(--c-theme-dark);
+  --content-subtle: var(--c-gray-darker);
+  --content-subtler: var(--c-gray-darkest);
+  --content-transparent: var(--c-transparent-dark);
+  --content-transparent-opposite: var(--c-transparent-light);
+  --content-background: var(--c-black);
+}
+
 @include util.themeStyles(light) {
   .show-dark {
     display: none;
@@ -458,11 +473,6 @@ ol ol {
 
   .show-light {
     display: block;
-  }
-
-  *:focus-visible {
-    outline-color: var(--c-primary-darker);
-    background-color: rgba(255, 255, 0, .25);
   }
 }
 
