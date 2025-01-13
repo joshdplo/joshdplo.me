@@ -1,7 +1,7 @@
 export const SITE = {
-  TITLE: 'Josh',
+  TITLE: 'Josh D',
   DESCRIPTION: 'The dot me of Josh D',
-  KEEPS_PER_PAGE: 3, //@TODO: Change to proper value after testing
+  NOTES_PER_PAGE: 6,
   MOVIES_PER_PAGE: 10,
   SONGS_PER_PAGE: 12,
   GAMES_PER_PAGE: 10,
@@ -10,20 +10,20 @@ export const SITE = {
 export const PAGE_COLORS = [
   { path: '/', },
   { path: '/likes', color: "secondary" },
-  { path: '/keeps', color: "quaternary" },
+  { path: '/notes', color: "quaternary" },
   { path: '/search', color: "tertiary" },
 ]
 
 export const NAV_LINKS = [
-  { path: '/', title: 'Greets' },
+  { path: '/', title: 'Home' },
   { path: '/likes', title: 'Likes' },
-  { path: '/keeps', title: 'Keeps' },
+  { path: '/notes', title: 'Notes' },
 ];
 
 export const FOOTER_LINKS = [
-  { path: '/', title: 'Greets' },
+  { path: '/', title: 'Home' },
   {
-    path: '/likes', title: 'Likes', children: [
+    path: '/likes', title: 'Likes', allTitle: 'Top Likes', children: [
       { path: '/likes/movies', title: 'Movies' },
       { path: '/likes/shows', title: 'Shows' },
       { path: '/likes/bands', title: 'Bands' },
@@ -32,8 +32,8 @@ export const FOOTER_LINKS = [
     ]
   },
   {
-    path: '/keeps', title: 'Keeps', children: [
-      { path: '/keeps/tags', title: 'Tags' }
+    path: '/notes', title: 'Notes', allTitle: 'All Notes', children: [
+      { path: '/notes/tags', title: 'Tags' }
     ]
   },
 ];

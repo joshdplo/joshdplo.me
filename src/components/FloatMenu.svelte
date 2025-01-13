@@ -209,7 +209,6 @@
       padding-right: 2.25em;
       color: var(--font-color-opposite);
       background-color: var(--font-color);
-      cursor: default;
 
       &:after {
         opacity: 1;

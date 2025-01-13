@@ -38,7 +38,7 @@ const htmlFiles = files
       parentDir !== 'tags' &&
       grandparentDir !== 'tags' &&
       parentDir !== 'dist' &&
-      f !== '../dist/keeps/index.html' &&
+      f !== '../dist/notes/index.html' &&
       f !== '../dist/likes/index.html'
   });
 
@@ -50,7 +50,7 @@ const categoryTerms = [
   { category: 'song', termSelector: '.title' },
   { category: 'band', termSelector: '.title' },
   { category: 'game', termSelector: '.title' },
-  { category: 'keep', termSelector: 'h1' }
+  { category: 'note', termSelector: 'h1' }
 ];
 
 htmlFiles.forEach(f => {

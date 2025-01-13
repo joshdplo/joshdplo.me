@@ -22,12 +22,14 @@ const { pageTitle, pageDescription, noBreadcrumbs, removeSiteTitle } =
 
     <!-- Title  -->
     <title>
-      {!removeSiteTitle ? SITE.TITLE : ""}{pageTitle && ` ${pageTitle}`}
+      {pageTitle && `${pageTitle}${removeSiteTitle ? "" : " • "}`}{
+        !removeSiteTitle ? SITE.TITLE : ""
+      }
     </title>
 
     <!-- Meta  -->
     <HeadMeta
-      pageTitle={`${!removeSiteTitle ? SITE.TITLE : ""}${pageTitle ? " " + pageTitle : ""}`}
+      pageTitle={`${pageTitle ? `${removeSiteTitle ? pageTitle : pageTitle + " • "}` : ""}${!removeSiteTitle ? SITE.TITLE : ""}`}
       {pageDescription}
     />
 
@@ -37,13 +39,14 @@ const { pageTitle, pageDescription, noBreadcrumbs, removeSiteTitle } =
         const LSTheme = window?.localStorage?.getItem("theme");
         if (LSTheme) {
           document.documentElement.classList.add(`theme-${LSTheme}`);
-        } else {
+        } else if (window.matchMedia) {
           document.documentElement.classList.add(
-            window.matchMedia &&
-              window.matchMedia("(prefers-color-scheme: dark)").matches
+            window.matchMedia("(prefers-color-scheme: dark)").matches
               ? "theme-dark"
               : "theme-light",
           );
+        } else {
+          document.documentElement.classList.add("theme-light");
         }
       }
 

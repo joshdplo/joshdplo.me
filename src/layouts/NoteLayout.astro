@@ -12,11 +12,10 @@ const img = frontmatter.image
 
 <BaseLayout
   pageTitle={frontmatter.title}
-  removeSiteTitle={true}
   pageDescription={frontmatter?.description}
   noBreadcrumbs={true}
 >
-  <section class="contain" data-keep-id={slug}>
+  <section class="contain" data-note-id={slug}>
     {
       img && (
         <Image src={img} alt={frontmatter.image.alt} width="900" height="514" />
@@ -32,7 +31,7 @@ const img = frontmatter.image
             frontmatter.updated && " (Updated)"
           } -
         </div>
-        {frontmatter.tags.map((t) => <a href={`/keeps/tags/${t}`}>#{t}</a>)}
+        {frontmatter.tags.map((t) => <a href={`/notes/tags/${t}`}>#{t}</a>)}
       </div>
     </div>
 

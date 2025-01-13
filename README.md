@@ -1,5 +1,5 @@
 # joshdplo.me
-The dot me of Josh D! A proper readme will come eventually. The below info is copied from `src/content/keeps/joshdplo-v1-release.md`
+The dot me of Josh D! A proper readme will come eventually. The below info is copied from `src/content/notes/joshdplo-v1-release.md`
 
 ## Background
 I started writing a grand account of my origins as a front-end dev and as I began to edit it down I realized...BORING! That's a story for another time. The original motivation for this site was to aid in job hunting by showing: "hey, I can build a modern website". As some creative things do - over the process of thinking, developing, dreaming, and doing - this project morphed into something more personal. I'm a relatively private person, and I've never created a personal site before, so it'll be interesting to have a little part of me out in the wild...I'm looking forward to seeing how this site evolves. A few more technical details are below, but aside from that, here is the release of my site: joshdplo.me!!!
@@ -22,7 +22,7 @@ This is the first project I've used typescript in. While I did pick up some basi
 #### [Website](https://github.com/joshdplo/joshdplo.me)
 - **Features**
   - List display for liked media items (called "likes"): uses paginated results, items contain URLs to their origin site.
-  - Blog-like system (called "keeps"): implemented via Astro collections, support for posts (called "notes") and tags, uses paginated results.
+  - Blog-like system (called "notes"): implemented via Astro collections, support for posts and tags, uses paginated results.
   - Custom Search: create search index from built astro html files, use express to handle search queries (in-memory)
   - Basic OG/Twitter metadata component
   - Dark/light theme with localStorage memory

@@ -3,24 +3,24 @@ import { SITE } from "@constants";
 import { getPageMenuLinksFromPath } from "@util";
 import { getCollection } from "astro:content";
 import CollectionLayout from "@layouts/CollectionLayout.astro";
-import KeepCard from "@components/KeepCard.astro";
+import NoteCard from "@components/NoteCard.astro";
 import Pagination from "@components/Pagination.astro";
 
 export async function getStaticPaths({ paginate }) {
-  const keeps = await getCollection("keeps");
-  const tags = [...new Set(keeps.map((k) => k.data.tags).flat())];
+  const notes = await getCollection("notes");
+  const tags = [...new Set(notes.map((n) => n.data.tags).flat())];
 
   return tags.flatMap((t) => {
-    const tagKeeps = keeps.filter((k) => k.data.tags.includes(t));
-    const sortedKeeps = keeps.sort(
+    const tagNotes = notes.filter((n) => n.data.tags.includes(t));
+    const sortedNotes = tagNotes.sort(
       (a, b) =>
         new Date(b.data.updated || b.data.date) -
         new Date(a.data.updated || a.data.date),
     );
 
-    return paginate(sortedKeeps, {
+    return paginate(sortedNotes, {
       params: { tag: t },
-      pageSize: SITE.KEEPS_PER_PAGE,
+      pageSize: SITE.NOTES_PER_PAGE,
     });
   });
 }
@@ -28,12 +28,12 @@ export async function getStaticPaths({ paginate }) {
 const { tag } = Astro.params;
 const { page } = Astro.props;
 const { total, currentPage, lastPage } = page;
-const pageMenuLinks = getPageMenuLinksFromPath("/keeps");
+const pageMenuLinks = getPageMenuLinksFromPath("/notes");
 ---
 
 <CollectionLayout
-  pageTitle={`keeps ${tag} notes 📋${currentPage > 1 ? " (" + currentPage + "/" + lastPage + ")" : ""}`}
-  heroText="Keeps"
+  pageTitle={`stores ${tag} notes 📋${currentPage > 1 ? " (" + currentPage + "/" + lastPage + ")" : ""}`}
+  heroText="Notes"
   heroSubtext={`#${tag}`}
   heroDescenders={true}
   {pageMenuLinks}
@@ -42,7 +42,7 @@ const pageMenuLinks = getPageMenuLinksFromPath("/keeps");
 >
   <section class="contain">
     <div class="list">
-      {page.data.map((keep) => <KeepCard data={keep} />)}
+      {page.data.map((note) => <NoteCard data={note} />)}
     </div>
 
     <Pagination

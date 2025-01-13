@@ -2,12 +2,12 @@
 import { Image } from "astro:assets";
 import { getCssClamp, formatDate } from "@util";
 const { data, featured = false } = Astro.props;
-const keepId = data.id;
-const keepData = data.data;
+const noteId = data.id;
+const noteData = data.data;
 
 const imagesGlob = import.meta.glob("@images/*.{webp,jpg,png}");
-const img = keepData.image
-  ? imagesGlob[`/src/images/${keepData.image.pathname}`]()
+const img = noteData.image
+  ? imagesGlob[`/src/images/${noteData.image.pathname}`]()
   : null;
 
 const titleSize = 2;
@@ -16,16 +16,16 @@ const clampStr = getCssClamp(
   titleSize * 16,
 );
 const date = formatDate(
-  keepData.updated ? "" + keepData.updated : "" + keepData.date,
+  noteData.updated ? "" + noteData.updated : "" + noteData.date,
 );
 ---
 
-<a class:list={["card", featured]} href={`/keeps/${keepId}`}>
+<a class:list={["card", featured]} href={`/notes/${noteId}`}>
   <div class="wrapper" style={`--title-size: ${clampStr}`}>
     {img && <Image src={img} alt="" width="500" height="286" />}
-    <div class="title">{keepData.title}</div>
+    <div class="title">{noteData.title}</div>
     <div class="date">{date}</div>
-    {keepData.description && <p class="description">{keepData.description}</p>}
+    {noteData.description && <p class="description">{noteData.description}</p>}
   </div>
 </a>
 

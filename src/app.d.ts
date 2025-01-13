@@ -9,7 +9,7 @@ declare global {
 		// interface Platform {}
 	}
 
-	interface Keep {
+	interface Note {
 		title: string,
 		slug: string,
 		summary: string,
@@ -20,10 +20,10 @@ declare global {
 		tags: string[],
 	}
 
-	interface KeepTag {
+	interface NoteTag {
 		title: string,
 		path: string,
-		keeps: Keep[]
+		notes: Note[]
 	}
 
 	interface Movie {

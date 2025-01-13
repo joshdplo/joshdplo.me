@@ -5,7 +5,7 @@ updated: 2025-01-04
 description: 'A list of references for setting up and maintaining linux servers'
 author: 'Josh'
 image:
-    pathname: 'keep_linux-beginner-refs.png'
+    pathname: 'linux-beginner-refs.png'
     alt: 'abstract tech background with a linux logo on a screen'
 tags: ["webdev", "linux"]
 ---

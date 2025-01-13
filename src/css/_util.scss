@@ -19,29 +19,11 @@
 
 /**
  * Themes
- * - themeVars(): update :root-level vars only
- * - themeStyles(): update any type of styles (including non-:root vars)
  * To manually select a theme, we need to include a class alongside
  * the prefers-color-scheme queries. Class needs to be added to `html` element.
  */
-@mixin themeVars($variant: light) {
-  @media (prefers-color-scheme: #{$variant}) {
-    :root {
-      @content;
-    }
-  }
-
-  .theme-#{$variant} {
-    @content;
-  }
-}
-
 @mixin themeStyles($variant: light) {
-  @media (prefers-color-scheme: #{$variant}) {
-    @content;
-  }
-
-  .theme-#{$variant} {
+  html.theme-#{$variant} {
     @content;
   }
 }

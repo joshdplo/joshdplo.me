@@ -5,7 +5,7 @@ updated: 2025-01-10
 description: 'A brief write-up on the release of joshdplo.me - the motivation, the process, and the release notes.'
 author: 'Josh'
 image:
-    pathname: 'keep_v1release.png'
+    pathname: 'v1release.png'
     alt: 'fantasical multi-colored pastel clouds in space'
 tags: ["release", "webdev"]
 ---
@@ -32,7 +32,7 @@ This is the first project I've used typescript in. While I did pick up some basi
 #### [Website](https://github.com/joshdplo/joshdplo.me)
 - **Features**
   - List display for liked media items (called "likes"): uses paginated results, items contain URLs to their origin site.
-  - Blog-like system (called "keeps"): implemented via Astro collections, support for posts (called "notes") and tags, uses paginated results.
+  - Blog-like system (called "notes"): implemented via Astro collections, support for posts and tags, uses paginated results.
   - Custom Search: create search index from built astro html files, use express to handle search queries (in-memory)
   - Basic OG/Twitter metadata component
   - Dark/light theme with localStorage memory

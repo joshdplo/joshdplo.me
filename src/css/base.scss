@@ -441,10 +441,10 @@ ol ol {
 
 /**
  * Theme
- * - need to include explicitly declare variations here for class-based theming to work
- * - see _util.scss for the themeVars and themeStyles mixins
+ * - need to explicitly declare variations here for class-based theming to work
+ * - see _util.scss for themeStyles mixins
  */
-@include util.themeVars(light) {
+@include util.themeStyles(light) {
   --font-color: var(--c-black);
   --font-color-opposite: var(--c-white);
   --background: var(--c-theme-light);
@@ -453,20 +453,7 @@ ol ol {
   --content-transparent: var(--c-transparent-light);
   --content-transparent-opposite: var(--c-transparent-dark);
   --content-background: var(--c-white);
-}
 
-@include util.themeVars(dark) {
-  --font-color: var(--c-white);
-  --font-color-opposite: var(--c-black);
-  --background: var(--c-theme-dark);
-  --content-subtle: var(--c-gray-darker);
-  --content-subtler: var(--c-gray-darkest);
-  --content-transparent: var(--c-transparent-dark);
-  --content-transparent-opposite: var(--c-transparent-light);
-  --content-background: var(--c-black);
-}
-
-@include util.themeStyles(light) {
   .show-dark {
     display: none;
   }
@@ -477,6 +464,15 @@ ol ol {
 }
 
 @include util.themeStyles(dark) {
+  --font-color: var(--c-white);
+  --font-color-opposite: var(--c-black);
+  --background: var(--c-theme-dark);
+  --content-subtle: var(--c-gray-darker);
+  --content-subtler: var(--c-gray-darkest);
+  --content-transparent: var(--c-transparent-dark);
+  --content-transparent-opposite: var(--c-transparent-light);
+  --content-background: var(--c-black);
+
   .show-dark {
     display: block;
   }

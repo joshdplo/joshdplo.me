@@ -85,7 +85,7 @@ export function getPageColorFromCategory(c: string) {
       return 'secondary'
     case 'game':
       return 'secondary'
-    case 'keep':
+    case 'note':
       return 'quaternary'
     default:
       return 'primary'
@@ -107,7 +107,7 @@ export function getEmojiFromCategory(c: string) {
       return '🎧'
     case 'game':
       return '🎮'
-    case 'keep':
+    case 'note':
       return '📋'
     default:
       return ''
@@ -119,5 +119,5 @@ export function getEmojiFromCategory(c: string) {
  */
 export function getPageMenuLinksFromPath(path: string) {
   const footerLinksParent = [...FOOTER_LINKS].filter((l) => l.path === path);
-  return [{ path, title: "Everything" }, ...footerLinksParent[0].children];
+  return [{ path, title: footerLinksParent[0].allTitle }, ...footerLinksParent[0].children];
 }

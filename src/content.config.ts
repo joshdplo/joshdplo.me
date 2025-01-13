@@ -6,9 +6,9 @@ import SteamGame from "@slurpi/db/SteamGame.js";
 import SpotifySong from "@slurpi/db/SpotifySong.js";
 import SpotifyArtist from "@slurpi/db/SpotifyArtist.js";
 
-// Keeps Collection @ local .md files
-const keeps = defineCollection({
-  loader: glob({ pattern: '**/[^_]*.md', base: "./src/content/keeps" }),
+// Notes Collection @ local .md files
+const notes = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.md', base: "./src/content/notes" }),
   schema: z.object({
     title: z.string(),
     date: z.date(),
@@ -173,4 +173,4 @@ const games = defineCollection({
 });
 
 // EXPORT ALL COLLECTIONS
-export const collections = { keeps, movies, shows, songs, artists, games };
+export const collections = { notes, movies, shows, songs, artists, games };

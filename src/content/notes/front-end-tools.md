@@ -4,7 +4,7 @@ date: 2025-01-07
 description: 'A list of handy front-end tools'
 author: 'Josh'
 image:
-    pathname: 'keep_front-end-tools.png'
+    pathname: 'front-end-tools.png'
     alt: 'a techy toolbelt with screens next to the tools'
 tags: ["webdev", "front end"]
 ---
