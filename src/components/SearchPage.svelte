@@ -163,7 +163,7 @@
       {r.phrase}
     </a>
   {/each}
-  {#if resultsShowing < totalResults}
+  {#if resultsShowing < totalResults && highestPageLoaded < totalPages}
     <button
       class="load-more"
       onclick={() => {
@@ -178,8 +178,8 @@
         search(true, false);
       }}
       >Load Next Results ({queryParamPage
-        ? highestPageLoaded + 1
-        : currentPage + 1}/{totalPages})</button
+        ? highestPageLoaded
+        : currentPage}/{totalPages})</button
     >
   {/if}
   {#if noResults && query !== ""}
