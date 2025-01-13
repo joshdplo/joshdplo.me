@@ -1,14 +1,15 @@
 ---
 title: 'Front End Tools'
 date: 2025-01-07
-description: 'A list of handy front-end tools'
+updated: 2025-01-13
+description: 'A working list of everyday front-end tools'
 author: 'Josh'
 image:
     pathname: 'front-end-tools.png'
     alt: 'a techy toolbelt with screens next to the tools'
 tags: ["webdev", "front end"]
 ---
-This is a working list of some wonderful front-end tools for every day use.
+This is a working list of front-end tools for everyday use.
 
 ## Colors
 - [Color Hunt (palettes)](https://colorhunt.co/)
@@ -23,7 +24,7 @@ This is a working list of some wonderful front-end tools for every day use.
 - [Google Fonts](https://fonts.google.com/)
 - [CSS Clamp Generator](https://clamp-generator.netlify.app/)
 
-## Awesome CSS
+## Individual Elements/Components
 - [CSS Loaders](https://css-loaders.com/)
 - [UI Verse](https://uiverse.io/)
 
@@ -44,5 +45,5 @@ This is a working list of some wonderful front-end tools for every day use.
 - [PNG Pixel (transparent base64 pixel generator)](https://png-pixel.com/)
 - [Subtle Patterns](https://www.toptal.com/designers/subtlepatterns/)
 
-## SEO
+## Meta
 - [Opengraph.xyz (preview/generate og meta tags)](https://www.opengraph.xyz/)

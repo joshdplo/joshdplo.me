@@ -16,6 +16,7 @@
   let currentPage = $state(1);
   let resultsShowing = $derived(results.length);
   let totalResults = $state(0);
+  let totalPages = $state(0);
   let query = $state("");
   let noResults = $state(false);
   let lastQuery = $state("");
@@ -34,6 +35,7 @@
   // Clear Search
   function clearSearch() {
     totalResults = 0;
+    totalPages = 0;
     results = [];
     query = "";
     lastQuery = "";
@@ -72,6 +74,7 @@
 
       // update state & replace history
       totalResults = data.total;
+      totalPages = data.totalPages;
       noResults = totalResults === 0;
       lastQuery = noResults ? query : "";
       if (!highestPageLoaded) highestPageLoaded = currentPage;
@@ -135,7 +138,7 @@
   {/if}
   {#if totalResults > 0}
     <div class="head">
-      {totalResults} Results
+      {totalResults} Results ({totalPages} pages)
       <button onclick={() => clearSearch()} title="Clear search">clear</button>
     </div>
     <i class="spacer-1"></i>
@@ -149,7 +152,7 @@
           : queryParamPage - 1;
         lowestPageLoaded = currentPage;
         search(false, true);
-      }}>Load Previous Page</button
+      }}>Load Previous Results ({lowestPageLoaded - 1})</button
     >
   {/if}
   {#each results as r}
@@ -173,7 +176,10 @@
           currentPage++;
         }
         search(true, false);
-      }}>Load Next Page</button
+      }}
+      >Load Next Results ({queryParamPage
+        ? highestPageLoaded + 1
+        : currentPage + 1}/{totalPages})</button
     >
   {/if}
   {#if noResults && query !== ""}

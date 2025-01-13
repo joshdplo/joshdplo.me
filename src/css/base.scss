@@ -22,7 +22,7 @@
   --c-theme-amaranth-purple: #AA1155;
   --c-theme-jasmine: #FFEE88;
   --c-theme-mint: #00CC99;
-  --c-theme-violet-blue: #3B4A97;
+  --c-theme-sky-blue: #65d5ee;
   --c-theme-coral: #FF875C;
   --c-theme-gold: #FFD700;
 
@@ -44,7 +44,7 @@
   --c-primary-dark: var(--c-theme-amaranth-purple);
   --c-primary-darker: var(--c-theme-murrey);
   --c-secondary: var(--c-theme-mint);
-  --c-tertiary: var(--c-theme-violet-blue);
+  --c-tertiary: var(--c-theme-sky-blue);
   --c-quaternary: var(--c-theme-coral);
   --c-accent: var(--c-theme-jasmine);
 
@@ -234,7 +234,7 @@ ol ol {
  */
 @include util.themeStyles(dark) {
   *:focus-visible {
-    outline: .2rem dotted var(--c-primary);
+    outline: .2rem solid var(--c-primary);
     background-color: rgba(100, 0, 255, .1);
   }
 }

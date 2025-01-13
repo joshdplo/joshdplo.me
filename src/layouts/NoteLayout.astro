@@ -29,9 +29,11 @@ const img = frontmatter.image
         <div class="date">
           {`${formatDate("" + (frontmatter.updated || frontmatter.date))}`}{
             frontmatter.updated && " (Updated)"
-          } -
+          }
         </div>
-        {frontmatter.tags.map((t) => <a href={`/notes/tags/${t}`}>#{t}</a>)}
+        <div class="tags">
+          {frontmatter.tags.map((t) => <a href={`/notes/tags/${t}`}>#{t}</a>)}
+        </div>
       </div>
     </div>
 
@@ -65,13 +67,24 @@ const img = frontmatter.image
   .subhead {
     position: relative;
     display: flex;
-    gap: 0.5rem;
+    flex-direction: column;
     padding: 0.05rem 0 0.3rem;
     font-size: 1rem;
 
     a {
       font-size: 1rem;
     }
+
+    @include util.mq(sm) {
+      flex-direction: row;
+      gap: 0.5rem;
+    }
+  }
+
+  .tags {
+    position: relative;
+    display: flex;
+    gap: 0.5rem;
   }
 
   .content {
@@ -94,6 +107,14 @@ const img = frontmatter.image
 
     :global(ul ul) {
       padding-left: 0.7em;
+    }
+
+    :global([id]:before) {
+      display: block;
+      content: " ";
+      margin-top: -65px;
+      height: 65px;
+      visibility: hidden;
     }
   }
 </style>

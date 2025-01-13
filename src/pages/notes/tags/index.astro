@@ -20,16 +20,11 @@ tags.forEach((t) => {
   pageTitle="🏷️ Notes by Tag"
   heroText="Notes"
   heroSubtext="#tags"
-  heroDescenders={true}
   {pageMenuLinks}
   pageDescription="A list of tags associated with notes Josh stores"
 >
   <section class="contain">
-    <h2 class="h3 border-quaternary bg">
-      Browse
-      <span class="bg-opposite no-pad">All Tags</span>
-    </h2>
-
+    <h1>Browse All Tags</h1>
     <div class="list">
       {
         tags.map((t) => (
@@ -85,6 +80,7 @@ tags.forEach((t) => {
     text-decoration: none;
     border-top-right-radius: 0.5rem;
     text-align: center;
+    transition: none;
 
     &:hover {
       text-decoration: underline;

@@ -51,17 +51,15 @@ const allTimeShows = await getCollection("shows", ({ id }) =>
 const allTimeSongs = await getCollection("songs", ({ id }) =>
   allTimeSongsIds.includes(id),
 );
-const recentGames = await getCollection(
+const topGames = await getCollection(
   "games",
-  ({ data }) => data.recent === 1,
+  ({ data }) => data.playtime_forever > 15000,
 );
 ---
 
 <CollectionLayout pageTitle="❤️ Top Likes" heroText="Likes" {pageMenuLinks}>
   <section class="contain">
-    <h2 class="h4">
-      <span class="bg no-pad">Top Movies</span>
-    </h2>
+    <h2 class="h4">🍿 Top Movies</h2>
     <div class="list list-tmdb">
       {
         allTimeMovies.map((m) => {
@@ -72,25 +70,19 @@ const recentGames = await getCollection(
       }
     </div>
 
-    <h2 class="h4">
-      <span class="bg no-pad">Top Shows</span>
-    </h2>
+    <h2 class="h4">🖥️ Top Shows</h2>
     <div class="list list-tmdb">
       {allTimeShows.map((m) => <TMDBCard data={m} mini={true} />)}
     </div>
 
-    <h2 class="h4">
-      <span class="bg no-pad">Top Songs</span>
-    </h2>
+    <h2 class="h4">🎧 Top Songs</h2>
     <div class="list list-spotify">
       {allTimeSongs.map((m) => <SpotifyCard data={m} mini={true} />)}
     </div>
 
-    <h2 class="h4">
-      <span class="bg no-pad">Recent Games</span>
-    </h2>
+    <h2 class="h4">🎮 Top Games</h2>
     <div class="list list-steam">
-      {recentGames.map((g) => <SteamCard data={g} mini={true} />)}
+      {topGames.map((g) => <SteamCard data={g} mini={true} />)}
     </div>
   </section>
 </CollectionLayout>

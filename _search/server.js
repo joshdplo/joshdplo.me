@@ -42,12 +42,15 @@ app.post('/search', (req, res) => {
   // Total number of matches
   const total = matchedResults.length;
 
+  // Total number of pages
+  const totalPages = Math.ceil(total / searchResultsPerPage);
+
   // Paginated results
   const results = matchedResults
     .slice((page - 1) * searchResultsPerPage, page * searchResultsPerPage)
     .map(([key, value]) => ({ phrase: key, ...value }));
 
-  res.json({ results, total });
+  res.json({ results, total, totalPages });
 });
 
 // Start Server

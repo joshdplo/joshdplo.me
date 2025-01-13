@@ -62,6 +62,7 @@ const durationFormatted = `${Math.trunc(itemData.duration_ms / 1000 / 60)}min${(
       data-song-id={isSong ? itemId : undefined}
       data-band-id={!isSong ? itemId : undefined}
       href={itemData.url}
+      title={itemData.name}
     >
       <Image
         src={img}
@@ -189,7 +190,8 @@ const durationFormatted = `${Math.trunc(itemData.duration_ms / 1000 / 60)}min${(
     font-size: 0.7rem;
     line-height: 1;
     border-left: 0;
-    transition: transform 0.1s ease-out;
+    box-shadow: 0px 0px 18px 0px transparent;
+    transition: 0.1s ease-out;
 
     &::after {
       display: none;
