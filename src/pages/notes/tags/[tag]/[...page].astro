@@ -32,7 +32,7 @@ const pageMenuLinks = getPageMenuLinksFromPath("/notes");
 ---
 
 <CollectionLayout
-  pageTitle={`stores ${tag} notes 📋${currentPage > 1 ? " (" + currentPage + "/" + lastPage + ")" : ""}`}
+  pageTitle={`📋 Notes with ${tag} tag${currentPage > 1 ? " (" + currentPage + "/" + lastPage + ")" : ""}`}
   heroText="Notes"
   heroSubtext={`#${tag}`}
   heroDescenders={true}
