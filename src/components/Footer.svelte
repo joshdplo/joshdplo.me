@@ -1,5 +1,5 @@
 <script>
-  import { NAV_LINKS } from "@constants";
+  import { FOOTER_LINKS } from "@constants";
   import HeroText from "@components/HeroText.svelte";
   import SVG from "@components/SVG.svelte";
 </script>
@@ -8,7 +8,7 @@
   <i class="top"></i>
   <nav id="footer-nav">
     <ul class="left">
-      {#each NAV_LINKS as l}
+      {#each FOOTER_LINKS as l}
         <li><a href={l.path}>{l.title}</a></li>
       {/each}
     </ul>
