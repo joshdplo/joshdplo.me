@@ -54,14 +54,6 @@ export function getCssClamp(
 };
 
 /**
- * Get Single Item Collection Page
- */
-export function getCollectionItemLink(itemId: string, itemIndex: number, totalItems: number, numPerPage: number, collectionName: string) {
-  const page = Math.floor(itemIndex / numPerPage) + 1;
-  return `/likes/${collectionName}/${page}?search=${itemId}&cat=${collectionName.substring(0, collectionName.length - 1)}`;
-}
-
-/**
  * Get Page Color from Path
  */
 export function getPageColorFromPath(path: string) {
@@ -75,42 +67,10 @@ export function getPageColorFromPath(path: string) {
  */
 export function getPageColorFromCategory(c: string) {
   switch (c) {
-    case 'movie':
-      return 'secondary'
-    case 'show':
-      return 'secondary'
-    case 'band':
-      return 'secondary'
-    case 'song':
-      return 'secondary'
-    case 'game':
-      return 'secondary'
-    case 'note':
+    case 'post':
       return 'quaternary'
     default:
       return 'primary'
-  }
-}
-
-/**
- * Get Emoji from Category Name
- */
-export function getEmojiFromCategory(c: string) {
-  switch (c) {
-    case 'movie':
-      return '🍿'
-    case 'show':
-      return '🖥️'
-    case 'band':
-      return '🎸'
-    case 'song':
-      return '🎧'
-    case 'game':
-      return '🎮'
-    case 'note':
-      return '📋'
-    default:
-      return ''
   }
 }
 
@@ -120,4 +80,16 @@ export function getEmojiFromCategory(c: string) {
 export function getPageMenuLinksFromPath(path: string) {
   const footerLinksParent = [...FOOTER_LINKS].filter((l) => l.path === path);
   return [{ path, title: footerLinksParent[0].allTitle }, ...footerLinksParent[0].children];
+}
+
+/**
+ * Get Emoji from Category Name
+ */
+export function getEmojiFromCategory(c: string) {
+  switch (c) {
+    case 'post':
+      return '📋'
+    default:
+      return ''
+  }
 }

@@ -1,5 +1,5 @@
 <script>
-  import { NAV_LINKS } from "@constants";
+  import { NAV_LINKS, SITE } from "@constants";
   import HeroText from "@components/HeroText.svelte";
   import SVG from "@components/SVG.svelte";
 </script>
@@ -14,16 +14,8 @@
     </ul>
   </nav>
   <div class="right">
-    <HeroText text="JOSH" size={5} link="/" alt={true} />
-    <a
-      href="https://github.com/joshdplo/joshdplo.me"
-      title="View Code on Github"
-      aria-label="View Code on Github"
-    >
-      <SVG name="github" />
-      <small>View on Github</small>
-    </a>
-    <small>&copy; 2024 joshdplo.me</small>
+    <HeroText text={SITE.TITLE} size={5} link="/" alt={true} />
+    <small>&copy; 2025 {SITE.TITLE}</small>
   </div>
 </footer>
 

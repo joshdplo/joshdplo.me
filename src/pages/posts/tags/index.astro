@@ -3,32 +3,32 @@ import { getPageMenuLinksFromPath } from "@util";
 import { getCollection } from "astro:content";
 import CollectionLayout from "@layouts/CollectionLayout.astro";
 
-const notes = await getCollection("notes");
-const tags = [...new Set(notes.map((k) => k.data.tags).flat())];
-const pageMenuLinks = getPageMenuLinksFromPath("/notes");
+const posts = await getCollection("posts");
+const tags = [...new Set(posts.map((k) => k.data.tags).flat())];
+const pageMenuLinks = getPageMenuLinksFromPath("/posts");
 
 const tagsCount = {};
 tags.forEach((t) => {
   tagsCount[t] = 0;
-  notes.forEach((n) => {
+  posts.forEach((n) => {
     if (n.data.tags.includes(t)) tagsCount[t]++;
   });
 });
 ---
 
 <CollectionLayout
-  pageTitle="🏷️ Notes by Tag"
-  heroText="Notes"
+  pageTitle="🏷️ Posts by Tag"
+  heroText="Posts"
   heroSubtext="#tags"
   {pageMenuLinks}
-  pageDescription="A list of tags associated with notes Josh stores"
+  pageDescription="A list of tags associated with posts"
 >
   <section class="contain">
     <h1>Browse All Tags</h1>
     <div class="list">
       {
         tags.map((t) => (
-          <a class="card" href={`/notes/tags/${t}`}>
+          <a class="card" href={`/posts/tags/${t}`}>
             <i>#</i>
             {t} <span>{tagsCount[t]}</span>
           </a>

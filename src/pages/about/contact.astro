@@ -1,0 +1,20 @@
+---
+import { getPageMenuLinksFromPath } from "@util";
+import AboutLayout from "@layouts/AboutLayout.astro";
+
+const { pathname } = Astro.url;
+const pageMenuLinks = getPageMenuLinksFromPath("/about");
+---
+
+<AboutLayout
+  pageTitle="Contact"
+  heroText="Contact"
+  heroSubtext="bonjour"
+  pageMenuLinks={pageMenuLinks}
+  currentPage={pathname}
+>
+  <section class="contain">
+    <h1>Contact</h1>
+    <p>This is an example nested page!</p>
+  </section>
+</AboutLayout>

@@ -1,7 +1,5 @@
 # build output
 dist/
-public/pagefind/
-_search/*.json
 # generated types
 .astro/
 

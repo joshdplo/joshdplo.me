@@ -83,15 +83,6 @@
         /></svg
       ></a
     >
-    <a
-      href="/search"
-      title="Search"
-      class="button search"
-      class:active={currentPage === "/search"}
-    >
-      <span class="sr-only">Search</span>
-      <SVG name="search" />
-    </a>
     {#if noBreadcrumbs !== true}<Breadcrumbs {currentPage} />{/if}
     <button
       class="theme"

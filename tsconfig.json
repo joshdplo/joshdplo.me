@@ -6,7 +6,6 @@
   ],
   "exclude": [
     "dist",
-    "_search"
   ],
   "compilerOptions": {
     "allowJs": true,
@@ -30,9 +29,6 @@
       ],
       "@util": [
         "src/util.ts"
-      ],
-      "@slurpi/*": [
-        "../slurpi/*"
       ]
     }
   }

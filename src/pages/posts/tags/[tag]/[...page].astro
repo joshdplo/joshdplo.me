@@ -3,24 +3,24 @@ import { SITE } from "@constants";
 import { getPageMenuLinksFromPath } from "@util";
 import { getCollection } from "astro:content";
 import CollectionLayout from "@layouts/CollectionLayout.astro";
-import NoteCard from "@components/NoteCard.astro";
+import PostCard from "@components/PostCard.astro";
 import Pagination from "@components/Pagination.astro";
 
 export async function getStaticPaths({ paginate }) {
-  const notes = await getCollection("notes");
-  const tags = [...new Set(notes.map((n) => n.data.tags).flat())];
+  const posts = await getCollection("posts");
+  const tags = [...new Set(posts.map((n) => n.data.tags).flat())];
 
   return tags.flatMap((t) => {
-    const tagNotes = notes.filter((n) => n.data.tags.includes(t));
-    const sortedNotes = tagNotes.sort(
+    const tagPosts = posts.filter((n) => n.data.tags.includes(t));
+    const sortedPosts = tagPosts.sort(
       (a, b) =>
         new Date(b.data.updated || b.data.date) -
         new Date(a.data.updated || a.data.date),
     );
 
-    return paginate(sortedNotes, {
+    return paginate(sortedPosts, {
       params: { tag: t },
-      pageSize: SITE.NOTES_PER_PAGE,
+      pageSize: SITE.POSTS_PER_PAGE,
     });
   });
 }
@@ -28,27 +28,27 @@ export async function getStaticPaths({ paginate }) {
 const { tag } = Astro.params;
 const { page } = Astro.props;
 const { total, currentPage, lastPage } = page;
-const pageMenuLinks = getPageMenuLinksFromPath("/notes");
+const pageMenuLinks = getPageMenuLinksFromPath("/posts");
 ---
 
 <CollectionLayout
-  pageTitle={`📋 Notes with ${tag} tag${currentPage > 1 ? " (" + currentPage + "/" + lastPage + ")" : ""}`}
-  heroText="Notes"
+  pageTitle={`📋 Posts with ${tag} tag${currentPage > 1 ? " (" + currentPage + "/" + lastPage + ")" : ""}`}
+  heroText="Posts"
   heroSubtext={`#${tag}`}
   {pageMenuLinks}
   {currentPage}
-  pageDescription={`A list of notes Josh wrote that have the ${tag} tag`}
+  pageDescription={`A list of posts that have the ${tag} tag`}
 >
   <section class="contain">
     <div class="list">
-      {page.data.map((note) => <NoteCard data={note} />)}
+      {page.data.map((post) => <PostCard data={post} />)}
     </div>
 
     <Pagination
       {total}
       {currentPage}
       {lastPage}
-      label="notes"
+      label="posts"
       nextUrl={page.url.next}
       prevUrl={page.url.prev}
     />

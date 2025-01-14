@@ -1,0 +1,22 @@
+---
+import { getPageMenuLinksFromPath } from "@util";
+import AboutLayout from "@layouts/AboutLayout.astro";
+
+const { pathname } = Astro.url;
+const pageMenuLinks = getPageMenuLinksFromPath("/about");
+---
+
+<AboutLayout
+  pageTitle="About"
+  heroText="About"
+  pageMenuLinks={pageMenuLinks}
+  currentPage={pathname}
+>
+  <section class="contain">
+    <h1>About</h1>
+    <p>
+      This is an example page! There is also a child page called "contact" in
+      here.
+    </p>
+  </section>
+</AboutLayout>

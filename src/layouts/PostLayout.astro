@@ -15,7 +15,7 @@ const img = frontmatter.image
   pageDescription={frontmatter?.description}
   noBreadcrumbs={true}
 >
-  <section class="contain" data-note-id={slug}>
+  <section class="contain" data-post-id={slug}>
     {
       img && (
         <Image src={img} alt={frontmatter.image.alt} width="900" height="514" />
@@ -24,6 +24,7 @@ const img = frontmatter.image
     <div class="head">
       <h1 class="h4">
         {frontmatter.title}
+        {frontmatter.author && <span>by {frontmatter.author}</span>}
       </h1>
       <div class="subhead">
         <div class="date">
@@ -32,7 +33,7 @@ const img = frontmatter.image
           }
         </div>
         <div class="tags">
-          {frontmatter.tags.map((t) => <a href={`/notes/tags/${t}`}>#{t}</a>)}
+          {frontmatter.tags.map((t) => <a href={`/posts/tags/${t}`}>#{t}</a>)}
         </div>
       </div>
     </div>
@@ -62,6 +63,10 @@ const img = frontmatter.image
   h1 {
     padding: 0.2em 0 0;
     line-height: 1;
+
+    span {
+      font-size: 1rem;
+    }
   }
 
   .subhead {
