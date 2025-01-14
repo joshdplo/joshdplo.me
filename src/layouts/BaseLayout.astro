@@ -27,6 +27,29 @@ const { pageTitle, pageDescription, noBreadcrumbs, removeSiteTitle } =
       }
     </title>
 
+    <!-- Preload Font -->
+    <link
+      rel="preload"
+      href="/fonts/LondrinaShadow-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/AtkinsonHyperlegible-Bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/AtkinsonHyperlegible-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
     <!-- Meta  -->
     <HeadMeta
       pageTitle={`${pageTitle ? `${removeSiteTitle ? pageTitle : pageTitle + " • "}` : ""}${!removeSiteTitle ? SITE.TITLE : ""}`}
@@ -76,7 +99,7 @@ const { pageTitle, pageDescription, noBreadcrumbs, removeSiteTitle } =
     <!-- Say hi to consolers -->
     <script is:inline>
       console.log(
-        "       (づ｡◕‿‿◕｡)づ\n     Have a good day!\n    ✉️ hey@joshdplo.me\n.......................... ",
+        "      (づ｡◕‿‿◕｡)づ\n     Have a good day!\n    ✉️ hey@joshdplo.me\n.......................... ",
       );
     </script>
   </body>
