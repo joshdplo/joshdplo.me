@@ -1,14 +1,5 @@
-// See https://svelte.dev/docs/kit/types#app.d.ts
-// for information about these interfaces
+// unused types from sveltekit - can be used in the future?
 declare global {
-	namespace App {
-		// interface Error {}
-		// interface Locals {}
-		// interface PageData {}
-		// interface PageState {}
-		// interface Platform {}
-	}
-
 	interface Note {
 		title: string,
 		slug: string,
