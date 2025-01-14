@@ -18,7 +18,6 @@ export const NAV_LINKS = [
   { path: '/', title: 'Home' },
   { path: '/likes', title: 'Likes' },
   { path: '/notes', title: 'Notes' },
-  { path: '/search', title: 'Search' },
 ];
 
 export const FOOTER_LINKS = [

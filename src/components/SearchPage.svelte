@@ -183,7 +183,7 @@
     >
   {/if}
   {#if noResults && query !== ""}
-    <div class="no-results">No Results for {lastQuery}</div>
+    <div class="center-full no-results">No Results for "{lastQuery}"</div>
   {/if}
 </section>
 
