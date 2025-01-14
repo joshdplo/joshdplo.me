@@ -73,7 +73,7 @@
       class="button home"
       class:active={currentPage === "/"}
     >
-      <span class="sr-only">Search</span>
+      <span class="sr-only">Home</span>
       <svg
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
