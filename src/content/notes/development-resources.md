@@ -1,8 +1,8 @@
 ---
-title: 'Development Resources'
+title: 'Web Development Resources'
 date: 2025-01-07
 updated: 2025-01-14
-description: 'A working list of links for all things development'
+description: 'A working list of links for various areas of web development'
 author: 'Josh'
 image:
     pathname: 'tech-tools.png'

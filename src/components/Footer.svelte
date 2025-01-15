@@ -48,7 +48,7 @@
 
   .left,
   .right {
-    padding-top: 2rem;
+    padding-top: 1.25em;
     position: relative;
     display: flex;
   }
