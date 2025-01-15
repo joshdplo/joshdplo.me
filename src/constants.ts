@@ -14,12 +14,32 @@ export const PAGE_COLORS = [
   { path: '/search', color: "tertiary" },
 ]
 
-export const NAV_LINKS = [
+export const ALL_LINKS = [
   { path: '/', title: 'Home' },
-  { path: '/likes', title: 'Likes' },
-  { path: '/notes', title: 'Notes' },
+  {
+    path: '/likes', title: 'Likes', allTitle: 'Top Likes', children: [
+      { path: '/likes/movies', title: 'Movies' },
+      { path: '/likes/shows', title: 'Shows' },
+      { path: '/likes/bands', title: 'Bands' },
+      { path: '/likes/songs', title: 'Songs' },
+      { path: '/likes/games', title: 'Games' },
+    ]
+  },
+  {
+    path: '/notes', title: 'Notes', allTitle: 'All Notes', children: [
+      { path: '/notes/tags', title: 'Tags' }
+    ]
+  },
+  { path: '/search', title: 'Search' },
 ];
 
+export const NAV_LINKS = [
+  { path: '/', title: 'Home' },
+  { path: '/notes', title: 'Notes' },
+  { path: '/likes', title: 'Likes' },
+];
+
+//@TODO: update footer links + footer component display
 export const FOOTER_LINKS = [
   { path: '/', title: 'Home' },
   {

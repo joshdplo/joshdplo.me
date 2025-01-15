@@ -109,12 +109,20 @@ const img = frontmatter.image
       padding-left: 0.7em;
     }
 
+    // offset for in-page navigation
     :global([id]:before) {
       display: block;
       content: " ";
       margin-top: -65px;
       height: 65px;
       visibility: hidden;
+    }
+
+    :global(hr) {
+      display: block;
+      margin: 2rem 0;
+      border-color: var(--content-subtle);
+      border-style: dotted;
     }
   }
 </style>

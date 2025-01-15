@@ -1,4 +1,4 @@
-import { PAGE_COLORS, FOOTER_LINKS } from "@constants";
+import { PAGE_COLORS, ALL_LINKS } from "@constants";
 
 /**
  * Format Date
@@ -118,6 +118,6 @@ export function getEmojiFromCategory(c: string) {
  * Get Page Menu Links from Path
  */
 export function getPageMenuLinksFromPath(path: string) {
-  const footerLinksParent = [...FOOTER_LINKS].filter((l) => l.path === path);
-  return [{ path, title: footerLinksParent[0].allTitle }, ...footerLinksParent[0].children];
+  const linkParent = [...ALL_LINKS].filter((l) => l.path === path);
+  return [{ path, title: linkParent[0].allTitle }, ...linkParent[0].children];
 }
