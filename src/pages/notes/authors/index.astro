@@ -4,33 +4,33 @@ import { getCollection } from "astro:content";
 import CollectionLayout from "@layouts/CollectionLayout.astro";
 
 const notes = await getCollection("notes");
-const tags = [...new Set(notes.map((k) => k.data.tags).flat())];
+const authors = [...new Set(notes.map((k) => k.data.authors).flat())];
 const pageMenuLinks = getPageMenuLinksFromPath("/notes");
 
-const tagsCount = {};
-tags.forEach((t) => {
-  tagsCount[t] = 0;
+const authorsCount = {};
+authors.forEach((t) => {
+  authorsCount[t] = 0;
   notes.forEach((n) => {
-    if (n.data.tags.includes(t)) tagsCount[t]++;
+    if (n.data.authors.includes(t)) authorsCount[t]++;
   });
 });
 ---
 
 <CollectionLayout
-  pageTitle="🏷️ Notes by Tag"
+  pageTitle="✎ Notes by Author"
   heroText="Notes"
-  heroSubtext="by tag"
+  heroSubtext="by author"
   {pageMenuLinks}
-  pageDescription="Notes by Tag"
+  pageDescription="Notes by Author"
 >
   <section class="contain">
-    <h1>Browse All Tags</h1>
+    <h1>Browse All Authors</h1>
     <div class="list">
       {
-        tags.map((t) => (
-          <a class="card" href={`/notes/tags/${t}`}>
-            <i>#</i>
-            {t} <span>{tagsCount[t]}</span>
+        authors.map((t) => (
+          <a class="card" href={`/notes/authors/${t}`}>
+            {" "}
+            {t} <span>{authorsCount[t]}</span>
           </a>
         ))
       }

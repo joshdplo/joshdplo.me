@@ -3,7 +3,7 @@ title: 'Web Development Resources'
 date: 2025-01-07
 updated: 2025-01-14
 description: 'A working list of links for various areas of web development'
-author: 'Josh'
+authors: ['Josh']
 image:
     pathname: 'tech-tools.png'
     alt: 'a futuristic tool belt with screens next to the tools'

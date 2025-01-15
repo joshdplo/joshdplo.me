@@ -24,6 +24,13 @@ const img = frontmatter.image
     <div class="head">
       <h1 class="h4">
         {frontmatter.title}
+        <span
+          >by {
+            frontmatter.authors.map((a) => (
+              <a href={`/notes/authors/${a}`}>{a}</a>
+            ))
+          }</span
+        >
       </h1>
       <div class="subhead">
         <div class="date">
@@ -62,6 +69,11 @@ const img = frontmatter.image
   h1 {
     padding: 0.2em 0 0;
     line-height: 1;
+
+    span,
+    a {
+      font-size: 1rem;
+    }
   }
 
   .subhead {

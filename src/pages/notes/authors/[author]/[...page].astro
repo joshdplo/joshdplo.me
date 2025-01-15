@@ -8,36 +8,36 @@ import Pagination from "@components/Pagination.astro";
 
 export async function getStaticPaths({ paginate }) {
   const notes = await getCollection("notes");
-  const tags = [...new Set(notes.map((n) => n.data.tags).flat())];
+  const authors = [...new Set(notes.map((n) => n.data.authors).flat())];
 
-  return tags.flatMap((t) => {
-    const tagNotes = notes.filter((n) => n.data.tags.includes(t));
-    const sortedNotes = tagNotes.sort(
+  return authors.flatMap((t) => {
+    const authorNotes = notes.filter((n) => n.data.authors.includes(t));
+    const sortedNotes = authorNotes.sort(
       (a, b) =>
         new Date(b.data.updated || b.data.date) -
         new Date(a.data.updated || a.data.date),
     );
 
     return paginate(sortedNotes, {
-      params: { tag: t },
+      params: { author: t },
       pageSize: SITE.NOTES_PER_PAGE,
     });
   });
 }
 
-const { tag } = Astro.params;
+const { author } = Astro.params;
 const { page } = Astro.props;
 const { total, currentPage, lastPage } = page;
 const pageMenuLinks = getPageMenuLinksFromPath("/notes");
 ---
 
 <CollectionLayout
-  pageTitle={`📋 ${tag} Notes ${currentPage > 1 ? " (" + currentPage + "/" + lastPage + ")" : ""}`}
+  pageTitle={`✎ Notes by ${author} ${currentPage > 1 ? " (" + currentPage + "/" + lastPage + ")" : ""}`}
   heroText="Notes"
-  heroSubtext={`#${tag}`}
+  heroSubtext={`by ${author}`}
   {pageMenuLinks}
   {currentPage}
-  pageDescription={`${tag} Notes`}
+  pageDescription={`Notes by ${author}`}
 >
   <section class="contain">
     <div class="list">

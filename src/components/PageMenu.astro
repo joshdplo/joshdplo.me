@@ -10,7 +10,7 @@ const isActive = (path) => {
   const current = currentPath.split("/").splice(1);
   const link = path.split("/").splice(1);
 
-  // @TODO: theres definitely a better way to do this, this is very hard to read
+  // @TODO: theres definitely a better way to do this - this is very hard to read >.<
   if (path === currentPath) return true; // standard links
   if (
     currentPage &&
@@ -27,6 +27,15 @@ const isActive = (path) => {
       current[current.length - 1] === `${currentPage}`)
   )
     return true; // notes tags paginated links
+  if (
+    (currentPage &&
+      link[link.length - 1] === "authors" &&
+      current[current.length - 2] === "authors") ||
+    (link[link.length - 1] === "authors" &&
+      current[current.length - 3] === "authors" &&
+      current[current.length - 1] === `${currentPage}`)
+  )
+    return true; // notes authors paginated links
   return false;
 };
 ---

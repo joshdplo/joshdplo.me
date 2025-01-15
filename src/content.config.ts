@@ -14,7 +14,7 @@ const notes = defineCollection({
     date: z.date(),
     updated: z.date().optional(),
     description: z.string(),
-    author: z.string().optional(),
+    authors: z.array(z.string()),
     image: z.object({
       pathname: z.string(),
       alt: z.string()

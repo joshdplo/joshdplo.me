@@ -27,7 +27,8 @@ export const ALL_LINKS = [
   },
   {
     path: '/notes', title: 'Notes', allTitle: 'All Notes', children: [
-      { path: '/notes/tags', title: 'Tags' }
+      { path: '/notes/tags', title: 'Tags' },
+      { path: '/notes/authors', title: 'Authors' }
     ]
   },
   { path: '/search', title: 'Search' },
@@ -53,7 +54,8 @@ export const FOOTER_LINKS = [
   },
   {
     path: '/notes', title: 'Notes', allTitle: 'All Notes', children: [
-      { path: '/notes/tags', title: 'Tags' }
+      { path: '/notes/tags', title: 'Tags' },
+      { path: '/notes/authors', title: 'Authors' }
     ]
   },
   { path: '/search', title: 'Search' },
