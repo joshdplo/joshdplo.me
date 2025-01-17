@@ -224,6 +224,15 @@ code {
   padding: 0 .15em;
 }
 
+pre {
+  padding: 0 .2em;
+
+  code {
+    background-color: inherit;
+    padding: inherit;
+  }
+}
+
 ul ul,
 ol ol {
   font-size: .9em;

@@ -10,19 +10,36 @@ tags: ["webdev"]
 ---
 import CollectionItem from '@components/CollectionItem.astro';
 
-Collection items from all `likes` collections can now be embedded in notes! They can be included in `.mdx` posts using the new component `<CollectionItem>`. Here's an example of a movie collection item:
+Individual items from all [likes](/likes) collections (movies, shows, music, games) now have their own component! This means they can be included in `.mdx` files (notes) using the new component `<CollectionItem>`.
+
+Here's an example of a movie collection item...
+```js
+<CollectionItem category="movies" itemId="348" text="Plain text can also be passed through to give some context for the item being included!" />
+```
 <CollectionItem category="movies" itemId="348" text="Plain text can also be passed through to give some context for the item being included!" />
 
-Here is an example of a show:
+Here is an example of a show...
+```js
+<CollectionItem category="shows" itemId="39793" />
+```
 <CollectionItem category="shows" itemId="39793" />
 
-Here is an example of a band:
+Here is an example of a band...
+```js
+<CollectionItem category="bands" itemId="7DjwIxbe8kpw4pqnzAMoin" />
+```
 <CollectionItem category="bands" itemId="7DjwIxbe8kpw4pqnzAMoin" />
 
-Here is an example of a song:
+Here is an example of a song...
+```js
+<CollectionItem category="songs" itemId="4niDU35YEMnJIQjKb506hb" />
+```
 <CollectionItem category="songs" itemId="4niDU35YEMnJIQjKb506hb" />
 
 And finally, an example of a game!
+```js
+<CollectionItem category="games" itemId="1086940" />
+```
 <CollectionItem category="games" itemId="1086940" />
 
 Pretty nifty! This component can be used everywhere now, not just inside of mdx files, so maybe it will come in handy on a different part of the site.

@@ -10,7 +10,10 @@ const meta = await Meta.findAll();
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [svelte(), sitemap(), mdx()],
+  integrations: [svelte(), sitemap(), mdx({
+    syntaxHighlight: 'shiki',
+    shikiConfig: { theme: 'dark-plus' },
+  })],
   site: 'https://joshdplo.me',
   base: '/',
   trailingSlash: 'never',

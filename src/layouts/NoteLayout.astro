@@ -27,9 +27,8 @@ const img = frontmatter.image
       </h1>
       <div class="subhead">
         <div class="date">
-          Written {
-            `${formatDate("" + (frontmatter.updated || frontmatter.date))}`
-          }{frontmatter.updated && " (Updated)"}
+          {frontmatter.updated ? " Updated" : "Written"}
+          {`${formatDate("" + (frontmatter.updated || frontmatter.date))}`}
         </div>
         <div class="author">
           by {
