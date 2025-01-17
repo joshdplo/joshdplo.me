@@ -29,7 +29,7 @@ const { total, currentPage, lastPage } = page;
   {currentPage}
 >
   <section class="contain">
-    {currentPage === 1 && <h1>Browse All Notes</h1>}
+    {currentPage === 1 && <h2 class="h1">Browse All Notes</h2>}
     <div class="list">
       {page.data.map((note) => <NoteCard data={note} />)}
     </div>
@@ -59,7 +59,7 @@ const { total, currentPage, lastPage } = page;
 
     @include util.mq(md) {
       grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
+      gap: 2rem 1.2rem;
     }
   }
 </style>
