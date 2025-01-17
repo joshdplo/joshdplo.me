@@ -4,11 +4,13 @@ import { defineConfig } from 'astro/config';
 import svelte from '@astrojs/svelte';
 import sitemap from '@astrojs/sitemap';
 
+import mdx from '@astrojs/mdx';
+
 const meta = await Meta.findAll();
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [svelte(), sitemap()],
+  integrations: [svelte(), sitemap(), mdx()],
   site: 'https://joshdplo.me',
   base: '/',
   trailingSlash: 'never',

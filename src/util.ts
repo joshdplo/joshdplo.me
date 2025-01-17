@@ -1,4 +1,4 @@
-import { PAGE_COLORS, ALL_LINKS } from "@constants";
+import { PAGE_COLORS, ALL_LINKS, META } from "@constants";
 
 /**
  * Format Date
@@ -98,16 +98,22 @@ export function getPageColorFromCategory(c: string) {
 export function getEmojiFromCategory(c: string) {
   switch (c) {
     case 'movie':
+    case 'movies':
       return '🍿'
     case 'show':
+    case 'shows':
       return '🖥️'
     case 'band':
+    case 'bands':
       return '🎸'
     case 'song':
+    case 'songs':
       return '🎧'
     case 'game':
+    case 'games':
       return '🎮'
     case 'note':
+    case 'notes':
       return '📋'
     default:
       return ''

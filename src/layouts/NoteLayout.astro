@@ -22,24 +22,24 @@ const img = frontmatter.image
       )
     }
     <div class="head">
-      <h1 class="h4">
+      <h1>
         {frontmatter.title}
-        <span
-          >by {
-            frontmatter.authors.map((a) => (
-              <a href={`/notes/authors/${a}`}>{a}</a>
-            ))
-          }</span
-        >
       </h1>
       <div class="subhead">
         <div class="date">
-          {`${formatDate("" + (frontmatter.updated || frontmatter.date))}`}{
-            frontmatter.updated && " (Updated)"
+          Written {
+            `${formatDate("" + (frontmatter.updated || frontmatter.date))}`
+          }{frontmatter.updated && " (Updated)"}
+        </div>
+        <div class="author">
+          by {
+            frontmatter.authors.map((a) => (
+              <a href={`/notes/authors/${a}`}>{a}</a>
+            ))
           }
         </div>
         <div class="tags">
-          {frontmatter.tags.map((t) => <a href={`/notes/tags/${t}`}>#{t}</a>)}
+          | {frontmatter.tags.map((t) => <a href={`/notes/tags/${t}`}>#{t}</a>)}
         </div>
       </div>
     </div>
@@ -64,32 +64,24 @@ const img = frontmatter.image
     border-bottom: 0.1em dashed var(--content-subtle);
     background-color: var(--background);
     max-width: 700px;
+    padding-top: 0.2rem;
   }
 
   h1 {
     padding: 0.2em 0 0;
     line-height: 1;
-
-    span,
-    a {
-      font-size: 1rem;
-    }
   }
 
   .subhead {
     position: relative;
     display: flex;
-    flex-direction: column;
-    padding: 0.05rem 0 0.3rem;
+    flex-wrap: wrap;
+    gap: 0.3em;
+    padding: 0.05rem 0 0.3rem 0.1rem;
     font-size: 1rem;
 
     a {
       font-size: 1rem;
-    }
-
-    @include util.mq(sm) {
-      flex-direction: row;
-      gap: 0.5rem;
     }
   }
 

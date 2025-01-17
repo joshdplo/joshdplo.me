@@ -8,7 +8,7 @@ import SpotifyArtist from "@slurpi/db/SpotifyArtist.js";
 
 // Notes Collection @ local .md files
 const notes = defineCollection({
-  loader: glob({ pattern: '**/[^_]*.md', base: "./src/content/notes" }),
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/notes" }),
   schema: z.object({
     title: z.string(),
     date: z.date(),

@@ -1,0 +1,197 @@
+---
+import { SITE } from "@constants";
+import { getCollectionItemLink, getEmojiFromCategory } from "@util";
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+const { category, itemId, text } = Astro.props;
+
+// set up data based on category and id
+let imagesGlob;
+let collectionName = category === "bands" ? "artists" : category;
+if (category === "movies" || category === "shows") {
+  imagesGlob = import.meta.glob("@slurpi/public/images/tmdb/*.jpg");
+}
+if (category === "bands" || category === "songs") {
+  imagesGlob = import.meta.glob("@slurpi/public/images/spotify/*.jpg");
+}
+if (category === "games") {
+  imagesGlob = import.meta.glob("@slurpi/public/images/steam/*.jpg");
+}
+
+// get image
+const img =
+  imagesGlob[
+    Object.keys(imagesGlob).filter(
+      (k) =>
+        k.split("/")[k.split("/").length - 1].replace(".jpg", "") === itemId,
+    )[0]
+  ]();
+
+// get collection
+const allItems = await getCollection(collectionName);
+
+// get item link
+let itemIndex;
+let difference = 0;
+allItems.forEach((i, idx) => {
+  if (collectionName === "games" && i.data.invalid) difference++;
+  if ("" + i.data?.appid === itemId || i.id === itemId) itemIndex = idx;
+});
+itemIndex = itemIndex - difference;
+const getItemsPerPage = () => {
+  if (category === "movies" || category === "shows")
+    return SITE.MOVIES_PER_PAGE;
+  if (category === "songs" || category === "bands") return SITE.SONGS_PER_PAGE;
+  if (category === "games") return SITE.GAMES_PER_PAGE;
+};
+const itemLink = getCollectionItemLink(
+  itemId,
+  itemIndex,
+  allItems.length,
+  getItemsPerPage(),
+  category,
+);
+
+// Item Details
+const rawItem = allItems.filter((i) => {
+  if (category === "games") return "" + i.data?.appid === itemId;
+  return i.id === itemId;
+});
+const item = rawItem[0].data;
+
+const title = item.name || item.title;
+
+const serviceName = () => {
+  switch (category) {
+    case "movies":
+    case "shows":
+      return "TMDB";
+    case "songs":
+    case "bands":
+      return "Spotify";
+    case "games":
+      return "Steam";
+    default:
+      return null;
+  }
+};
+
+const serviceUrl = () => {
+  switch (category) {
+    case "movies":
+    case "shows":
+      return `https://www.themoviedb.org/${category === "movies" ? "movie" : "tv"}/${itemId}`;
+    case "songs":
+    case "bands":
+      return item.url;
+    case "games":
+      return `https://store.steampowered.com/app/${item?.appid}`;
+    default:
+      return null;
+  }
+};
+---
+
+<div class:list={["collection-item", category]}>
+  <Image src={img} alt={`${title}`} loading="lazy" />
+  <div class="details">
+    <span class="category"
+      >{getEmojiFromCategory(category)}
+      {category.substring(0, category.length - 1)}
+    </span>
+    <span class="title">{title}</span>
+    <i class="text">{text}</i>
+    <div class="links">
+      <a href={serviceUrl()}>{serviceName()} Page</a>
+      <a href={itemLink}>View in Likes</a>
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  @use "@css/util";
+
+  .collection-item {
+    --img-width: 200px;
+    --border-radius: 6px;
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+    border: 3px solid var(--content-subtle);
+    padding: 0.7rem;
+    border-radius: 0.2rem;
+    margin: 1rem auto;
+
+    img {
+      width: var(--img-width);
+      object-fit: contain;
+      z-index: 0;
+      margin: 0 auto 0.5rem auto;
+    }
+
+    @media (max-width: 500px) {
+      &.movies img,
+      &.shows img {
+        width: 150px;
+      }
+    }
+
+    @include util.mq(sm) {
+      flex-direction: row-reverse;
+      align-items: center;
+
+      img {
+        margin: 0 0 0 auto;
+      }
+    }
+  }
+
+  .details {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+
+    @include util.mq(sm) {
+      padding-right: 2rem;
+    }
+  }
+
+  .category {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    padding: 0.25rem;
+    border-left: 3px solid var(--c-secondary);
+    margin: 0 auto 0.5rem 0;
+  }
+
+  .title {
+    font-size: 2.2rem;
+  }
+
+  .text {
+    padding: 1.2rem 0;
+  }
+
+  .links {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin: auto auto 0 0;
+
+    a {
+      font-size: 1rem;
+      padding: 0.3rem 0.5rem;
+      background-color: var(--font-color);
+      color: var(--font-color-opposite);
+
+      &:last-child {
+        background-color: var(--c-secondary);
+        color: var(--c-black);
+      }
+    }
+  }
+</style>

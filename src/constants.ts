@@ -40,11 +40,11 @@ export const NAV_LINKS = [
   { path: '/likes', title: 'Likes' },
 ];
 
-//@TODO: update footer links + footer component display
 export const FOOTER_LINKS = [
-  { path: '/', title: 'Home' },
   {
-    path: '/likes', title: 'Likes', allTitle: 'Top Likes', children: [
+    heading: 'Likes',
+    links: [
+      { path: '/likes', title: 'Top Likes' },
       { path: '/likes/movies', title: 'Movies' },
       { path: '/likes/shows', title: 'Shows' },
       { path: '/likes/bands', title: 'Bands' },
@@ -53,12 +53,20 @@ export const FOOTER_LINKS = [
     ]
   },
   {
-    path: '/notes', title: 'Notes', allTitle: 'All Notes', children: [
+    heading: 'Notes',
+    links: [
+      { path: '/notes', title: 'All Notes' },
       { path: '/notes/tags', title: 'Tags' },
       { path: '/notes/authors', title: 'Authors' }
     ]
   },
-  { path: '/search', title: 'Search' },
+  {
+    heading: 'Site',
+    links: [
+      { path: '/', title: 'Home' },
+      { path: '/search', title: 'Search' },
+    ]
+  },
 ];
 
 export const META = _META;
