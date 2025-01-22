@@ -1,6 +1,18 @@
 ---
+import { TOTALS } from "@constants";
+import { getEmojiFromCategory } from "@util";
+import { getCollection } from "astro:content";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import HeroText from "@components/HeroText.svelte";
+import NoteCard from "@components/NoteCard.astro";
+import CollectionItem from "@components/CollectionItem.astro";
+
+const notes = await getCollection("notes");
+const sortedNotes = notes.sort(
+	(a, b) =>
+		new Date(b.data.updated || b.data.date) -
+		new Date(a.data.updated || a.data.date),
+);
 ---
 
 <BaseLayout pageTitle="Home">
@@ -9,9 +21,9 @@ import HeroText from "@components/HeroText.svelte";
 			<HeroText text="JOSH" size={18} />
 		</div>
 
-		<div class="h2 bg-accent border">
+		<div class="h2 bg border-tertiary">
 			Hi!
-			<span class="bg-opposite no-pad">Welcome to my website.</span> I use it to
+			<span class="bg-accent no-pad">Welcome to my website.</span> I use it to
 			<span class="bg-secondary no-pad"
 				><a href="/likes">list things I like</a></span
 			>,
@@ -24,7 +36,87 @@ import HeroText from "@components/HeroText.svelte";
 				><a href="/notes">keep some public notes</a></span
 			>.
 		</div>
+	</section>
 
-		<i class="spacer-1"></i>
+	<section class="contain featured">
+		<div class="box bg border-quaternary">
+			<h2 class="h3 bg-opposite">Latest Note</h2>
+			<div class="push">
+				<NoteCard data={sortedNotes[0]} />
+			</div>
+			<div class="buttons">
+				<a href="/notes">All Notes ({notes.length})</a>
+				<a href="/notes/tags">Notes by Tag</a>
+				<a href="/notes/authors">Notes by Author</a>
+			</div>
+		</div>
+		<div class="box bg border-secondary">
+			<div class="currently">
+				<h2 class="h3 bg-opposite">Currently Liking...</h2>
+				<div class="current">
+					<CollectionItem category="shows" itemId="86848" />
+				</div>
+			</div>
+			<div class="buttons">
+				<a href="/likes/movies">
+					{getEmojiFromCategory("movies")} Movies ({TOTALS.movies})
+				</a>
+				<a href="/likes/shows">
+					{getEmojiFromCategory("shows")} Shows ({TOTALS.shows})
+				</a>
+				<a href="/likes/songs">
+					{getEmojiFromCategory("songs")} Songs ({TOTALS.songs})
+				</a>
+				<a href="/likes/bands">
+					{getEmojiFromCategory("bands")} Bands ({TOTALS.bands})
+				</a>
+				<a href="/likes/games">
+					{getEmojiFromCategory("games")} Games ({TOTALS.games})
+				</a>
+			</div>
+		</div>
 	</section>
 </BaseLayout>
+
+<style lang="scss">
+	@use "@css/util";
+
+	.featured {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1.5rem;
+		margin-top: 1.5rem;
+
+		@include util.mq(md) {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	.box {
+		display: flex;
+		flex-direction: column;
+		gap: 0.7rem;
+	}
+
+	h2 {
+		margin-bottom: 0.7rem;
+		text-align: center;
+	}
+
+	.buttons {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		justify-content: center;
+		margin-top: auto;
+
+		a {
+			line-height: 1;
+			font-size: 1rem;
+			padding: 0.3em 0.6em;
+			border: 1px solid var(--font-color);
+			border-radius: 3px;
+			text-decoration-thickness: 1px;
+		}
+	}
+</style>

@@ -36,7 +36,6 @@ const date = formatDate(
 
     position: relative;
     display: block;
-    height: 100%;
     text-decoration: none;
   }
 
@@ -44,7 +43,6 @@ const date = formatDate(
     position: relative;
     display: flex;
     flex-direction: column;
-    height: 100%;
 
     img {
       width: 100%;
@@ -54,19 +52,20 @@ const date = formatDate(
       font-size: var(--title-size);
       font-weight: bold;
       line-height: 1;
-      padding: 0.2em 0 0;
+      padding: 0.34em 0 0;
     }
 
     .date {
       line-height: 1;
       font-size: 1rem;
       font-weight: bold;
-      padding: 0.2em 0 0.4em;
+      padding: 0.34em 0 0.5em;
     }
 
     .description {
       font-size: 1.1rem;
       line-height: 1.2;
+      opacity: 0.75;
     }
   }
 </style>

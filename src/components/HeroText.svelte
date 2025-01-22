@@ -64,12 +64,14 @@
   h1 {
     --font-size: 15rem;
     --text-shadow-color: var(--c-primary);
+    --letter-offset: -0.05em;
 
     position: relative;
     display: block;
+    left: var(--letter-offset);
     font-family: var(--ff-brand);
     line-height: 1;
-    letter-spacing: -0.05em;
+    letter-spacing: var(--letter-offset);
     font-size: var(--font-size);
     color: var(--font-color);
     padding: 0 0.1em;

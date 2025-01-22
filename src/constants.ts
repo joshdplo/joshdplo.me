@@ -70,3 +70,4 @@ export const FOOTER_LINKS = [
 ];
 
 export const META = _META;
+export const TOTALS = _TOTALS;
