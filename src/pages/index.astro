@@ -22,19 +22,19 @@ const sortedNotes = notes.sort(
 		</div>
 
 		<div class="h2 border-opposite bg">
-			Hi!
-			<span class="bg-accent no-pad">Welcome to my website.</span> I use it to
+			Hi -
+			<span class="bg-accent no-pad">welcome to my website!</span> I use it to
 			<span class="bg-secondary no-pad"
-				><a href="/likes">list things I like</a></span
+				><a href="/likes">list some of the things I like</a></span
 			>,
 			<span class="bg no-pad"
 				><a href="https://github.com/joshdplo?tab=repositories"
-					>practice FE development</a
+					>practice a bit of FE development</a
 				></span
 			>, and
 			<span class="bg-quaternary no-pad"
-				><a href="/notes">keep some public notes</a></span
-			>.
+				><a href="/notes">write down a few notes</a></span
+			>
 		</div>
 	</section>
 
@@ -49,7 +49,6 @@ const sortedNotes = notes.sort(
 			<div class="buttons">
 				<a href="/notes">All Notes</a>
 				<a href="/notes/tags">Notes by Tag</a>
-				<a href="/search">Search Notes</a>
 			</div>
 		</div>
 		<div class="box bg border-secondary">
@@ -63,7 +62,6 @@ const sortedNotes = notes.sort(
 			</div>
 			<div class="buttons">
 				<a href="/likes/movies">All Movies</a>
-				<a href="/search">Search Movies</a>
 			</div>
 		</div>
 		<div class="box bg border-secondary">
@@ -77,7 +75,19 @@ const sortedNotes = notes.sort(
 			</div>
 			<div class="buttons">
 				<a href="/likes/shows">All Shows</a>
-				<a href="/search">Search Shows</a>
+			</div>
+		</div>
+		<div class="box bg border-secondary">
+			<div class="currently">
+				<h2 class="h3 bg-opposite">
+					{getEmojiFromCategory("bands")} Been Jamming To
+				</h2>
+				<div class="current">
+					<CollectionItem category="bands" itemId="2da7ehIX9lFyIDqmjqVZvS" />
+				</div>
+			</div>
+			<div class="buttons">
+				<a href="/likes/bands">All Bands</a>
 			</div>
 		</div>
 		<div class="box bg border-secondary">
@@ -91,21 +101,6 @@ const sortedNotes = notes.sort(
 			</div>
 			<div class="buttons">
 				<a href="/likes/games">All Games</a>
-				<a href="/search">Search Games</a>
-			</div>
-		</div>
-		<div class="box bg border-secondary">
-			<div class="currently">
-				<h2 class="h3 bg-opposite">
-					{getEmojiFromCategory("games")} Been Jamming To
-				</h2>
-				<div class="current">
-					<CollectionItem category="bands" itemId="2da7ehIX9lFyIDqmjqVZvS" />
-				</div>
-			</div>
-			<div class="buttons">
-				<a href="/likes/bands">All Bands</a>
-				<a href="/search">Search Bands</a>
 			</div>
 		</div>
 	</section>
@@ -151,6 +146,10 @@ const sortedNotes = notes.sort(
 			border: 1px solid var(--font-color);
 			border-radius: 3px;
 			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
 		}
 	}
 </style>

@@ -140,7 +140,11 @@
   {#if totalResults > 0}
     <div class="head">
       {totalResults} Results ({totalPages} pages)
-      <button onclick={() => clearSearch()} title="Clear search">clear</button>
+      <button
+        onclick={() => clearSearch()}
+        class="clear-results"
+        title="Clear search">clear</button
+      >
     </div>
     <i class="spacer-1"></i>
   {/if}
@@ -186,13 +190,17 @@
   {#if noResults && query.length > 2 && query !== ""}
     <div class="center-full no-results">
       No Results for "{lastQuery}"
-      <button onclick={() => clearSearch()} title="Clear search">clear</button>
+      <button
+        onclick={() => clearSearch()}
+        class="clear-results"
+        title="Clear search">clear</button
+      >
     </div>
   {/if}
   {#if query.length <= 2 || query === ""}
     <div class="totals">
       <p class="h3">
-        Now serving <b class="bg-quaternary no-pad"
+        Searchable items include <b class="bg-quaternary no-pad"
           >{getEmojiFromCategory("notes")} {totalNotes} Notes</b
         >,
         <b class="bg-secondary no-pad"
@@ -206,7 +214,7 @@
         >,
         <b class="bg-secondary no-pad"
           >{getEmojiFromCategory("bands")} {TOTALS.bands} Bands</b
-        >,
+        >, and
         <b class="bg-secondary no-pad"
           >{getEmojiFromCategory("games")} {TOTALS.games} Games</b
         >.
@@ -238,15 +246,15 @@
     }
   }
 
-  button {
-    font-size: 0.7rem;
-    font-weight: bold;
-    line-height: 1;
-    padding: 0.25em 0.5em;
-    border: 0.1em solid var(--font-color);
-    border-radius: 1rem;
-    text-transform: uppercase;
-  }
+  // button {
+  //   font-size: 0.7rem;
+  //   font-weight: bold;
+  //   line-height: 1;
+  //   padding: 0.25em 0.5em;
+  //   border: 0.1em solid var(--font-color);
+  //   border-radius: 1rem;
+  //   text-transform: uppercase;
+  // }
 
   #results {
     position: relative;
@@ -304,6 +312,16 @@
     }
   }
 
+  button.clear-results {
+    font-size: 0.7rem;
+    font-weight: bold;
+    line-height: 1;
+    padding: 0.25em 0.5em;
+    border: 0.1em solid var(--font-color);
+    border-radius: 1rem;
+    text-transform: uppercase;
+  }
+
   .no-results {
     flex-direction: row;
     gap: 0.7rem;
@@ -322,7 +340,7 @@
     }
 
     @include util.mq(sm) {
-      width: 95%;
+      width: 98%;
       margin: auto;
     }
   }
