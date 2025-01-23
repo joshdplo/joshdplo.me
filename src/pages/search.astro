@@ -1,8 +1,11 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import HeroText from "@components/HeroText.svelte";
 import SearchPage from "@components/SearchPage.svelte";
 
+const notes = await getCollection("notes");
+const totalNotes = notes.length;
 const url =
   import.meta.env.MODE === "development"
     ? "http://localhost:3034/search"
@@ -14,5 +17,5 @@ const url =
     <HeroText text="Search" />
   </div>
 
-  <SearchPage {url} client:load />
+  <SearchPage {url} {totalNotes} client:load />
 </BaseLayout>

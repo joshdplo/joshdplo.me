@@ -1,4 +1,5 @@
 <script>
+  import { TOTALS } from "@constants";
   import { onMount } from "svelte";
   import { debounce } from "lodash-es";
   import {
@@ -7,7 +8,7 @@
     getEmojiFromCategory,
   } from "@util";
 
-  let { url } = $props();
+  let { url, totalNotes } = $props();
   let input;
   let searchDisabled = $state(false);
   let loading = $state(false);
@@ -182,8 +183,35 @@
         : currentPage}/{totalPages})</button
     >
   {/if}
-  {#if noResults && query !== ""}
-    <div class="center-full no-results">No Results for "{lastQuery}"</div>
+  {#if noResults && query.length > 2 && query !== ""}
+    <div class="center-full no-results">
+      No Results for "{lastQuery}"
+      <button onclick={() => clearSearch()} title="Clear search">clear</button>
+    </div>
+  {/if}
+  {#if query.length <= 2 || query === ""}
+    <div class="totals">
+      <p class="h3">
+        Now serving <b class="bg-quaternary no-pad"
+          >{getEmojiFromCategory("notes")} {totalNotes} Notes</b
+        >,
+        <b class="bg-secondary no-pad"
+          >{getEmojiFromCategory("movies")} {TOTALS.movies} Movies</b
+        >,
+        <b class="bg-secondary no-pad"
+          >{getEmojiFromCategory("shows")} {TOTALS.shows} Shows</b
+        >,
+        <b class="bg-secondary no-pad"
+          >{getEmojiFromCategory("songs")} {TOTALS.songs} Songs</b
+        >,
+        <b class="bg-secondary no-pad"
+          >{getEmojiFromCategory("bands")} {TOTALS.bands} Bands</b
+        >,
+        <b class="bg-secondary no-pad"
+          >{getEmojiFromCategory("games")} {TOTALS.games} Games</b
+        >.
+      </p>
+    </div>
   {/if}
 </section>
 
@@ -202,12 +230,22 @@
     }
 
     input {
-      border-width: 0.2em;
+      border-width: 0.24em;
       font-size: var(--search-size);
-      border-radius: 2rem;
+      border-radius: 3rem;
       padding: 0.4em 0.6em;
       width: 100%;
     }
+  }
+
+  button {
+    font-size: 0.7rem;
+    font-weight: bold;
+    line-height: 1;
+    padding: 0.25em 0.5em;
+    border: 0.1em solid var(--font-color);
+    border-radius: 1rem;
+    text-transform: uppercase;
   }
 
   #results {
@@ -222,16 +260,6 @@
       gap: 0.5rem;
       justify-content: center;
       align-items: center;
-
-      button {
-        font-size: 0.7rem;
-        font-weight: bold;
-        line-height: 1;
-        padding: 0.25em 0.5em;
-        border: 0.1em solid var(--font-color);
-        border-radius: 1rem;
-        text-transform: uppercase;
-      }
     }
 
     a {
@@ -273,6 +301,29 @@
 
     .load-prev {
       margin: 0 auto 1.8rem;
+    }
+  }
+
+  .no-results {
+    flex-direction: row;
+    gap: 0.7rem;
+  }
+
+  .totals {
+    padding-top: 0.5rem;
+
+    p {
+      line-height: 1.4;
+      font-weight: normal;
+    }
+
+    b {
+      padding: 0 0.2em;
+    }
+
+    @include util.mq(sm) {
+      width: 95%;
+      margin: auto;
     }
   }
 
