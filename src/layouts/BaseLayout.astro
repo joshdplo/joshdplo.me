@@ -15,7 +15,7 @@ const { pageTitle, pageDescription, noBreadcrumbs, removeSiteTitle } =
   Astro.props;
 ---
 
-<html lang="en">
+<html lang="en" class="theme-light">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/favicon.png" />
@@ -61,6 +61,8 @@ const { pageTitle, pageDescription, noBreadcrumbs, removeSiteTitle } =
 
     <!-- Theme Support -->
     <script is:inline>
+      document.documentElement.classList.remove("theme-light");
+
       function theme() {
         const LSTheme = window?.localStorage?.getItem("theme");
         if (LSTheme) {

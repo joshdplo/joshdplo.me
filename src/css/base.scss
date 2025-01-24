@@ -366,11 +366,39 @@ ol ol {
     background-color: var(--c-accent);
     color: var(--c-black);
   }
+
+  &-subtle {
+    background-color: var(--content-subtle);
+  }
+
+  &-subtler {
+    background-color: var(--content-subtler);
+  }
 }
 
 //@TODO: use scss to loop colors for borders??
 [class*="border-"] {
   border: .55em double transparent;
+
+  &.solid {
+    border-style: solid;
+  }
+
+  &.dashed {
+    border-style: dashed;
+  }
+
+  &.dotted {
+    border-style: dotted;
+  }
+
+  &.sm {
+    border-width: 3px;
+  }
+
+  &.md {
+    border-width: 5px;
+  }
 }
 
 .border {
@@ -411,12 +439,26 @@ ol ol {
   &-accent {
     border-color: var(--c-accent);
   }
+
+  &-subtle {
+    border-color: var(--content-subtle);
+  }
+
+  &-subtler {
+    border-color: var(--content-subtler);
+  }
 }
 
-.fancy {
-  border-top-left-radius: 5em;
-  border-bottom-right-radius: 5em;
-  padding: .6em 1em .4em 2.6em;
+.fancy-top {
+  border-top-left-radius: 2em;
+  border-top-right-radius: 2em;
+  padding: .6em 1em .45em 1em;
+}
+
+.fancy-bottom {
+  border-bottom-left-radius: 2em;
+  border-bottom-right-radius: 2em;
+  padding: .6em 1em .45em 1em;
 }
 
 // @TODO: scss loop this??
