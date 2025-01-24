@@ -329,6 +329,7 @@
 
   .totals {
     padding-top: 0.5rem;
+    text-align: center;
 
     p {
       line-height: 1.4;
@@ -340,7 +341,7 @@
     }
 
     @include util.mq(sm) {
-      width: 98%;
+      width: 96%;
       margin: auto;
     }
   }
