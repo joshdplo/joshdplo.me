@@ -197,7 +197,7 @@
       >
     </div>
   {/if}
-  {#if query.length <= 2 || query === ""}
+  {#if !results.length && (query.length <= 2 || query === "")}
     <div class="totals">
       <p class="h3">
         Searchable items include <b class="bg-quaternary no-pad"
