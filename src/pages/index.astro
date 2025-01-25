@@ -38,7 +38,7 @@ const sortedNotes = notes.sort(
 	</section>
 
 	<section class="contain featured">
-		<div class="box bg border-quaternary">
+		<div class="box notes bg border-quaternary">
 			<h2 class="h3 bg-subtler">
 				{getEmojiFromCategory("notes")} Latest Note
 			</h2>
@@ -47,48 +47,53 @@ const sortedNotes = notes.sort(
 			</div>
 			<div class="buttons">
 				<a href="/notes">All Notes</a>
-				<a href="/notes/tags">Notes by Tag</a>
 			</div>
 		</div>
-		<div class="box bg border-secondary">
+		<div class="box movies bg border-secondary">
 			<h2 class="h3 bg-subtler">
-				{getEmojiFromCategory("movies")} Just Watched
+				{getEmojiFromCategory("movies")} Recently Watched
 			</h2>
 			<div class="inner">
+				<CollectionItem category="movies" itemId="841733" />
+				<CollectionItem category="movies" itemId="440161" />
 				<CollectionItem category="movies" itemId="426063" />
+				<CollectionItem category="movies" itemId="257344" />
 			</div>
 			<div class="buttons">
 				<a href="/likes/movies">All Movies</a>
 			</div>
 		</div>
-		<div class="box bg border-secondary">
+		<div class="box shows bg border-secondary">
 			<h2 class="h3 bg-subtler">
-				{getEmojiFromCategory("shows")} Current Show
+				{getEmojiFromCategory("shows")} Current Shows
 			</h2>
 			<div class="inner">
 				<CollectionItem category="shows" itemId="1274" />
+				<CollectionItem category="shows" itemId="86848" />
 			</div>
 			<div class="buttons">
 				<a href="/likes/shows">All Shows</a>
 			</div>
 		</div>
-		<div class="box bg border-secondary">
+		<div class="box bands bg border-secondary">
 			<h2 class="h3 bg-subtler">
 				{getEmojiFromCategory("bands")} Been Jamming To
 			</h2>
 			<div class="inner">
 				<CollectionItem category="bands" itemId="2da7ehIX9lFyIDqmjqVZvS" />
+				<CollectionItem category="songs" itemId="436Tn5GopmkEQ3zDMlTRme" />
 			</div>
 			<div class="buttons">
 				<a href="/likes/bands">All Bands</a>
 			</div>
 		</div>
-		<div class="box bg border-secondary">
+		<div class="box games bg border-secondary">
 			<h2 class="h3 bg-subtler">
 				{getEmojiFromCategory("games")} Having Fun Playing
 			</h2>
 			<div class="inner">
 				<CollectionItem category="games" itemId="2016590" />
+				<CollectionItem category="games" itemId="1086940" />
 			</div>
 			<div class="buttons">
 				<a href="/likes/games">All Games</a>
@@ -116,10 +121,15 @@ const sortedNotes = notes.sort(
 		flex-direction: column;
 		justify-content: space-between;
 		gap: 0.7rem;
+
+		@include util.mq(md) {
+			&.movies {
+				grid-row: span 2;
+			}
+		}
 	}
 
 	h2 {
-		margin-bottom: 0.7rem;
 		text-align: center;
 	}
 

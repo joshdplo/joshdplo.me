@@ -61,6 +61,26 @@ const item = rawItem[0].data;
 
 const title = item.name || item.title;
 
+const subtext = () => {
+  switch (category) {
+    case "movies":
+    case "shows":
+      return `(${(item.release_date || item.first_air_date).split("-")[0]})`;
+    case "songs":
+      return `(${item.release_date.split("-")[0]}) by ${JSON.parse(item.artists)
+        .map((a) => a.name)
+        .join(", ")}`;
+    case "bands":
+      return null;
+    case "games":
+      return `(${
+        JSON.parse(item.release_date).date.split(" ")[
+          JSON.parse(item.release_date).date.split(" ").length - 1
+        ]
+      })`;
+  }
+};
+
 const serviceName = () => {
   switch (category) {
     case "movies":
@@ -102,6 +122,7 @@ const serviceUrl = () => {
       {category.substring(0, category.length - 1)}
     </span>
     <span class="title">{title}</span>
+    {subtext() && <span class="subtext">{subtext()}</span>}
     <i class="text">{text}</i>
     <div class="links">
       <a href={serviceUrl()}>{serviceName()} Page</a>
@@ -189,6 +210,11 @@ const serviceUrl = () => {
 
   .title {
     font-size: 2.2rem;
+  }
+
+  .subtext {
+    padding-left: 0.1em;
+    font-size: 1rem;
   }
 
   .text {

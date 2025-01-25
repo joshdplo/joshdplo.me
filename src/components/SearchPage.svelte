@@ -268,6 +268,8 @@
       gap: 0.5rem;
       justify-content: center;
       align-items: center;
+      padding-bottom: 0.5em;
+      border-bottom: 0.1em dotted var(--content-subtle);
     }
 
     a {
@@ -302,7 +304,8 @@
     .load-prev {
       margin: 1.8rem auto 0;
       padding: 0.35em 0.8em;
-      border: 0.15em solid var(--font-color);
+      border: 0.2em solid var(--c-tertiary);
+      background-color: var(--content-subtler);
       border-radius: 2rem;
       line-height: 1;
     }
