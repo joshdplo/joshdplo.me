@@ -354,7 +354,7 @@ ol ol {
 
   &-tertiary {
     background-color: var(--c-tertiary);
-    color: var(--c-white);
+    color: var(--c-black);
   }
 
   &-quaternary {
@@ -393,7 +393,7 @@ ol ol {
   }
 
   &.sm {
-    border-width: 3px;
+    border-width: 2px;
   }
 
   &.md {

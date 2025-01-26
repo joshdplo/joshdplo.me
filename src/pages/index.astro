@@ -39,7 +39,7 @@ const sortedNotes = notes.sort(
 
 	<section class="contain featured">
 		<div class="box notes bg border-quaternary">
-			<h2 class="h3 bg-subtler">
+			<h2 class="h3 bg border-opposite sm">
 				{getEmojiFromCategory("notes")} Latest Note
 			</h2>
 			<div class="note">
@@ -50,7 +50,7 @@ const sortedNotes = notes.sort(
 			</div>
 		</div>
 		<div class="box movies bg border-secondary">
-			<h2 class="h3 bg-subtler">
+			<h2 class="h3 bg border-opposite sm">
 				{getEmojiFromCategory("movies")} Recently Watched
 			</h2>
 			<div class="inner">
@@ -64,7 +64,7 @@ const sortedNotes = notes.sort(
 			</div>
 		</div>
 		<div class="box shows bg border-secondary">
-			<h2 class="h3 bg-subtler">
+			<h2 class="h3 bg border-opposite sm">
 				{getEmojiFromCategory("shows")} Current Shows
 			</h2>
 			<div class="inner">
@@ -76,7 +76,7 @@ const sortedNotes = notes.sort(
 			</div>
 		</div>
 		<div class="box bands bg border-secondary">
-			<h2 class="h3 bg-subtler">
+			<h2 class="h3 bg border-opposite sm">
 				{getEmojiFromCategory("bands")} Been Jamming To
 			</h2>
 			<div class="inner">
@@ -88,7 +88,7 @@ const sortedNotes = notes.sort(
 			</div>
 		</div>
 		<div class="box games bg border-secondary">
-			<h2 class="h3 bg-subtler">
+			<h2 class="h3 bg border-opposite sm">
 				{getEmojiFromCategory("games")} Having Fun Playing
 			</h2>
 			<div class="inner">
@@ -121,6 +121,8 @@ const sortedNotes = notes.sort(
 		flex-direction: column;
 		justify-content: space-between;
 		gap: 0.7rem;
+		border-width: 2px;
+		border-style: double;
 
 		@include util.mq(md) {
 			&.movies {
