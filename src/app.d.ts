@@ -1,4 +1,4 @@
-// unused types from sveltekit - can be used in the future?
+// unused types from sveltekit - can be used in the future
 declare global {
 	interface Note {
 		title: string,

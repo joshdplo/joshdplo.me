@@ -45,7 +45,6 @@
     highestPageLoaded = null;
     queryParamPage = null;
     hasPreviousResults = false;
-    input.focus();
     window.history.replaceState(
       {},
       "",
@@ -243,18 +242,14 @@
       border-radius: 3rem;
       padding: 0.4em 0.6em;
       width: 100%;
+
+      &:focus-visible {
+        @include util.themeStyles(dark) {
+          background-color: rgba(100, 0, 255, 0.1);
+        }
+      }
     }
   }
-
-  // button {
-  //   font-size: 0.7rem;
-  //   font-weight: bold;
-  //   line-height: 1;
-  //   padding: 0.25em 0.5em;
-  //   border: 0.1em solid var(--font-color);
-  //   border-radius: 1rem;
-  //   text-transform: uppercase;
-  // }
 
   #results {
     position: relative;
@@ -286,18 +281,19 @@
       &:nth-child(odd) {
         background-color: var(--content-subtler);
       }
-    }
 
-    span {
-      font-size: 0.75rem;
-      font-weight: bold;
-      text-transform: uppercase;
-      padding: 0.3em 0.8em;
-      border-style: solid;
-      border-width: 0.25em;
-      border-right: 0;
-      border-top: 0;
-      border-bottom: 0;
+      span {
+        min-width: 80px;
+        font-size: 0.75rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        padding: 0.3em 0 0.03em 0.8em;
+        border-style: solid;
+        border-width: 0.25em;
+        border-right: 0;
+        border-top: 0;
+        border-bottom: 0;
+      }
     }
 
     .load-more,
