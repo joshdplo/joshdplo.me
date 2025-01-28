@@ -242,12 +242,6 @@
       border-radius: 3rem;
       padding: 0.4em 0.6em;
       width: 100%;
-
-      &:focus-visible {
-        @include util.themeStyles(dark) {
-          background-color: rgba(100, 0, 255, 0.1);
-        }
-      }
     }
   }
 
