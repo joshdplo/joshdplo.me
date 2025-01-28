@@ -5,6 +5,7 @@ import Show from "@slurpi/db/Show.js";
 import SteamGame from "@slurpi/db/SteamGame.js";
 import SpotifySong from "@slurpi/db/SpotifySong.js";
 import SpotifyArtist from "@slurpi/db/SpotifyArtist.js";
+import RadioStation from "@slurpi/db/RadioStation.js";
 
 // Notes Collection @ local .md files
 const notes = defineCollection({
@@ -172,5 +173,29 @@ const games = defineCollection({
   }),
 });
 
+// Artists Collection @ slurpi
+const radioStations = defineCollection({
+  loader: async () => {
+    const data = await RadioStation.findAll({ order: [['name', 'ASC']], raw: true });
+
+    return data.map((item) => {
+      const { id, ...itemData } = item;
+      return {
+        id: `${item.id}`,
+        ...itemData
+      };
+    });
+  },
+  schema: z.object({
+    name: z.string(),
+    genres: z.string(),
+    url: z.string(),
+    super: z.number(),
+    mega: z.number(),
+    createdAt: z.string(),
+    updatedAt: z.string(),
+  }),
+});
+
 // EXPORT ALL COLLECTIONS
-export const collections = { notes, movies, shows, songs, artists, games };
+export const collections = { notes, movies, shows, songs, artists, games, radioStations };

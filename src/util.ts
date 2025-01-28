@@ -115,6 +115,9 @@ export function getEmojiFromCategory(c: string) {
     case 'note':
     case 'notes':
       return '📋'
+    case 'radio':
+    case 'radioStations':
+      return '📡';
     default:
       return ''
   }

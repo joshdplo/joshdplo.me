@@ -5,18 +5,17 @@ import HeroText from "@components/HeroText.svelte";
 const { error } = Astro.props;
 ---
 
-<BaseLayout pageTitle="breaks =[">
+<BaseLayout pageTitle="Not Found">
   <section class="contain">
     <div class="center-full">
-      <HeroText text="ERROR!" size={15} alt={true} />
+      <HeroText text="404" size={15} alt={true} />
     </div>
 
     <div class="h1 bg border">
-      WHAT THE HECK? something <span class="bg-opposite no-pad"
-        >{error instanceof Error ? error.message : "Page Not Found"}</span
-      >
-      happened because
-      <span class="bg-accent no-pad">404</span>!
+      This <span class="bg-opposite no-pad">page doesn't exist</span>. Want to <a
+        href="/">go back to the home page</a
+      >?
     </div>
+    <i class="spacer-2"></i>
   </section>
 </BaseLayout>

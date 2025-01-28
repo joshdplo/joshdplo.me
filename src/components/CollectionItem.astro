@@ -17,6 +17,10 @@ if (category === "bands" || category === "songs") {
 if (category === "games") {
   imagesGlob = import.meta.glob("@slurpi/public/images/steam/*.jpg");
 }
+if (category === "radio") {
+  collectionName = "radioStations";
+  imagesGlob = import.meta.glob("@slurpi/public/images/radio/*.jpg");
+}
 
 // get image
 const img =
@@ -71,7 +75,8 @@ const subtext = () => {
         .map((a) => a.name)
         .join(", ")}`;
     case "bands":
-      return null;
+    case "radio":
+      return `${JSON.parse(item.genres).join(", ")}`;
     case "games":
       return `(${
         JSON.parse(item.release_date).date.split(" ")[
@@ -91,6 +96,8 @@ const serviceName = () => {
       return "Spotify";
     case "games":
       return "Steam";
+    case "radio":
+      return "Radio Station";
     default:
       return null;
   }
@@ -103,6 +110,7 @@ const serviceUrl = () => {
       return `https://www.themoviedb.org/${category === "movies" ? "movie" : "tv"}/${itemId}`;
     case "songs":
     case "bands":
+    case "radio":
       return item.url;
     case "games":
       return `https://store.steampowered.com/app/${item?.appid}`;
@@ -119,14 +127,18 @@ const serviceUrl = () => {
   <div class="details">
     <span class="category"
       >{getEmojiFromCategory(category)}
-      {category.substring(0, category.length - 1)}
+      {
+        category !== "radio"
+          ? category.substring(0, category.length - 1)
+          : category
+      }
     </span>
     <span class="title">{title}</span>
     {subtext() && <span class="subtext">{subtext()}</span>}
     <i class="text">{text}</i>
     <div class="links">
       <a href={serviceUrl()}>{serviceName()} Page</a>
-      <a href={itemLink}>View in Likes</a>
+      {category !== "radio" && <a href={itemLink}>View in Likes</a>}
     </div>
   </div>
 </div>
