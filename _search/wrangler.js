@@ -49,6 +49,7 @@ const categoryTerms = [
   { category: 'show', termSelector: '.title span' },
   { category: 'song', termSelector: '.title' },
   { category: 'band', termSelector: '.title' },
+  { category: 'radio', termSelector: '.title' },
   { category: 'game', termSelector: '.title' },
   { category: 'note', termSelector: 'h1' }
 ];

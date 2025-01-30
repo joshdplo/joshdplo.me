@@ -45,13 +45,13 @@ itemIndex = itemIndex - difference;
 const getItemsPerPage = () => {
   if (category === "movies" || category === "shows")
     return SITE.MOVIES_PER_PAGE;
-  if (category === "songs" || category === "bands") return SITE.SONGS_PER_PAGE;
+  if (category === "songs" || category === "bands" || category === "radio")
+    return SITE.MUSIC_PER_PAGE;
   if (category === "games") return SITE.GAMES_PER_PAGE;
 };
 const itemLink = getCollectionItemLink(
   itemId,
   itemIndex,
-  allItems.length,
   getItemsPerPage(),
   category,
 );
@@ -97,7 +97,7 @@ const serviceName = () => {
     case "games":
       return "Steam";
     case "radio":
-      return "Radio Station";
+      return "Radio";
     default:
       return null;
   }
@@ -138,7 +138,7 @@ const serviceUrl = () => {
     <i class="text">{text}</i>
     <div class="links">
       <a href={serviceUrl()}>{serviceName()} Page</a>
-      {category !== "radio" && <a href={itemLink}>View in Likes</a>}
+      <a href={itemLink}>View in Likes</a>
     </div>
   </div>
 </div>

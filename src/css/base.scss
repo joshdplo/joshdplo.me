@@ -108,6 +108,22 @@ ol {
   list-style-type: none;
 }
 
+hr {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 1.7rem 0;
+  border-style: dashed;
+  border-color: var(--content-subtle);
+}
+
+.hero-text+hr,
+h1+hr,
+h2+hr,
+h3+hr {
+  margin-top: .7rem;
+}
+
 input[type="text"] {
   padding: .3em .55em;
   font-size: 1rem;

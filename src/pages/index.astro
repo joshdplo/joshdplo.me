@@ -33,7 +33,9 @@ const sortedNotes = notes.sort(
 			>, and
 			<span class="bg-quaternary no-pad"
 				><a href="/notes">write down a few notes</a></span
-			>
+			>. If you want to know more, <a class="bg-opposite no-pad" href="/about"
+				>check out the about page</a
+			>.
 		</div>
 	</section>
 
@@ -54,10 +56,10 @@ const sortedNotes = notes.sort(
 				{getEmojiFromCategory("movies")} Recently Watched
 			</h2>
 			<div class="inner">
+				<CollectionItem category="movies" itemId="198663" />
+				<CollectionItem category="movies" itemId="416477" />
 				<CollectionItem category="movies" itemId="403431" />
 				<CollectionItem category="movies" itemId="841733" />
-				<CollectionItem category="movies" itemId="440161" />
-				<CollectionItem category="movies" itemId="426063" />
 			</div>
 			<div class="buttons">
 				<a href="/likes/movies">All Movies</a>
@@ -109,7 +111,7 @@ const sortedNotes = notes.sort(
 		display: grid;
 		grid-template-columns: 1fr;
 		gap: 1.5rem;
-		margin-top: 1.5rem;
+		margin-top: 2.5rem;
 
 		@include util.mq(md) {
 			grid-template-columns: 1fr 1fr;

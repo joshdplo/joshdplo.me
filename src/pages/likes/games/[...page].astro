@@ -1,6 +1,6 @@
 ---
 import { SITE } from "@constants";
-import { getPageMenuLinksFromPath } from "@util";
+import { getPageMenuLinksFromPath, getEmojiFromCategory } from "@util";
 import { getCollection } from "astro:content";
 import CollectionLayout from "@layouts/CollectionLayout.astro";
 import SteamCard from "@components/SteamCard.astro";
@@ -21,12 +21,12 @@ const { total, currentPage, lastPage } = page;
 ---
 
 <CollectionLayout
-  pageTitle={`🎮 All Games${currentPage > 1 ? " (" + currentPage + "/" + lastPage + ")" : ""}`}
+  pageTitle={`${getEmojiFromCategory("games")} All Games${currentPage > 1 ? " (" + currentPage + "/" + lastPage + ")" : ""}`}
   heroText="Likes"
   heroSubtext="games"
   {pageMenuLinks}
   {currentPage}
-  pageDescription="A (big) list of the games Josh has played"
+  pageDescription="A list of the games Josh has played"
 >
   <section class="contain">
     <Pagination

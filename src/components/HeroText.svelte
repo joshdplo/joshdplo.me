@@ -34,7 +34,7 @@
   {/each}
 {/snippet}
 
-<div class="wrapper" class:link>
+<div class="hero-text" class:link>
   {#if link}
     <a href={link} style={styleString} class:alt class:hasDescenders>
       {@render spanLetters(text, capitalize)}
@@ -52,7 +52,7 @@
 <style lang="scss">
   @use "@css/util";
 
-  .wrapper {
+  .hero-text {
     position: relative;
 
     &:not(.link) {

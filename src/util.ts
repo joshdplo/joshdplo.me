@@ -56,9 +56,11 @@ export function getCssClamp(
 /**
  * Get Single Item Collection Page
  */
-export function getCollectionItemLink(itemId: string, itemIndex: number, totalItems: number, numPerPage: number, collectionName: string) {
+export function getCollectionItemLink(itemId: string, itemIndex: number, numPerPage: number, collectionName: string) {
+  let trimLastLetter = collectionName !== 'radio';
+
   const page = Math.floor(itemIndex / numPerPage) + 1;
-  return `/likes/${collectionName}/${page}?search=${itemId}&cat=${collectionName.substring(0, collectionName.length - 1)}`;
+  return `/likes/${collectionName}/${page}?search=${itemId}&cat=${trimLastLetter ? collectionName.substring(0, collectionName.length - 1) : collectionName}`;
 }
 
 /**
@@ -116,7 +118,7 @@ export function getEmojiFromCategory(c: string) {
     case 'notes':
       return '📋'
     case 'radio':
-    case 'radioStations':
+    case 'radios':
       return '📡';
     default:
       return ''

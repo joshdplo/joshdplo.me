@@ -3,7 +3,7 @@ export const SITE = {
   DESCRIPTION: 'The dot me of Josh D',
   NOTES_PER_PAGE: 6,
   MOVIES_PER_PAGE: 10,
-  SONGS_PER_PAGE: 12,
+  MUSIC_PER_PAGE: 12,
   GAMES_PER_PAGE: 10,
 };
 
@@ -12,6 +12,7 @@ export const PAGE_COLORS = [
   { path: '/likes', color: "secondary" },
   { path: '/notes', color: "quaternary" },
   { path: '/search', color: "tertiary" },
+  { path: '/about', color: "tertiary" },
 ]
 
 export const ALL_LINKS = [
@@ -22,6 +23,7 @@ export const ALL_LINKS = [
       { path: '/likes/shows', title: 'Shows' },
       { path: '/likes/bands', title: 'Bands' },
       { path: '/likes/songs', title: 'Songs' },
+      { path: '/likes/radio', title: 'Radio' },
       { path: '/likes/games', title: 'Games' },
     ]
   },
@@ -32,6 +34,7 @@ export const ALL_LINKS = [
     ]
   },
   { path: '/search', title: 'Search' },
+  { path: '/about', title: 'About' }
 ];
 
 export const NAV_LINKS = [
@@ -49,6 +52,7 @@ export const FOOTER_LINKS = [
       { path: '/likes/shows', title: 'Shows' },
       { path: '/likes/bands', title: 'Bands' },
       { path: '/likes/songs', title: 'Songs' },
+      { path: '/likes/radio', title: 'Radio' },
       { path: '/likes/games', title: 'Games' },
     ]
   },
@@ -64,6 +68,7 @@ export const FOOTER_LINKS = [
     heading: 'Site',
     links: [
       { path: '/', title: 'Home' },
+      { path: '/about', title: 'About' },
       { path: '/search', title: 'Search' },
     ]
   },

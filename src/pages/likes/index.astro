@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import { getPageMenuLinksFromPath } from "@util";
+import { getPageMenuLinksFromPath, getEmojiFromCategory } from "@util";
 import CollectionLayout from "@layouts/CollectionLayout.astro";
 import TMDBCard from "@components/TMDBCard.astro";
 import SpotifyCard from "@components/SpotifyCard.astro";
@@ -32,7 +32,7 @@ const allTimeShowsIds = [
 ];
 const allTimeSongsIds = [
   "5SG2BVsZr0W7cFAkjh60TT", //the bottom
-  "1dxQcXEZciFqzSCHLmly6n", //talking in code
+  "1YfbJV5J2V2fU5OcFmzi03", //elevator
   "7Ak2cwmIfDRuXkvg4T1OWL", //ambrosia
   "4niDU35YEMnJIQjKb506hb", //alchemy
   "6vzrbjMSJqo3OURh3KEPu0", //cora may
@@ -59,7 +59,7 @@ const topGames = await getCollection(
 
 <CollectionLayout pageTitle="🔥 Top Likes" heroText="Likes" {pageMenuLinks}>
   <section class="contain">
-    <h2 class="h4">🍿 Top Movies</h2>
+    <h2 class="h4">{getEmojiFromCategory("movies")} Top Movies</h2>
     <div class="list list-tmdb">
       {
         allTimeMovies.map((m) => {
@@ -70,17 +70,17 @@ const topGames = await getCollection(
       }
     </div>
 
-    <h2 class="h4">🖥️ Top Shows</h2>
+    <h2 class="h4">{getEmojiFromCategory("shows")} Top Shows</h2>
     <div class="list list-tmdb">
       {allTimeShows.map((m) => <TMDBCard data={m} mini={true} />)}
     </div>
 
-    <h2 class="h4">🎧 Top Songs</h2>
+    <h2 class="h4">{getEmojiFromCategory("songs")} Top Songs</h2>
     <div class="list list-spotify">
       {allTimeSongs.map((m) => <SpotifyCard data={m} mini={true} />)}
     </div>
 
-    <h2 class="h4">🎮 Top Games</h2>
+    <h2 class="h4">{getEmojiFromCategory("games")} Top Games</h2>
     <div class="list list-steam">
       {topGames.map((g) => <SteamCard data={g} mini={true} />)}
     </div>

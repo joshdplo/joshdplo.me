@@ -1,0 +1,252 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import HeroText from "@components/HeroText.svelte";
+
+const particleQuantity = 15;
+---
+
+<BaseLayout pageTitle="About">
+  <div class="particles">
+    {[...Array(particleQuantity).keys()].map((p) => <i />)}
+  </div>
+  <section class="contain">
+    <div class="center-full">
+      <HeroText text="About" />
+      <p class="h2 bg-tertiary border-subtle text-center">
+        Stay a while and listen <img
+          src="/images/deckardcain.png"
+          alt="Deckard Cain from Diablo 2"
+          title="Deckard Cain"
+        />
+      </p>
+
+      <div class="box">
+        <p class="h4">
+          Oh... I didn't see you there - come on in and make yourself
+          comfortable. Since you've made the journey all the way to the about
+          page, let's get better acquainted.
+        </p>
+      </div>
+
+      <div class="box">
+        <h2 class="h3 bg-subtle text-center">My Story</h2>
+        <p>I'm a man in my thirties who</p>
+      </div>
+
+      <div class="box double">
+        <div>
+          <h2 class="h3 bg-subtle text-center">Interests & Hobbies</h2>
+          <p>
+            I love computers, watching movies and shows, playing games with
+            friends, and listening to music. I like going out to eat
+          </p>
+        </div>
+        <div>
+          <h2 class="h3 bg-subtle text-center">Philosophizations</h2>
+          <p>yep</p>
+        </div>
+        <div>
+          <h2 class="h3 bg-subtle text-center">Favorite Foods</h2>
+          <p>
+            Some of my favorite things to eat are <span class="bg-subtle no-pad"
+              >pho, giros, tacos, burritos, hamburgers, patty melts, steaks, and
+              salads</span
+            >. I'll drink <span class="bg-subtle no-pad">coffee or tea</span>
+            if it's around. I won't shy away from a <span
+              class="bg-subtle no-pad">soda</span
+            >, and I'm a <span class="bg-subtle no-pad">fan of the beers</span>.
+            I enjoy <span class="bg-subtle no-pad">ice cream</span>, but aside
+            from that, <span class="bg-subtle no-pad"
+              >I don't have much of a sweet tooth</span
+            >. I'm not very picky - I'll try anything once.
+          </p>
+        </div>
+        <div>
+          <h2 class="h3 bg-subtle text-center">My Dream Life</h2>
+          <p>yep</p>
+        </div>
+      </div>
+
+      <div class="box">
+        <h2 class="h3 bg-subtle text-center">What about you?</h2>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style lang="scss">
+  @use "sass:math";
+  @use "@css/util";
+
+  .h2 img {
+    display: inline-block;
+    max-height: 3rem;
+    width: auto;
+  }
+
+  .box {
+    width: 100%;
+    margin-top: 2rem;
+
+    .h4 {
+      font-weight: normal;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    button {
+      position: relative;
+      display: flex;
+      align-items: center;
+      line-height: 1;
+      padding: 0.75em 1.4em 0.75em 2.85em;
+      border: 2px solid var(--font-color);
+      border-radius: 2px;
+      font-weight: bold;
+      font-size: 1.15rem;
+
+      &:before {
+        content: "";
+        position: absolute;
+        left: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        line-height: 1;
+        font-size: 2rem;
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &.who::before {
+        content: "😮";
+      }
+
+      &.tech::before {
+        content: "🤖";
+      }
+    }
+  }
+
+  .double {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+
+    @include util.mq(sm) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  // CSS Pulse Animation by saigowtham
+  // https://codepen.io/saigowthamr/pen/PowdZqy
+  .pulse {
+    animation: pulse-animation 2s infinite;
+  }
+
+  @keyframes pulse-animation {
+    0% {
+      box-shadow: 0 0 1px 1px rgb(101, 213, 238, 1);
+    }
+    100% {
+      box-shadow: 0 0 0 20px rgb(101, 213, 238, 0);
+    }
+  }
+
+  // CSS Fireflies by Mike Golus
+  // https://codepen.io/mikegolus/pen/Jegvym
+  $quantity: 15;
+  .particles i {
+    --particle-color: var(--c-tertiary);
+
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 0.4vw;
+    height: 0.4vw;
+    margin: -0.2vw 0 0 9.8vw;
+    animation: ease 200s alternate infinite;
+    pointer-events: none;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      transform-origin: -10vw;
+    }
+
+    &::before {
+      background: var(--background);
+      opacity: 0.4;
+      animation: drift ease alternate infinite;
+    }
+
+    &::after {
+      background: var(--particle-color);
+      opacity: 0;
+      box-shadow: 0 0 0vw 0vw var(--font-color-opposite);
+      animation:
+        drift ease alternate infinite,
+        flash ease infinite;
+    }
+  }
+
+  @for $i from 1 through $quantity {
+    $steps: math.random(12) + 16;
+    $rotationSpeed: math.random(10) + 8s;
+
+    .particles i:nth-child(#{$i}) {
+      animation-name: move#{$i};
+
+      &::before {
+        animation-duration: #{$rotationSpeed};
+      }
+
+      &::after {
+        animation-duration:
+          #{$rotationSpeed},
+          math.random(6000) + 5000ms;
+        animation-delay:
+          0ms,
+          math.random(8000) + 500ms;
+      }
+    }
+
+    @keyframes move#{$i} {
+      @for $step from 0 through $steps {
+        #{$step * calc(100 / $steps)}% {
+          transform: translateX(math.random(100) - 50vw)
+            translateY(math.random(100) - 50vh)
+            scale(calc(math.random(75) / 100) + 0.25);
+        }
+      }
+    }
+  }
+
+  @keyframes drift {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes flash {
+    0%,
+    30%,
+    100% {
+      opacity: 0;
+      box-shadow: 0 0 0vw 0vw var(--particle-color);
+    }
+    5% {
+      opacity: 1;
+      box-shadow: 0 0 2vw 0.4vw var(--particle-color);
+    }
+  }
+</style>

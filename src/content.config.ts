@@ -173,7 +173,7 @@ const games = defineCollection({
   }),
 });
 
-// Artists Collection @ slurpi
+// Radio Collection @ slurpi
 const radioStations = defineCollection({
   loader: async () => {
     const data = await RadioStation.findAll({ order: [['name', 'ASC']], raw: true });
