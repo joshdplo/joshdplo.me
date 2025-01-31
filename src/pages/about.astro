@@ -5,6 +5,41 @@ import HeroText from "@components/HeroText.svelte";
 const particleQuantity = 15;
 ---
 
+<script is:inline>
+  document.addEventListener("astro:page-load", () => {
+    const hasLS = typeof window.localStorage !== "undefined";
+    const readMoreButton = document.getElementById("read-more_toggle");
+    const readMoreCutoff = document.querySelector(".read-more_cutoff");
+    const readMoreDiv = document.getElementById("read-more_text");
+
+    if (!readMoreButton) return;
+
+    let isExpanded = false;
+
+    function toggleExpandAbout() {
+      readMoreButton.setAttribute(
+        "aria-selected",
+        isExpanded ? "true" : "false",
+      );
+      readMoreDiv.setAttribute("aria-hidden", isExpanded ? "false" : "true");
+      readMoreButton.classList.remove("pulse");
+      readMoreButton.innerText = isExpanded ? "Hide my story" : "Load more";
+      readMoreCutoff.classList[isExpanded ? "add" : "remove"]("hide");
+    }
+
+    readMoreButton.addEventListener("click", () => {
+      isExpanded = !isExpanded;
+      if (hasLS) window.localStorage.setItem("aboutexpanded", isExpanded);
+      toggleExpandAbout();
+    });
+
+    if (window.localStorage.getItem("aboutexpanded") === "true") {
+      isExpanded = true;
+      toggleExpandAbout();
+    }
+  });
+</script>
+
 <BaseLayout pageTitle="About">
   <div class="particles">
     {[...Array(particleQuantity).keys()].map((p) => <i />)}
@@ -12,15 +47,8 @@ const particleQuantity = 15;
   <section class="contain">
     <div class="center-full">
       <HeroText text="About" />
-      <p class="h2 bg-tertiary border-subtle text-center">
-        Stay a while and listen <img
-          src="/images/deckardcain.png"
-          alt="Deckard Cain from Diablo 2"
-          title="Deckard Cain"
-        />
-      </p>
 
-      <div class="box">
+      <div class="box intro">
         <p class="h4">
           Oh... I didn't see you there - come on in and make yourself
           comfortable. Since you've made the journey all the way to the about
@@ -28,225 +56,373 @@ const particleQuantity = 15;
         </p>
       </div>
 
-      <div class="box">
-        <h2 class="h3 bg-subtle text-center">My Story</h2>
-        <p>I'm a man in my thirties who</p>
+      <div class="box story">
+        <h2 class="h3 bg-tertiary border-subtle text-center">My Story</h2>
+        <p>
+          When I was growing up, my mom always had a computer around whether it
+          was at home or at her job. I remember playing the floppy disk games my
+          parents bought - I was never able to beat them and I always got mad
+          because they were too hard for a little kid. As I grew up, there
+          seemed to always be something exciting happening on the computer.
+          Whether it was my uncle Mike showing me computer games when we went
+          out to visit or my computer classes in elementary and middle school, I
+          felt right as rain when I was on the old board'n'mouse.
+        </p>
+
+        <div class="read-more_cutoff">
+          <p>
+            When I was 13, my friend Louis introduced me to a little shop down
+            the street called a cyber cafe. I never imagined in a million years
+            there would be...
+          </p>
+        </div>
+
+        <div
+          id="read-more_text"
+          aria-hidden="true"
+          aria-labelledby="read-more_toggle"
+        >
+          <p>
+            One summer, my friend Louis introduced me to a little shop down the
+            street called a cyber cafe. I never imagined in a million years
+            there would be a place full of people that was dedicated to playing
+            computer games - I was in heaven. I realized I could play some of
+            the popular games on the family computer, so I started playing
+            everything I could get my hands on from Starcraft and Diablo 2 to
+            Roller Coaster Tycoon. I would play as much as I could during the
+            day, and then sneak down at night to play some more when everybody
+            was sleeping.
+          </p>
+
+          <p>
+            Eventually I installed Counter-strike - in that game you could
+            create your own spray paint image, and there was nothing cooler than
+            that! I pirated a copy of Adobe Fireworks from Limewire and began
+            learning how to create a spray. Down the road, my learning would
+            evolve into all sorts of neat stuff, like how to create websites.
+          </p>
+
+          <p>
+            When I was in 8th grade my parents bought me my very own computer
+            for my birthday. This is one of the highlights of my life - it
+            changed my entire world. Pretty soon, all of my friends were getting
+            into computers, too. We started having LAN parties every free
+            weekend we could. Even if the switch broke or the ethernet cords
+            didn't work, at least we were all hanging out and having fun. Those
+            will always be some of my most-cherished memories.
+          </p>
+
+          <p>
+            Life started happening towards the end of high school, but I
+            continued with my love of computers in between work. I eventually
+            got a job at that cyber cafe down the street, and would work there
+            on-and-off until it eventually closed down around 7 or 8 years
+            later.
+          </p>
+
+          <p>
+            During one of the <i>off</i> times, I went to cosmetology school and
+            got my cosmetology license. I figured I needed to do something that was
+            going to be steady and enjoyable. Unfortunately, I sucked at cosmetology,
+            so shortly after getting my license I gave it up - but it was all worth
+            it, because I made one amazing friend along the way (hi, Alison!)
+          </p>
+
+          <p>
+            When I turned up broke and stressed out in my early twenties, I had
+            some awesome friends who pushed me to get a recruiter and try for a
+            web developer job so I could pay rent. I got my first career job
+            working for a jewelry company's marketing team, and after that I
+            went on to work for a sweet agency downtown. I have them to thank
+            for starting my career as a developer. Unlike cosmetology, I did not
+            suck at web dev, and even got promoted a few times, which was pretty
+            cool.
+          </p>
+
+          <p>
+            After five years at my second job, I counted myself successful and
+            had made a good living, but became mired in the day-to-day and began
+            losing my flame. I decided to take a break and see if it was the
+            job, me, or something else that had made me become disillusioned
+            with work. Almost two years later, it turned out to be a little of
+            everything, but I'm getting back in the saddle. If you made it all
+            the way to here, you're all caught up! There's a little more random
+            information
+          </p>
+        </div>
+
+        <button
+          class="pulse"
+          id="read-more_toggle"
+          aria-selected="false"
+          aria-controls="read-more_text">Load more</button
+        >
       </div>
 
       <div class="box double">
         <div>
-          <h2 class="h3 bg-subtle text-center">Interests & Hobbies</h2>
+          <h2 class="h3 bg-tertiary border-subtle text-center">
+            Interests & Hobbies
+          </h2>
           <p>
-            I love computers, watching movies and shows, playing games with
-            friends, and listening to music. I like going out to eat
+            I love <span class="bg-subtle no-pad">fiddling with computers</span
+            >, <span class="bg-subtle no-pad">watching movies and shows</span>, <span
+              class="bg-subtle no-pad">playing games with friends</span
+            >, and <span class="bg-subtle no-pad">listening to music</span>. I
+            like <span class="bg-subtle no-pad">going out to eat</span>,
+            <span class="bg-subtle no-pad">going to the movies</span>, and I
+            also <span class="bg-subtle no-pad"
+              >enjoy the occassional shopping trip</span
+            >. When the mood strikes, I like <span class="bg-subtle no-pad"
+              >reading</span
+            > or <span class="bg-subtle no-pad">listening to an audio book</span
+            >.
           </p>
         </div>
         <div>
-          <h2 class="h3 bg-subtle text-center">Philosophizations</h2>
-          <p>yep</p>
+          <h2 class="h3 bg-tertiary border-subtle text-center">Character</h2>
+          <p>
+            I strive to be measured and kind to others. I've got a goofy streak
+            and a dumb sense of humor. I'm pretty <span class="bg-subtle no-pad"
+              >introverted</span
+            >, so I prefer <span class="bg-subtle no-pad"
+              >one-on-one interactions</span
+            >
+            and generally shy away from things like concerts or sports arenas.
+          </p>
         </div>
         <div>
-          <h2 class="h3 bg-subtle text-center">Favorite Foods</h2>
+          <h2 class="h3 bg-tertiary border-subtle text-center">
+            Favorite Foods
+          </h2>
           <p>
             Some of my favorite things to eat are <span class="bg-subtle no-pad"
-              >pho, giros, tacos, burritos, hamburgers, patty melts, steaks, and
-              salads</span
-            >. I'll drink <span class="bg-subtle no-pad">coffee or tea</span>
-            if it's around. I won't shy away from a <span
+              >pho</span
+            >, <span class="bg-subtle no-pad">Singapore mei fun</span>, <span
+              class="bg-subtle no-pad">giros</span
+            >, <span class="bg-subtle no-pad">tacos</span>, <span
+              class="bg-subtle no-pad">burritos</span
+            >, <span class="bg-subtle no-pad">hamburgers</span>, <span
+              class="bg-subtle no-pad">patty melts</span
+            >, <span class="bg-subtle no-pad">steaks</span>, and
+            <span class="bg-subtle no-pad">salads</span>. I'll drink <span
+              class="bg-subtle no-pad">coffee or tea</span
+            >
+            in the mornings on most days. I always enjoy a cold <span
               class="bg-subtle no-pad">soda</span
-            >, and I'm a <span class="bg-subtle no-pad">fan of the beers</span>.
-            I enjoy <span class="bg-subtle no-pad">ice cream</span>, but aside
-            from that, <span class="bg-subtle no-pad"
+            > or <span class="bg-subtle no-pad">beer</span>. For desserts, it's
+            mostly <span class="bg-subtle no-pad">ice cream</span>; aside from
+            that, <span class="bg-subtle no-pad"
               >I don't have much of a sweet tooth</span
-            >. I'm not very picky - I'll try anything once.
+            >. I'm not very picky when it comes to food - I'll try anything
+            once.
           </p>
         </div>
         <div>
-          <h2 class="h3 bg-subtle text-center">My Dream Life</h2>
-          <p>yep</p>
+          <h2 class="h3 bg-tertiary border-subtle text-center">
+            My Dreams & Goals
+          </h2>
+          <p>
+            When I was a kid, my only "adult goals" were to have my own place
+            and my own car. I accomplished that goal by age 30, and after a
+            while I became restless because I hadn't set any further goals.
+            Recently, I finally settled on my post-adult goals, and it's funny
+            because they are basically the same but a little more specific: own
+            a bungalow-style house, get my next awesome car, and save for
+            retirement!
+          </p>
         </div>
-      </div>
-
-      <div class="box">
-        <h2 class="h3 bg-subtle text-center">What about you?</h2>
       </div>
     </div>
   </section>
-</BaseLayout>
 
-<style lang="scss">
-  @use "sass:math";
-  @use "@css/util";
+  <style lang="scss">
+    @use "sass:math";
+    @use "@css/util";
 
-  .h2 img {
-    display: inline-block;
-    max-height: 3rem;
-    width: auto;
-  }
-
-  .box {
-    width: 100%;
-    margin-top: 2rem;
-
-    .h4 {
-      font-weight: normal;
-      text-align: center;
-      line-height: 1.4;
+    .h2 img {
+      display: inline-block;
+      max-height: 3rem;
+      width: auto;
     }
 
-    button {
-      position: relative;
-      display: flex;
-      align-items: center;
-      line-height: 1;
-      padding: 0.75em 1.4em 0.75em 2.85em;
-      border: 2px solid var(--font-color);
-      border-radius: 2px;
-      font-weight: bold;
-      font-size: 1.15rem;
-
-      &:before {
-        content: "";
-        position: absolute;
-        left: 8px;
-        top: 50%;
-        transform: translateY(-50%);
-        line-height: 1;
-        font-size: 2rem;
-      }
-
-      &:hover {
-        text-decoration: underline;
-      }
-
-      &.who::before {
-        content: "😮";
-      }
-
-      &.tech::before {
-        content: "🤖";
-      }
-    }
-  }
-
-  .double {
-    position: relative;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-
-    @include util.mq(sm) {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
-  // CSS Pulse Animation by saigowtham
-  // https://codepen.io/saigowthamr/pen/PowdZqy
-  .pulse {
-    animation: pulse-animation 2s infinite;
-  }
-
-  @keyframes pulse-animation {
-    0% {
-      box-shadow: 0 0 1px 1px rgb(101, 213, 238, 1);
-    }
-    100% {
-      box-shadow: 0 0 0 20px rgb(101, 213, 238, 0);
-    }
-  }
-
-  // CSS Fireflies by Mike Golus
-  // https://codepen.io/mikegolus/pen/Jegvym
-  $quantity: 15;
-  .particles i {
-    --particle-color: var(--c-tertiary);
-
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    width: 0.4vw;
-    height: 0.4vw;
-    margin: -0.2vw 0 0 9.8vw;
-    animation: ease 200s alternate infinite;
-    pointer-events: none;
-
-    &::before,
-    &::after {
-      content: "";
-      position: absolute;
+    .box {
       width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      transform-origin: -10vw;
-    }
+      margin-top: 2rem;
 
-    &::before {
-      background: var(--background);
-      opacity: 0.4;
-      animation: drift ease alternate infinite;
-    }
-
-    &::after {
-      background: var(--particle-color);
-      opacity: 0;
-      box-shadow: 0 0 0vw 0vw var(--font-color-opposite);
-      animation:
-        drift ease alternate infinite,
-        flash ease infinite;
-    }
-  }
-
-  @for $i from 1 through $quantity {
-    $steps: math.random(12) + 16;
-    $rotationSpeed: math.random(10) + 8s;
-
-    .particles i:nth-child(#{$i}) {
-      animation-name: move#{$i};
-
-      &::before {
-        animation-duration: #{$rotationSpeed};
+      .h4 {
+        font-weight: normal;
+        text-align: center;
+        line-height: 1.4;
       }
 
-      &::after {
-        animation-duration:
-          #{$rotationSpeed},
-          math.random(6000) + 5000ms;
-        animation-delay:
-          0ms,
-          math.random(8000) + 500ms;
-      }
-    }
+      button {
+        position: relative;
+        display: flex;
+        align-items: center;
+        line-height: 1;
+        padding: 0.75em 1.4em 0.75em 2.85em;
+        border: 2px solid var(--font-color);
+        border-radius: 2px;
+        font-weight: bold;
+        font-size: 1.15rem;
 
-    @keyframes move#{$i} {
-      @for $step from 0 through $steps {
-        #{$step * calc(100 / $steps)}% {
-          transform: translateX(math.random(100) - 50vw)
-            translateY(math.random(100) - 50vh)
-            scale(calc(math.random(75) / 100) + 0.25);
+        &:before {
+          content: "";
+          position: absolute;
+          left: 8px;
+          top: 50%;
+          transform: translateY(-50%);
+          line-height: 1;
+          font-size: 2rem;
+        }
+
+        &:hover {
+          text-decoration: underline;
+        }
+
+        &.who::before {
+          content: "😮";
+        }
+
+        &.tech::before {
+          content: "🤖";
         }
       }
     }
-  }
 
-  @keyframes drift {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
+    .double {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
 
-  @keyframes flash {
-    0%,
-    30%,
-    100% {
-      opacity: 0;
-      box-shadow: 0 0 0vw 0vw var(--particle-color);
+      @include util.mq(sm) {
+        grid-template-columns: 1fr 1fr;
+      }
     }
-    5% {
-      opacity: 1;
-      box-shadow: 0 0 2vw 0.4vw var(--particle-color);
+
+    .story div > p {
+      margin-top: 1em;
     }
-  }
-</style>
+
+    #read-more_toggle {
+      padding: 0.75em 1.4em;
+      margin: 2rem auto 1rem;
+    }
+
+    #read-more_text[aria-hidden="true"] {
+      display: none;
+    }
+
+    // CSS Pulse Animation by saigowtham
+    // https://codepen.io/saigowthamr/pen/PowdZqy
+    .pulse {
+      animation: pulse-animation 2s infinite;
+    }
+
+    @keyframes pulse-animation {
+      0% {
+        box-shadow: 0 0 1px 1px rgb(101, 213, 238, 1);
+      }
+      100% {
+        box-shadow: 0 0 0 20px rgb(101, 213, 238, 0);
+      }
+    }
+
+    // CSS Fireflies by Mike Golus
+    // https://codepen.io/mikegolus/pen/Jegvym
+    $quantity: 15;
+    .particles i {
+      --particle-color: var(--c-tertiary);
+
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      width: 0.4vw;
+      height: 0.4vw;
+      margin: -0.2vw 0 0 9.8vw;
+      animation: ease 200s alternate infinite;
+      pointer-events: none;
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        transform-origin: -10vw;
+      }
+
+      &::before {
+        background: var(--background);
+        opacity: 0.4;
+        animation: drift ease alternate infinite;
+      }
+
+      &::after {
+        background: var(--particle-color);
+        opacity: 0;
+        box-shadow: 0 0 0vw 0vw var(--font-color-opposite);
+        animation:
+          drift ease alternate infinite,
+          flash ease infinite;
+      }
+    }
+
+    @for $i from 1 through $quantity {
+      $steps: math.random(12) + 16;
+      $rotationSpeed: math.random(10) + 8s;
+
+      .particles i:nth-child(#{$i}) {
+        animation-name: move#{$i};
+
+        &::before {
+          animation-duration: #{$rotationSpeed};
+        }
+
+        &::after {
+          animation-duration:
+            #{$rotationSpeed},
+            math.random(6000) + 5000ms;
+          animation-delay:
+            0ms,
+            math.random(8000) + 500ms;
+        }
+      }
+
+      @keyframes move#{$i} {
+        @for $step from 0 through $steps {
+          #{$step * calc(100 / $steps)}% {
+            transform: translateX(math.random(100) - 50vw)
+              translateY(math.random(100) - 50vh)
+              scale(calc(math.random(75) / 100) + 0.25);
+          }
+        }
+      }
+    }
+
+    @keyframes drift {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes flash {
+      0%,
+      30%,
+      100% {
+        opacity: 0;
+        box-shadow: 0 0 0vw 0vw var(--particle-color);
+      }
+      5% {
+        opacity: 1;
+        box-shadow: 0 0 2vw 0.4vw var(--particle-color);
+      }
+    }
+  </style>
+</BaseLayout>

@@ -302,6 +302,11 @@ ol ol {
 /**
  * Utility
  */
+.hide,
+.hidden {
+  display: none !important;
+}
+
 .contain {
   width: 100%;
   max-width: calc(var(--content-width) + var(--site-padding) * 2);
