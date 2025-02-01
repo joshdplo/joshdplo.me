@@ -213,9 +213,12 @@
         >,
         <b class="bg-secondary no-pad"
           >{getEmojiFromCategory("bands")} {TOTALS.bands} Bands</b
-        >, and
+        >,
         <b class="bg-secondary no-pad"
           >{getEmojiFromCategory("games")} {TOTALS.games} Games</b
+        >, and
+        <b class="bg-secondary no-pad"
+          >{getEmojiFromCategory("radio")} {TOTALS.radios} Radio Stations</b
         >.
       </p>
     </div>

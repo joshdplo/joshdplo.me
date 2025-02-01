@@ -27,22 +27,31 @@ const img = frontmatter.image
       </h1>
       <div class="subhead">
         {
-          frontmatter.updated && (
+          frontmatter?.updated && (
             <i class="updated bg-subtle">
               Updated {formatDate("" + frontmatter.updated)}
             </i>
           )
         }
-        <div class="date">
-          Written {formatDate("" + frontmatter.date)} by {
-            frontmatter.authors.map((a) => (
-              <a href={`/notes/authors/${a}`}>{a}</a>
-            ))
-          }
-        </div>
-        <div class="tags">
-          {frontmatter.tags.map((t) => <a href={`/notes/tags/${t}`}>#{t}</a>)}
-        </div>
+        {
+          frontmatter?.date && (
+            <div class="date">
+              Written {formatDate("" + frontmatter.date)} by{" "}
+              {frontmatter?.authors.map((a) => (
+                <a href={`/notes/authors/${a}`}>{a}</a>
+              ))}
+            </div>
+          )
+        }
+        {
+          frontmatter?.tags && (
+            <div class="tags">
+              {frontmatter?.tags.map((t) => (
+                <a href={`/notes/tags/${t}`}>#{t}</a>
+              ))}
+            </div>
+          )
+        }
       </div>
     </div>
 
@@ -65,7 +74,7 @@ const img = frontmatter.image
     position: relative;
     border-bottom: 0.1em dashed var(--content-subtle);
     background-color: var(--background);
-    max-width: 700px;
+    max-width: 660px;
     padding: 0.2rem 0 0.7rem;
   }
 
@@ -106,7 +115,7 @@ const img = frontmatter.image
   .inner {
     background-color: var(--background);
     padding-top: 0.7em;
-    max-width: 720px;
+    max-width: 680px;
 
     @include util.mq(md) {
       padding-right: 1.4rem;

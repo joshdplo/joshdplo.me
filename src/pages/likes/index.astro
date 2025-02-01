@@ -59,7 +59,7 @@ const topGames = await getCollection(
 
 <CollectionLayout pageTitle="🔥 Top Likes" heroText="Likes" {pageMenuLinks}>
   <section class="contain">
-    <h2 class="h4">{getEmojiFromCategory("movies")} Top Movies</h2>
+    <h2 class="h1">{getEmojiFromCategory("movies")} Top Movies</h2>
     <div class="list list-tmdb">
       {
         allTimeMovies.map((m) => {

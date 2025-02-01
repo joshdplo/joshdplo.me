@@ -17,7 +17,7 @@ const sortedNotes = notes.sort(
 <BaseLayout pageTitle="Home">
 	<section class="contain">
 		<div class="center-full">
-			<HeroText text="JOSH" size={18} />
+			<HeroText text="JOSH" size={20} />
 		</div>
 
 		<div class="h2 border-opposite bg">
@@ -40,19 +40,17 @@ const sortedNotes = notes.sort(
 	</section>
 
 	<section class="contain featured">
-		<div class="box notes bg border-quaternary">
-			<h2 class="h3 bg border-opposite sm">
-				{getEmojiFromCategory("notes")} Latest Note
+		<div class="box notes">
+			<h2 class="h3">
+				{getEmojiFromCategory("notes")} Latest Notes
 			</h2>
-			<div class="note">
+			<div class="inner">
 				<NoteCard data={sortedNotes[0]} />
-			</div>
-			<div class="buttons">
-				<a href="/notes">All Notes</a>
+				<NoteCard data={sortedNotes[1]} />
 			</div>
 		</div>
-		<div class="box movies bg border-secondary">
-			<h2 class="h3 bg border-opposite sm">
+		<div class="box movies">
+			<h2 class="h3">
 				{getEmojiFromCategory("movies")} Recently Watched
 			</h2>
 			<div class="inner">
@@ -61,44 +59,32 @@ const sortedNotes = notes.sort(
 				<CollectionItem category="movies" itemId="403431" />
 				<CollectionItem category="movies" itemId="841733" />
 			</div>
-			<div class="buttons">
-				<a href="/likes/movies">All Movies</a>
-			</div>
 		</div>
-		<div class="box shows bg border-secondary">
-			<h2 class="h3 bg border-opposite sm">
+		<div class="box shows">
+			<h2 class="h3">
 				{getEmojiFromCategory("shows")} Current Shows
 			</h2>
 			<div class="inner">
 				<CollectionItem category="shows" itemId="1274" />
 				<CollectionItem category="shows" itemId="86848" />
 			</div>
-			<div class="buttons">
-				<a href="/likes/shows">All Shows</a>
-			</div>
 		</div>
-		<div class="box bands bg border-secondary">
-			<h2 class="h3 bg border-opposite sm">
+		<div class="box music">
+			<h2 class="h3">
 				{getEmojiFromCategory("bands")} Been Jamming To
 			</h2>
 			<div class="inner">
 				<CollectionItem category="bands" itemId="2da7ehIX9lFyIDqmjqVZvS" />
 				<CollectionItem category="radio" itemId="somafm_deepspaceone" />
 			</div>
-			<div class="buttons">
-				<a href="/likes/bands">All Bands</a>
-			</div>
 		</div>
-		<div class="box games bg border-secondary">
-			<h2 class="h3 bg border-opposite sm">
+		<div class="box games">
+			<h2 class="h3">
 				{getEmojiFromCategory("games")} Having Fun Playing
 			</h2>
 			<div class="inner">
 				<CollectionItem category="games" itemId="2016590" />
 				<CollectionItem category="games" itemId="1086940" />
-			</div>
-			<div class="buttons">
-				<a href="/likes/games">All Games</a>
 			</div>
 		</div>
 	</section>
@@ -107,54 +93,50 @@ const sortedNotes = notes.sort(
 <style lang="scss">
 	@use "@css/util";
 
+	.h2 {
+		margin: 1.5rem 0 3rem;
+	}
+
 	.featured {
 		display: grid;
 		grid-template-columns: 1fr;
-		gap: 1.5rem;
+		gap: 3rem;
 		margin-top: 2.5rem;
-
-		@include util.mq(md) {
-			grid-template-columns: 1fr 1fr;
-		}
 	}
 
 	.box {
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
 		gap: 0.7rem;
-		border-width: 2px;
-		border-style: double;
 
 		@include util.mq(md) {
 			&.movies {
 				grid-row: span 2;
 			}
 		}
+
+		.inner {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 1rem;
+
+			:global(.collection-item) {
+				margin: 0;
+			}
+		}
 	}
 
 	h2 {
-		text-align: center;
+		border-bottom: 0.2em solid var(--font-color);
+		padding-bottom: 0.35rem;
+		margin-bottom: 0.2rem;
 	}
 
-	.buttons {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.5rem;
-		justify-content: center;
-		padding: 0.35rem 0 0.15rem;
-
-		a {
-			line-height: 1;
-			font-size: 1rem;
-			padding: 0.3em 0.6em;
-			border: 1px solid var(--font-color);
-			border-radius: 3px;
-			text-decoration: none;
-
-			&:hover {
-				text-decoration: underline;
-			}
+	.notes {
+		:global(.card) {
+			border: 3px solid var(--content-subtle);
+			border-radius: 0.15rem;
+			padding: 0.7rem;
 		}
 	}
 </style>

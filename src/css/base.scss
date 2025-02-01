@@ -37,7 +37,6 @@
   --content-padding: .65rem;
   --nav-width: 12.5rem;
   --content-width: 56.25rem;
-  --container-width: calc(var(--content-width) + (var(--site-padding) * 2));
 
   /* Definitions */
   --c-primary: var(--c-theme-raspberry);
@@ -302,18 +301,15 @@ ol ol {
 /**
  * Utility
  */
-.hide,
-.hidden {
+.hide {
   display: none !important;
 }
 
 .contain {
-  width: 100%;
-  max-width: calc(var(--content-width) + var(--site-padding) * 2);
+  width: 92%;
+  max-width: var(--content-width);
   margin-left: auto;
   margin-right: auto;
-  padding-left: var(--site-padding);
-  padding-right: var(--site-padding);
 }
 
 .center-full {
@@ -330,13 +326,13 @@ ol ol {
 
 //@TODO: use scss to loop colors for bg??
 [class*="bg-"] {
-  padding: var(--content-padding);
+  padding: calc(var(--content-padding) * 1.5);
 }
 
 .bg {
   color: var(--font-color);
   background-color: var(--content-background);
-  padding: var(--content-padding);
+  padding: calc(var(--content-padding) * 1.5);
 
   &-gray {
     background-color: var(--c-gray);

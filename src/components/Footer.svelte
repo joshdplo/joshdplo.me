@@ -24,9 +24,9 @@
       aria-label="View Code on Github"
     >
       <SVG name="github" />
-      <small>View on Github</small>
+      View on Github
     </a>
-    <small>&copy; 2024 joshdplo.me</small>
+    &copy; 2024 joshdplo.me
   </div>
 </footer>
 
@@ -111,6 +111,7 @@
     flex-direction: column;
     padding-top: 1.5rem;
     align-items: center;
+    font-size: 1rem;
 
     :global(a) {
       text-decoration: none;
@@ -121,8 +122,17 @@
       }
     }
 
+    a[aria-label] {
+      display: flex;
+      align-items: center;
+      margin-top: auto;
+      margin-bottom: 0.15rem;
+      gap: 0.25rem;
+      font-size: 1rem;
+    }
+
     :global(svg) {
-      height: 1rem;
+      height: 1.2rem;
     }
 
     @include util.mq(sm) {
