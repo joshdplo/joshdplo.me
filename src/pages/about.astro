@@ -46,7 +46,7 @@ const particleQuantity = 15;
   <div class="particles">
     {[...Array(particleQuantity).keys()].map((p) => <i />)}
   </div>
-  <section class="contain">
+  <section>
     <HeroText text="About" size="13" />
 
     <div class="box intro">
@@ -164,40 +164,41 @@ const particleQuantity = 15;
         mood strikes, I like reading or listening to an audio book.
       </p>
     </div>
-  </section>
-  <div class="box">
-    <h2 class="h3 bg border text-center">Character</h2>
-    <p>
-      I strive to be measured and kind to others. I've got a goofy streak and a
-      dumb sense of humor. I'm pretty introverted, so I prefer one-on-one
-      interactions and generally shy away from things like concerts or sports
-      arenas.
-    </p>
 
     <div class="box">
-      <h2 class="h3 bg border text-center">Favorite Foods</h2>
+      <h2 class="h3 bg border text-center">Character</h2>
       <p>
-        Some of my favorite things to eat are pho, Singapore mei fun, giros,
-        tacos burritos, hamburgers, patty melts, steaks, and salads. I'll drink
-        coffee or tea in the mornings on most days. I always enjoy a cold soda
-        or beer. For desserts, it's mostly ice cream; aside from that, I don't
-        have much of a sweet tooth. I'm not very picky when it comes to food -
-        I'll try anything once.
+        I strive to be measured and kind to others. I've got a goofy streak and
+        a dumb sense of humor. I'm pretty introverted, so I prefer one-on-one
+        interactions and generally shy away from things like concerts or sports
+        arenas.
       </p>
+
       <div class="box">
-        <h2 class="h3 bg border text-center">My Dreams & Goals</h2>
+        <h2 class="h3 bg border text-center">Favorite Foods</h2>
         <p>
-          When I was a kid, my only "adult goals" were to have my own place and
-          my own car. I accomplished that goal by age 30, and after a while I
-          became restless because I hadn't set any further goals. Recently, I
-          finally settled on my post-adult goals, and it's funny because they
-          are basically the same but a little more specific: own a
-          bungalow-style house, get my next awesome car, and save for
-          retirement!
+          Some of my favorite things to eat are pho, Singapore mei fun, giros,
+          tacos burritos, hamburgers, patty melts, steaks, and salads. I'll
+          drink coffee or tea in the mornings on most days. I always enjoy a
+          cold soda or beer. For desserts, it's mostly ice cream; aside from
+          that, I don't have much of a sweet tooth. I'm not very picky when it
+          comes to food - I'll try anything once.
         </p>
+        <div class="box">
+          <h2 class="h3 bg border text-center">My Dreams & Goals</h2>
+          <p>
+            When I was a kid, my only "adult goals" were to have my own place
+            and my own car. I accomplished that goal by age 30, and after a
+            while I became restless because I hadn't set any further goals.
+            Recently, I finally settled on my post-adult goals, and it's funny
+            because they are basically the same but a little more specific: own
+            a bungalow-style house, get my next awesome car, and save for
+            retirement!
+          </p>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 
   <style lang="scss">
     @use "sass:math";
