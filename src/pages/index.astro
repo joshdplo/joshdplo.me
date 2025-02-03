@@ -41,7 +41,7 @@ const sortedNotes = notes.sort(
 
 	<section class="contain featured">
 		<div class="box notes">
-			<h2 class="h3">
+			<h2>
 				{getEmojiFromCategory("notes")} Latest Notes
 			</h2>
 			<div class="inner">
@@ -50,36 +50,36 @@ const sortedNotes = notes.sort(
 			</div>
 		</div>
 		<div class="box movies">
-			<h2 class="h3">
+			<h2>
 				{getEmojiFromCategory("movies")} Recently Watched
 			</h2>
 			<div class="inner">
+				<CollectionItem category="movies" itemId="7979" />
+				<CollectionItem category="shows" itemId="201124" />
 				<CollectionItem category="movies" itemId="336843" />
 				<CollectionItem category="movies" itemId="294254" />
-				<CollectionItem category="movies" itemId="198663" />
-				<CollectionItem category="movies" itemId="416477" />
 			</div>
 		</div>
 		<div class="box shows">
-			<h2 class="h3">
+			<h2>
 				{getEmojiFromCategory("shows")} Current Shows
 			</h2>
 			<div class="inner">
+				<CollectionItem category="shows" itemId="206916" />
 				<CollectionItem category="shows" itemId="1274" />
-				<CollectionItem category="shows" itemId="86848" />
 			</div>
 		</div>
 		<div class="box music">
-			<h2 class="h3">
+			<h2>
 				{getEmojiFromCategory("bands")} Been Jamming To
 			</h2>
 			<div class="inner">
-				<CollectionItem category="bands" itemId="2da7ehIX9lFyIDqmjqVZvS" />
 				<CollectionItem category="radio" itemId="somafm_deepspaceone" />
+				<CollectionItem category="songs" itemId="3rW9rYv7SE0l8MIOWnkZ2i" />
 			</div>
 		</div>
 		<div class="box games">
-			<h2 class="h3">
+			<h2>
 				{getEmojiFromCategory("games")} Having Fun Playing
 			</h2>
 			<div class="inner">
@@ -128,12 +128,6 @@ const sortedNotes = notes.sort(
 				grid-template-columns: 1fr 1fr;
 			}
 		}
-	}
-
-	h2 {
-		border-bottom: 0.2em solid var(--font-color);
-		padding-bottom: 0.35rem;
-		margin-bottom: 0.2rem;
 	}
 
 	.notes {

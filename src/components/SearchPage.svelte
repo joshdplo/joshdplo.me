@@ -13,6 +13,7 @@
   let searchDisabled = $state(false);
   let loading = $state(false);
   let results = $state([]);
+  let exactMatches = $state([]);
   let hasError = $state(false);
   let currentPage = $state(1);
   let resultsShowing = $derived(results.length);
@@ -54,8 +55,8 @@
 
   // Do Search
   async function search(isLoadMore = false, isLoadPrevious = false) {
-    if (query !== "" && query.length > 2) {
-      // do search fetch
+    if (query !== "" && query.length > 1) {
+      // fetch
       loading = true;
       const searchReq = await fetch(url, {
         method: "POST",
@@ -86,6 +87,8 @@
       } else {
         results = data.results;
       }
+
+      if (data.exactMatches) exactMatches = data.exactMatches;
 
       hasError = false;
       loading = false;
@@ -146,6 +149,19 @@
       >
     </div>
     <i class="spacer-1"></i>
+    {#if exactMatches.length && results.length > 1}
+      <div class="exact">
+        <i>Exact match{exactMatches.length > 1 ? "es" : ""}</i>
+        {#each exactMatches as r}
+          <a href={`${r.path}?search=${r.id}&cat=${r.category}`}>
+            <span class={`border-${getPageColorFromCategory(r.category)}`}
+              >{r.category} {getEmojiFromCategory(r.category)}</span
+            >
+            {r.phrase}
+          </a>
+        {/each}
+      </div>
+    {/if}
   {/if}
   {#if resultsShowing < totalResults && hasPreviousResults && lowestPageLoaded > 1}
     <button
@@ -186,7 +202,7 @@
         : currentPage}/{totalPages})</button
     >
   {/if}
-  {#if noResults && query.length > 2 && query !== ""}
+  {#if noResults && query.length > 1 && query !== ""}
     <div class="center-full no-results">
       No Results for "{lastQuery}"
       <button
@@ -196,7 +212,7 @@
       >
     </div>
   {/if}
-  {#if !results.length && (query.length <= 2 || query === "")}
+  {#if !results.length && (query.length <= 1 || query === "")}
     <div class="totals">
       <p class="h3">
         Searchable items include <b class="bg-quaternary no-pad"
@@ -262,6 +278,23 @@
       align-items: center;
       padding-bottom: 0.5em;
       border-bottom: 0.1em dotted var(--content-subtle);
+    }
+
+    .exact {
+      margin-bottom: 2.5rem;
+
+      i {
+        font-style: normal;
+      }
+
+      a {
+        color: var(--c-black);
+        background-color: var(--c-tertiary);
+
+        &:last-child {
+          border-bottom: 0;
+        }
+      }
     }
 
     a {

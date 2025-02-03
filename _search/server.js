@@ -31,13 +31,21 @@ app.use(cors({
 app.get('/search', (req, res) => res.json({ online: true }));
 app.post('/search', (req, res) => {
   const { query, page = 1 } = req.body;
-  if (query.length < 3) return res.json({ info: 'insufficient character length' });
+  if (query.length < 2) return res.json({ info: 'insufficient character length' });
 
   const lowerQuery = query.trim().toLowerCase();
 
   // Filter all matches
   const matchedResults = Object.entries(searchIndex)
     .filter(([key]) => key.includes(lowerQuery));
+
+  // Check for exact match
+  let exactMatches = [];
+  matchedResults.forEach(r => {
+    if (r[0] === lowerQuery) {
+      exactMatches.push({ phrase: r[0], ...r[1] });
+    }
+  });
 
   // Total number of matches
   const total = matchedResults.length;
@@ -50,7 +58,10 @@ app.post('/search', (req, res) => {
     .slice((page - 1) * searchResultsPerPage, page * searchResultsPerPage)
     .map(([key, value]) => ({ phrase: key, ...value }));
 
-  res.json({ results, total, totalPages });
+  const finalJson = { results, total, totalPages };
+  if (exactMatches.length) finalJson.exactMatches = exactMatches;
+
+  res.json(finalJson);
 });
 
 // Start Server
