@@ -97,6 +97,9 @@ const itemLink = !mini
               )
               .map((c) => <span>{c.description}</span>)}
         </div>
+        <div class="hide" data-details>
+          {genres && genres.map((g) => g.description).join(", ")}
+        </div>
       </div>
     </div>
   )

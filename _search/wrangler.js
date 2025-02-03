@@ -62,9 +62,11 @@ htmlFiles.forEach(f => {
     $(`[data-${c.category}-id]`).each((i, el) => {
       const id = $(el).data(`${c.category}-id`);
       const term = $(el).find(`${c.termSelector}`).text();
+      const details = $(el).find('[data-details]')?.text()?.replace('\n', '') || undefined;
       if (id && term) terms[term] = {
         category: c.category,
         id,
+        details,
         path: f.replace('../dist', '').replace('..\\dist', '').replace('/index.html', '').replace('\\index.html', '') // unix + windows
       }
     });

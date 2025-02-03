@@ -76,6 +76,9 @@ const itemLink = !mini
           </a>
         </div>
       </div>
+      <div class="hide" data-details>
+        ({released}) {genreIds.map((id) => genresMap[`${id}`]).join(", ")}
+      </div>
     </div>
   )
 }

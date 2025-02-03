@@ -24,7 +24,9 @@ const date = formatDate(
   <div class="wrapper" style={`--title-size: ${clampStr}`}>
     {img && <Image src={img} alt="" width="500" height="286" />}
     <div class="title">{noteData.title}</div>
-    <div class="date">{noteData.updated ? "Updated " : "Written "}{date}</div>
+    <div class="date">
+      {noteData.updated ? "Updated " : "Written "}{date}
+    </div>
     {noteData.description && <p class="description">{noteData.description}</p>}
   </div>
 </a>

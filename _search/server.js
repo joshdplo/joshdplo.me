@@ -42,7 +42,7 @@ app.post('/search', (req, res) => {
   // Check for exact match
   let exactMatches = [];
   matchedResults.forEach(r => {
-    if (r[0] === lowerQuery) {
+    if (r[0].trim() === lowerQuery) {
       exactMatches.push({ phrase: r[0], ...r[1] });
     }
   });

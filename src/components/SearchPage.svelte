@@ -6,6 +6,7 @@
     getCssClamp,
     getPageColorFromCategory,
     getEmojiFromCategory,
+    capitalizeRomanNumerals,
   } from "@util";
 
   let { url, totalNotes } = $props();
@@ -34,11 +35,17 @@
     size * 16,
   );
 
+  // Format Title
+  function prettyTitle(str) {
+    return capitalizeRomanNumerals(str);
+  }
+
   // Clear Search
   function clearSearch() {
     totalResults = 0;
     totalPages = 0;
     results = [];
+    exactMatches = [];
     query = "";
     lastQuery = "";
     currentPage = 1;
@@ -88,7 +95,7 @@
         results = data.results;
       }
 
-      if (data.exactMatches) exactMatches = data.exactMatches;
+      exactMatches = data?.exactMatches || [];
 
       hasError = false;
       loading = false;
@@ -157,7 +164,10 @@
             <span class={`border-${getPageColorFromCategory(r.category)}`}
               >{r.category} {getEmojiFromCategory(r.category)}</span
             >
-            {r.phrase}
+            <div>
+              <i class="title">{prettyTitle(r.phrase)}</i>
+              {#if r.details}<i class="details">{r.details}</i>{/if}
+            </div>
           </a>
         {/each}
       </div>
@@ -180,7 +190,10 @@
       <span class={`border-${getPageColorFromCategory(r.category)}`}
         >{r.category} {getEmojiFromCategory(r.category)}</span
       >
-      {r.phrase}
+      <div>
+        <i class="title">{prettyTitle(r.phrase)}</i>
+        {#if r.details}<i class="details">{r.details}</i>{/if}
+      </div>
     </a>
   {/each}
   {#if resultsShowing < totalResults && highestPageLoaded < totalPages}
@@ -288,12 +301,8 @@
       }
 
       a {
-        color: var(--c-black);
-        background-color: var(--c-tertiary);
-
-        &:last-child {
-          border-bottom: 0;
-        }
+        border: 2px solid var(--c-tertiary);
+        padding-left: 8px;
       }
     }
 
@@ -312,6 +321,10 @@
         background-color: var(--content-subtler);
       }
 
+      i {
+        font-style: normal;
+      }
+
       span {
         min-width: 80px;
         font-size: 0.75rem;
@@ -323,6 +336,20 @@
         border-right: 0;
         border-top: 0;
         border-bottom: 0;
+      }
+
+      div {
+        display: flex;
+        flex-direction: column;
+
+        .details {
+          font-size: 0.8rem;
+          opacity: 0.7;
+        }
+      }
+
+      &:hover {
+        background-color: var(--content-subtle);
       }
     }
 

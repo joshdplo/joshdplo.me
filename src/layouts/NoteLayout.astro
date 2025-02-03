@@ -60,6 +60,15 @@ const img = frontmatter.image
         <slot />
       </div>
     </div>
+
+    {
+      frontmatter?.date && (
+        <div class="hide" data-details>
+          {frontmatter.updated ? "Updated" : "Written"}
+          {formatDate("" + frontmatter.date)}
+        </div>
+      )
+    }
   </section>
 </BaseLayout>
 

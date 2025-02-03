@@ -125,6 +125,14 @@ export function getEmojiFromCategory(c: string) {
   }
 }
 
+export function capitalizeRomanNumerals(s: string) {
+  const matches = ['i', 'ii', 'iii', 'iv', 'v', 'vi', 'vii', 'viii', 'ix', 'x', 'xi', 'xii', 'xiii', 'xiv', 'xv'];
+  const matchesWithColons = matches.map(m => `${m}:`);
+  const allMatches = [...matches, ...matchesWithColons];
+
+  return s.split(' ').map(word => allMatches.includes(word) ? word.toUpperCase() : word).join(' ');
+}
+
 /**
  * Get Page Menu Links from Path
  */
