@@ -6,13 +6,11 @@ const particleQuantity = 15;
 ---
 
 <script is:inline>
-  document.addEventListener("astro:page-load", () => {
+  document.addEventListener("DOMContentLoaded", () => {
     const hasLS = typeof window.localStorage !== "undefined";
     const readMoreButton = document.getElementById("read-more_toggle");
     const readMoreCutoff = document.querySelector(".read-more_cutoff");
     const readMoreDiv = document.getElementById("read-more_text");
-
-    if (!readMoreButton) return;
 
     let isExpanded = false;
 

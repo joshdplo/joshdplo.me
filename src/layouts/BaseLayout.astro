@@ -79,14 +79,7 @@ const { pageTitle, pageDescription, noBreadcrumbs, removeSiteTitle } =
       }
 
       theme();
-      document.addEventListener("astro:page-load", () => {
-        document.documentElement.classList.remove("theme-light");
-        theme();
-      });
     </script>
-
-    <!-- Astro Page Transitions -->
-    <ClientRouter />
   </head>
 
   <body style={`--page-color: var(--c-${pageColor});`}>
