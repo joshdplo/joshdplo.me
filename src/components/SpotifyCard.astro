@@ -50,6 +50,11 @@ const durationFormatted = `${Math.trunc(itemData.duration_ms / 1000 / 60)}min${(
               .join(", ")}
           </div>
         )}
+        {!isSong && (
+          <div class="artists" data-details>
+            {JSON.parse(itemData.genres).join(", ")}
+          </div>
+        )}
       </div>
     </a>
   )
@@ -144,7 +149,7 @@ const durationFormatted = `${Math.trunc(itemData.duration_ms / 1000 / 60)}min${(
       left: 0;
       width: 100%;
       gap: 0.2rem;
-      padding: 0.5rem 0.4rem;
+      padding: 0.5rem 2rem 0.5rem 0.4rem;
       background-color: var(--content-transparent);
       backdrop-filter: blur(6px);
       border-bottom-left-radius: 0.7rem;
@@ -162,21 +167,14 @@ const durationFormatted = `${Math.trunc(itemData.duration_ms / 1000 / 60)}min${(
       line-height: 1.1;
     }
 
-    .artists {
+    .artists,
+    .genres {
       position: relative;
       display: flex;
       flex-wrap: wrap;
       gap: 0.2rem;
       font-size: 0.8rem;
       line-height: 1.1;
-
-      // span {
-      //   display: inline-block;
-
-      //   &::after {
-      //     content: ", ";
-      //   }
-      // }
 
       span:last-child::after {
         content: none;

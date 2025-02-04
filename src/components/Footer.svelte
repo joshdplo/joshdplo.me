@@ -123,8 +123,7 @@
     }
 
     a[aria-label] {
-      display: flex;
-      align-items: center;
+      display: block;
       margin-top: auto;
       margin-bottom: 0.15rem;
       gap: 0.25rem;
@@ -132,7 +131,8 @@
     }
 
     :global(svg) {
-      height: 1.2rem;
+      height: 1rem;
+      margin: 0 2px 1px 0;
     }
 
     @include util.mq(sm) {
