@@ -66,6 +66,7 @@ const durationFormatted = `${Math.trunc(itemData.duration_ms / 1000 / 60)}min${(
       class="card-mini"
       data-song-id={isSong ? itemId : undefined}
       data-band-id={!isSong ? itemId : undefined}
+      data-link
       href={itemData.url}
       title={itemData.name}
     >
@@ -203,8 +204,8 @@ const durationFormatted = `${Math.trunc(itemData.duration_ms / 1000 / 60)}min${(
     }
 
     img {
-      width: 100px;
-      height: 100px;
+      width: 180px;
+      height: 180px;
     }
 
     svg {

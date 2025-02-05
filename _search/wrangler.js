@@ -63,10 +63,12 @@ htmlFiles.forEach(f => {
       const id = $(el).data(`${c.category}-id`);
       const term = $(el).find(`${c.termSelector}`).text();
       const details = $(el).find('[data-details]')?.text()?.replace('\n', '') || undefined;
+      const link = el.tagName === 'a' ? $(el).attr('href') : $(el).find('[data-link]').attr('href');
       if (id && term) terms[term] = {
         category: c.category,
         id,
         details,
+        link,
         path: f.replace('../dist', '').replace('..\\dist', '').replace('/index.html', '').replace('\\index.html', '') // unix + windows
       }
     });

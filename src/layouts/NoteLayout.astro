@@ -67,6 +67,7 @@ const img = frontmatter.image
           {frontmatter.updated ? "Updated" : "Written"}
           {formatDate("" + frontmatter.date)}
         </div>
+        <a class="hide" href={`/notes/${slug}`} data-link>link</a>
       )
     }
   </section>

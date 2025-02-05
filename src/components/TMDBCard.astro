@@ -71,6 +71,7 @@ const itemLink = !mini
           </span>
           <a
             href={`https://www.themoviedb.org/${isMovie ? "movie" : "tv"}/${movieId}`}
+            data-link
           >
             TMDB Page
           </a>
@@ -85,7 +86,11 @@ const itemLink = !mini
 
 {
   mini && (
-    <a class="card-mini" href={itemLink} title={title}>
+    <a
+      class="card-mini"
+      href={`https://www.themoviedb.org/${isMovie ? "movie" : "tv"}/${movieId}`}
+      title={title}
+    >
       <Image src={img} alt={title} width="200" height="300" loading="lazy" />
     </a>
   )
@@ -208,12 +213,16 @@ const itemLink = !mini
   }
 
   .card-mini {
-    --img-width: 100px;
-    --img-height: 150px;
+    --img-width: 180px;
+    --img-height: 270px;
     position: relative;
     display: block;
     box-shadow: 0px 0px 18px 0px transparent;
     transition: 0.1s linear;
+
+    &::after {
+      display: none;
+    }
 
     &:hover,
     &:focus-visible {

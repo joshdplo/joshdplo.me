@@ -31,6 +31,9 @@
       "@util": [
         "src/util.ts"
       ],
+      "@recents": [
+        "src/recents.ts"
+      ],
       "@slurpi/*": [
         "../slurpi/*"
       ]

@@ -160,7 +160,7 @@
       <div class="exact">
         <i>Exact match{exactMatches.length > 1 ? "es" : ""}</i>
         {#each exactMatches as r}
-          <a href={`${r.path}?search=${r.id}&cat=${r.category}`}>
+          <a href={r.link}>
             <span class={`border-${getPageColorFromCategory(r.category)}`}
               >{r.category} {getEmojiFromCategory(r.category)}</span
             >
@@ -186,7 +186,7 @@
     >
   {/if}
   {#each results as r}
-    <a href={`${r.path}?search=${r.id}&cat=${r.category}`}>
+    <a href={r.link}>
       <span class={`border-${getPageColorFromCategory(r.category)}`}
         >{r.category} {getEmojiFromCategory(r.category)}</span
       >
@@ -350,6 +350,10 @@
 
       &:hover {
         background-color: var(--content-subtle);
+      }
+
+      &::after {
+        display: none;
       }
     }
 

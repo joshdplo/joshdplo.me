@@ -1,4 +1,5 @@
 ---
+import recents from "@recents";
 import { getEmojiFromCategory } from "@util";
 import { getCollection } from "astro:content";
 import BaseLayout from "@layouts/BaseLayout.astro";
@@ -54,10 +55,12 @@ const sortedNotes = notes.sort(
 				{getEmojiFromCategory("movies")} Recently Watched
 			</h2>
 			<div class="inner">
-				<CollectionItem category="movies" itemId="7979" />
-				<CollectionItem category="shows" itemId="201124" />
-				<CollectionItem category="movies" itemId="336843" />
-				<CollectionItem category="movies" itemId="294254" />
+				{
+					recents.watched.map((r, idx) => {
+						if (idx < 4)
+							return <CollectionItem category={r.category} itemId={r.itemId} />;
+					})
+				}
 			</div>
 		</div>
 		<div class="box shows">
@@ -65,8 +68,12 @@ const sortedNotes = notes.sort(
 				{getEmojiFromCategory("shows")} Current Shows
 			</h2>
 			<div class="inner">
-				<CollectionItem category="shows" itemId="206916" />
-				<CollectionItem category="shows" itemId="1274" />
+				{
+					recents.shows.map((r, idx) => {
+						if (idx < 2)
+							return <CollectionItem category={r.category} itemId={r.itemId} />;
+					})
+				}
 			</div>
 		</div>
 		<div class="box music">
@@ -74,8 +81,12 @@ const sortedNotes = notes.sort(
 				{getEmojiFromCategory("bands")} Been Jamming To
 			</h2>
 			<div class="inner">
-				<CollectionItem category="radio" itemId="somafm_deepspaceone" />
-				<CollectionItem category="songs" itemId="3rW9rYv7SE0l8MIOWnkZ2i" />
+				{
+					recents.music.map((r, idx) => {
+						if (idx < 2)
+							return <CollectionItem category={r.category} itemId={r.itemId} />;
+					})
+				}
 			</div>
 		</div>
 		<div class="box games">
@@ -83,8 +94,12 @@ const sortedNotes = notes.sort(
 				{getEmojiFromCategory("games")} Having Fun Playing
 			</h2>
 			<div class="inner">
-				<CollectionItem category="games" itemId="2016590" />
-				<CollectionItem category="games" itemId="1086940" />
+				{
+					recents.games.map((r, idx) => {
+						if (idx < 2)
+							return <CollectionItem category={r.category} itemId={r.itemId} />;
+					})
+				}
 			</div>
 		</div>
 	</section>
@@ -108,12 +123,6 @@ const sortedNotes = notes.sort(
 		display: flex;
 		flex-direction: column;
 		gap: 0.7rem;
-
-		@include util.mq(md) {
-			&.movies {
-				grid-row: span 2;
-			}
-		}
 
 		.inner {
 			display: grid;

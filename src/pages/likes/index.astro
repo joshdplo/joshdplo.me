@@ -59,7 +59,7 @@ const topGames = await getCollection(
 
 <CollectionLayout pageTitle="🔥 Top Likes" heroText="Likes" {pageMenuLinks}>
   <section class="contain">
-    <h2 class="h2">{getEmojiFromCategory("movies")} Top Movies</h2>
+    <h2 class="h1">{getEmojiFromCategory("movies")} Top Movies</h2>
     <div class="list list-tmdb">
       {
         allTimeMovies.map((m) => {
@@ -70,17 +70,17 @@ const topGames = await getCollection(
       }
     </div>
 
-    <h2 class="h2">{getEmojiFromCategory("shows")} Top Shows</h2>
+    <h2 class="h1">{getEmojiFromCategory("shows")} Top Shows</h2>
     <div class="list list-tmdb">
       {allTimeShows.map((m) => <TMDBCard data={m} mini={true} />)}
     </div>
 
-    <h2 class="h2">{getEmojiFromCategory("songs")} Top Songs</h2>
+    <h2 class="h1">{getEmojiFromCategory("songs")} Top Songs</h2>
     <div class="list list-spotify">
       {allTimeSongs.map((m) => <SpotifyCard data={m} mini={true} />)}
     </div>
 
-    <h2 class="h2">{getEmojiFromCategory("games")} Top Games</h2>
+    <h2 class="h1">{getEmojiFromCategory("games")} Top Games</h2>
     <div class="list list-steam">
       {topGames.map((g) => <SteamCard data={g} mini={true} />)}
     </div>
@@ -103,14 +103,14 @@ const topGames = await getCollection(
   .list-tmdb {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 100px);
+    grid-template-columns: repeat(auto-fill, 180px);
     justify-content: center;
   }
 
   .list-spotify {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 100px);
+    grid-template-columns: repeat(auto-fill, 180px);
     justify-content: center;
   }
 

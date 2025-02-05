@@ -5,7 +5,7 @@
 </script>
 
 <footer id="footer-main" class="contain">
-  <i class="top"></i>
+  <i class="top contain"></i>
   <nav id="footer-nav">
     {#each FOOTER_LINKS as parent}
       <ul>
@@ -48,9 +48,10 @@
 
   .top {
     position: absolute;
+    display: block;
     top: 0;
-    left: var(--site-padding);
-    width: calc(100% - var(--site-padding) * 2);
+    left: 0;
+    width: 100%;
     height: 0.1em;
     border-top: 0.1em dashed var(--content-subtle);
   }
@@ -124,9 +125,7 @@
 
     a[aria-label] {
       display: block;
-      margin-top: auto;
-      margin-bottom: 0.15rem;
-      gap: 0.25rem;
+      margin: 0.6rem 0 0.4rem;
       font-size: 1rem;
     }
 
@@ -138,6 +137,10 @@
     @include util.mq(sm) {
       margin-left: auto;
       align-items: flex-end;
+
+      a[aria-label] {
+        margin: auto 0 0.15rem;
+      }
     }
   }
 </style>

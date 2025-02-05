@@ -73,6 +73,7 @@ const itemLink = !mini
             <a
               href={`https://store.steampowered.com/app/${appid}`}
               class="link"
+              data-link
             >
               Steam Page
             </a>
@@ -107,7 +108,11 @@ const itemLink = !mini
 
 {
   mini && (
-    <a class="card-mini" href={itemLink} title={itemData.name}>
+    <a
+      class="card-mini"
+      href={`https://store.steampowered.com/app/${appid}`}
+      title={itemData.name}
+    >
       <Image
         src={img}
         alt={`art for ${itemData.name}`}
@@ -230,6 +235,10 @@ const itemLink = !mini
   .card-mini {
     box-shadow: 0px 0px 18px 0px transparent;
     transition: 0.1s ease-out;
+
+    &::after {
+      display: none;
+    }
 
     &:hover,
     &:focus-visible {
