@@ -1,6 +1,6 @@
 <script>
   import { FOOTER_LINKS, META } from "@constants";
-  import { getRelativeTime } from "@util";
+  import { formatDate } from "@util";
   import HeroText from "@components/HeroText.svelte";
   import SVG from "@components/SVG.svelte";
 </script>
@@ -30,7 +30,11 @@
         View on Github
       </a>
 
-      <span>Last build was {getRelativeTime(META.buildHistory.dates[0])}</span>
+      <span
+        >Last built {formatDate(
+          "" + new Date(META.buildHistory.dates[0]),
+        )}</span
+      >
     </div>
   </div>
 </footer>
@@ -141,8 +145,10 @@
     }
 
     :global(svg) {
-      height: 1rem;
-      margin: 0 2px 2px 0;
+      position: relative;
+      top: -1px;
+      height: 0.9rem;
+      margin-right: 2px;
     }
 
     @include util.mq(sm) {
