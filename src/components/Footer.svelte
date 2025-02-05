@@ -20,7 +20,7 @@
   <div class="copy">
     <HeroText text="JOSH" size={5} link="/" alt={true} />
     <div class="copy_links">
-      <span>&copy; 2024 joshdplo.me</span>
+      <span>&copy; 2025 joshdplo.me</span>
       <a
         href="https://github.com/joshdplo/joshdplo.me"
         title="View Code on Github"
