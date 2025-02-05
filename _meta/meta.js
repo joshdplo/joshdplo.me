@@ -7,6 +7,7 @@ import Meta from '../../slurpi/db/Meta.js';
   const meta = await Meta.findByPk(1);
 
   let buildHistory = meta.buildHistory;
+  if (!buildHistory.dates || !buildHistory.dates.length) buildHistory.dates = [];
   if (buildHistory.dates && buildHistory.dates.length > 50) buildHistory.dates.pop();
 
   buildHistory = { count: buildHistory.count + 1, dates: [new Date(), ...buildHistory.dates] };
