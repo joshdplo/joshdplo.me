@@ -5,7 +5,7 @@ updated: 2025-01-17
 description: 'A brief write-up on the release of joshdplo.me - the motivation, the process, and the release notes.'
 authors: ['Josh']
 image:
-    pathname: 'v1release.png'
+    pathname: 'v1-release.png'
     alt: 'fantasical multi-colored pastel clouds in space'
 tags: ["release", "webdev"]
 ---

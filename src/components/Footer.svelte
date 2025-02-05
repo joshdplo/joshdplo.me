@@ -1,5 +1,6 @@
 <script>
-  import { FOOTER_LINKS } from "@constants";
+  import { FOOTER_LINKS, META } from "@constants";
+  import { getRelativeTime } from "@util";
   import HeroText from "@components/HeroText.svelte";
   import SVG from "@components/SVG.svelte";
 </script>
@@ -18,15 +19,19 @@
   </nav>
   <div class="copy">
     <HeroText text="JOSH" size={5} link="/" alt={true} />
-    <a
-      href="https://github.com/joshdplo/joshdplo.me"
-      title="View Code on Github"
-      aria-label="View Code on Github"
-    >
-      <SVG name="github" />
-      View on Github
-    </a>
-    &copy; 2024 joshdplo.me
+    <div class="copy_links">
+      <span>&copy; 2024 joshdplo.me</span>
+      <a
+        href="https://github.com/joshdplo/joshdplo.me"
+        title="View Code on Github"
+        aria-label="View Code on Github"
+      >
+        <SVG name="github" />
+        View on Github
+      </a>
+
+      <span>Last build was {getRelativeTime(META.buildHistory.dates[0])}</span>
+    </div>
   </div>
 </footer>
 
@@ -110,36 +115,43 @@
   .copy {
     display: flex;
     flex-direction: column;
-    padding-top: 1.5rem;
     align-items: center;
-    font-size: 1rem;
+    gap: 0.4rem;
+    padding-top: 1.75rem;
+
+    &_links {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.45rem;
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      line-height: 1;
+    }
 
     :global(a) {
       text-decoration: none;
       margin-bottom: 0;
-
-      &[aria-label] {
-        line-height: 1.2;
-      }
+      line-height: 1;
     }
 
     a[aria-label] {
       display: block;
-      margin: 0.6rem 0 0.4rem;
       font-size: 1rem;
     }
 
     :global(svg) {
       height: 1rem;
-      margin: 0 2px 1px 0;
+      margin: 0 2px 2px 0;
     }
 
     @include util.mq(sm) {
       margin-left: auto;
       align-items: flex-end;
+      padding-top: 1.3rem;
 
-      a[aria-label] {
-        margin: auto 0 0.15rem;
+      &_links {
+        margin-top: auto;
       }
     }
   }

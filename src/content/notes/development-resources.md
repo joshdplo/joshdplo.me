@@ -5,8 +5,8 @@ updated: 2025-01-14
 description: 'A working list of links for various areas of web development'
 authors: ['Josh']
 image:
-    pathname: 'tech-tools.png'
-    alt: 'a futuristic tool belt with screens next to the tools'
+    pathname: 'webdev-resources.png'
+    alt: 'web development resources'
 tags: ["webdev", "linux", "front-end"]
 ---
 Jump to: [Front-End Web](#front-end-web) | [Linux](#linux)

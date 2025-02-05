@@ -1,16 +1,16 @@
 ---
-title: 'Collection Item Links in Notes'
+title: 'New Component: Collection Item'
 date: 2025-01-16
-description: 'A quick demo of adding collection item links to posts'
+description: 'A quick demo of the CollectionItem component'
 authors: ['Josh']
 image:
-    pathname: 'keyboard-notebook.webp'
-    alt: 'a futuristic tool belt with screens next to the tools'
+    pathname: 'collectionitems.png'
+    alt: 'new component collection item'
 tags: ["webdev"]
 ---
 import CollectionItem from '@components/CollectionItem.astro';
 
-Individual items from all [likes](/likes) collections (movies, shows, music, games) now have their own component! This means they can be included in `.mdx` files (notes) using the new component `<CollectionItem>`.
+Individual items from all [likes](/likes) collections (movies, shows, music, games, etc.) now have their own component! Using the new `<CollectionItem>` component, any type of collection item can be referenced from anywhere on the site, including in notes `.mdx` files (this page)!
 
 Here's an example of a movie collection item...
 ```js
@@ -42,4 +42,4 @@ And finally, an example of a game!
 ```
 <CollectionItem category="games" itemId="1086940" />
 
-Pretty nifty! This component can be used everywhere now, not just inside of mdx files, so maybe it will come in handy on a different part of the site.
+Pretty nifty!

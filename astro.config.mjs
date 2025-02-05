@@ -12,7 +12,7 @@ import SpotifySong from '../slurpi/db/SpotifySong.js';
 import SpotifyArtist from '../slurpi/db/SpotifyArtist.js';
 import SteamGame from '../slurpi/db/SteamGame.js';
 import RadioStation from '../slurpi/db/RadioStation.js';
-const meta = await Meta.findAll();
+const meta = await Meta.findByPk(1);
 const movies = await Movie.findAll();
 const shows = await Show.findAll();
 const songs = await SpotifySong.findAll();
@@ -40,7 +40,7 @@ export default defineConfig({
   trailingSlash: 'never',
   vite: {
     define: {
-      _META: meta[0],
+      _META: meta,
       _TOTALS: totals,
     }
   }
