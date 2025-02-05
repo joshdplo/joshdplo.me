@@ -1,10 +1,5 @@
 import Meta from '../../slurpi/db/Meta.js';
 
-// date formatting
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime.js';
-dayjs.extend(relativeTime);
-
 // Update Metadata
 (async () => {
   console.log('Updating metadata...');
