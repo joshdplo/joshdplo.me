@@ -56,10 +56,12 @@ const sortedNotes = notes.sort(
 			</h2>
 			<div class="inner">
 				{
-					recents.watched.map((r, idx) => {
-						if (idx < 4)
-							return <CollectionItem category={r.category} itemId={r.itemId} />;
-					})
+					recents.watched.map(
+						(r) =>
+							r?.active && (
+								<CollectionItem category={r.category} itemId={r.itemId} />
+							),
+					)
 				}
 			</div>
 		</div>
@@ -69,10 +71,12 @@ const sortedNotes = notes.sort(
 			</h2>
 			<div class="inner">
 				{
-					recents.shows.map((r, idx) => {
-						if (idx < 2)
-							return <CollectionItem category={r.category} itemId={r.itemId} />;
-					})
+					recents.shows.map(
+						(r) =>
+							r?.active && (
+								<CollectionItem category={r.category} itemId={r.itemId} />
+							),
+					)
 				}
 			</div>
 		</div>
@@ -82,10 +86,12 @@ const sortedNotes = notes.sort(
 			</h2>
 			<div class="inner">
 				{
-					recents.music.map((r, idx) => {
-						if (idx < 2)
-							return <CollectionItem category={r.category} itemId={r.itemId} />;
-					})
+					recents.music.map(
+						(r) =>
+							r?.active && (
+								<CollectionItem category={r.category} itemId={r.itemId} />
+							),
+					)
 				}
 			</div>
 		</div>
@@ -95,10 +101,12 @@ const sortedNotes = notes.sort(
 			</h2>
 			<div class="inner">
 				{
-					recents.games.map((r, idx) => {
-						if (idx < 2)
-							return <CollectionItem category={r.category} itemId={r.itemId} />;
-					})
+					recents.games.map(
+						(r) =>
+							r?.active && (
+								<CollectionItem category={r.category} itemId={r.itemId} />
+							),
+					)
 				}
 			</div>
 		</div>
@@ -145,5 +153,8 @@ const sortedNotes = notes.sort(
 			border-radius: 0.15rem;
 			padding: 0.7rem;
 		}
+	}
+
+	.shows .inner {
 	}
 </style>

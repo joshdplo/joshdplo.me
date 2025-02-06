@@ -10,7 +10,7 @@ import Meta from '../../slurpi/db/Meta.js';
   if (!buildHistory.dates || !buildHistory.dates.length) buildHistory.dates = [];
   if (buildHistory.dates && buildHistory.dates.length > 50) buildHistory.dates.pop();
 
-  buildHistory = { count: buildHistory.count + 1, dates: [new Date(), ...buildHistory.dates] };
+  buildHistory = { count: buildHistory?.count ? buildHistory.count + 1 : 1, dates: [new Date(), ...buildHistory.dates] };
 
   meta.buildHistory = buildHistory;
   await meta.save();

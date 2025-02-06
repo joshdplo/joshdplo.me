@@ -88,6 +88,8 @@ const topGames = await getCollection(
 </CollectionLayout>
 
 <style lang="scss">
+  @use "@css/util";
+
   h2 {
     margin-bottom: 0.8rem;
   }
@@ -103,15 +105,33 @@ const topGames = await getCollection(
   .list-tmdb {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 180px);
     justify-content: center;
+    grid-template-columns: repeat(auto-fill, 140px);
+
+    @include util.mq(sm) {
+      grid-template-columns: repeat(auto-fill, 180px);
+
+      :global(.card-mini) {
+        --img-width: 180px;
+        --img-height: 270px;
+      }
+    }
   }
 
   .list-spotify {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 180px);
     justify-content: center;
+    grid-template-columns: repeat(auto-fill, 140px);
+
+    @include util.mq(sm) {
+      grid-template-columns: repeat(auto-fill, 180px);
+
+      :global(.card-mini img) {
+        width: 180px;
+        height: 180px;
+      }
+    }
   }
 
   .list-steam {

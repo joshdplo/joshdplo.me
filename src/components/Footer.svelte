@@ -30,11 +30,13 @@
         View on Github
       </a>
 
-      <span
-        >Last built {formatDate(
-          "" + new Date(META.buildHistory.dates[0]),
-        )}</span
-      >
+      {#if META?.buildHistory?.dates.length > 0}
+        <span
+          >Last Build {formatDate(
+            "" + new Date(META.buildHistory.dates[0]),
+          )}</span
+        >
+      {/if}
     </div>
   </div>
 </footer>
@@ -126,7 +128,7 @@
     &_links {
       display: flex;
       flex-direction: column;
-      align-items: flex-end;
+      align-items: center;
       gap: 0.45rem;
       margin-top: 0.5rem;
       font-size: 1rem;
@@ -158,6 +160,7 @@
 
       &_links {
         margin-top: auto;
+        align-items: flex-end;
       }
     }
   }
