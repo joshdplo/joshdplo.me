@@ -13,7 +13,7 @@
     "build:astro": "astro build",
     "build:search": "node _search/wrangler.js",
     "build:meta": "node _meta/meta.js",
-    "build": "npm-run-all -s build:astro build:search build:meta",
+    "build": "npm-run-all -s build:meta build:astro build:search",
     "buildprod": "NODE_ENV=production npm run build",
     "preview": "astro preview",
     "astro": "astro",
