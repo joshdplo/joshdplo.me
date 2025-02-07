@@ -13,7 +13,8 @@ export const PAGE_COLORS = [
   { path: '/notes', color: "quaternary" },
   { path: '/search', color: "tertiary" },
   { path: '/about', color: "tertiary" },
-]
+  { path: '/contact', color: "primary-darker" }
+];
 
 export const ALL_LINKS = [
   { path: '/', title: 'Home' },
@@ -34,7 +35,8 @@ export const ALL_LINKS = [
     ]
   },
   { path: '/search', title: 'Search' },
-  { path: '/about', title: 'About' }
+  { path: '/about', title: 'About' },
+  { path: '/contact', title: 'Contact' }
 ];
 
 export const NAV_LINKS = [
@@ -69,6 +71,7 @@ export const FOOTER_LINKS = [
     links: [
       { path: '/', title: 'Home' },
       { path: '/about', title: 'About' },
+      { path: '/contact', title: 'Contact' },
       { path: '/search', title: 'Search' },
     ]
   },

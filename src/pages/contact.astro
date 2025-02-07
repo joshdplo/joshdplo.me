@@ -1,0 +1,18 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import HeroText from "@components/HeroText.svelte";
+import ContactPage from "@components/ContactPage.svelte";
+
+const url =
+  import.meta.env.MODE === "development"
+    ? "http://localhost:3034/message"
+    : `${Astro.site?.origin?.replace("https://", "https://search.")}/message`;
+---
+
+<BaseLayout pageTitle="Search">
+  <div class="center-full">
+    <HeroText text="Contact" size="14" />
+  </div>
+
+  <ContactPage {url} client:load />
+</BaseLayout>
