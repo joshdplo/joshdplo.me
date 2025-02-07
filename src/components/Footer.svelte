@@ -30,7 +30,7 @@
         View on Github
       </a>
 
-      {#if META?.buildHistory?.dates.length > 0}
+      {#if META?.buildHistory?.dates?.length > 0}
         <span
           >Last Build {formatDate(
             "" + new Date(META.buildHistory.dates[0]),

@@ -8,7 +8,7 @@
   "scripts": {
     "start": "npm run dev",
     "dev:astro": "astro dev",
-    "dev:search": "nodemon _search/server.js",
+    "dev:search": "nodemon _server/server.js",
     "dev": "npm-run-all -l -p dev:search dev:astro ",
     "build:astro": "astro build",
     "build:search": "node _search/wrangler.js",
@@ -17,13 +17,13 @@
     "buildprod": "NODE_ENV=production npm run build",
     "preview": "astro preview",
     "astro": "astro",
-    "prod": "NODE_ENV=production node _search/server.js"
+    "prod": "NODE_ENV=production node _server/server.js"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.0.7",
+    "@astrojs/mdx": "^4.0.8",
     "@astrojs/sitemap": "^3.2.1",
     "@astrojs/svelte": "^7.0.4",
-    "astro": "^5.1.8",
+    "astro": "^5.2.5",
     "cheerio": "^1.0.0",
     "cors": "^2.8.5",
     "express": "^4.21.2",
