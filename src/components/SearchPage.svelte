@@ -8,6 +8,7 @@
     getEmojiFromCategory,
     capitalizeRomanNumerals,
   } from "@util";
+  import recents from "@recents";
 
   let { url, totalNotes } = $props();
   let input;
@@ -28,6 +29,8 @@
   let lowestPageLoaded = $state(null);
   let highestPageLoaded = $state(null);
   let queryParamPage = $state(null);
+
+  let recentSearches = $state([]);
 
   const size = 1.5;
   const clamp = getCssClamp(
@@ -250,6 +253,12 @@
           >{getEmojiFromCategory("radio")} {TOTALS.radios} Radio Stations</b
         >.
       </p>
+    </div>
+  {/if}
+  {#if recentSearches.length}
+    <div class="recents">
+      <p class="h3">Recent Searches</p>
+      {#each recentSearches as r}{/each}
     </div>
   {/if}
 </section>

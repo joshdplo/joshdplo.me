@@ -5,14 +5,16 @@ import ContactPage from "@components/ContactPage.svelte";
 
 const url =
   import.meta.env.MODE === "development"
-    ? "http://localhost:3034/message"
-    : `${Astro.site?.origin?.replace("https://", "https://search.")}/message`;
+    ? "http://localhost:3034/contact"
+    : `${Astro.site?.origin?.replace("https://", "https://search.")}/contact`;
 ---
 
 <BaseLayout pageTitle="Search">
-  <div class="center-full">
-    <HeroText text="Contact" size="14" />
-  </div>
+  <section class="contain">
+    <div class="center-full">
+      <HeroText text="Contact" size="14" />
+    </div>
+  </section>
 
   <ContactPage {url} client:load />
 </BaseLayout>

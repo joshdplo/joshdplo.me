@@ -1,30 +1,36 @@
 <script>
-  import { getCssClamp } from "@util";
+  import SVG from "./SVG.svelte";
 
   let { url } = $props();
 
-  let nameInput;
   let name = $state("");
-  let emailInput;
-  let email = $state("");
-  let textInput;
   let text = $state("");
-  let disabled = $state(false);
-  let loading = $state(false);
-  let hasError = $state(false);
 
-  const size = 1.5;
-  const clamp = getCssClamp(
-    (Math.floor((size / 1.2) * 100) / 100) * 16,
-    size * 16,
-  );
+  let error = $state("");
+  let loading = $state(false);
+  let success = $state(false);
 
   // Clear Search
-  function clearMessage() {}
+  function clearMessage() {
+    error = "";
+    name = "";
+    text = "";
+    loading = false;
+  }
 
-  // Send Message
-  async function search(isLoadMore = false, isLoadPrevious = false) {
-    if (query !== "" && query.length > 1) {
+  // Form Validation
+  function validate() {
+    error = "";
+    if (name.trim() === "") error += " Name cannot be empty.";
+    if (text.trim() === "") error += " Message cannot be empty.";
+  }
+
+  // Submit Message
+  async function submit(e) {
+    e.preventDefault();
+    validate();
+
+    if (error === "") {
       // fetch
       loading = true;
       const messageReq = await fetch(url, {
@@ -33,17 +39,23 @@
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          query,
-          page: currentPage,
+          name,
+          text,
         }),
       }).catch((err) => {
-        hasError = true;
+        error = err;
         loading = false;
       });
-      const data = await messageReq.json();
-      console.log(data);
 
-      hasError = false;
+      const data = await messageReq.json();
+
+      if (data.error) {
+        error = data.error;
+      } else {
+        success = true;
+        clearMessage();
+      }
+
       loading = false;
     } else {
       loading = false;
@@ -52,68 +64,164 @@
 </script>
 
 <section class="contain contact">
-  <form class="inputs" style={`--search-size: ${clamp}`}>
+  <form class="inputs" onsubmit={submit} class:success>
     <fieldset>
       <label for="name" class="required">Name</label>
       <input
         type="text"
         id="name"
-        bind:this={nameInput}
         bind:value={name}
-        disabled={disabled ? true : undefined}
-      />
-    </fieldset>
-    <fieldset>
-      <label for="email">Email Address</label>
-      <input
-        type="text"
-        id="email"
-        bind:this={emailInput}
-        bind:value={email}
-        disabled={disabled ? true : undefined}
+        onkeydown={() => (error = "")}
+        disabled={loading ? true : undefined}
       />
     </fieldset>
     <fieldset>
       <label for="text">Message</label>
       <textarea
         id="text"
-        bind:this={textInput}
         bind:value={text}
-        disabled={disabled ? true : undefined}
+        onkeydown={() => (error = "")}
+        disabled={loading ? true : undefined}
       ></textarea>
     </fieldset>
+    {#if error !== ""}
+      <div class="error">{error}</div>
+    {/if}
+    <button
+      disabled={loading ? true : undefined}
+      title="Send Message"
+      aria-label="Send Message"><SVG name="message" /> Send</button
+    >
   </form>
-  {#if hasError}
-    <div class="center-full">Error searching - please try again later.</div>
-  {/if}
+
+  <p class="h1 bg border-primary-darker text-center" class:success>
+    Your message has been sent! I will take a look at it as soon as I'm able.
+    Have a good day =]
+  </p>
   <div class="loader" class:active={loading}></div>
 </section>
 
 <style lang="scss">
   @use "@css/util";
 
+  .contact {
+    position: relative;
+  }
+
+  [disabled] {
+    opacity: 0.35;
+    cursor: not-allowed !important;
+  }
+
+  form {
+    transition: opacity 0.4s ease-in-out;
+
+    &.success {
+      opacity: 0.1;
+      pointer-events: none;
+    }
+
+    @include util.mq(sm) {
+      max-width: 500px;
+      margin: 1rem auto 0;
+    }
+  }
+
   fieldset {
     position: relative;
     display: block;
     width: 100%;
-    margin: 0 auto 1.5rem;
+    margin: 0 auto 1rem;
+  }
 
-    label {
-      font-size: 1.5rem;
-      padding-left: 0.5em;
+  input,
+  textarea,
+  button {
+    width: 100%;
+    border: 0;
+    border-radius: 0;
+    border: 8px double var(--c-primary-darker);
+    padding: 0.35em;
+    font-size: 1rem;
+    background-color: var(--content-subtler);
+    transition: opacity 0.4s ease-in-out;
+  }
+
+  textarea {
+    min-height: 150px;
+  }
+
+  .error {
+    display: block;
+    text-align: right;
+    padding: 0 0.7rem;
+    border-right: 8px solid red;
+    margin: 0 0 1rem auto;
+    font-style: italic;
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    width: auto;
+    margin-left: auto;
+    padding: 0.5rem 2.75rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--font-color-opposite);
+    background-color: var(--font-color);
+    cursor: pointer;
+    border-radius: 0.5em;
+    border: 8px double var(--c-primary-darker);
+
+    :global(svg) {
+      width: 1.25rem;
+      margin-right: 0.4em;
+      fill: var(--font-color-opposite);
+    }
+
+    &:not([disabled]):hover {
+      text-decoration: underline;
+    }
+  }
+
+  p {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease-in-out;
+
+    &.success {
+      opacity: 1;
+    }
+  }
+
+  @include util.mq(sm) {
+    fieldset {
+      margin: 0 auto 1.5rem;
     }
 
     input,
     textarea {
-      border-width: 0.24em;
-      font-size: var(--search-size);
-      border-radius: 3rem;
-      padding: 0.55em 1em;
-      width: 100%;
+      padding: 0.55em;
     }
 
     textarea {
       min-height: 250px;
+    }
+
+    button {
+      flex-direction: column;
+      font-size: 1.2rem;
+
+      :global(svg) {
+        width: 3rem;
+        margin: 0;
+      }
     }
   }
 
@@ -124,7 +232,7 @@
 
     position: absolute;
     left: calc(50% - (var(--graphic-width) / 2));
-    top: 0;
+    top: calc(30%);
     height: var(--graphic-width);
     aspect-ratio: 1;
     margin: 2rem auto;
@@ -146,7 +254,7 @@
     }
 
     &::before {
-      content: "Loading";
+      content: "Sending...";
       position: absolute;
       top: 103%;
       left: -4px;
