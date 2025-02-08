@@ -31,12 +31,12 @@ export const ALL_LINKS = [
   {
     path: '/notes', title: 'Notes', allTitle: 'All Notes', children: [
       { path: '/notes/tags', title: 'Tags' },
-      { path: '/notes/authors', title: 'Authors' }
+      { path: '/notes/authors', title: 'Authors' },
     ]
   },
   { path: '/search', title: 'Search' },
   { path: '/about', title: 'About' },
-  { path: '/contact', title: 'Contact' }
+  { path: '/contact', title: 'Contact' },
 ];
 
 export const NAV_LINKS = [
@@ -63,7 +63,7 @@ export const FOOTER_LINKS = [
     links: [
       { path: '/notes', title: 'All Notes' },
       { path: '/notes/tags', title: 'Tags' },
-      { path: '/notes/authors', title: 'Authors' }
+      { path: '/notes/authors', title: 'Authors' },
     ]
   },
   {

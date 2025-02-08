@@ -51,7 +51,7 @@
   }
 </script>
 
-<section class="contain">
+<section class="contain contact">
   <form class="inputs" style={`--search-size: ${clamp}`}>
     <fieldset>
       <label for="name" class="required">Name</label>
@@ -80,7 +80,7 @@
         bind:this={textInput}
         bind:value={text}
         disabled={disabled ? true : undefined}
-      />
+      ></textarea>
     </fieldset>
   </form>
   {#if hasError}
@@ -92,15 +92,15 @@
 <style lang="scss">
   @use "@css/util";
 
-  .search-box {
+  fieldset {
     position: relative;
-    display: flex;
-    justify-content: center;
-    margin: auto;
+    display: block;
     width: 100%;
+    margin: 0 auto 1.5rem;
 
-    @include util.mq(sm) {
-      width: 70%;
+    label {
+      font-size: 1.5rem;
+      padding-left: 0.5em;
     }
 
     input,
@@ -108,8 +108,12 @@
       border-width: 0.24em;
       font-size: var(--search-size);
       border-radius: 3rem;
-      padding: 0.4em 0.6em;
+      padding: 0.55em 1em;
       width: 100%;
+    }
+
+    textarea {
+      min-height: 250px;
     }
   }
 
