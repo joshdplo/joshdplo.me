@@ -5,7 +5,7 @@ import astroConfig from '../astro.config.mjs';
 import routes from './routes.js';
 
 const app = express();
-const PORT = 3034;
+const PORT = 3035;
 
 // Middlewares
 app.use(helmet());
