@@ -25,6 +25,15 @@
     if (text.trim() === "") error += " Message cannot be empty.";
   }
 
+  // Success Event
+  function onSuccess() {
+    success = true;
+    setTimeout(() => {
+      success = false;
+      clearMessage();
+    }, 5000);
+  }
+
   // Submit Message
   async function submit(e) {
     e.preventDefault();
@@ -52,8 +61,7 @@
       if (data.error) {
         error = data.error;
       } else {
-        success = true;
-        clearMessage();
+        onSuccess();
       }
 
       loading = false;
@@ -94,9 +102,9 @@
     >
   </form>
 
-  <p class="h1 bg border-primary-darker text-center" class:success>
-    Your message has been sent! I will take a look at it as soon as I'm able.
-    Have a good day =]
+  <p class="h2 bg border-primary-darker text-center" class:success>
+    Your message has been sent! I look forward to hearing what you wrote and
+    will take a look at it as soon as I'm able.
   </p>
   <div class="loader" class:active={loading}></div>
 </section>
@@ -164,7 +172,7 @@
     display: flex;
     align-items: center;
     width: auto;
-    margin-left: auto;
+    margin: auto;
     padding: 0.5rem 2.75rem;
     font-size: 1rem;
     font-weight: bold;
@@ -183,6 +191,14 @@
 
     &:not([disabled]):hover {
       text-decoration: underline;
+    }
+
+    &:focus-visible {
+      color: var(--font-color);
+
+      :global(svg) {
+        fill: var(--font-color);
+      }
     }
   }
 
@@ -216,10 +232,13 @@
 
     button {
       flex-direction: column;
+      justify-content: center;
+      margin: 0 0 0 auto;
       font-size: 1.2rem;
+      padding-bottom: 0.2rem;
 
       :global(svg) {
-        width: 3rem;
+        width: 2.2rem;
         margin: 0;
       }
     }

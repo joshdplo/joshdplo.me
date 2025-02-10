@@ -30,7 +30,8 @@ export default {
     { category: "bands", itemId: "2da7ehIX9lFyIDqmjqVZvS", date: "01/23/2025" },
   ],
   games: [
+    { category: "games", itemId: "892970", date: "02/09/2025", active: true },
     { category: "games", itemId: "2016590", date: "01/20/2025", active: true },
-    { category: "games", itemId: "1086940", date: "01/02/2025", active: true },
+    { category: "games", itemId: "1086940", date: "01/02/2025", active: false },
   ]
 }
