@@ -102,7 +102,7 @@
     >
   </form>
 
-  <p class="h2 bg border-primary-darker text-center" class:success>
+  <p class="h4 bg border-primary-darker text-center" class:success>
     Your message has been sent! I look forward to hearing what you wrote and
     will take a look at it as soon as I'm able.
   </p>
@@ -125,7 +125,7 @@
     transition: opacity 0.4s ease-in-out;
 
     &.success {
-      opacity: 0.1;
+      opacity: 0.3;
       pointer-events: none;
     }
 
@@ -142,7 +142,7 @@
     margin: 0 auto 1rem;
   }
 
-  input,
+  input[type="text"],
   textarea,
   button {
     width: 100%;
@@ -203,16 +203,24 @@
   }
 
   p {
-    position: absolute;
-    left: 0;
-    top: 50%;
+    position: fixed;
+    left: 5%;
+    top: 25%;
+    width: 90%;
     transform: translateY(-50%);
     opacity: 0;
+    transform-origin: bottom;
+    transform: scale(0);
     pointer-events: none;
-    transition: opacity 0.4s ease-in-out;
+    transition:
+      opacity 0.4s ease-in-out,
+      transform 0.4s ease-in-out;
 
     &.success {
       opacity: 1;
+      transform: scale(1);
+
+      @include util.zindex(pageMenu);
     }
   }
 
