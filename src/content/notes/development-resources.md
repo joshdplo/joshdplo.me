@@ -1,7 +1,7 @@
 ---
 title: 'Web Development Resources'
 date: 2025-01-07
-updated: 2025-01-14
+updated: 2025-02-14
 description: 'A working list of links for various areas of web development'
 authors: ['Josh']
 image:
@@ -12,6 +12,17 @@ tags: ["webdev", "linux", "front-end"]
 Jump to: [Front-End Web](#front-end-web) | [Linux](#linux)
 
 ## Front-End Web
+### Individual Elements/Components
+- [CSS Loaders](https://css-loaders.com/)
+- [UI Verse](https://uiverse.io/)
+
+### Image Tools
+- [Aspect Ratio Calculator (find dynamic ratio via base ratio)](https://andrew.hedges.name/experiments/aspect_ratio/)
+- [SpriteCow (loose spritesheet generator)](http://www.spritecow.com/)
+- [PNG Pixel (transparent base64 pixel generator)](https://png-pixel.com/)
+- [Subtle Patterns](https://www.toptal.com/designers/subtlepatterns/)
+- [svgomg SVG optimizer](https://svgomg.net/)
+
 ### Colors
 - [Color Hunt (palettes)](https://colorhunt.co/)
 - [Coolors (palettes)](https://coolors.co/)
@@ -25,10 +36,6 @@ Jump to: [Front-End Web](#front-end-web) | [Linux](#linux)
 - [Google Fonts](https://fonts.google.com/)
 - [CSS Clamp Generator](https://clamp-generator.netlify.app/)
 
-### Individual Elements/Components
-- [CSS Loaders](https://css-loaders.com/)
-- [UI Verse](https://uiverse.io/)
-
 ### Icons
 - [Iconmonstr](https://iconmonstr.com/)
 - [Game Icons](https://game-icons.net/)
@@ -37,17 +44,16 @@ Jump to: [Front-End Web](#front-end-web) | [Linux](#linux)
 - [microns](https://www.s-ings.com/projects/microns-icon-font/)
 - [typicons](https://www.s-ings.com/typicons/)
 
-### SVG
-- [svgomg SVG optimizer](https://svgomg.net/)
-
-### Images
-- [Aspect Ratio Calculator (find dynamic ratio via base ratio)](https://andrew.hedges.name/experiments/aspect_ratio/)
-- [SpriteCow (spritesheet generator)](http://www.spritecow.com/)
-- [PNG Pixel (transparent base64 pixel generator)](https://png-pixel.com/)
-- [Subtle Patterns](https://www.toptal.com/designers/subtlepatterns/)
-
 ### Meta
 - [Opengraph.xyz (preview/generate og meta tags)](https://www.opengraph.xyz/)
+
+## Javascript Games
+### Engines
+- [LittleJS by Frank Force](https://github.com/KilledByAPixel/LittleJS)
+- [Kaplay (Kaboom community successor)](https://kaplayjs.com/)
+
+### Sprite Tools
+- [Piskel online sprite creator](https://www.piskelapp.com/p/create/sprite)
 
 ------------
 
