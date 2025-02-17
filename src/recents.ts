@@ -1,11 +1,13 @@
 export default {
   watched: [
+    { category: "shows", itemId: "241501", date: "02/16/2025", active: true },
+    { category: "movies", itemId: "950396", date: "02/15/2025", active: true },
     { category: "shows", itemId: "206916", date: "02/01/2025", active: true },
     { category: "shows", itemId: "126308", date: "02/05/2025", active: true },
     { category: "movies", itemId: "138832", date: "02/04/2025", active: true },
     { category: "movies", itemId: "1084199", date: "02/04/2025", active: true },
-    { category: "movies", itemId: "7979", date: "02/02/2025", active: true },
-    { category: "shows", itemId: "201124", date: "02/01/2025", active: true },
+    { category: "movies", itemId: "7979", date: "02/02/2025", active: false },
+    { category: "shows", itemId: "201124", date: "02/01/2025", active: false },
     { category: "movies", itemId: "336843", date: "01/31/2025", active: false },
     { category: "movies", itemId: "294254", date: "01/30/2025" },
     { category: "movies", itemId: "198663", date: "01/30/2025" },
@@ -20,9 +22,12 @@ export default {
   ],
   shows: [
     { category: "shows", itemId: "1274", date: "01/01/2025", active: true },
+    { category: "shows", itemId: "4629", date: "02/17/2025", active: true },
     { category: "shows", itemId: "86848", date: "01/01/2025" },
   ],
   music: [
+    { category: "songs", itemId: "3wchQBokK9IDtoYrw14gpK", date: "02/17/2025", active: true },
+    { category: "songs", itemId: "7i1WcWycZthlbU1nBKMWQx", date: "02/17/2025", active: true },
     { category: "songs", itemId: "3Zp6cjMj1yyg96jtUT0eOz", date: "02/01/2025", active: true },
     { category: "songs", itemId: "3rW9rYv7SE0l8MIOWnkZ2i", date: "02/01/2025", active: true },
     { category: "radio", itemId: "somafm_deepspaceone", date: "01/20/2025" },
@@ -34,4 +39,4 @@ export default {
     { category: "games", itemId: "2016590", date: "01/20/2025", active: true },
     { category: "games", itemId: "1086940", date: "01/02/2025", active: false },
   ]
-}
+};

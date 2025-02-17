@@ -231,6 +231,14 @@
       }
     }
 
+    li a {
+      padding: 0.65rem 1rem;
+
+      @include util.mq(md) {
+        padding: 0.25rem 1rem;
+      }
+    }
+
     .active {
       padding-right: 2.25em;
       color: var(--font-color-opposite);
