@@ -31,7 +31,7 @@
     setTimeout(() => {
       success = false;
       clearMessage();
-    }, 5000);
+    }, 8000);
   }
 
   // Submit Message
