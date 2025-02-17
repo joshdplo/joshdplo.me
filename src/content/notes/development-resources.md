@@ -1,7 +1,7 @@
 ---
 title: 'Web Development Resources'
-date: 2025-01-07
 updated: 2025-02-14
+date: 2025-01-07
 description: 'A working list of links for various areas of web development'
 authors: ['Josh']
 image:
