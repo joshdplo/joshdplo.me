@@ -43,9 +43,8 @@
   .breadcrumbs {
     position: relative;
     display: none;
-    margin-left: auto;
     background-color: var(--background);
-    padding: 0 0.5rem;
+    padding: 0 0.7rem;
 
     @include util.mq(sm) {
       display: block;

@@ -1,9 +1,11 @@
 ---
-import { getPageMenuLinksFromPath } from "@util";
+import { isDevelopment, getPageMenuLinksFromPath } from "@util";
 import { getCollection } from "astro:content";
 import CollectionLayout from "@layouts/CollectionLayout.astro";
 
-const notes = await getCollection("notes");
+const notes = await getCollection("notes", ({ data }) =>
+  isDevelopment ? true : data.published,
+);
 const authors = [...new Set(notes.map((k) => k.data.authors).flat())];
 const pageMenuLinks = getPageMenuLinksFromPath("/notes");
 

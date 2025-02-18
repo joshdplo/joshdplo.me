@@ -148,6 +148,7 @@
 
     &:focus-visible {
       background-color: var(--c-accent);
+      z-index: 2;
 
       :global(svg path) {
         fill: var(--c-black);
@@ -196,6 +197,7 @@
     transform: scale(0);
     transform-origin: top left;
     transition: transform 0.22s ease;
+    z-index: 2;
 
     li + li a {
       border-top: 0;
@@ -228,6 +230,7 @@
       &:focus-within {
         color: var(--c-black);
         background-color: var(--c-accent);
+        z-index: 2;
       }
     }
 

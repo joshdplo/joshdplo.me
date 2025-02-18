@@ -1,4 +1,9 @@
-import { PAGE_COLORS, ALL_LINKS, META } from "@constants";
+import { PAGE_COLORS, ALL_LINKS } from "@constants";
+
+/**
+ * Environment
+ */
+export const isDevelopment = process.env.NODE_ENV !== 'production';
 
 /**
  * Format Date

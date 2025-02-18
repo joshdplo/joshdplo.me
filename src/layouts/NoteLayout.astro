@@ -1,13 +1,17 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
-import { formatDate } from "@util";
+import { isDevelopment, formatDate } from "@util";
 const { frontmatter, slug } = Astro.props;
+
+const searchable = (isDevelopment && frontmatter.published === false) || frontmatter.published === true;
 
 const imagesGlob = import.meta.glob("@images/*.{webp,jpg,png}");
 const img = frontmatter.image
   ? imagesGlob[`/src/images/${frontmatter.image.pathname}`]()
   : null;
+
+console.log(frontmatter.published, searchable);
 ---
 
 <BaseLayout
@@ -15,7 +19,7 @@ const img = frontmatter.image
   pageDescription={frontmatter?.description}
   noBreadcrumbs={true}
 >
-  <section class="contain" data-note-id={slug}>
+  <section class="contain" data-note-id={searchable ? slug : undefined}>
     {
       img && (
         <Image src={img} alt={frontmatter.image.alt} width="900" height="380" />
@@ -119,7 +123,7 @@ const img = frontmatter.image
   }
 
   .content {
-    background-color: var(--c-quaternary);
+    background-color: var(--content-subtle);
   }
 
   .inner {
@@ -161,6 +165,11 @@ const img = frontmatter.image
       margin: 2rem 0;
       border-color: var(--content-subtle);
       border-style: dashed;
+    }
+
+    // collection items spacing
+    :global(p + .collection-item) {
+      margin-top: 3rem;
     }
   }
 </style>

@@ -8,6 +8,7 @@ image:
     pathname: 'v1-release.png'
     alt: 'fantasical multi-colored pastel clouds in space'
 tags: ["release", "webdev"]
+published: true
 ---
 This is the write-up for the first version of my website! [Jump to the release notes](#v1-release-notes) / [Visit the Github Repo](https://github.com/joshdplo/joshdplo.me).
 

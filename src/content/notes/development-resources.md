@@ -8,6 +8,7 @@ image:
     pathname: 'webdev-resources.png'
     alt: 'web development resources'
 tags: ["webdev", "linux", "front-end"]
+published: true
 ---
 Jump to: [Front-End Web](#front-end-web) | [Linux](#linux)
 
