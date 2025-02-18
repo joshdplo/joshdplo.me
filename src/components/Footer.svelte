@@ -78,7 +78,7 @@
     .heading {
       font-weight: bold;
       padding-bottom: 0.2em;
-      border-bottom: 1px dotted var(--content-subtle);
+      border-bottom: 1px solid var(--content-subtler);
     }
 
     a,
@@ -103,7 +103,7 @@
       flex-wrap: wrap;
 
       .heading {
-        border: none;
+        border: 0;
       }
 
       a,
@@ -112,7 +112,6 @@
       }
 
       a {
-        text-decoration: underline;
         border: none;
       }
     }
@@ -139,6 +138,10 @@
       text-decoration: none;
       margin-bottom: 0;
       line-height: 1;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
 
     a[aria-label] {

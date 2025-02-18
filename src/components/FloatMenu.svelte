@@ -115,7 +115,6 @@
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    // background-color: var(--background);
     transition: background-color 0.2s ease-in;
     @include util.zindex(nav);
   }
@@ -145,6 +144,7 @@
   button {
     padding: 0.5rem 0.6rem;
     background-color: var(--background);
+    transition: background-color 0.2s ease-in; // theme switch
 
     &:focus-visible {
       background-color: var(--c-accent);

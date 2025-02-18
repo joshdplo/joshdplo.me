@@ -6,7 +6,7 @@ description: 'A brief write-up on the release of joshdplo.me - the motivation, t
 authors: ['Josh']
 image:
     pathname: 'v1-release.png'
-    alt: 'fantasical multi-colored pastel clouds in space'
+    alt: 'v1 website release for joshdplo.me'
 tags: ["release", "webdev"]
 published: true
 ---
