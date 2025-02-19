@@ -10,8 +10,6 @@ const imagesGlob = import.meta.glob("@images/*.{webp,jpg,png}");
 const img = frontmatter.image
   ? imagesGlob[`/src/images/${frontmatter.image.pathname}`]()
   : null;
-
-console.log(frontmatter.published, searchable);
 ---
 
 <BaseLayout

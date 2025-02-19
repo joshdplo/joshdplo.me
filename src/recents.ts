@@ -1,11 +1,12 @@
 export default {
   watched: [
+    { category: "movies", itemId: "549509", date: "02/19/2025", active: true },
     { category: "shows", itemId: "283197", date: "02/18/2025", active: true },
     { category: "shows", itemId: "241501", date: "02/16/2025", active: true },
     { category: "movies", itemId: "950396", date: "02/15/2025", active: true },
     { category: "shows", itemId: "206916", date: "02/01/2025", active: true },
     { category: "shows", itemId: "126308", date: "02/05/2025", active: true },
-    { category: "movies", itemId: "138832", date: "02/04/2025", active: true },
+    { category: "movies", itemId: "138832", date: "02/04/2025", active: false },
     { category: "movies", itemId: "1084199", date: "02/04/2025", active: false },
     { category: "movies", itemId: "7979", date: "02/02/2025", active: false },
     { category: "shows", itemId: "201124", date: "02/01/2025", active: false },
