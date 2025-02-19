@@ -15,6 +15,10 @@ const {
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
+    function removeSearched() {
+      document.body.classList.remove("searched");
+    }
+
     function scrollToSearch() {
       const urlSearchParams = new URLSearchParams(window.location.search);
       if (urlSearchParams.size === 0) return;
@@ -31,9 +35,7 @@ const {
 
       el.classList.add("searched");
       document.body.classList.add("searched");
-      function removeSearched() {
-        document.body.classList.remove("searched");
-      }
+
       window.addEventListener("click", () => removeSearched(), { once: true });
       window.addEventListener("touchmove", () => removeSearched(), {
         once: true,
