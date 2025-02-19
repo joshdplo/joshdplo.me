@@ -31,7 +31,7 @@
     setTimeout(() => {
       success = false;
       clearMessage();
-    }, 8000);
+    }, 4000);
   }
 
   // Submit Message
@@ -103,8 +103,7 @@
   </form>
 
   <p class="h4 bg border-primary-darker text-center" class:success>
-    Your message has been sent! I look forward to hearing what you wrote and
-    will take a look at it as soon as I'm able.
+    Your message has been sent!
   </p>
   <div class="loader" class:active={loading}></div>
 </section>
@@ -123,6 +122,7 @@
 
   form {
     transition: opacity 0.4s ease-in-out;
+    margin: 1rem auto 0;
 
     &.success {
       opacity: 0.3;
@@ -130,8 +130,7 @@
     }
 
     @include util.mq(sm) {
-      max-width: 500px;
-      margin: 1rem auto 0;
+      max-width: 550px;
     }
   }
 
@@ -142,6 +141,10 @@
     margin: 0 auto 1rem;
   }
 
+  label {
+    font-weight: bold;
+  }
+
   input[type="text"],
   textarea,
   button {
@@ -150,13 +153,14 @@
     border-radius: 0;
     border: 8px double var(--c-primary-darker);
     padding: 0.35em;
-    font-size: 1rem;
+    font-size: 1.2rem;
     background-color: var(--content-subtler);
     transition: opacity 0.4s ease-in-out;
   }
 
   textarea {
     min-height: 150px;
+    margin-bottom: 0.5rem;
   }
 
   .error {
@@ -203,7 +207,7 @@
   }
 
   p {
-    position: fixed;
+    position: absolute;
     left: 5%;
     top: 25%;
     width: 90%;

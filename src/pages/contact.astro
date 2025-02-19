@@ -13,8 +13,19 @@ const url =
   <section class="contain">
     <div class="center-full">
       <HeroText text="Contact" size="14" />
+      <p class="h4 border bg-primary-dark">
+        <span class="bg no-pad">What's on your mellon?</span> Use the contact form
+        below to <span class="bg-accent no-pad">zap a message to me</span> over the
+        wires and <span class="bg no-pad">I'll read it as soon as I can</span>.
+      </p>
     </div>
   </section>
 
   <ContactPage {url} client:load />
 </BaseLayout>
+
+<style>
+  p {
+    line-height: 1.35;
+  }
+</style>
