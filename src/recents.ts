@@ -1,11 +1,16 @@
 export default {
   watched: [
+    { category: "shows", itemId: "127532", date: "02/23/2025", active: true },
+    { category: "movies", itemId: "186", date: "02/22/2025", active: true },
+    { category: "movies", itemId: "1077782", date: "02/22/2025", active: true },
+    { category: "movies", itemId: "1909", date: "02/20/2025", active: true },
+    { category: "movies", itemId: "9437", date: "02/20/2025", active: true },
     { category: "movies", itemId: "549509", date: "02/19/2025", active: true },
-    { category: "shows", itemId: "283197", date: "02/18/2025", active: true },
-    { category: "shows", itemId: "241501", date: "02/16/2025", active: true },
-    { category: "movies", itemId: "950396", date: "02/15/2025", active: true },
-    { category: "shows", itemId: "206916", date: "02/01/2025", active: true },
-    { category: "shows", itemId: "126308", date: "02/05/2025", active: true },
+    { category: "shows", itemId: "283197", date: "02/18/2025", active: false },
+    { category: "shows", itemId: "241501", date: "02/16/2025", active: false },
+    { category: "movies", itemId: "950396", date: "02/15/2025", active: false },
+    { category: "shows", itemId: "206916", date: "02/01/2025", active: false },
+    { category: "shows", itemId: "126308", date: "02/05/2025", active: false },
     { category: "movies", itemId: "138832", date: "02/04/2025", active: false },
     { category: "movies", itemId: "1084199", date: "02/04/2025", active: false },
     { category: "movies", itemId: "7979", date: "02/02/2025", active: false },
@@ -23,8 +28,9 @@ export default {
     { category: "movies", itemId: "426063", date: "01/23/2025" },
   ],
   shows: [
-    { category: "shows", itemId: "1274", date: "01/01/2025", active: true },
+    { category: "shows", itemId: "8864", date: "02/24/2025", active: true },
     { category: "shows", itemId: "4629", date: "02/17/2025", active: true },
+    { category: "shows", itemId: "1274", date: "01/01/2025", active: false },
     { category: "shows", itemId: "86848", date: "01/01/2025" },
   ],
   music: [

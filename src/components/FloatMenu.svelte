@@ -184,7 +184,7 @@
   #float-menu {
     position: absolute;
     left: 0.8rem;
-    top: 88%;
+    top: 90%;
     width: 15.625rem;
     height: auto;
     border: 0.8em double var(--page-color);
@@ -194,9 +194,13 @@
     background-color: var(--font-color-opposite);
     font-size: 1.4rem;
     font-weight: bold;
-    transform: scale(0);
-    transform-origin: top left;
-    transition: transform 0.22s ease;
+    opacity: 0;
+    transform: translateX(-25px);
+    transform-origin: left;
+    transition:
+      transform 0.2s ease-in-out,
+      opacity 0.2s ease-in-out;
+    pointer-events: none;
     z-index: 2;
 
     li + li a {
@@ -260,7 +264,9 @@
     }
 
     + #float-menu {
-      transform: scale(1);
+      opacity: 1;
+      transform: translateX(0);
+      pointer-events: all;
     }
   }
 </style>
