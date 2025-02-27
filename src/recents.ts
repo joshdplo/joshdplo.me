@@ -1,11 +1,12 @@
 export default {
   watched: [
+    { category: "shows", itemId: "83095", date: "02/26/2025", active: true },
     { category: "shows", itemId: "127532", date: "02/23/2025", active: true },
     { category: "movies", itemId: "186", date: "02/22/2025", active: true },
     { category: "movies", itemId: "1077782", date: "02/22/2025", active: true },
     { category: "movies", itemId: "1909", date: "02/20/2025", active: true },
     { category: "movies", itemId: "9437", date: "02/20/2025", active: true },
-    { category: "movies", itemId: "549509", date: "02/19/2025", active: true },
+    { category: "movies", itemId: "549509", date: "02/19/2025", active: false },
     { category: "shows", itemId: "283197", date: "02/18/2025", active: false },
     { category: "shows", itemId: "241501", date: "02/16/2025", active: false },
     { category: "movies", itemId: "950396", date: "02/15/2025", active: false },
@@ -43,8 +44,8 @@ export default {
     { category: "bands", itemId: "2da7ehIX9lFyIDqmjqVZvS", date: "01/23/2025" },
   ],
   games: [
-    { category: "games", itemId: "892970", date: "02/09/2025", active: true },
     { category: "games", itemId: "2016590", date: "01/20/2025", active: true },
+    { category: "games", itemId: "892970", date: "02/09/2025", active: true },
     { category: "games", itemId: "1086940", date: "01/02/2025", active: false },
   ]
 };
